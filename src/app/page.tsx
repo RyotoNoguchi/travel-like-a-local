@@ -1,25 +1,7 @@
-import Image from "next/image";
-import { gql } from '@apollo/client'
-import { createApolloClient } from '@/apolloClient'
+import Image from 'next/image'
 import { NextPage } from 'next'
-import { LOGO_ASSET_ID } from '@/constants'
 
 const HomePage: NextPage = async () => {
-  const client = createApolloClient()
-  const { data } = await client.query({
-    query: gql`
-      query ($assetId: String!) {
-        asset(id: $assetId) {
-          title
-          url
-        }
-      }
-    `,
-    variables: {
-      assetId: LOGO_ASSET_ID
-    }
-  })
-  console.log(data)
   return (
     <div className='grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
       <main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
