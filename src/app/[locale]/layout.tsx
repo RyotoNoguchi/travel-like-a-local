@@ -22,7 +22,9 @@ type Props = {
   params: { locale: string }
 }
 
-const LocaleLayout: FC<Props> = async ({ children, params: { locale } }) => {
+const LocaleLayout: FC<Props> = async ({ children, params }) => {
+  // See: https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
+  const { locale } = await params
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound()
