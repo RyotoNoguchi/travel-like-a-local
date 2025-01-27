@@ -1,6 +1,5 @@
 {
-  "HomePage": {
-    "title": "Bonjour le monde!",
+  "Header": {
     "area": "Zone",
     "category": "Catégorie",
     "search": "Recherche",

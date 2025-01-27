@@ -6,7 +6,8 @@ export default {
     extend: {
       colors: {
         background: 'var(--background)',
-        foreground: 'var(--foreground)'
+        foreground: 'var(--foreground)',
+        primary: '#C3281D'
       },
       screens: {
         'xs': '390px'

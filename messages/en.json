@@ -1,6 +1,5 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
+  "Header": {
     "area": "Area",
     "category": "Category",
     "search": "Search",
