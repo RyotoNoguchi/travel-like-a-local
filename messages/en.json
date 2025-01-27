@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "area": "Area",
+    "category": "Category",
+    "search": "Search",
+    "favorite": "Favorite",
+    "language": "Language"
+  }
+}

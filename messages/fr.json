@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Bonjour le monde!",
+    "area": "Zone",
+    "category": "Catégorie",
+    "search": "Recherche",
+    "favorite": "Favoris",
+    "language": "Langue"
+  }
+}
