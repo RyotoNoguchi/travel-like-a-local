@@ -3,3 +3,7 @@ export const CONTENTFUL_GRAPHQL_ENDPOINT = `https://graphql.contentful.com/conte
 export const LOGO_TITLE = 'Travel Like a Local in Japan'
 export const LOGO_TITLE_PREFIX = 'Travel Like a Local'
 export const LOGO_TITLE_SUFFIX = 'Japan'
+export enum LANGUAGE {
+  EN = 'en',
+  FR = 'fr'
+}

@@ -6,7 +6,7 @@ import { FC } from 'react'
 import type { Metadata } from 'next'
 import { Header } from '@/app/ui/header'
 import { createApolloClient } from '@/apolloClient'
-import { LOGO_ASSET_ID } from '@/constants'
+import { LANGUAGE, LOGO_ASSET_ID } from '@/constants'
 import { Query, QueryAssetArgs } from '@/generated/graphql'
 import { GET_ASSET_QUERY } from '@/graphql/query'
 import { zain } from '@/app/ui/fonts'
@@ -47,8 +47,10 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
   return (
     <html lang={locale}>
       <body className={`${zain.className} antialiased`}>
-        {logo && <Header logo={logo} />}
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          {logo && <Header logo={logo} locale={locale as LANGUAGE} />}
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   )

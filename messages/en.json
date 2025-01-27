@@ -4,6 +4,7 @@
     "category": "Category",
     "search": "Search",
     "favorite": "Favorite",
-    "language": "Language"
+    "language": "English",
+    "selectLanguage": "Select Language"
   }
 }
