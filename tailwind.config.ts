@@ -10,7 +10,8 @@ export default {
         primary: '#C3281D'
       },
       screens: {
-        'xs': '390px'
+        'xs': '390px',
+        'semi-lg': '992px'
       }
     }
   },

@@ -11,6 +11,14 @@
   @apply hover:opacity-80 hover:scale-105 duration-300 transition-all;
 }
 
+.all-appearance-none {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
