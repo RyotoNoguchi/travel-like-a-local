@@ -1,0 +1,10 @@
+{
+  "Header": {
+    "area": "Area",
+    "category": "Category",
+    "search": "Search",
+    "favorite": "Favorite",
+    "language": "English",
+    "selectLanguage": "Select Language"
+  }
+}

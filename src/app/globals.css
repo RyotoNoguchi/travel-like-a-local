@@ -1,10 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+.hover-animation {
+  @apply hover:opacity-80 hover:scale-105 duration-300 transition-all;
 }
 
 @media (prefers-color-scheme: dark) {

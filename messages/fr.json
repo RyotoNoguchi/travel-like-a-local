@@ -1,0 +1,10 @@
+{
+  "Header": {
+    "area": "Zone",
+    "category": "Catégorie",
+    "search": "Recherche",
+    "favorite": "Favoris",
+    "language": "Français",
+    "selectLanguage": "Choisir la langue"
+  }
+}
