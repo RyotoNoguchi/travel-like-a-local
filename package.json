@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts"
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@apollo/client": "^3.12.7",
@@ -31,12 +32,27 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "postcss": "^8",
     "prettier-plugin-organize-imports": "^4.1.0",
     "tailwindcss": "^3.4.1",
     "tailwindest": "^2.3.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{ts,tsx,js,jsx,json,yml,md}": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "prettier --write",
+      "stylelint --fix"
+    ]
   },
   "prettier": {
     "singleQuote": true,
