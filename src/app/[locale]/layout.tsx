@@ -1,7 +1,8 @@
 import { createApolloClient } from '@/apolloClient'
 import '@/app/globals.css'
 import { zain } from '@/app/ui/fonts'
-import { Header } from '@/app/ui/header'
+import { Footer } from '@/app/ui/templates/footer'
+import { Header } from '@/app/ui/templates/header/'
 import { type LANGUAGE, LOGO_ASSET_ID } from '@/constants'
 import { type Query, type QueryAssetArgs } from '@/generated/graphql'
 import { GET_ASSET_QUERY } from '@/graphql/query'
@@ -50,6 +51,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
         <NextIntlClientProvider messages={messages}>
           {logo ? <Header logo={logo} locale={locale as LANGUAGE} /> : null}
           {children}
+          <Footer locale={locale as LANGUAGE} />
         </NextIntlClientProvider>
       </body>
     </html>

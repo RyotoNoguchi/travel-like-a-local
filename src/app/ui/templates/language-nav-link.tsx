@@ -1,6 +1,7 @@
 'use client'
 
 import { LANGUAGE } from '@/constants'
+import type { Tailwind } from '@/types/tailwind'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
@@ -11,11 +12,11 @@ type Props = {
   label: string
   href: string
   locale: LANGUAGE
-  withinHamburger?: boolean
+  gap: Tailwind['gap']
 }
 
-export const LanguageNavLink: FC<Props> = ({ icon, label, href, locale, withinHamburger = false }) => {
-  const t = useTranslations('Header')
+export const LanguageNavLink: FC<Props> = ({ icon, label, href, locale, gap }) => {
+  const t = useTranslations('NavMenu')
   const router = useRouter()
 
   const handleMouseEnter = () => {
@@ -28,14 +29,14 @@ export const LanguageNavLink: FC<Props> = ({ icon, label, href, locale, withinHa
   }
 
   return (
-    <div className={classNames('flex items-start hover-animation h-full', withinHamburger && 'gap-2')}>
+    <div className={classNames('flex items-start hover-animation h-full', gap)}>
       {icon}
       <label htmlFor="language-select" className="sr-only">
         {t('selectLanguage')}
       </label>
       <select
         id="language-select"
-        className="all-appearance-none cursor-pointer focus:outline-none h-full"
+        className="all-appearance-none cursor-pointer focus:outline-none h-full bg-transparent"
         value={locale}
         name="language"
         aria-label={label}

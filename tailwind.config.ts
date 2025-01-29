@@ -7,7 +7,9 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        primary: '#C3281D'
+        primary: '#C3281D',
+        'dark-gray': '#2F353E',
+        gray: '#33363F'
       },
       screens: {
         xs: '390px',
