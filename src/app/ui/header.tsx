@@ -7,13 +7,13 @@ import { GlobeIcon } from '@/app/ui/icons/globe-icon'
 import { SearchIcon } from '@/app/ui/icons/search-icon'
 import { LanguageNavLink } from '@/app/ui/language-nav-link'
 import { NavLink } from '@/app/ui/nav-link'
-import { LANGUAGE, LOGO_TITLE, LOGO_TITLE_PREFIX, LOGO_TITLE_SUFFIX } from '@/constants'
-import { NavLinkType } from '@/types/navLinks'
+import { type LANGUAGE, LOGO_TITLE, LOGO_TITLE_PREFIX, LOGO_TITLE_SUFFIX } from '@/constants'
+import { type NavLinkType } from '@/types/navLinks'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import type { FC } from 'react'
 
 type Props = {
   logo: {

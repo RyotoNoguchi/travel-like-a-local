@@ -2,15 +2,15 @@ import { createApolloClient } from '@/apolloClient'
 import '@/app/globals.css'
 import { zain } from '@/app/ui/fonts'
 import { Header } from '@/app/ui/header'
-import { LANGUAGE, LOGO_ASSET_ID } from '@/constants'
-import { Query, QueryAssetArgs } from '@/generated/graphql'
+import { type LANGUAGE, LOGO_ASSET_ID } from '@/constants'
+import { type Query, type QueryAssetArgs } from '@/generated/graphql'
 import { GET_ASSET_QUERY } from '@/graphql/query'
 import { routing } from '@/i18n/routing'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { FC } from 'react'
+import type { FC } from 'react'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -48,7 +48,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
     <html lang={locale}>
       <body className={`${zain.className} antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          {logo && <Header logo={logo} locale={locale as LANGUAGE} />}
+          {logo ? <Header logo={logo} locale={locale as LANGUAGE} /> : null}
           {children}
         </NextIntlClientProvider>
       </body>

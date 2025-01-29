@@ -4,7 +4,7 @@ import { LANGUAGE } from '@/constants'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, FC } from 'react'
+import type { ChangeEvent, FC } from 'react'
 
 type Props = {
   icon: React.ReactNode
