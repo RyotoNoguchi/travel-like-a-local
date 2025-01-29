@@ -26,9 +26,9 @@ type Props = {
 export const Header: FC<Props> = ({ logo, locale }) => {
   const t = useTranslations('Header')
   const getNavLinks = (width: number, height: number): NavLinkType[] => [
+    { icon: <SearchIcon width={width} height={height} />, label: t('search'), href: '/search' },
     { icon: <AreaIcon width={width} height={height} />, label: t('area'), href: '/area' },
     { icon: <CategoryIcon width={width} height={height} />, label: t('category'), href: '/category' },
-    { icon: <SearchIcon width={width} height={height} />, label: t('search'), href: '/search' },
     { icon: <FavoriteIcon width={width} height={height} />, label: t('favorite'), href: '/favorite' }
   ]
   return (
