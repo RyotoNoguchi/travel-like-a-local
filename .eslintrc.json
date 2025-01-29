@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "eslint-plugin-react"],
+  "extends": ["next/core-web-vitals", "next/typescript", "next", "prettier"],
+  "ignorePatterns": ["!.storybook"],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "eqeqeq": "error",
+    "no-console": "warn",
+    "no-implicit-globals": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "no-multi-spaces": "error",
+    "consistent-return": "error",
+    "no-duplicate-imports": "error",
+    "no-useless-catch": "warn",
+    "dot-notation": "error",
+    "no-lonely-if": "error",
+    "no-const-assign": "error",
+    "no-new-object": "error",
+    "no-array-constructor": "error",
+    "no-implicit-coercion": "error",
+    "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true, "varsIgnorePattern": "^_" }],
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/switch-exhaustiveness-check": "warn",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/method-signature-style": "error",
+    "@typescript-eslint/restrict-plus-operands": "error",
+    "@typescript-eslint/restrict-template-expressions": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "react/jsx-no-leaked-render": "error"
+  }
+}
