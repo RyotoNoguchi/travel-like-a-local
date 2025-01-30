@@ -36,7 +36,8 @@ export const Header: FC<Props> = ({ logo, locale }) => {
   return (
     <header
       className={classNames(
-        'relative flex justify-between gap-2 bg-white drop-shadow-md h-14 px-3',
+        'fixed top-0 left-0 right-0 z-40',
+        'flex justify-between gap-2 bg-white drop-shadow-md h-14 px-3',
         'sm:justify-between sm:px-1',
         'md:px-2',
         'lg:px-4 lg:justify-between'
