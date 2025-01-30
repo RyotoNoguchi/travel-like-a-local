@@ -11,17 +11,22 @@ import { TwitterIcon } from '@/app/ui/icons/twitter-icon'
 import { WhatsAppIcon } from '@/app/ui/icons/whats-app-icon'
 import { YouTubeIcon } from '@/app/ui/icons/youtube-icon'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
+import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { getNavLinks } from '@/app/utils/navLink'
-import { type LANGUAGE } from '@/constants'
+import { LOGO_TITLE, type LANGUAGE } from '@/constants'
 import { useTranslations } from 'next-intl'
 import type { FC } from 'react'
 
 type Props = {
   locale: LANGUAGE
+  logo: {
+    url: string
+    title: string
+  }
 }
 
-export const Footer: FC<Props> = ({ locale }) => {
+export const Footer: FC<Props> = ({ locale, logo }) => {
   const tHeader = useTranslations('NavMenu')
   const tFooter = useTranslations('Footer')
   const navLinks = getNavLinks([
@@ -40,40 +45,50 @@ export const Footer: FC<Props> = ({ locale }) => {
     { icon: <InstagramIcon width={width} height={height} />, href: 'https://www.instagram.com/your_instagram_handle' }
   ]
   return (
-    <footer className="bg-dark-gray text-white h-full px-4 py-10">
-      <div className="flex flex-col sm:flex-row gap-4 justify-evenly">
-        <div className="flex flex-col gap-2">
-          <h3 className="text-xl font-bold">{tFooter('first')}</h3>
-          <nav className="flex flex-col text-xl items-start w-full">
-            <ul className="flex sm:flex-col flex-wrap items-start gap-2">
-              {navLinks.map(({ icon, label, href }) => (
-                <li key={href}>
-                  <NavLink key={label} icon={icon} label={label} href={href} gap="gap-1" withinFooter />
+    <footer className="bg-dark-gray text-white h-full px-4 pt-10 pb-5">
+      <div className="flex flex-col gap-14 justify-evenly">
+        <div className="flex flex-col sm:flex-row gap-4 sm:justify-evenly">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xl font-bold">{tFooter('first')}</h3>
+            <nav className="flex flex-col text-xl items-start w-full">
+              <ul className="flex sm:flex-col flex-wrap items-start gap-2">
+                {navLinks.map(({ icon, label, href }) => (
+                  <li key={href}>
+                    <NavLink key={label} icon={icon} label={label} href={href} gap="gap-1" withinFooter />
+                  </li>
+                ))}
+                <li className="h-7">
+                  <LanguageNavLink
+                    icon={<GlobeIcon width={24} height={24} color={COLORS.WHITE} />}
+                    label={tHeader('language')}
+                    href="/language"
+                    locale={locale}
+                    gap="gap-1"
+                  />
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xl font-bold">{tFooter('second')}</h3>
+            <ul className="flex flex-wrap sm:flex-row gap-4">
+              {socialLinks(32, 32).map(({ icon, href }) => (
+                <li key={href} className="hover-animation">
+                  <a href={href} target="_blank" rel="noopener noreferrer">
+                    {icon}
+                  </a>
                 </li>
               ))}
-              <li className="h-7">
-                <LanguageNavLink
-                  icon={<GlobeIcon width={24} height={24} color={COLORS.WHITE} />}
-                  label={tHeader('language')}
-                  href="/language"
-                  locale={locale}
-                  gap="gap-1"
-                />
-              </li>
             </ul>
-          </nav>
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <h3 className="text-xl font-bold">{tFooter('second')}</h3>
-          <ul className="flex flex-wrap sm:flex-row gap-4">
-            {socialLinks(32, 32).map(({ icon, href }) => (
-              <li key={href} className="hover-animation">
-                <a href={href} target="_blank" rel="noopener noreferrer">
-                  {icon}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="flex gap-2 justify-center">
+          <Logo logo={logo} subtitle={tFooter('subtitle')} withinFooter />
+        </div>
+        <div className="text-center text-xs">
+          <small className="text-gray-500">
+            © {new Date().getFullYear()} {LOGO_TITLE}. All rights reserved.
+          </small>
         </div>
       </div>
     </footer>

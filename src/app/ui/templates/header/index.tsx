@@ -1,5 +1,4 @@
 import { COLORS } from '@/app/ui/colors'
-import { pacifico } from '@/app/ui/fonts'
 import { AreaIcon } from '@/app/ui/icons/area-icon'
 import { CategoryIcon } from '@/app/ui/icons/category-icon'
 import { FavoriteIcon } from '@/app/ui/icons/favorite-icon'
@@ -7,12 +6,12 @@ import { GlobeIcon } from '@/app/ui/icons/globe-icon'
 import { SearchIcon } from '@/app/ui/icons/search-icon'
 import { HamburgerMenu } from '@/app/ui/templates/header/hamburger-menu'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
+import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { getNavLinks } from '@/app/utils/navLink'
-import { type LANGUAGE, LOGO_TITLE, LOGO_TITLE_PREFIX, LOGO_TITLE_SUFFIX } from '@/constants'
+import { type LANGUAGE, LOGO_TITLE } from '@/constants'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 
@@ -25,13 +24,14 @@ type Props = {
 }
 
 export const Header: FC<Props> = ({ logo, locale }) => {
-  const t = useTranslations('NavMenu')
+  const tHeader = useTranslations('NavMenu')
+  const tFooter = useTranslations('Footer')
   const navLinks = (px: number) =>
     getNavLinks([
-      { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('search'), href: '/search' },
-      { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('area'), href: '/area' },
-      { icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />, label: t('category'), href: '/category' },
-      { icon: <FavoriteIcon width={px} height={px} color={COLORS.GRAY} />, label: t('favorite'), href: '/favorite' }
+      { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('search'), href: '/search' },
+      { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('area'), href: '/area' },
+      { icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('category'), href: '/category' },
+      { icon: <FavoriteIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('favorite'), href: '/favorite' }
     ])
   return (
     <header
@@ -44,11 +44,7 @@ export const Header: FC<Props> = ({ logo, locale }) => {
     >
       <h1 className="flex items-center">
         <Link href="/" className="flex items-center gap-2 hover-animation" aria-label={LOGO_TITLE}>
-          <Image src={logo.url} alt={logo.title} width={40} height={40} className={classNames('hidden', 'xs:block')} />
-          <span className={`${pacifico.className} font-bold text-xl xs:text-2xl flex gap-2 `}>
-            {LOGO_TITLE_PREFIX}
-            <span className="text-primary">{LOGO_TITLE_SUFFIX}</span>
-          </span>
+          <Logo logo={logo} subtitle={tFooter('subtitle')} />
         </Link>
       </h1>
       <div className="flex gap-1">
@@ -62,7 +58,7 @@ export const Header: FC<Props> = ({ logo, locale }) => {
             <li className="h-7">
               <LanguageNavLink
                 icon={<GlobeIcon width={24} height={24} color={COLORS.GRAY} />}
-                label={t('language')}
+                label={tHeader('language')}
                 href="/language"
                 locale={locale}
                 gap="gap-0"

@@ -51,7 +51,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
         <NextIntlClientProvider messages={messages}>
           {logo ? <Header logo={logo} locale={locale as LANGUAGE} /> : null}
           {children}
-          <Footer locale={locale as LANGUAGE} />
+          {logo ? <Footer logo={logo} locale={locale as LANGUAGE} /> : null}
         </NextIntlClientProvider>
       </body>
     </html>
