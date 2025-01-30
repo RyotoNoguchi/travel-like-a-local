@@ -1,15 +1,16 @@
 'use client'
 
+import { COLORS } from '@/app/ui/colors'
 import { CloseIcon } from '@/app/ui/icons/close-icon'
+import { GlobeIcon } from '@/app/ui/icons/globe-icon'
 import { HamburgerIcon } from '@/app/ui/icons/hamburger-icon'
-import { NavLink } from '@/app/ui/nav-link'
+import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
+import { NavLink } from '@/app/ui/templates/nav-link'
 import { type LANGUAGE } from '@/constants'
 import { type NavLinkType } from '@/types/navLinks'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
-import { type FC, useState } from 'react'
-import { GlobeIcon } from './icons/globe-icon'
-import { LanguageNavLink } from './language-nav-link'
+import { type FC, useEffect, useState } from 'react'
 
 type Props = {
   navLinks: NavLinkType[]
@@ -18,11 +19,13 @@ type Props = {
 
 export const HamburgerMenu: FC<Props> = ({ navLinks, locale }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const handleClick = () => {
-    setIsOpen(!isOpen)
+  const handleClick = () => setIsOpen(!isOpen)
+
+  useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto'
-  }
-  const t = useTranslations('Header')
+  }, [isOpen])
+
+  const t = useTranslations('NavMenu')
 
   return (
     <>
@@ -41,11 +44,17 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale }) => {
         <ul className="text-3xl flex flex-col gap-3">
           {navLinks.map(({ icon, label, href }) => (
             <li key={href}>
-              <NavLink icon={icon} label={label} href={href} withinHamburger />
+              <NavLink icon={icon} label={label} href={href} gap="gap-2" withinHamburger />
             </li>
           ))}
           <li className="h-7">
-            <LanguageNavLink icon={<GlobeIcon width={36} height={36} />} label={t('language')} href="/language" locale={locale} withinHamburger />
+            <LanguageNavLink
+              icon={<GlobeIcon width={32} height={32} color={COLORS.GRAY} />}
+              label={t('language')}
+              href="/language"
+              locale={locale}
+              gap="gap-2"
+            />
           </li>
         </ul>
       </div>

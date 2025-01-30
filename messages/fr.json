@@ -1,10 +1,15 @@
 {
-  "Header": {
+  "NavMenu": {
     "area": "Zone",
     "category": "Catégorie",
     "search": "Recherche",
     "favorite": "Favoris",
     "language": "Français",
     "selectLanguage": "Choisir la langue"
+  },
+  "Footer": {
+    "first": "Menu de navigation",
+    "second": "Réseaux sociaux",
+    "subtitle": "~ Votre boussole pour les découvertes locales ~"
   }
 }

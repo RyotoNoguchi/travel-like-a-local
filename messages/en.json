@@ -1,10 +1,15 @@
 {
-  "Header": {
+  "NavMenu": {
     "area": "Area",
     "category": "Category",
     "search": "Search",
     "favorite": "Favorite",
     "language": "English",
     "selectLanguage": "Select Language"
+  },
+  "Footer": {
+    "first": "Navigation Menu",
+    "second": "Social Media",
+    "subtitle": "~ Your Compass to Local Discoveries ~"
   }
 }
