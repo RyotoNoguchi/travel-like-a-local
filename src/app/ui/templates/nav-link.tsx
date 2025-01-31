@@ -1,6 +1,6 @@
+import { Link } from '@/i18n/routing'
 import type { Tailwind } from '@/types/tailwind'
 import classNames from 'classnames'
-import Link from 'next/link'
 import type { FC } from 'react'
 
 type Props = {

@@ -1,4 +1,13 @@
 {
+  "Metadata": {
+    "home": "Home",
+    "description": "At Travel Like a Local Japan, experience the true essence of Japan beyond typical tourist spots. With insights from a nomadic worker's perspective, we offer deep connections to nature-rich areas and local communities, making you the protagonist of your journey.",
+    "locale": "en_US",
+    "alternateLocale": "fr_FR",
+    "countryName": "Japan",
+    "keywords": "Japan Private Tour, Japan Private Guide",
+    "creator": "Travel Like a Local Japan Team"
+  },
   "NavMenu": {
     "area": "Area",
     "category": "Category",
