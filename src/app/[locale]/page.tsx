@@ -1,6 +1,6 @@
 import { getLogo } from '@/app/utils/logo'
-import { LOGO_TITLE, type LANGUAGE } from '@/constants'
-import type { NextPage } from 'next'
+import { LOGO_TITLE, TWITTER_HANDLE, TWITTER_ID, type LANGUAGE } from '@/constants'
+import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
@@ -8,25 +8,33 @@ type Props = {
   params: Promise<{ locale: LANGUAGE }>
 }
 
-export const generateMetadata = async ({ params }: Props) => {
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { locale } = await params
   // Ref: https://next-intl.dev/docs/environments/actions-metadata-route-handlers
   const t = await getTranslations({ locale, namespace: 'Metadata' })
   const keywords = t('keywords')
     .split(',')
     .map((keyword) => keyword.trim())
+  const manifestUrl = `${process.env.METADATA_BASE_URL}/api/manifest?locale=${locale}`
 
-  const logo = await getLogo()
+  const logo = await getLogo({ width: 192, height: 192 })
   return {
     title: `${t('home')} | ${LOGO_TITLE}`,
     description: t('description'),
     keywords,
     creator: t('creator'),
-    icons: [{ rel: 'icon', url: logo?.url }],
-    // TODO: Add manifest
-    manifest: undefined,
-    // TODO: Add twitter
-    twitter: undefined,
+    icons: [{ rel: 'icon', url: logo?.url ?? '' }],
+    manifest: manifestUrl,
+    twitter: {
+      card: 'summary_large_image',
+      site: TWITTER_HANDLE,
+      siteId: TWITTER_ID,
+      creator: TWITTER_HANDLE,
+      creatorId: TWITTER_ID,
+      description: t('manifestDescription'),
+      title: LOGO_TITLE,
+      images: [{ url: logo?.url ?? '', alt: LOGO_TITLE }]
+    },
     // TODO: Add facebook
     facebook: undefined,
     // TODO: Add verification

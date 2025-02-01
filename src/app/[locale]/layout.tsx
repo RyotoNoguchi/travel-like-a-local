@@ -61,7 +61,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound()
   }
-  const logo = await getLogo()
+  const logo = await getLogo({ width: 500, height: 500 })
   // Providing all messages to the client　side is the easiest way to get started
   const messages = await getMessages({ locale })
 

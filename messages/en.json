@@ -6,7 +6,9 @@
     "alternateLocale": "fr_FR",
     "countryName": "Japan",
     "keywords": "Japan Private Tour, Japan Private Guide",
-    "creator": "Travel Like a Local Japan Team"
+    "creator": "Travel Like a Local Japan Team",
+    "manifestDescription": "Discover the essence of Japan with our comprehensive travel guide. From must-see attractions to hidden gems, explore cultural insights and travel tips for an unforgettable journey.",
+    "manifestShortcutsBookmark": "Access your saved bookmarks quickly"
   },
   "NavMenu": {
     "area": "Area",

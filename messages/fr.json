@@ -6,7 +6,9 @@
     "alternateLocale": "en_US",
     "countryName": "Japon",
     "keywords": "Tour privé au Japon, Guide privé au Japon",
-    "creator": "Equipe de Travel Like a Local Japan"
+    "creator": "Equipe de Travel Like a Local Japan",
+    "manifestDescription": "Découvrez l'essence du Japon avec notre guide de voyage complet. Des attractions incontournables aux trésors cachés, explorez les insights culturels et les astuces de voyage pour une expérience inoubliable.",
+    "manifestShortcutsBookmark": "Accéder rapidement à vos favoris"
   },
   "NavMenu": {
     "area": "Zone",
