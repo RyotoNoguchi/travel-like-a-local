@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
         hostname: 'images.ctfassets.net'
       }
     ]
+  },
+  env: {
+    METADATA_BASE_URL: process.env.METADATA_BASE_URL
   }
 }
 

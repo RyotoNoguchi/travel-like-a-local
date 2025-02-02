@@ -1,5 +1,73 @@
-import type { NextPage } from 'next'
+import { getLogo } from '@/app/utils/logo'
+import { LOGO_TITLE, TWITTER_HANDLE, TWITTER_ID, type LANGUAGE } from '@/constants'
+import type { Metadata, NextPage } from 'next'
+import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
+
+type Props = {
+  params: Promise<{ locale: LANGUAGE }>
+}
+
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { locale } = await params
+  // Ref: https://next-intl.dev/docs/environments/actions-metadata-route-handlers
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
+  const keywords = t('keywords')
+    .split(',')
+    .map((keyword) => keyword.trim())
+  const manifestUrl = `${process.env.METADATA_BASE_URL}/api/manifest?locale=${locale}`
+
+  const logo = await getLogo({ width: 192, height: 192 })
+  return {
+    title: `${t('home')} | ${LOGO_TITLE}`,
+    description: t('description'),
+    keywords,
+    creator: t('creator'),
+    icons: [{ rel: 'icon', url: logo?.url ?? '' }],
+    manifest: manifestUrl,
+    twitter: {
+      card: 'summary_large_image',
+      site: TWITTER_HANDLE,
+      siteId: TWITTER_ID,
+      creator: TWITTER_HANDLE,
+      creatorId: TWITTER_ID,
+      description: t('manifestDescription'),
+      title: LOGO_TITLE,
+      images: [{ url: logo?.url ?? '', alt: LOGO_TITLE }]
+    },
+    // TODO: Add facebook
+    facebook: undefined,
+    // TODO: Add verification
+    verification: undefined,
+    // TODO: Add appleWebApp
+    appleWebApp: undefined,
+    // TODO: Add viewport
+    viewport: undefined,
+    // TODO: Add formatDetection
+    formatDetection: undefined,
+    // TODO: Add itunes
+    itunes: undefined,
+    // TODO: Add appLinks
+    appLinks: undefined,
+    // TODO: Add archives
+    archives: undefined,
+    // TODO: Add assets
+    assets: undefined,
+    // TODO: Add bookmarks
+    bookmarks: undefined,
+    // TODO: Add category
+    category: undefined,
+    // TODO: Add classification
+    classification: undefined,
+    // TODO: Add other
+    openGraph: {
+      locale: t('locale'),
+      alternateLocale: t('alternateLocale'),
+      url: `${new URL(process.env.METADATA_BASE_URL || 'https://example.com')}${locale}`,
+      countryName: t('countryName')
+    }
+  }
+}
 
 const HomePage: NextPage = async () => {
   return (

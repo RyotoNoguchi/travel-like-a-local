@@ -10,9 +10,9 @@ import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { getNavLinks } from '@/app/utils/navLink'
 import { type LANGUAGE, LOGO_TITLE } from '@/constants'
+import { Link } from '@/i18n/routing'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 import type { FC } from 'react'
 
 type Props = {
