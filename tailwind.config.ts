@@ -13,6 +13,8 @@ export default {
       },
       screens: {
         xs: '390px',
+        'semi-sm': '480px',
+        'semi-md': '640px',
         'semi-lg': '992px'
       }
     }
