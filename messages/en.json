@@ -22,5 +22,9 @@
     "first": "Navigation Menu",
     "second": "Social Media",
     "subtitle": "~ Your Compass to Local Discoveries ~"
+  },
+  "Hero": {
+    "title": "Explore Japan Like a <emphasis> Local</emphasis>",
+    "subtitle": "Discover hidden gems and local experiences in Japan."
   }
 }

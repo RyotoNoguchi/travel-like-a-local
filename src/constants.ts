@@ -1,4 +1,7 @@
 export const LOGO_ASSET_ID = '5x2sMehGUOBlAhVBVzmWoB'
+export const HERO_MOBILE_ASSET_ID = '20Dn5MjJUlh6fy6xNt6RBZ'
+export const HERO_DESKTOP_ASSET_ID = '76pMKRS0OXj7oi6qzpVzl1'
+export const HERO_TABLET_ASSET_ID = 'LCUChXjqIsyc786zGKEQx'
 export const CONTENTFUL_GRAPHQL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`
 export const LOGO_TITLE = 'Travel Like a Local in Japan'
 export const LOGO_TITLE_SHORT = 'TTLJP'
