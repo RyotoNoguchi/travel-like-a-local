@@ -1,3 +1,4 @@
+import { CarouselContainer } from '@/app/ui/carousel/container'
 import { HeroContainer } from '@/app/ui/hero/container'
 import { RichText } from '@/app/ui/rich-text'
 import { getLogo } from '@/app/utils/logo'
@@ -78,6 +79,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
     <>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
+        <CarouselContainer width={300} height={200} />
         <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
