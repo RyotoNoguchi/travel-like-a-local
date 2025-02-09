@@ -1,19 +1,17 @@
+import '@/app/globals.css'
 import type { Preview } from '@storybook/react'
-// import { NextIntlClientProvider } from 'next-intl'
-// import { getMessages } from 'next-intl/server'
+import nextIntl from './next-intl'
 
 const preview: Preview = {
-  // decorators: [
-  //   async (Story) => {
-  //     const messages = await getMessages({ locale: 'fr' })
-  //     return (
-  //       <NextIntlClientProvider messages={messages}>
-  //         <Story />
-  //       </NextIntlClientProvider>
-  //     )
-  //   }
-  // ],
+  initialGlobals: {
+    locale: 'en',
+    locales: {
+      en: { icon: '🇺🇸', title: 'English', right: 'EN' },
+      fr: { icon: '🇫🇷', title: 'Français', right: 'FR' }
+    }
+  },
   parameters: {
+    nextIntl,
     controls: {
       matchers: {
         color: /(background|color)$/i,
