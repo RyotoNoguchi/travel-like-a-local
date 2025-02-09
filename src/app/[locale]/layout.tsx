@@ -1,6 +1,6 @@
 import '@/app/globals.css'
 import { zain } from '@/app/ui/fonts'
-import { Footer } from '@/app/ui/templates/footer'
+import { FooterContainer } from '@/app/ui/templates/footer/container'
 import { Header } from '@/app/ui/templates/header/'
 import { getLogo } from '@/app/utils/logo'
 import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER } from '@/constants'
@@ -71,7 +71,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
         <NextIntlClientProvider messages={messages}>
           {logo ? <Header logo={logo} locale={locale as LANGUAGE} /> : null}
           {children}
-          {logo ? <Footer logo={logo} locale={locale as LANGUAGE} /> : null}
+          {logo ? <FooterContainer logo={logo} locale={locale as LANGUAGE} /> : null}
         </NextIntlClientProvider>
       </body>
     </html>
