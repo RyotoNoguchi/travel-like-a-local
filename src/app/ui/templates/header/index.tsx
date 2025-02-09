@@ -8,7 +8,6 @@ import { HamburgerMenu } from '@/app/ui/templates/header/hamburger-menu'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
-import { getNavLinks } from '@/app/utils/navLink'
 import { type LANGUAGE, LOGO_TITLE } from '@/constants'
 import { Link } from '@/i18n/routing'
 import classNames from 'classnames'
@@ -26,13 +25,12 @@ type Props = {
 export const Header: FC<Props> = ({ logo, locale }) => {
   const tHeader = useTranslations('NavMenu')
   const tFooter = useTranslations('Footer')
-  const navLinks = (px: number) =>
-    getNavLinks([
-      { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('search'), href: '/search' },
-      { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('area'), href: '/area' },
-      { icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('category'), href: '/category' },
-      { icon: <FavoriteIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('favorite'), href: '/favorite' }
-    ])
+  const listNavLinks = (px: number) => [
+    { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('search'), href: '/search' },
+    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('area'), href: '/area' },
+    { icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('category'), href: '/category' },
+    { icon: <FavoriteIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('favorite'), href: '/favorite' }
+  ]
   return (
     <header
       className={classNames(
@@ -51,7 +49,7 @@ export const Header: FC<Props> = ({ logo, locale }) => {
       <div className="flex gap-1">
         <nav className="hidden sm:flex text-xl items-center">
           <ul className="flex items-start gap-2">
-            {navLinks(24).map(({ icon, label, href }) => (
+            {listNavLinks(24).map(({ icon, label, href }) => (
               <li key={href}>
                 <NavLink key={label} icon={icon} label={label} href={href} gap="gap-0" />
               </li>
@@ -67,7 +65,7 @@ export const Header: FC<Props> = ({ logo, locale }) => {
             </li>
           </ul>
         </nav>
-        <HamburgerMenu navLinks={navLinks(32)} locale={locale} />
+        <HamburgerMenu navLinks={listNavLinks(32)} locale={locale} />
       </div>
     </header>
   )

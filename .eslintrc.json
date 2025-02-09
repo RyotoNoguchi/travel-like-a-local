@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "eslint-plugin-react"],
-  "extends": ["next/core-web-vitals", "next/typescript", "next", "prettier"],
+  "extends": ["next/core-web-vitals", "next/typescript", "next", "prettier", "plugin:storybook/recommended"],
   "ignorePatterns": ["!.storybook"],
   "env": {
     "es6": true,
@@ -29,7 +29,15 @@
     "no-new-object": "error",
     "no-array-constructor": "error",
     "no-implicit-coercion": "error",
-    "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true, "varsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/switch-exhaustiveness-check": "warn",
     "@typescript-eslint/strict-boolean-expressions": "off",
