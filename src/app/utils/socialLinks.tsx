@@ -1,9 +1,9 @@
-import { FacebookIcon } from '@/app/ui/icons/facebook-icon'
-import { InstagramIcon } from '@/app/ui/icons/instagram-icon'
-import { TikTokIcon } from '@/app/ui/icons/tik-tok-icon'
-import { TwitterIcon } from '@/app/ui/icons/twitter-icon'
-import { WhatsAppIcon } from '@/app/ui/icons/whats-app-icon'
-import { YouTubeIcon } from '@/app/ui/icons/youtube-icon'
+import { FacebookIcon } from '@/app/ui/components/atoms/icons/facebook-icon'
+import { InstagramIcon } from '@/app/ui/components/atoms/icons/instagram-icon'
+import { TikTokIcon } from '@/app/ui/components/atoms/icons/tik-tok-icon'
+import { TwitterIcon } from '@/app/ui/components/atoms/icons/twitter-icon'
+import { WhatsAppIcon } from '@/app/ui/components/atoms/icons/whats-app-icon'
+import { YouTubeIcon } from '@/app/ui/components/atoms/icons/youtube-icon'
 
 type Props = {
   width: number

@@ -1,9 +1,9 @@
 'use client'
 
 import { COLORS } from '@/app/ui/colors'
-import { CloseIcon } from '@/app/ui/icons/close-icon'
-import { GlobeIcon } from '@/app/ui/icons/globe-icon'
-import { HamburgerIcon } from '@/app/ui/icons/hamburger-icon'
+import { CloseIcon } from '@/app/ui/components/atoms/icons/close-icon'
+import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
+import { HamburgerIcon } from '@/app/ui/components/atoms/icons/hamburger-icon'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { type LANGUAGE } from '@/constants'

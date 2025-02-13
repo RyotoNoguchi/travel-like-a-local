@@ -1,5 +1,5 @@
 import { COLORS } from '@/app/ui/colors'
-import { GlobeIcon } from '@/app/ui/icons/globe-icon'
+import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'

@@ -9,7 +9,8 @@ export default {
         foreground: 'var(--foreground)',
         primary: '#C3281D',
         'dark-gray': '#2F353E',
-        gray: '#33363F'
+        gray: '#33363F',
+        'light-gray': '#EEEEEE'
       },
       screens: {
         xs: '390px',
