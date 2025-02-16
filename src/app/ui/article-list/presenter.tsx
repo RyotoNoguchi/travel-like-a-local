@@ -15,7 +15,7 @@ export const ArticleList: FC<Props> = ({ blogPosts, title, viewAll }) => (
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>
       <Link
         href="/blog"
-        className="flex items-center justify-center text-md text-primary rounded-full border border-solid border-primary px-2 py-1"
+        className="flex items-center justify-center text-md text-primary rounded-full border border-solid border-primary px-2 py-1 hover-animation"
         role="button"
       >
         {viewAll}
