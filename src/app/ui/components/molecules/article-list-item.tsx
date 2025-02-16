@@ -1,3 +1,4 @@
+import { ImageLink } from '@/app/ui/components/atoms/icons/image-link'
 import type { PageBlogPost } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
 import Image from 'next/image'
@@ -7,9 +8,7 @@ type Props = PageBlogPost
 
 export const ArticleListItem: FC<Props> = ({ author, featuredImage, title, publishedDate, slug, contentfulMetadata, seoFields }) => (
   <li className="flex flex-col sm:flex-row gap-2 w-full item-center justify-center max-w-[300px] sm:max-w-[640px] sm:justify-start sm:gap-3">
-    <Link href={`/blog/${slug}`} className="rounded-2xl w-full flex justify-center sm:justify-start hover-animation sm:max-w-[216px]">
-      <Image className="rounded-2xl" src={`${featuredImage?.url}?w=300&h=200&fit=fill`} alt={featuredImage?.title ?? ''} width={300} height={200} />
-    </Link>
+    <ImageLink href={`/blog/${slug}`} url={featuredImage?.url ?? ''} alt={featuredImage?.title ?? ''} width={300} height={200} />
     <div className="flex flex-col gap-1 justify-between w-full">
       <div className="flex flex-col gap-1">
         <Link href={`/blog/${slug}`}>
