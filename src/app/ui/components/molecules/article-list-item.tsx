@@ -1,6 +1,7 @@
 import { Author } from '@/app/ui/components/atoms/author'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { ImageLink } from '@/app/ui/components/atoms/icons/image-link'
+import { TagList } from '@/app/ui/components/molecules/tag-list'
 import type { PageBlogPost } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
 import { type FC } from 'react'
@@ -16,15 +17,7 @@ export const ArticleListItem: FC<Props> = ({ author, featuredImage, title, publi
           <h3 className="text-xl font-bold leading-none hover-text-primary">{title}</h3>
         </Link>
         <p className="hidden sm:block text-md text-gray-500">{seoFields?.pageDescription}</p>
-        <ul className="flex flex-wrap gap-2">
-          {contentfulMetadata.tags.map((tag) => (
-            <li className="bg-light-gray rounded-sm px-2" key={tag?.name}>
-              <Link href={`/tag/${tag?.name}`}>
-                <span className="hover-text-primary">{tag?.name}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {Array.isArray(contentfulMetadata.tags) && contentfulMetadata.tags.length > 0 && <TagList tags={contentfulMetadata.tags} />}
       </div>
       <div className="flex gap-2 sm:justify-end">
         {author ? <Author author={author} /> : null}
