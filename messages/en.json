@@ -26,5 +26,9 @@
   "Hero": {
     "title": "Explore Japan Like a <emphasis> Local</emphasis>",
     "subtitle": "Discover hidden gems and local experiences in Japan."
+  },
+  "ArticleList": {
+    "title": "Latest Articles",
+    "viewAll": "View All"
   }
 }

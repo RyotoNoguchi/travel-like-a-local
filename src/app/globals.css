@@ -11,6 +11,10 @@
   @apply hover:opacity-80 hover:scale-105 duration-300 transition-all cursor-pointer;
 }
 
+.hover-text-primary {
+  @apply hover:text-primary transition-colors duration-200 hover:opacity-80
+}
+
 .all-appearance-none {
   appearance: none;
   -moz-appearance: none;

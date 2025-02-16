@@ -22,3 +22,38 @@ export const LIST_FEATURED_BLOG_QUERY = gql`
     }
   }
 `
+
+export const LIST_LATEST_BLOG_QUERY = gql`
+  query ListLatestBlog {
+    pageBlogPostCollection(limit: 10, order: publishedDate_DESC) {
+      items {
+        title
+        seoFields {
+          pageDescription
+        }
+        slug
+        author {
+          name
+          avatar {
+            title
+            url
+            width
+            height
+          }
+        }
+        publishedDate
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+        }
+      }
+    }
+  }
+`

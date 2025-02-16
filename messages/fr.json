@@ -26,5 +26,9 @@
   "Hero": {
     "title": "Découvrez le Japon comme un <emphasis>local</emphasis>",
     "subtitle": "Découvrez les trésors cachés et les expériences locales au Japon."
+  },
+  "ArticleList": {
+    "title": "Derniers articles",
+    "viewAll": "Voir tous"
   }
 }
