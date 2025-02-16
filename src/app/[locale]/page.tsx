@@ -75,12 +75,13 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 const HomePage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'Hero' })
+  const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
   return (
     <>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
         <CarouselContainer width={300} height={200} />
-        <ArticleListContainer />
+        <ArticleListContainer title={articleListT('title')} viewAll={articleListT('viewAll')} />
         {/* <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority /> */}
         {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">

@@ -4,7 +4,12 @@ import type { ListLatestBlogQueryVariables, PageBlogPost, Query } from '@/genera
 import { LIST_LATEST_BLOG_QUERY } from '@/graphql/query'
 import type { FC } from 'react'
 
-export const ArticleListContainer: FC = async () => {
+type Props = {
+  title: string
+  viewAll: string
+}
+
+export const ArticleListContainer: FC<Props> = async ({ title, viewAll }) => {
   const client = createApolloClient()
   const { data } = await client.query<Query, ListLatestBlogQueryVariables>({
     query: LIST_LATEST_BLOG_QUERY
@@ -12,5 +17,5 @@ export const ArticleListContainer: FC = async () => {
   const blogPosts = data.pageBlogPostCollection?.items.filter((post): post is PageBlogPost => post !== null)
   if (!blogPosts || blogPosts.length === 0) return null
 
-  return <ArticleList blogPosts={blogPosts} />
+  return <ArticleList blogPosts={blogPosts} title={title} viewAll={viewAll} />
 }
