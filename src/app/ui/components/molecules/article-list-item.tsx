@@ -1,4 +1,5 @@
 import { Author } from '@/app/ui/components/atoms/author'
+import { DateComponent } from '@/app/ui/components/atoms/date'
 import { ImageLink } from '@/app/ui/components/atoms/icons/image-link'
 import type { PageBlogPost } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
@@ -27,7 +28,7 @@ export const ArticleListItem: FC<Props> = ({ author, featuredImage, title, publi
       </div>
       <div className="flex gap-2 sm:justify-end">
         {author ? <Author author={author} /> : null}
-        <p className="">{new Date(publishedDate).toLocaleDateString()}</p>
+        <DateComponent date={publishedDate as string} />
       </div>
     </div>
   </li>
