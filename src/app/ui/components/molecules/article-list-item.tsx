@@ -1,7 +1,7 @@
+import { Author } from '@/app/ui/components/atoms/author'
 import { ImageLink } from '@/app/ui/components/atoms/icons/image-link'
 import type { PageBlogPost } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
-import Image from 'next/image'
 import { type FC } from 'react'
 
 type Props = PageBlogPost
@@ -26,10 +26,7 @@ export const ArticleListItem: FC<Props> = ({ author, featuredImage, title, publi
         </ul>
       </div>
       <div className="flex gap-2 sm:justify-end">
-        <Link href={`/author/${author?.name}`} className="flex gap-1 hover-text-primary">
-          <Image src={author?.avatar?.url ?? ''} alt={author?.avatar?.title ?? ''} width={24} height={24} />
-          <p className="">{author?.name}</p>
-        </Link>
+        {author ? <Author author={author} /> : null}
         <p className="">{new Date(publishedDate).toLocaleDateString()}</p>
       </div>
     </div>
