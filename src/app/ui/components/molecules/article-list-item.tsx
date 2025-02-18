@@ -9,8 +9,16 @@ import { type FC } from 'react'
 type Props = PageBlogPost
 
 export const ArticleListItem: FC<Props> = ({ author, featuredImage, title, publishedDate, slug, contentfulMetadata, seoFields }) => (
-  <li className="flex flex-col sm:flex-row gap-2 w-full item-center justify-center max-w-[300px] sm:max-w-[640px] sm:justify-start sm:gap-3">
-    <ImageLink href={`/blog/${slug}`} url={featuredImage?.url ?? ''} alt={featuredImage?.title ?? ''} width={300} height={200} />
+  <li className="flex flex-col sm:flex-row gap-2 w-full item-center sm:justify-start sm:gap-3 max-w-[300px] sm:max-w-[640px] lg:max-w-[800px]">
+    <ImageLink
+      className="rounded-2xl w-[300px] h-[200px] sm:max-w-[216px] sm:max-h-[144px]"
+      href={`/blog/${slug}`}
+      url={featuredImage?.url ?? ''}
+      alt={featuredImage?.title ?? ''}
+      width={300}
+      height={200}
+      wrapperClassName="sm:max-w-[216px]"
+    />
     <div className="flex flex-col gap-1 justify-between w-full">
       <div className="flex flex-col gap-1">
         <Link href={`/blog/${slug}`}>

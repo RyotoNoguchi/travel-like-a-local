@@ -30,5 +30,8 @@
   "ArticleList": {
     "title": "Derniers articles",
     "viewAll": "Voir tous"
+  },
+  "PopularArticleList": {
+    "title": "Articles populaires"
   }
 }

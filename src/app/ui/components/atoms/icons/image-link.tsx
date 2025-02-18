@@ -1,4 +1,5 @@
 import { Link } from '@/i18n/routing'
+import classNames from 'classnames'
 import Image from 'next/image'
 import type { FC } from 'react'
 
@@ -8,10 +9,13 @@ type Props = {
   alt: string
   width: number
   height: number
+  wrapperClassName?: string
+  className?: string
 }
 
-export const ImageLink: FC<Props> = ({ href, url, alt, width, height }) => (
-  <Link href={href} className="rounded-2xl w-full flex justify-center sm:justify-start hover-animation sm:max-w-[216px]">
-    <Image className="rounded-2xl" src={`${url}?w=${width}&h=${height}&fit=fill`} alt={alt} width={width} height={height} />
+export const ImageLink: FC<Props> = ({ href, url, alt, width, height, className, wrapperClassName }) => (
+  <Link href={href} className={classNames('rounded-2xl w-full hover-animation flex', wrapperClassName)}>
+    {/* Image resize REF: https://www.contentful.com/developers/docs/references/images-api/#/reference/resizing-&-cropping/change-the-resizing-behavior */}
+    <Image className={classNames(className)} src={`${url}?w=${width}&h=${height}&fit=fill`} alt={alt} width={width} height={height} />　
   </Link>
 )

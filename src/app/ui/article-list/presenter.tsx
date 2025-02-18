@@ -10,8 +10,8 @@ type Props = {
 }
 
 export const ArticleList: FC<Props> = ({ blogPosts, title, viewAll }) => (
-  <section className="flex flex-col w-full gap-4 py-4 px-3 items-center">
-    <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px]">
+  <section className="flex flex-col w-full gap-4 items-center sm:max-w-[640px] xl:max-w-[800px]">
+    <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px] xl:max-w-[800px]">
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>
       <Button borderRadius="rounded-md" textColor="text-primary" text={viewAll} href="/blog" />
     </div>
