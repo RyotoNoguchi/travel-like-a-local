@@ -15,3 +15,8 @@ export enum LANGUAGE {
   EN = 'en',
   FR = 'fr'
 }
+export const REDIS_KEYS = {
+  NAMESPACE: 'travel-like-a-local',
+  DEDUPLICATE: 'deduplicate',
+  PAGEVIEWS: 'pageviews'
+}
