@@ -1,6 +1,7 @@
 import { ArticleListContainer } from '@/app/ui/article-list/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
 import { HeroContainer } from '@/app/ui/hero/container'
+import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
 import { RichText } from '@/app/ui/rich-text'
 import { getLogo } from '@/app/utils/logo'
 import { LOGO_TITLE, TWITTER_HANDLE, TWITTER_ID, type LANGUAGE } from '@/constants'
@@ -76,12 +77,17 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'Hero' })
   const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
+  const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
+
   return (
     <>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
         <CarouselContainer width={300} height={200} />
-        <ArticleListContainer title={articleListT('title')} viewAll={articleListT('viewAll')} />
+        <div className="flex w-full justify-center gap-16">
+          <ArticleListContainer title={articleListT('title')} viewAll={articleListT('viewAll')} />
+          <PopularArticleListContainer title={popularArticleListT('title')} />
+        </div>
         {/* <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority /> */}
         {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">

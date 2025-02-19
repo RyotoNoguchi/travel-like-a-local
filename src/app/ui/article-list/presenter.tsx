@@ -1,6 +1,6 @@
+import { Button } from '@/app/ui/components/atoms/button'
 import { ArticleListItem } from '@/app/ui/components/molecules/article-list-item'
 import type { PageBlogPost } from '@/generated/graphql'
-import { Link } from '@/i18n/routing'
 import type { FC } from 'react'
 
 type Props = {
@@ -10,16 +10,10 @@ type Props = {
 }
 
 export const ArticleList: FC<Props> = ({ blogPosts, title, viewAll }) => (
-  <section className="flex flex-col w-full gap-4 py-4 px-3 items-center">
-    <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px]">
+  <section className="flex flex-col w-full gap-4 items-center sm:max-w-[640px] xl:max-w-[800px]">
+    <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px] xl:max-w-[800px]">
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>
-      <Link
-        href="/blog"
-        className="flex items-center justify-center text-md text-primary rounded-full border border-solid border-primary px-2 py-1 hover-animation"
-        role="button"
-      >
-        {viewAll}
-      </Link>
+      <Button borderRadius="rounded-md" textColor="text-primary" text={viewAll} href="/blog" />
     </div>
     <ul className="flex flex-col w-full items-center gap-4">
       {blogPosts.map((blog) => (

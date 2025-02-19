@@ -30,5 +30,8 @@
   "ArticleList": {
     "title": "Latest Articles",
     "viewAll": "View All"
+  },
+  "PopularArticleList": {
+    "title": "Popular Articles"
   }
 }

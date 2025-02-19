@@ -4,7 +4,15 @@ import { createTools, type Tailwindest } from 'tailwindest'
  * Custom type definition of tailwindest
  * @see {@link https://tailwindest.vercel.app/apis/Tailwindest api reference}
  */
-type TailwindCustom = Tailwindest<object, object>
+
+type TailwindCustomGlobal = {
+  color: 'primary'
+}
+
+type TailwindCustomStyle = object
+
+type TailwindCustom = Tailwindest<TailwindCustomGlobal, TailwindCustomStyle>
+
 /**
  * Full type definition of `tailwindcss`
  */
