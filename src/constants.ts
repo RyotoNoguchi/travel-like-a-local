@@ -20,3 +20,4 @@ export const REDIS_KEYS = {
   DEDUPLICATE: 'deduplicate',
   PAGEVIEWS: 'pageviews'
 }
+export const DEFAULT_LOCALE = 'en-US'

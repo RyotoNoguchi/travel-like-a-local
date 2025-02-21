@@ -52,6 +52,9 @@ export const LIST_LATEST_BLOG_QUERY = gql`
           tags {
             name
           }
+          concepts {
+            id
+          }
         }
       }
     }

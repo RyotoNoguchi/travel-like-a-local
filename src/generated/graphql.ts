@@ -1558,7 +1558,11 @@ export type ListLatestBlogQuery = {
         avatar?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
       } | null
       featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
-      contentfulMetadata: { __typename?: 'ContentfulMetadata'; tags: Array<{ __typename?: 'ContentfulTag'; name?: string | null } | null> }
+      contentfulMetadata: {
+        __typename?: 'ContentfulMetadata'
+        tags: Array<{ __typename?: 'ContentfulTag'; name?: string | null } | null>
+        concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null>
+      }
     } | null>
   } | null
 }
@@ -1757,6 +1761,11 @@ export const ListLatestBlogDocument = {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'tags' },
                               selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'name' } }] }
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'concepts' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
                             }
                           ]
                         }
