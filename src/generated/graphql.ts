@@ -1526,6 +1526,22 @@ export type GetAssetQueryVariables = Exact<{
 
 export type GetAssetQuery = { __typename?: 'Query'; asset?: { __typename?: 'Asset'; title?: string | null; url?: string | null } | null }
 
+export type ListArticleQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type ListArticleQuery = {
+  __typename?: 'Query'
+  pageBlogPostCollection?: {
+    __typename?: 'PageBlogPostCollection'
+    items: Array<{
+      __typename?: 'PageBlogPost'
+      slug?: string | null
+      seoFields?: { __typename?: 'ComponentSeo'; pageTitle?: string | null; pageDescription?: string | null } | null
+    } | null>
+  } | null
+}
+
 export type ListFeaturedBlogQueryVariables = Exact<{ [key: string]: never }>
 
 export type ListFeaturedBlogQuery = {
@@ -1601,6 +1617,68 @@ export const GetAssetDocument = {
     }
   ]
 } as unknown as DocumentNode<GetAssetQuery, GetAssetQueryVariables>
+export const ListArticleDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'ListArticle' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pageBlogPostCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [{ kind: 'ObjectField', name: { kind: 'Name', value: 'slug' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } } }]
+                }
+              }
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'seoFields' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'pageTitle' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'pageDescription' } }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<ListArticleQuery, ListArticleQueryVariables>
 export const ListFeaturedBlogDocument = {
   kind: 'Document',
   definitions: [

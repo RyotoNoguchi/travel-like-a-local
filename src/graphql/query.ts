@@ -9,6 +9,20 @@ export const GET_ASSET_QUERY = gql`
   }
 `
 
+export const LIST_ARTICLE_QUERY = gql`
+  query ListArticle($slug: String!) {
+    pageBlogPostCollection(where: { slug: $slug }) {
+      items {
+        slug
+        seoFields {
+          pageTitle
+          pageDescription
+        }
+      }
+    }
+  }
+`
+
 export const LIST_FEATURED_BLOG_QUERY = gql`
   query ListFeaturedBlog {
     pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, limit: 10) {

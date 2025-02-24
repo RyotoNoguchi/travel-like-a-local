@@ -26,7 +26,7 @@ export const ArticleListItem: FC<Props> = async ({ author, featuredImage, title,
     <li className="flex flex-col sm:flex-row gap-2 w-full item-center sm:justify-start sm:gap-3 max-w-[300px] sm:max-w-[640px] lg:max-w-[800px]">
       <ImageLink
         className="rounded-2xl w-[300px] h-[200px] sm:max-w-[216px] sm:max-h-[144px]"
-        href={`/blog/${categoryName}/${slug}`}
+        href={`/articles/${categoryName}/${slug}`}
         url={featuredImage?.url ?? ''}
         alt={featuredImage?.title ?? ''}
         width={300}

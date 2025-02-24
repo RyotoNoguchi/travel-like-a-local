@@ -3,49 +3,101 @@ import { zain } from '@/app/ui/fonts'
 import { FooterContainer } from '@/app/ui/templates/footer/container'
 import { Header } from '@/app/ui/templates/header/'
 import { getLogo } from '@/app/utils/logo'
-import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER } from '@/constants'
+import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER, TWITTER_HANDLE, TWITTER_ID } from '@/constants'
 import { routing } from '@/i18n/routing'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
-export const metadata: Metadata = {
-  title: {
-    template: `%s | ${LOGO_TITLE}`,
-    default: LOGO_TITLE
-  },
-  metadataBase: new URL(process.env.METADATA_BASE_URL || 'https://example.com'),
-  alternates: {
-    canonical: '/',
-    languages: {
-      en: LANGUAGE.EN,
-      fr: LANGUAGE.FR
-    }
-  },
-  applicationName: LOGO_TITLE,
-  authors: [{ name: LOGO_TITLE, url: process.env.METADATA_BASE_URL }],
-  generator: 'Next.js',
-  referrer: 'no-referrer-when-downgrade',
-  openGraph: {
-    title: LOGO_TITLE,
-    siteName: LOGO_TITLE,
-    type: 'website',
-    determiner: undefined,
-    emails: EMAIL,
-    phoneNumbers: PHONE_NUMBER,
-    faxNumbers: undefined,
-    ttl: 3600
-  },
-  publisher: LOGO_TITLE,
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
+  const logo = await getLogo({ width: 192, height: 192 })
+  const manifestUrl = `${process.env.METADATA_BASE_URL}/api/manifest?locale=${locale}`
+  const keywords = t('keywords')
+    .split(',')
+    .map((keyword) => keyword.trim())
+  return {
+    title: {
+      template: `%s | ${LOGO_TITLE}`,
+      default: LOGO_TITLE
+    },
+    metadataBase: new URL(process.env.METADATA_BASE_URL || 'https://example.com'),
+    manifest: manifestUrl,
+    keywords,
+    alternates: {
+      canonical: '/',
+      languages: {
+        en: LANGUAGE.EN,
+        fr: LANGUAGE.FR
+      }
+    },
+    applicationName: LOGO_TITLE,
+    authors: [{ name: LOGO_TITLE, url: process.env.METADATA_BASE_URL }],
+    icons: [{ rel: 'icon', url: logo?.url ?? '' }],
+    generator: 'Next.js',
+    creator: t('creator'),
+    referrer: 'no-referrer-when-downgrade',
+    openGraph: {
+      title: LOGO_TITLE,
+      siteName: LOGO_TITLE,
+      locale: t('locale'),
+      alternateLocale: t('alternateLocale'),
+      url: `${new URL(process.env.METADATA_BASE_URL || 'https://example.com')}${locale}`,
+      countryName: t('countryName'),
+      type: 'website',
+      determiner: undefined,
+      emails: EMAIL,
+      phoneNumbers: PHONE_NUMBER,
+      faxNumbers: undefined,
+      ttl: 3600
+    },
+    publisher: LOGO_TITLE,
+    robots: {
       index: true,
-      follow: true
-    }
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true
+      }
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: TWITTER_HANDLE,
+      siteId: TWITTER_ID,
+      creator: TWITTER_HANDLE,
+      creatorId: TWITTER_ID,
+      description: t('manifestDescription'),
+      title: LOGO_TITLE,
+      images: [{ url: logo?.url ?? '', alt: LOGO_TITLE }]
+    },
+    // TODO: Add facebook
+    facebook: undefined,
+    // TODO: Add verification
+    verification: undefined,
+    // TODO: Add appleWebApp
+    appleWebApp: undefined,
+    // TODO: Add viewport
+    viewport: undefined,
+    // TODO: Add formatDetection
+    formatDetection: undefined,
+    // TODO: Add itunes
+    itunes: undefined,
+    // TODO: Add appLinks
+    appLinks: undefined,
+    // TODO: Add archives
+    archives: undefined,
+    // TODO: Add assets
+    assets: undefined,
+    // TODO: Add bookmarks
+    bookmarks: undefined,
+    // TODO: Add category
+    category: undefined,
+    // TODO: Add classification
+    classification: undefined
+    // TODO: Add other
   }
 }
 
