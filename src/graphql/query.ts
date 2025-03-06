@@ -13,10 +13,69 @@ export const LIST_ARTICLE_QUERY = gql`
   query ListArticle($slug: String!) {
     pageBlogPostCollection(where: { slug: $slug }) {
       items {
-        slug
         seoFields {
           pageTitle
           pageDescription
+        }
+        content {
+          json
+          links {
+            entries {
+              block {
+                sys {
+                  id
+                }
+                __typename
+                ... on ComponentRichImage {
+                  image {
+                    title
+                    url
+                    width
+                    height
+                    description
+                  }
+                }
+              }
+            }
+            assets {
+              block {
+                sys {
+                  id
+                }
+                url
+                title
+                width
+                height
+                description
+              }
+            }
+          }
+        }
+        slug
+        title
+        author {
+          name
+          avatar {
+            title
+            url
+            width
+            height
+          }
+        }
+        publishedDate
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+          concepts {
+            id
+          }
         }
       }
     }

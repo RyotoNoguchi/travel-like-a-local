@@ -696,6 +696,14 @@ export type ContentfulTag = {
 export type Entry = {
   contentfulMetadata: ContentfulMetadata
   sys: Sys
+  __typename: string
+  image: {
+    title: string
+    description: string
+    width: number
+    height: number
+    url: string
+  }
 }
 
 export type EntryCollection = {
@@ -1537,7 +1545,61 @@ export type ListArticleQuery = {
     items: Array<{
       __typename?: 'PageBlogPost'
       slug?: string | null
+      title?: string | null
+      publishedDate?: any | null
       seoFields?: { __typename?: 'ComponentSeo'; pageTitle?: string | null; pageDescription?: string | null } | null
+      content?: {
+        __typename?: 'PageBlogPostContent'
+        json: any
+        links: {
+          __typename?: 'PageBlogPostContentLinks'
+          entries: {
+            __typename?: 'PageBlogPostContentEntries'
+            block: Array<
+              | { __typename: 'ComponentAuthor'; sys: { __typename?: 'Sys'; id: string } }
+              | {
+                  __typename: 'ComponentRichImage'
+                  image?: {
+                    __typename?: 'Asset'
+                    title?: string | null
+                    url?: string | null
+                    width?: number | null
+                    height?: number | null
+                    description?: string | null
+                  } | null
+                  sys: { __typename?: 'Sys'; id: string }
+                }
+              | { __typename: 'ComponentSeo'; sys: { __typename?: 'Sys'; id: string } }
+              | { __typename: 'PageBlogPost'; sys: { __typename?: 'Sys'; id: string } }
+              | { __typename: 'PageLanding'; sys: { __typename?: 'Sys'; id: string } }
+              | null
+            >
+          }
+          assets: {
+            __typename?: 'PageBlogPostContentAssets'
+            block: Array<{
+              __typename?: 'Asset'
+              url?: string | null
+              title?: string | null
+              width?: number | null
+              height?: number | null
+              description?: string | null
+              sys: { __typename?: 'Sys'; id: string }
+            } | null>
+          }
+        }
+      } | null
+      author?: {
+        __typename?: 'ComponentAuthor'
+        name?: string | null
+        avatar?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+      } | null
+      featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+      contentfulMetadata: {
+        __typename?: 'ContentfulMetadata'
+        tags: Array<{ __typename?: 'ContentfulTag'; name?: string | null } | null>
+        concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null>
+      }
     } | null>
   } | null
 }
@@ -1656,7 +1718,6 @@ export const ListArticleDocument = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'seoFields' },
@@ -1665,6 +1726,158 @@ export const ListArticleDocument = {
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'pageTitle' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'pageDescription' } }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'content' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'json' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'links' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'entries' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'block' },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'sys' },
+                                                selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                                              },
+                                              { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                                              {
+                                                kind: 'InlineFragment',
+                                                typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ComponentRichImage' } },
+                                                selectionSet: {
+                                                  kind: 'SelectionSet',
+                                                  selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: { kind: 'Name', value: 'image' },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                                          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                                          { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                                          { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                                          { kind: 'Field', name: { kind: 'Name', value: 'description' } }
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'assets' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'block' },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'sys' },
+                                                selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                                              },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'description' } }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'author' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'avatar' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'featuredImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'contentfulMetadata' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'tags' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'name' } }] }
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'concepts' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                            }
                           ]
                         }
                       }

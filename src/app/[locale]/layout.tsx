@@ -5,10 +5,10 @@ import { Header } from '@/app/ui/templates/header/'
 import { getLogo } from '@/app/utils/logo'
 import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER, TWITTER_HANDLE, TWITTER_ID } from '@/constants'
 import { routing } from '@/i18n/routing'
+import classNames from 'classnames'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
-import { headers } from 'next/headers'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
@@ -117,13 +117,13 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
   const logo = await getLogo({ width: 500, height: 500 })
   // Providing all messages to the client　side is the easiest way to get started
   const messages = await getMessages({ locale })
-  const headersList = await headers()
-  const currentUrl = headersList.get('x-url') || '' // http://localhost:3000/fr
-  const pathname = currentUrl.split('/').slice(3).join('/') // fr
+  // const headersList = await headers()
+  // const currentUrl = headersList.get('x-url') || '' // http://localhost:3000/fr
+  // const pathname = currentUrl.split('/').slice(3).join('/') // fr
 
   return (
     <html lang={locale}>
-      <body className={`${zain.className} antialiased`}>
+      <body className={classNames(zain.className, 'antialiased')}>
         <NextIntlClientProvider messages={messages}>
           {logo ? <Header logo={logo} locale={locale as LANGUAGE} /> : null}
           {children}

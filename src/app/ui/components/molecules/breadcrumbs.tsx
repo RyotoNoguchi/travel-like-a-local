@@ -13,7 +13,7 @@ type Props = {
 export const Breadcrumbs: FC<Props> = ({ breadcrumbs }) => {
   const hasBreadcrumbs = breadcrumbs.length > 0
   return (
-    <nav aria-label="breadcrumb" className="flex items-center overflow-x-scroll hidden-scrollbar pr-2 xs:px-2 sm:px-4">
+    <nav aria-label="breadcrumb" className="flex items-center overflow-x-scroll hidden-scrollbar">
       <Link href="/" className="flex items-center cursor-pointer hover-animation">
         <HomeIcon width={24} height={24} />
       </Link>
