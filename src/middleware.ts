@@ -1,21 +1,37 @@
 import { routing } from '@/i18n/routing'
 import createMiddleware from 'next-intl/middleware'
-import { NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+import { LANGUAGE } from './constants'
 
-export default createMiddleware(routing)
+const intlMiddleware = createMiddleware(routing)
 
-export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(fr|en)/:path*']
-}
-
-export const middleware = (request: Request) => {
+export const middleware = (request: NextRequest) => {
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set('x-url', request.url)
 
-  return NextResponse.next({
-    request: {
+  if (request.nextUrl.pathname === '/') {
+    const acceptLanguage = request.headers.get('accept-language') || ''
+    const prefersFrench = /fr/i.test(acceptLanguage)
+    const locale = prefersFrench ? LANGUAGE.FR : LANGUAGE.EN
+    const newUrl = new URL(`/${locale}`, request.url)
+
+    return NextResponse.redirect(newUrl, {
       headers: requestHeaders
-    }
+    })
+  }
+
+  const response = intlMiddleware(request)
+
+  Object.entries(requestHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value)
   })
+
+  return response
 }
+
+export const config = {
+  // Match only internationalized pathnames using values from LANGUAGE enum (FR='fr', EN='en')
+  matcher: ['/', '/(fr|en)/:path*']
+}
+
+export default middleware

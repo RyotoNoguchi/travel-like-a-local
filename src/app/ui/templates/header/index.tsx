@@ -41,11 +41,9 @@ export const Header: FC<Props> = ({ logo, locale }) => {
         'lg:px-4 lg:justify-between'
       )}
     >
-      <h1 className="flex items-center">
-        <Link href="/" className="flex items-center gap-2 hover-animation" aria-label={LOGO_TITLE}>
-          <Logo logo={logo} subtitle={tFooter('subtitle')} />
-        </Link>
-      </h1>
+      <Link href="/" className="flex items-center gap-2 hover-animation" aria-label={LOGO_TITLE}>
+        <Logo logo={logo} subtitle={tFooter('subtitle')} />
+      </Link>
       <div className="flex gap-1">
         <nav className="hidden sm:flex text-xl items-center">
           <ul className="flex items-start gap-2">

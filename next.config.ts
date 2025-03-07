@@ -14,14 +14,7 @@ const nextConfig: NextConfig = {
   },
   env: {
     METADATA_BASE_URL: process.env.METADATA_BASE_URL
-  },
-  redirects: async () => [
-    {
-      source: '/',
-      destination: '/en',
-      permanent: true
-    }
-  ]
+  }
 }
 
 export default withNextIntl(nextConfig)
