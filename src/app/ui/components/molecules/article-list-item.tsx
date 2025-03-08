@@ -13,13 +13,17 @@ type Props = PageBlogPost
 export const ArticleListItem: FC<Props> = async ({ author, featuredImage, title, publishedDate, slug, contentfulMetadata, seoFields }) => {
   const articleConceptIds = contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
 
+  // If there is no concept (Taxonomy), return null because it will be an error when clicking the article without category as it doesn't create a proper href to open the page whose path is `/articles/${categoryName}/${slug}`
   if (!Boolean(articleConceptIds.length)) return null
 
+  // Get all taxonomies
   const concepts = await cmaClient.concept.getMany({})
+
+  // Get the category name (Taxonomy)
   const categoryName =
     concepts.items
-      .map((item) => ({ id: item.sys.id, label: item.prefLabel[DEFAULT_LOCALE] }))
-      .find((item) => item.id === articleConceptIds[0]?.id)
+      .map((item) => ({ id: item.sys.id, label: item.prefLabel[DEFAULT_LOCALE] })) // Create a map of taxonomy id and label
+      .find((item) => item.id === articleConceptIds[0]?.id) // Find the category (Taxonomy) name by the article's first concept id
       ?.label.toLowerCase() ?? ''
 
   return (
@@ -35,7 +39,7 @@ export const ArticleListItem: FC<Props> = async ({ author, featuredImage, title,
       />
       <div className="flex flex-col gap-1 justify-between w-full">
         <div className="flex flex-col gap-1">
-          <Link href={`/blog/${slug}`}>
+          <Link href={`/articles/${categoryName}/${slug}`}>
             <h3 className="text-xl font-bold leading-none hover-text-primary">{title}</h3>
           </Link>
           <p className="hidden sm:block text-md text-gray-500">{seoFields?.pageDescription}</p>

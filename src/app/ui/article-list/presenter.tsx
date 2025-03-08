@@ -15,7 +15,7 @@ export const ArticleList: FC<Props> = ({ blogPosts, title, viewAll }) => (
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>
       <Button borderRadius="rounded-md" textColor="text-primary" text={viewAll} href="/blog" />
     </div>
-    <ul className="flex flex-col w-full items-center gap-4">
+    <ul className="flex flex-col w-full items-center gap-4 pb-10">
       {blogPosts.map((blog) => (
         <ArticleListItem key={blog.slug} {...blog} />
       ))}

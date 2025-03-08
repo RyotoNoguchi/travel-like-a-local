@@ -106,7 +106,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
           {article?.content ? <RichText content={article.content} /> : null}
         </div>
       </div>
-      <PopularArticleListContainer title={popularArticleListT('title')} />
+      <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} />
     </div>
   )
 }

@@ -26,6 +26,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const t = await getTranslations({ locale, namespace: 'Hero' })
   const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
   const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
+  const articleT = await getTranslations({ locale, namespace: 'Article' })
 
   return (
     <>
@@ -34,7 +35,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <CarouselContainer width={300} height={200} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
           <ArticleListContainer title={articleListT('title')} viewAll={articleListT('viewAll')} />
-          <PopularArticleListContainer title={popularArticleListT('title')} />
+          <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} />
         </div>
         {/* <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority /> */}
         {/* <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">

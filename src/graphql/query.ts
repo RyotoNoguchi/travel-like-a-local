@@ -98,7 +98,7 @@ export const LIST_FEATURED_BLOG_QUERY = gql`
 
 export const LIST_LATEST_BLOG_QUERY = gql`
   query ListLatestBlog {
-    pageBlogPostCollection(limit: 10, order: publishedDate_DESC) {
+    pageBlogPostCollection(order: publishedDate_DESC) {
       items {
         title
         seoFields {
