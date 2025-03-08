@@ -36,7 +36,6 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   const { locale, category, slug } = await params
   const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1)
   const client = createApolloClient()
-  const t = await getTranslations({ locale, namespace: 'Hero' })
   const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const { data } = await client.query<Query, ListArticleQueryVariables>({
     query: LIST_ARTICLE_QUERY,
@@ -48,7 +47,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   const article = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)
 
   return (
-    <div className="w-full flex justify-center semi-lg:gap-10">
+    <div className={classNames('w-full flex justify-center', 'pt-2', 'semi-lg:gap-10')}>
       <div
         className={classNames(
           'flex flex-col gap-1 px-3 max-w-screen-xxs',
