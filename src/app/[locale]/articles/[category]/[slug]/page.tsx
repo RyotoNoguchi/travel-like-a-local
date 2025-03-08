@@ -65,8 +65,10 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
           </ul>
         )}
       </div>
-      {article?.content ? <TableOfContents content={article.content.json} /> : null}
-      {article?.content ? <RichText content={article.content} /> : null}
+      <div className="flex flex-col gap-5">
+        {article?.content ? <TableOfContents content={article.content.json} /> : null}
+        {article?.content ? <RichText content={article.content} /> : null}
+      </div>
     </div>
   )
 }

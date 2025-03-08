@@ -16,7 +16,7 @@ export const TableOfContents: FC<Props> = ({ content }) => {
   if (headings.length === 0) return null
 
   return (
-    <div className="bg-slate-50 p-4 rounded-md flex flex-col gap-4">
+    <div className="bg-slate-50 p-4 rounded-sm flex flex-col gap-4 border-2 border-slate-300 border-solid">
       <h3 className="text-2xl font-bold">{t('title')}</h3>
       <ul className="flex flex-col gap-2">
         {headings.map((heading, i) => (
