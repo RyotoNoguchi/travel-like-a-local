@@ -33,5 +33,11 @@
   },
   "PopularArticleList": {
     "title": "Popular Articles"
+  },
+  "TableOfContents": {
+    "title": "Contents"
+  },
+  "Article": {
+    "views": "views"
   }
 }

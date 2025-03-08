@@ -6,8 +6,7 @@ const redis = Redis.fromEnv()
 
 export const runtime = 'edge'
 
-export async function POST(req: NextRequest) {
-  // export default async function incr(req: NextRequest): Promise<NextResponse>
+export const POST = async (req: NextRequest) => {
   const body = await req.json()
   const slug = body.slug as string | undefined
   if (!slug) return new NextResponse('Slug not found', { status: 400 })
@@ -25,7 +24,7 @@ export async function POST(req: NextRequest) {
     ex: 24 * 60 * 60
   })
   if (!isNew) {
-    new NextResponse(null, { status: 202 })
+    return new NextResponse(null, { status: 202 })
   }
   await redis.incr([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))
   return new NextResponse(null, { status: 202 })

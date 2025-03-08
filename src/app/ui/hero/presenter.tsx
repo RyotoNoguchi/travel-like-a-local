@@ -16,7 +16,7 @@ type Props = {
 }
 
 export const Hero: FC<Props> = ({ images, enrichedTitle, enrichedSubtitle }) => (
-  <div className="relative w-full h-full">
+  <div className="relative w-full">
     {images.map((image) => (
       <Image
         src={`${image.url}?w=${image.width}&h=${image.height}&fit=fill`}

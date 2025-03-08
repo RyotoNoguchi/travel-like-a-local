@@ -16,6 +16,5 @@ export const ArticleListContainer: FC<Props> = async ({ title, viewAll }) => {
   })
   const blogPosts = data.pageBlogPostCollection?.items.filter((post): post is PageBlogPost => post !== null)
   if (!blogPosts || blogPosts.length === 0) return null
-
   return <ArticleList blogPosts={blogPosts} title={title} viewAll={viewAll} />
 }

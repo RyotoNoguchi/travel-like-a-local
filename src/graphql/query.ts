@@ -9,6 +9,79 @@ export const GET_ASSET_QUERY = gql`
   }
 `
 
+export const LIST_ARTICLE_QUERY = gql`
+  query ListArticle($slug: String!, $locale: String!) {
+    pageBlogPostCollection(where: { slug: $slug }, locale: $locale) {
+      items {
+        seoFields {
+          pageTitle
+          pageDescription
+        }
+        content {
+          json
+          links {
+            entries {
+              block {
+                sys {
+                  id
+                }
+                __typename
+                ... on ComponentRichImage {
+                  image {
+                    title
+                    url
+                    width
+                    height
+                    description
+                  }
+                }
+              }
+            }
+            assets {
+              block {
+                sys {
+                  id
+                }
+                url
+                title
+                width
+                height
+                description
+              }
+            }
+          }
+        }
+        slug
+        title
+        author {
+          name
+          avatar {
+            title
+            url
+            width
+            height
+          }
+        }
+        publishedDate
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+          concepts {
+            id
+          }
+        }
+      }
+    }
+  }
+`
+
 export const LIST_FEATURED_BLOG_QUERY = gql`
   query ListFeaturedBlog {
     pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, limit: 10) {
@@ -25,7 +98,7 @@ export const LIST_FEATURED_BLOG_QUERY = gql`
 
 export const LIST_LATEST_BLOG_QUERY = gql`
   query ListLatestBlog {
-    pageBlogPostCollection(limit: 10, order: publishedDate_DESC) {
+    pageBlogPostCollection(order: publishedDate_DESC) {
       items {
         title
         seoFields {
@@ -51,6 +124,9 @@ export const LIST_LATEST_BLOG_QUERY = gql`
         contentfulMetadata {
           tags {
             name
+          }
+          concepts {
+            id
           }
         }
       }

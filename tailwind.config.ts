@@ -13,6 +13,7 @@ export default {
         'light-gray': '#EEEEEE'
       },
       screens: {
+        xxs: '320px',
         xs: '390px',
         'semi-sm': '480px',
         'semi-md': '640px',
