@@ -2,6 +2,7 @@ import { createApolloClient } from '@/apolloClient'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
+import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents'
 import { LOCALE_CODE_MAP, LOGO_TITLE, type LANGUAGE } from '@/constants'
 import type { ListArticleQueryVariables, Query } from '@/generated/graphql'
 import { LIST_ARTICLE_QUERY } from '@/graphql/query'
@@ -64,6 +65,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
           </ul>
         )}
       </div>
+      {article?.content ? <TableOfContents content={article.content.json} /> : null}
       {article?.content ? <RichText content={article.content} /> : null}
     </div>
   )

@@ -9,6 +9,17 @@ type Props = {
 }
 
 export const RichText: FC<Props> = ({ content }) => {
+  // 見出しのテキストからIDを生成する関数
+  const generateId = (text: string): string => {
+    return text
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '')
+  }
+
   const entryMap = new Map()
   const assetMap = new Map()
 
@@ -28,10 +39,70 @@ export const RichText: FC<Props> = ({ content }) => {
 
   const options = {
     renderNode: {
+      [BLOCKS.HEADING_1]: (node: Block | Inline, children: React.ReactNode) => {
+        if (node.content[0].nodeType !== 'text') return null
+        const text = node.content[0].value
+        const id = generateId(text)
+        return (
+          <h1 id={id} className="text-3xl font-bold">
+            {children}
+          </h1>
+        )
+      },
+      [BLOCKS.HEADING_2]: (node: Block | Inline, children: React.ReactNode) => {
+        if (node.content[0].nodeType !== 'text') return null
+        const text = node.content[0].value
+        const id = generateId(text)
+        return (
+          <h2 id={id} className="text-2xl font-bold">
+            {children}
+          </h2>
+        )
+      },
+      [BLOCKS.HEADING_3]: (node: Block | Inline, children: React.ReactNode) => {
+        if (node.content[0].nodeType !== 'text') return null
+        const text = node.content[0].value
+        const id = generateId(text)
+        return (
+          <h3 id={id} className="text-xl font-bold">
+            {children}
+          </h3>
+        )
+      },
+      // 見出しレベル4のレンダリング
+      [BLOCKS.HEADING_4]: (node: Block | Inline, children: React.ReactNode) => {
+        if (node.content[0].nodeType !== 'text') return null
+        const text = node.content[0].value
+        const id = generateId(text)
+        return (
+          <h4 id={id} className="text-lg font-bold">
+            {children}
+          </h4>
+        )
+      },
+      [BLOCKS.HEADING_5]: (node: Block | Inline, children: React.ReactNode) => {
+        if (node.content[0].nodeType !== 'text') return null
+        const text = node.content[0].value
+        const id = generateId(text)
+        return (
+          <h5 id={id} className="text-base font-bold">
+            {children}
+          </h5>
+        )
+      },
+      [BLOCKS.HEADING_6]: (node: Block | Inline, children: React.ReactNode) => {
+        if (node.content[0].nodeType !== 'text') return null
+        const text = node.content[0].value
+        const id = generateId(text)
+        return (
+          <h6 id={id} className="text-sm font-bold">
+            {children}
+          </h6>
+        )
+      },
       [BLOCKS.PARAGRAPH]: (node: Block | Inline) => {
         return <p className="text-lg leading-tight">{node.content.map((content) => (content.nodeType === 'text' ? content.value : null)).join('')}</p>
       },
-
       [BLOCKS.EMBEDDED_ENTRY]: (node: Block | Inline) => {
         const entryId = node.data.target.sys.id
         const entry = entryMap.get(entryId)
