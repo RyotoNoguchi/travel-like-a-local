@@ -2,7 +2,7 @@ import { createApolloClient } from '@/apolloClient'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
-import { LOGO_TITLE, type LANGUAGE } from '@/constants'
+import { LOCALE_CODE_MAP, LOGO_TITLE, type LANGUAGE } from '@/constants'
 import type { ListArticleQueryVariables, Query } from '@/generated/graphql'
 import { LIST_ARTICLE_QUERY } from '@/graphql/query'
 import type { Metadata, NextPage } from 'next'
@@ -12,12 +12,13 @@ type Props = {
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
-  const { slug } = await params
+  const { locale, slug } = await params
   const client = createApolloClient()
   const { data } = await client.query<Query, ListArticleQueryVariables>({
     query: LIST_ARTICLE_QUERY,
     variables: {
-      slug
+      slug,
+      locale: LOCALE_CODE_MAP[locale]
     }
   })
   const seoFields = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)?.seoFields
@@ -34,7 +35,8 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   const { data } = await client.query<Query, ListArticleQueryVariables>({
     query: LIST_ARTICLE_QUERY,
     variables: {
-      slug
+      slug,
+      locale: LOCALE_CODE_MAP[locale]
     }
   })
   const article = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)

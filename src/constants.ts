@@ -15,9 +15,17 @@ export enum LANGUAGE {
   EN = 'en',
   FR = 'fr'
 }
+export enum LOCALE_CODE {
+  EN = 'en-US',
+  FR = 'fr-FR'
+}
+export const LOCALE_CODE_MAP = {
+  [LANGUAGE.EN]: LOCALE_CODE.EN,
+  [LANGUAGE.FR]: LOCALE_CODE.FR
+}
 export const REDIS_KEYS = {
   NAMESPACE: 'travel-like-a-local',
   DEDUPLICATE: 'deduplicate',
   PAGEVIEWS: 'pageviews'
 }
-export const DEFAULT_LOCALE = 'en-US'
+export const DEFAULT_LOCALE = LOCALE_CODE.EN

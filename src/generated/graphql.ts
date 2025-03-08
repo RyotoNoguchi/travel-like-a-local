@@ -1536,6 +1536,7 @@ export type GetAssetQuery = { __typename?: 'Query'; asset?: { __typename?: 'Asse
 
 export type ListArticleQueryVariables = Exact<{
   slug: Scalars['String']['input']
+  locale: Scalars['String']['input']
 }>
 
 export type ListArticleQuery = {
@@ -1691,6 +1692,11 @@ export const ListArticleDocument = {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
           type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
         }
       ],
       selectionSet: {
@@ -1707,7 +1713,8 @@ export const ListArticleDocument = {
                   kind: 'ObjectValue',
                   fields: [{ kind: 'ObjectField', name: { kind: 'Name', value: 'slug' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } } }]
                 }
-              }
+              },
+              { kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }
             ],
             selectionSet: {
               kind: 'SelectionSet',
