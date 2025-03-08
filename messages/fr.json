@@ -36,5 +36,8 @@
   },
   "TableOfContents": {
     "title": "Table des matières"
+  },
+  "Article": {
+    "views": "vues"
   }
 }
