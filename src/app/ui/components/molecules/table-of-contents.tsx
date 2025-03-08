@@ -1,4 +1,4 @@
-import { BLOCKS, type Document } from '@contentful/rich-text-types'
+import { BLOCKS, type Document, type TopLevelBlock } from '@contentful/rich-text-types'
 import type { FC } from 'react'
 
 type Heading = {
@@ -50,10 +50,7 @@ const extractHeadings = (content: Document): Heading[] => {
         const level = parseInt(node.nodeType.split('_')[1]) as 1 | 2 | 3 | 4 | 5 | 6
 
         // 見出しのテキストを取得
-        let text = ''
-        if (node.content && node.content[0] && node.content[0].nodeType === 'text' && node.content[0].value) {
-          text = node.content[0].value
-        }
+        const text = getTextFromNode(node)
 
         // IDを生成（テキストをスラッグ化）
         const id = text
@@ -70,4 +67,10 @@ const extractHeadings = (content: Document): Heading[] => {
   }
 
   return headings
+}
+
+// テキストノードから文字列を安全に取得するヘルパー関数
+const getTextFromNode = (node: TopLevelBlock): string => {
+  const textNode = node.content?.[0]
+  return textNode?.nodeType === 'text' ? textNode.value || '' : ''
 }
