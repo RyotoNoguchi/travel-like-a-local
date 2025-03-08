@@ -7,6 +7,15 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 56px; /* ヘッダーの高さに合わせて調整 */
+}
+
+
 @layer utilities {
   .hidden-scrollbar {
     -ms-overflow-style: none; /* IE, Edge 対応 */
