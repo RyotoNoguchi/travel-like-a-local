@@ -60,7 +60,8 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
         className={classNames(
           'flex flex-col gap-1 px-3 max-w-screen-xxs',
           'xs:max-w-screen-xs',
-          'semi-sm:max-w-screen-sm',
+          'semi-sm:max-w-screen-semi-sm',
+          'sm:max-w-screen-sm',
           'xs:px-4',
           'sm:px-6',
           'lg:max-w-screen-md'
