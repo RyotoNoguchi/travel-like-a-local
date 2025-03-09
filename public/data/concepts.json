@@ -1,0 +1,357 @@
+[
+  {
+    "id": "QaJbL3R3LHKLxDnD2dXNv",
+    "label": "Food & Cuisine",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "2OGhUuSfYg1ZKnC4p0DYa5",
+    "label": "Shopping",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "Bu7IpdRQOs4sppS2OTuQ3",
+    "label": "Nature & Outdoors",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "5tJ9UrfgJsSnTynrA5AVu3",
+    "label": "Culture & History",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "3kcvbLukFoVdwZiqB8rTYq",
+    "label": "Accommodation",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "37tcbi79v1EN5hsrQNqcl2",
+    "label": "Practical Information",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "5Fbcl6yOH79cn75MgbjSEp",
+    "label": "Events & Festivals",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "6qfPSOu3NuisqNl9vV95F9",
+    "label": "Onsen & Wellness",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "4HpOvLoVoRlY1T0wmVfxX2",
+    "label": "Hokkaido",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "4ccX6hngb9EocRX4xpvq8K",
+    "label": "Tohoku",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "dckcGyO2tbcG7uhiNMxcu",
+    "label": "Kanto",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "6q3nKyVNOYkAq6Hm5HnhBj",
+    "label": "Kansai",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "4LaE3jZ5Cf4UnHLZuYXSmu",
+    "label": "Chubu",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "2nqMJu3sksYFZvJk1Us6bd",
+    "label": "Chugoku",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "6kB7He45mzKXgHdHDHthLe",
+    "label": "Shikoku",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "uRquJmVrorI37aSjc1H09",
+    "label": "Kyushu",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "4P1tb8C6hiPP0ZVZspA0nh",
+    "label": "Okinawa",
+    "upperLevelConceptIds": []
+  },
+  {
+    "id": "2qEbTdYRFGgUWnb586QfSR",
+    "label": "Northan Tohoku",
+    "upperLevelConceptIds": ["4ccX6hngb9EocRX4xpvq8K"]
+  },
+  {
+    "id": "3wralzraBEYSxO6QwqWyHe",
+    "label": "Aomori",
+    "upperLevelConceptIds": ["2qEbTdYRFGgUWnb586QfSR"]
+  },
+  {
+    "id": "01wM0p2K8HwP54ALJwnurj",
+    "label": "Akita",
+    "upperLevelConceptIds": ["2qEbTdYRFGgUWnb586QfSR"]
+  },
+  {
+    "id": "6co8R9rcheuNP5oPLybovU",
+    "label": "Iwate",
+    "upperLevelConceptIds": ["2qEbTdYRFGgUWnb586QfSR"]
+  },
+  {
+    "id": "6B4qtvLje3O1WXvIFJIxLk",
+    "label": "Southern Tohoku",
+    "upperLevelConceptIds": ["4ccX6hngb9EocRX4xpvq8K"]
+  },
+  {
+    "id": "2YaqQfpcmhk43uYhBdf6oC",
+    "label": "Miyagi",
+    "upperLevelConceptIds": ["6B4qtvLje3O1WXvIFJIxLk"]
+  },
+  {
+    "id": "bL7cS0r76BZ9F8OSAvIN0",
+    "label": "Yamagata",
+    "upperLevelConceptIds": ["6B4qtvLje3O1WXvIFJIxLk"]
+  },
+  {
+    "id": "1riW0jWvJmrSuQJD49q5rm",
+    "label": "Fukushima",
+    "upperLevelConceptIds": ["6B4qtvLje3O1WXvIFJIxLk"]
+  },
+  {
+    "id": "nA11057TLW6O4iKN5s9JQ",
+    "label": "Tokushima",
+    "upperLevelConceptIds": ["6kB7He45mzKXgHdHDHthLe"]
+  },
+  {
+    "id": "5KA6zwnvWetyPI0VK201U7",
+    "label": "Kagawa",
+    "upperLevelConceptIds": ["6kB7He45mzKXgHdHDHthLe"]
+  },
+  {
+    "id": "2JnoTc3Ze64QzpO1vt33PU",
+    "label": "Kochi",
+    "upperLevelConceptIds": ["6kB7He45mzKXgHdHDHthLe"]
+  },
+  {
+    "id": "6CSJCkaIlTOx9z5plyAKbT",
+    "label": "Ehime",
+    "upperLevelConceptIds": ["6kB7He45mzKXgHdHDHthLe"]
+  },
+  {
+    "id": "5mvMiW10RlNBlQb1ooAUXf",
+    "label": "Fukuoka",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "30OpuHBHOoGL9Ub0QeuJu1",
+    "label": "Saga",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "5zFlGtiZh3jzOOhNfnRAFg",
+    "label": "Nagasaki",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "2dlNb1H83fZrYxSbkcRzFE",
+    "label": "Kumamoto",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "4kqObLFtvtmDOBAalCjrHw",
+    "label": "Miyazaki",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "6KKLouNrH1IZvCHBWhifyz",
+    "label": "Oita",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "5eJXkiOwbqQmXGD1bITrjV",
+    "label": "Kagoshima",
+    "upperLevelConceptIds": ["uRquJmVrorI37aSjc1H09"]
+  },
+  {
+    "id": "4Wp4Q8z7rHBtc9cHNRh2T",
+    "label": "Tokyo Metropolitan",
+    "upperLevelConceptIds": ["dckcGyO2tbcG7uhiNMxcu"]
+  },
+  {
+    "id": "2BRMxtFkAD1sFACq7Xoopi",
+    "label": "Northen Kanto",
+    "upperLevelConceptIds": ["dckcGyO2tbcG7uhiNMxcu"]
+  },
+  {
+    "id": "1xYa3ezWqApLCqO47yFWOa",
+    "label": "Saitama",
+    "upperLevelConceptIds": ["4Wp4Q8z7rHBtc9cHNRh2T"]
+  },
+  {
+    "id": "6Y8dgt83Y9zQ6u6oiTaRdg",
+    "label": "Tokyo",
+    "upperLevelConceptIds": ["4Wp4Q8z7rHBtc9cHNRh2T"]
+  },
+  {
+    "id": "74qnK1Oy5Oa5F8d2TpX6sL",
+    "label": "Kanagawa",
+    "upperLevelConceptIds": ["4Wp4Q8z7rHBtc9cHNRh2T"]
+  },
+  {
+    "id": "2B0RUtgP5Ibn4RihEQGrQw",
+    "label": "Chiba",
+    "upperLevelConceptIds": ["4Wp4Q8z7rHBtc9cHNRh2T"]
+  },
+  {
+    "id": "3k0qw9hzM3bf6uA96MnMn6",
+    "label": "Gunma",
+    "upperLevelConceptIds": ["2BRMxtFkAD1sFACq7Xoopi"]
+  },
+  {
+    "id": "2rrYTxJuRgLweFDsZzRWv0",
+    "label": "Ibaraki",
+    "upperLevelConceptIds": ["2BRMxtFkAD1sFACq7Xoopi"]
+  },
+  {
+    "id": "3WGi4ORYIigl9H7akwZ9pC",
+    "label": "Tochigi",
+    "upperLevelConceptIds": ["2BRMxtFkAD1sFACq7Xoopi"]
+  },
+  {
+    "id": "5vnT33j65ttbEUaz4J1Pp5",
+    "label": "Osaka",
+    "upperLevelConceptIds": ["6q3nKyVNOYkAq6Hm5HnhBj"]
+  },
+  {
+    "id": "4Z4yQGEDv6YpsOBbF97dbD",
+    "label": "Kyoto",
+    "upperLevelConceptIds": ["6q3nKyVNOYkAq6Hm5HnhBj"]
+  },
+  {
+    "id": "27F2QnUyxgA2Y9ZwCvCECK",
+    "label": "Shiga",
+    "upperLevelConceptIds": ["6q3nKyVNOYkAq6Hm5HnhBj"]
+  },
+  {
+    "id": "UT0LBZIT3eWX6UA0ACZzh",
+    "label": "Nara",
+    "upperLevelConceptIds": ["6q3nKyVNOYkAq6Hm5HnhBj"]
+  },
+  {
+    "id": "7FyhAMqwMzXr3IlRpKO9ly",
+    "label": "Wakayama",
+    "upperLevelConceptIds": ["6q3nKyVNOYkAq6Hm5HnhBj"]
+  },
+  {
+    "id": "5cWViIi0Ygnh210feZkVXd",
+    "label": "Hyogo",
+    "upperLevelConceptIds": ["6q3nKyVNOYkAq6Hm5HnhBj"]
+  },
+  {
+    "id": "30XYQM07quXPGWc1WelWCH",
+    "label": "San'in",
+    "upperLevelConceptIds": ["2nqMJu3sksYFZvJk1Us6bd"]
+  },
+  {
+    "id": "5SpgKDMQnhNp5fX3sURRMF",
+    "label": "San'yo",
+    "upperLevelConceptIds": ["2nqMJu3sksYFZvJk1Us6bd"]
+  },
+  {
+    "id": "4D2M7DkQGjhUnGCBhpyZ2b",
+    "label": "Shimane",
+    "upperLevelConceptIds": ["30XYQM07quXPGWc1WelWCH"]
+  },
+  {
+    "id": "wqBpZ30AszfkCtq0zTq2p",
+    "label": "Totori",
+    "upperLevelConceptIds": ["30XYQM07quXPGWc1WelWCH"]
+  },
+  {
+    "id": "48MkaPdWYK9e0zRybkLugV",
+    "label": "Yamaguchi",
+    "upperLevelConceptIds": ["5SpgKDMQnhNp5fX3sURRMF"]
+  },
+  {
+    "id": "2Fg406MQg5eFSvnlXfXnOY",
+    "label": "Hiroshima",
+    "upperLevelConceptIds": ["5SpgKDMQnhNp5fX3sURRMF"]
+  },
+  {
+    "id": "2r1yjzOz2B01UOfRKq4sOo",
+    "label": "Okayama",
+    "upperLevelConceptIds": ["5SpgKDMQnhNp5fX3sURRMF"]
+  },
+  {
+    "id": "uH9r8Qjnt9W0bD47kjXlw",
+    "label": "Tokai",
+    "upperLevelConceptIds": ["4LaE3jZ5Cf4UnHLZuYXSmu"]
+  },
+  {
+    "id": "1jxeDidz68sM6IabHbUn5f",
+    "label": "Koshinetsu",
+    "upperLevelConceptIds": ["4LaE3jZ5Cf4UnHLZuYXSmu"]
+  },
+  {
+    "id": "3fUxHHmGmr55Cqn6SWYhlw",
+    "label": "Hokuriku",
+    "upperLevelConceptIds": ["4LaE3jZ5Cf4UnHLZuYXSmu"]
+  },
+  {
+    "id": "4A2z0h5uZhPTjadP4rzq5a",
+    "label": "Fukui",
+    "upperLevelConceptIds": ["3fUxHHmGmr55Cqn6SWYhlw"]
+  },
+  {
+    "id": "2ER3Ry063zKcDXhegZaC5I",
+    "label": "Toyama",
+    "upperLevelConceptIds": ["3fUxHHmGmr55Cqn6SWYhlw"]
+  },
+  {
+    "id": "5hpwSUpDse0OQzxt2dBZo",
+    "label": "Ishikawa",
+    "upperLevelConceptIds": ["3fUxHHmGmr55Cqn6SWYhlw"]
+  },
+  {
+    "id": "41ANWGfk8xulQ7VR6NUst3",
+    "label": "Yamanashi",
+    "upperLevelConceptIds": ["1jxeDidz68sM6IabHbUn5f"]
+  },
+  {
+    "id": "1KgMxfw6QF8ROKNYw08tG9",
+    "label": "Nagano",
+    "upperLevelConceptIds": ["1jxeDidz68sM6IabHbUn5f"]
+  },
+  {
+    "id": "34ul4bn6mhyRmmjIR1J46p",
+    "label": "Niigata",
+    "upperLevelConceptIds": ["1jxeDidz68sM6IabHbUn5f"]
+  },
+  {
+    "id": "hp4kFTDw72yuJJ2XZUlFR",
+    "label": "Mie",
+    "upperLevelConceptIds": ["uH9r8Qjnt9W0bD47kjXlw"]
+  },
+  {
+    "id": "7Gk6Cb4iRAwdBDnIOz7r3O",
+    "label": "Aichi",
+    "upperLevelConceptIds": ["uH9r8Qjnt9W0bD47kjXlw"]
+  },
+  {
+    "id": "qJdxwVFy0iQkTux0rYyos",
+    "label": "Shizuoka",
+    "upperLevelConceptIds": ["uH9r8Qjnt9W0bD47kjXlw"]
+  },
+  {
+    "id": "2dC0RPrpnNhffPtNVgzTc3",
+    "label": "Gifu",
+    "upperLevelConceptIds": ["uH9r8Qjnt9W0bD47kjXlw"]
+  }
+]

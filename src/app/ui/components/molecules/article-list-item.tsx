@@ -2,29 +2,51 @@ import { Author } from '@/app/ui/components/atoms/author'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { ImageLink } from '@/app/ui/components/atoms/icons/image-link'
 import { TagList } from '@/app/ui/components/molecules/tag-list'
-import { DEFAULT_LOCALE } from '@/constants'
-import { cmaClient } from '@/contentfulManagementClient'
+import { CONCEPT_SCHEME } from '@/constants'
 import type { PageBlogPost } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
+import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
+import { getConcepts } from '@/lib/contentful/get-concepts'
 import { type FC } from 'react'
 
 type Props = PageBlogPost
 
 export const ArticleListItem: FC<Props> = async ({ author, featuredImage, title, publishedDate, slug, contentfulMetadata, seoFields }) => {
+  if (slug === null || slug === undefined) return null
+
   const articleConceptIds = contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
 
   // If there is no concept (Taxonomy), return null because it will be an error when clicking the article without category as it doesn't create a proper href to open the page whose path is `/articles/${categoryName}/${slug}`
   if (!Boolean(articleConceptIds.length)) return null
 
-  // Get all taxonomies
-  const concepts = await cmaClient.concept.getMany({})
+  const concepts = await getConcepts()
+  const conceptSchemes = await getConceptSchemes()
+  const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
+  const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)
+  const regionConceptIds = regionScheme?.topConceptIds || []
+  const regionConceptId = articleConceptIds.find((article) => regionConceptIds.includes(article.id ?? ''))?.id
+  const regionName = concepts.find((concept) => concept.id === regionConceptId)?.label.toLowerCase() ?? ''
+  const areaConceptIds = concepts.filter((concept) => concept.upperLevelConceptIds.some((id) => regionConceptIds.includes(id))).map((concept) => concept.id)
+  const areaConceptId = articleConceptIds.find((articleConceptId) => areaConceptIds.includes(articleConceptId.id ?? ''))?.id
+  const areaName =
+    concepts
+      .find((concept) => concept.id === areaConceptId)
+      ?.label.toLowerCase()
+      .replace(/[^\w-]/g, '') ?? '' // for cases like "san'in"
+  const prefectureConceptIds = concepts.filter((concept) => concept.upperLevelConceptIds.some((id) => areaConceptIds.includes(id))).map((concept) => concept.id)
+  const prefectureConceptId = articleConceptIds.find((articleConceptId) => prefectureConceptIds.includes(articleConceptId.id ?? ''))?.id
+  const prefectureName = concepts.find((concept) => concept.id === prefectureConceptId)?.label.toLowerCase() ?? ''
 
-  // Get the category name (Taxonomy)
-  const categoryName =
-    concepts.items
-      .map((item) => ({ id: item.sys.id, label: item.prefLabel[DEFAULT_LOCALE] })) // Create a map of taxonomy id and label
-      .find((item) => item.id === articleConceptIds[0]?.id) // Find the category (Taxonomy) name by the article's first concept id
-      ?.label.toLowerCase() ?? ''
+  const categoryConceptIds = categoryScheme?.topConceptIds || []
+  const categoryConceptId = articleConceptIds.find((article) => categoryConceptIds.includes(article.id ?? ''))?.id || articleConceptIds[0]?.id // カテゴリーが見つからない場合は最初のコンセプトを使用
+  const rawCategoryName = concepts.find((concept) => concept.id === categoryConceptId)?.label.toLowerCase() ?? ''
+  const categoryName = rawCategoryName
+    .replace(/\s+/g, '-')
+    .replace(/&/g, 'and')
+    .replace(/[^\w-]/g, '')
+
+  const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug })
+  if (href === '/articles/') return null
 
   return (
     <li className="flex flex-col sm:flex-row gap-2 w-full item-center sm:justify-start sm:gap-3 max-w-[300px] sm:max-w-[640px] lg:max-w-[800px]">
@@ -52,4 +74,62 @@ export const ArticleListItem: FC<Props> = async ({ author, featuredImage, title,
       </div>
     </li>
   )
+}
+
+const formatNameForUrl = (name: string) => {
+  return name
+    .replace(/\s+/g, '-') // スペースをハイフンに変換
+    .replace(/&/g, 'and') // &をandに変換
+    .replace(/'/g, '') // アポストロフィを削除
+    .replace(/[^\w-]/g, '') // 英数字、ハイフン以外の文字を削除
+    .replace(/-+/g, '-') // 連続するハイフンを単一のハイフンに変換
+    .replace(/^-|-$/g, '') // 先頭と末尾のハイフンを削除
+}
+
+const generateHref = (params: { categoryName?: string; regionName?: string; areaName?: string; prefectureName?: string; slug: string }) => {
+  const { categoryName, regionName, areaName, prefectureName, slug } = params
+  const formattedCategoryName = categoryName ? formatNameForUrl(categoryName) : ''
+  const formattedRegionName = regionName ? formatNameForUrl(regionName) : ''
+  const formattedAreaName = areaName ? formatNameForUrl(areaName) : ''
+  const formattedPrefectureName = prefectureName ? formatNameForUrl(prefectureName) : ''
+
+  let articlePath = '/articles/'
+  // カテゴリーが存在する場合
+  if (formattedCategoryName) {
+    articlePath += `${formattedCategoryName}/`
+
+    // カテゴリーとリージョンが存在する場合
+    if (formattedRegionName) {
+      articlePath += `${formattedRegionName}/`
+
+      // カテゴリー、リージョン、エリアが存在する場合
+      if (formattedAreaName) {
+        articlePath += `${formattedAreaName}/`
+
+        // カテゴリー、リージョン、エリア、県が存在する場合
+        if (formattedPrefectureName) {
+          articlePath += `${formattedPrefectureName}/`
+        }
+      }
+    }
+  }
+  // カテゴリーが存在せず、リージョンが存在する場合
+  else if (formattedRegionName) {
+    articlePath += `${formattedRegionName}/`
+
+    // リージョンとエリアが存在する場合
+    if (formattedAreaName) {
+      articlePath += `${formattedAreaName}/`
+
+      // リージョン、エリア、県が存在する場合
+      if (formattedPrefectureName) {
+        articlePath += `${formattedPrefectureName}/`
+      }
+    }
+  }
+
+  // 最後にスラッグを追加
+  articlePath += slug
+
+  return articlePath
 }
