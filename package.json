@@ -2,6 +2,7 @@
   "name": "travel-like-a-local",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "npm run cache-data && next build",
@@ -11,7 +12,7 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cache-data": "node scripts/cache-concept-schemes.js && node scripts/cache-concepts.js"
+    "cache-data": "npx tsx scripts/cache-concept-schemes.ts && npx tsx scripts/cache-concepts.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.12.7",
@@ -65,6 +66,7 @@
     "tailwindcss": "^3.4.1",
     "tailwindest": "^2.3.6",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "lint-staged": {

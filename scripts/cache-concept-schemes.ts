@@ -1,11 +1,22 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-require-imports */
-const fs = require('fs').promises
-const path = require('path')
-const contentful = require('contentful-management')
-require('dotenv').config({ path: '.env' }) // 環境変数を読み込む
+import type { ConceptScheme } from '@/types/concept-scheme'
+import contentful from 'contentful-management'
+import type { TaxonomyConceptLink } from 'contentful-management/dist/typings/entities/concept'
+import dotenv from 'dotenv'
+import fs from 'fs/promises'
+import path from 'path'
 
-async function cacheConceptSchemes() {
+// 環境変数を読み込む
+dotenv.config({ path: '.env' })
+
+type ConceptSchemeData = {
+  id: string
+  label: string
+  topConceptIds: string[]
+  conceptIds: string[]
+}
+
+async function cacheConceptSchemes(): Promise<void> {
   try {
     console.log('Fetching concept schemes from Contentful...')
 
@@ -22,20 +33,22 @@ async function cacheConceptSchemes() {
       throw new Error('CONTENTFUL_ORGANIZATION_ID is not set')
     }
 
+    // Contentful Management APIクライアントを初期化
     const client = contentful.createClient({
       accessToken: accessToken
     })
 
+    // タクソノミーコンセプトスキームを取得する
     const rawConceptSchemes = await client.rawRequest({
       method: 'GET',
       url: `/organizations/${organizationId}/taxonomy/concept-schemes`
     })
 
-    const conceptSchemes = rawConceptSchemes.items.map((conceptScheme) => ({
+    const conceptSchemes: ConceptSchemeData[] = rawConceptSchemes.items.map((conceptScheme: ConceptScheme) => ({
       id: conceptScheme.sys.id,
       label: conceptScheme.prefLabel['en-US'],
-      topConceptIds: conceptScheme.topConcepts.map((topConcept) => topConcept.sys.id),
-      conceptIds: conceptScheme.concepts.map((concept) => concept.sys.id)
+      topConceptIds: conceptScheme.topConcepts.map((topConcept: TaxonomyConceptLink) => topConcept.sys.id),
+      conceptIds: conceptScheme.concepts.map((concept: TaxonomyConceptLink) => concept.sys.id)
     }))
 
     // 保存先ディレクトリを作成

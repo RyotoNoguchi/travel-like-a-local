@@ -1,11 +1,21 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-require-imports */
-const fs = require('fs').promises
-const path = require('path')
-const contentful = require('contentful-management')
-require('dotenv').config({ path: '.env' })
+import type { Concept } from '@/types/concept'
+import contentful from 'contentful-management'
+import type { TaxonomyConceptLink } from 'contentful-management/dist/typings/entities/concept'
+import dotenv from 'dotenv'
+import fs from 'fs/promises'
+import path from 'path'
 
-async function cacheConcepts() {
+// 環境変数を読み込む
+dotenv.config({ path: '.env' })
+
+type ConceptData = {
+  id: string
+  label: string
+  upperLevelConceptIds: string[]
+}
+
+async function cacheConcepts(): Promise<void> {
   try {
     console.log('Fetching concepts from Contentful...')
 
@@ -15,6 +25,7 @@ async function cacheConcepts() {
     if (!accessToken) {
       throw new Error('CONTENTFUL_MANAGEMENT_API_ACCESS_TOKEN is not set')
     }
+
     const organizationId = process.env.CONTENTFUL_ORGANIZATION_ID
     console.log('organizationId', organizationId)
     if (!organizationId) {
@@ -32,10 +43,10 @@ async function cacheConcepts() {
       url: `/organizations/${organizationId}/taxonomy/concepts`
     })
 
-    const concepts = rawConcepts.items.map((concept) => ({
+    const concepts: ConceptData[] = rawConcepts.items.map((concept: Concept) => ({
       id: concept.sys.id,
       label: concept.prefLabel['en-US'],
-      upperLevelConceptIds: concept.broader.map((upperLevelConcept) => upperLevelConcept.sys.id) || []
+      upperLevelConceptIds: concept.broader?.map((upperLevelConcept: TaxonomyConceptLink) => upperLevelConcept.sys.id) || []
     }))
 
     // 保存先ディレクトリを作成
