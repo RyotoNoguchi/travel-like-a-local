@@ -20,6 +20,7 @@ import { Redis } from '@upstash/redis'
 import classNames from 'classnames'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: Promise<{
@@ -53,14 +54,13 @@ export const generateStaticParams = async () => {
   const params = []
 
   for (const article of articles) {
-    if (article?.slug === undefined || article?.slug === null) return null
-    // 記事のコンセプトIDを取得
+    if (!article?.slug) continue
     const articleConceptIds = article?.contentfulMetadata?.concepts?.map((concept) => concept?.id).filter((id): id is string => id !== null) || []
-    if (!Boolean(articleConceptIds.length)) return null
+    if (!articleConceptIds.length) continue
 
     const concepts = await getConcepts()
     const conceptSchemes = await getConceptSchemes()
-    // カテゴリー、リージョン、エリア、県を取得
+
     const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
     const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)
 
@@ -82,7 +82,6 @@ export const generateStaticParams = async () => {
     const categoryConceptId = articleConceptIds.find((articleConceptId) => categoryConceptIds.includes(articleConceptId))
     const categoryName = concepts.find((concept) => concept.id === categoryConceptId)?.label.toLowerCase() ?? ''
 
-    // URLパスを生成
     const href = generateHref({
       categoryName,
       regionName,
@@ -91,7 +90,6 @@ export const generateStaticParams = async () => {
       slug: article.slug
     })
 
-    // /articles/以降のパスセグメントを取得
     const pathSegments = href.split('/').filter(Boolean).slice(1)
 
     // 各ロケールに対してパラメータを生成
@@ -121,7 +119,8 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   })
   const article = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)
 
-  if (article === null || article === undefined) return null
+  if (!article?.slug) notFound()
+
   const breadcrumbs = generateBreadcrumbs({ path, article, category, region, area, prefecture })
   const redis = Redis.fromEnv()
   const views = (await redis.get<number>([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))) ?? 0
