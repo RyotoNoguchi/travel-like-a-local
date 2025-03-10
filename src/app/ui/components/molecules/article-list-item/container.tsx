@@ -1,9 +1,9 @@
 import { ArticleListItem } from '@/app/ui/components/molecules/article-list-item/presenter'
-import { formatNameForUrl, generateHref } from '@/app/utils/url-helpers'
 import { CONCEPT_SCHEME } from '@/constants'
 import type { PageBlogPost } from '@/generated/graphql'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
+import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { FC } from 'react'
 
 type Props = PageBlogPost

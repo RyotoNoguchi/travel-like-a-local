@@ -1,8 +1,8 @@
 import { createApolloClient } from '@/apolloClient'
 import { PopularArticleList } from '@/app/ui/popular-article-list/presenter'
-import { getMultiplePageViews } from '@/app/utils/redis'
 import type { ListLatestBlogQueryVariables, PageBlogPost, Query } from '@/generated/graphql'
 import { LIST_LATEST_BLOG_QUERY } from '@/graphql/query'
+import { getMultiplePageViews } from '@/utils/redis'
 import type { FC } from 'react'
 
 type Props = {
