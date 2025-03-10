@@ -1,5 +1,5 @@
 import { Button } from '@/app/ui/components/atoms/button'
-import { ArticleListItem } from '@/app/ui/components/molecules/article-list-item'
+import { ArticleListItemContainer } from '@/app/ui/components/molecules/article-list-item/container'
 import type { PageBlogPost } from '@/generated/graphql'
 import type { FC } from 'react'
 
@@ -17,7 +17,7 @@ export const ArticleList: FC<Props> = ({ blogPosts, title, viewAll }) => (
     </div>
     <ul className="flex flex-col w-full items-center gap-4 pb-10">
       {blogPosts.map((blog) => (
-        <ArticleListItem key={blog.slug} {...blog} />
+        <ArticleListItemContainer key={blog.slug} {...blog} />
       ))}
     </ul>
   </section>
