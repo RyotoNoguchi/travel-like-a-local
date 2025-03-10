@@ -133,3 +133,19 @@ export const LIST_LATEST_BLOG_QUERY = gql`
     }
   }
 `
+
+export const GET_ALL_ARTICLES_QUERY = gql`
+  query GetAllArticles($locale: String!) {
+    pageBlogPostCollection(locale: $locale) {
+      items {
+        slug
+        title
+        contentfulMetadata {
+          concepts {
+            id
+          }
+        }
+      }
+    }
+  }
+`

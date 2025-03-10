@@ -36,5 +36,5 @@ export const ArticleListItemContainer: FC<Props> = async ({ slug, contentfulMeta
   const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug })
   if (href === '/articles/') return null
 
-  return <ArticleListItem categoryName={categoryName} contentfulMetadata={contentfulMetadata} slug={slug} {...props} />
+  return <ArticleListItem categoryName={categoryName} href={href} contentfulMetadata={contentfulMetadata} slug={slug} {...props} />
 }

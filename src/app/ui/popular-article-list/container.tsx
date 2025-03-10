@@ -1,6 +1,6 @@
 import { createApolloClient } from '@/apolloClient'
 import { PopularArticleList } from '@/app/ui/popular-article-list/presenter'
-import type { ListLatestBlogQueryVariables, PageBlogPost, Query } from '@/generated/graphql'
+import type { ListFeaturedBlogQuery, ListLatestBlogQueryVariables, PageBlogPost } from '@/generated/graphql'
 import { LIST_LATEST_BLOG_QUERY } from '@/graphql/query'
 import { getMultiplePageViews } from '@/utils/redis'
 import type { FC } from 'react'
@@ -12,7 +12,7 @@ type Props = {
 
 export const PopularArticleListContainer: FC<Props> = async ({ title, viewCountText }) => {
   const client = createApolloClient()
-  const { data } = await client.query<Query, ListLatestBlogQueryVariables>({
+  const { data } = await client.query<ListFeaturedBlogQuery, ListLatestBlogQueryVariables>({
     query: LIST_LATEST_BLOG_QUERY
   })
   const blogPosts = data.pageBlogPostCollection?.items.filter((post): post is PageBlogPost => post !== null)

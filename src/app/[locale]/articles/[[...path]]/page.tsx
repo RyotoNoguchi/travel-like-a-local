@@ -7,20 +7,29 @@ import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
 import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents'
 import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
-import { LOCALE_CODE_MAP, LOGO_TITLE, REDIS_KEYS, type LANGUAGE } from '@/constants'
+import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE, REDIS_KEYS } from '@/constants'
 import type { ListArticleQuery, ListArticleQueryVariables, Query } from '@/generated/graphql'
 import { LIST_ARTICLE_QUERY } from '@/graphql/query'
+import { getAllArticles } from '@/lib/contentful/get-articles'
+import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
+import { getConcepts } from '@/lib/contentful/get-concepts'
+import { parseArticlePath } from '@/utils/path-helper'
+import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import { Redis } from '@upstash/redis'
 import classNames from 'classnames'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
-  params: Promise<{ locale: LANGUAGE; category: string; slug: string }>
+  params: Promise<{
+    locale: LANGUAGE
+    path: string[]
+  }>
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
-  const { locale, slug } = await params
+  const { locale, path } = await params
+  const { slug } = parseArticlePath(path)
   const client = createApolloClient()
   const { data } = await client.query<ListArticleQuery, ListArticleQueryVariables>({
     query: LIST_ARTICLE_QUERY,
@@ -29,6 +38,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
       locale: LOCALE_CODE_MAP[locale]
     }
   })
+
   const seoFields = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)?.seoFields
   return {
     title: `${seoFields?.pageTitle ?? ''} | ${LOGO_TITLE}`,
@@ -36,8 +46,68 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 }
 
+export const generateStaticParams = async () => {
+  const articles = await getAllArticles()
+
+  const params = []
+
+  for (const article of articles) {
+    if (article?.slug === undefined || article?.slug === null) return null
+    // 記事のコンセプトIDを取得
+    const articleConceptIds = article?.contentfulMetadata?.concepts?.map((concept) => concept?.id).filter((id): id is string => id !== null) || []
+    if (!Boolean(articleConceptIds.length)) return null
+
+    const concepts = await getConcepts()
+    const conceptSchemes = await getConceptSchemes()
+    // カテゴリー、リージョン、エリア、県を取得
+    const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
+    const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)
+
+    const regionConceptIds = regionScheme?.topConceptIds || []
+    const regionConceptId = articleConceptIds.find((articleConceptId) => regionConceptIds.includes(articleConceptId))
+    const regionName = concepts.find((concept) => concept.id === regionConceptId)?.label.toLowerCase() ?? ''
+
+    const areaConceptIds = concepts.filter((concept) => concept.upperLevelConceptIds.some((id) => regionConceptIds.includes(id))).map((concept) => concept.id)
+    const areaConceptId = articleConceptIds.find((articleConceptId) => areaConceptIds.includes(articleConceptId))
+    const areaName = formatNameForUrl(concepts.find((concept) => concept.id === areaConceptId)?.label.toLowerCase() ?? '')
+
+    const prefectureConceptIds = concepts
+      .filter((concept) => concept.upperLevelConceptIds.some((id) => areaConceptIds.includes(id)))
+      .map((concept) => concept.id)
+    const prefectureConceptId = articleConceptIds.find((articleConceptId) => prefectureConceptIds.includes(articleConceptId))
+
+    const prefectureName = concepts.find((concept) => concept.id === prefectureConceptId)?.label.toLowerCase() ?? ''
+    const categoryConceptIds = categoryScheme?.topConceptIds || []
+    const categoryConceptId = articleConceptIds.find((articleConceptId) => categoryConceptIds.includes(articleConceptId))
+    const categoryName = concepts.find((concept) => concept.id === categoryConceptId)?.label.toLowerCase() ?? ''
+
+    // URLパスを生成
+    const href = generateHref({
+      categoryName,
+      regionName,
+      areaName,
+      prefectureName,
+      slug: article.slug
+    })
+
+    // /articles/以降のパスセグメントを取得
+    const pathSegments = href.split('/').filter(Boolean).slice(1)
+
+    // 各ロケールに対してパラメータを生成
+    for (const locale of Object.values(LANGUAGE)) {
+      params.push({
+        locale,
+        path: pathSegments
+      })
+    }
+  }
+
+  return params
+}
+
 const ArticlePage: NextPage<Props> = async ({ params }) => {
-  const { locale, category, slug } = await params
+  const { locale, path } = await params
+  const { slug, category } = parseArticlePath(path)
   const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1)
   const client = createApolloClient()
   const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
@@ -52,7 +122,6 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   const article = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)
   const redis = Redis.fromEnv()
   const views = (await redis.get<number>([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))) ?? 0
-
   return (
     <div className={classNames('w-full flex justify-center', 'pt-2', 'semi-lg:gap-10')}>
       <ReportView slug={slug} />

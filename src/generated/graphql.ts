@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { Document } from '@contentful/rich-text-types'
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
@@ -27,7 +26,7 @@ export type Scalars = {
   /** The 'HexColor' type represents color in `rgb:ffffff` string format. */
   HexColor: { input: any; output: any }
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: { input: any; output: Document }
+  JSON: { input: any; output: any }
   /** The 'Quality' type represents quality as whole numeric values between `1` and `100`. */
   Quality: { input: any; output: any }
 }
@@ -697,14 +696,6 @@ export type ContentfulTag = {
 export type Entry = {
   contentfulMetadata: ContentfulMetadata
   sys: Sys
-  __typename: string
-  image: {
-    title: string
-    description: string
-    width: number
-    height: number
-    url: string
-  }
 }
 
 export type EntryCollection = {
@@ -1647,6 +1638,23 @@ export type ListLatestBlogQuery = {
   } | null
 }
 
+export type GetAllArticlesQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+}>
+
+export type GetAllArticlesQuery = {
+  __typename?: 'Query'
+  pageBlogPostCollection?: {
+    __typename?: 'PageBlogPostCollection'
+    items: Array<{
+      __typename?: 'PageBlogPost'
+      slug?: string | null
+      title?: string | null
+      contentfulMetadata: { __typename?: 'ContentfulMetadata'; concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null> }
+    } | null>
+  } | null
+}
+
 export const GetAssetDocument = {
   kind: 'Document',
   definitions: [
@@ -1993,10 +2001,7 @@ export const ListLatestBlogDocument = {
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'pageBlogPostCollection' },
-            arguments: [
-              { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '10' } },
-              { kind: 'Argument', name: { kind: 'Name', value: 'order' }, value: { kind: 'EnumValue', value: 'publishedDate_DESC' } }
-            ],
+            arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'order' }, value: { kind: 'EnumValue', value: 'publishedDate_DESC' } }],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -2080,3 +2085,60 @@ export const ListLatestBlogDocument = {
     }
   ]
 } as unknown as DocumentNode<ListLatestBlogQuery, ListLatestBlogQueryVariables>
+export const GetAllArticlesDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetAllArticles' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pageBlogPostCollection' },
+            arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'contentfulMetadata' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'concepts' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetAllArticlesQuery, GetAllArticlesQueryVariables>

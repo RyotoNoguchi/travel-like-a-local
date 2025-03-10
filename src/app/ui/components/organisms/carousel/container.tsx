@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import type { Query } from '@/generated/graphql'
+import type { ListFeaturedBlogQuery } from '@/generated/graphql'
 import { LIST_FEATURED_BLOG_QUERY } from '@/graphql/query'
 import type { FC } from 'react'
 import { Carousel } from './presenter'
@@ -11,7 +11,7 @@ type Props = {
 
 export const CarouselContainer: FC<Props> = async ({ width, height }) => {
   const client = createApolloClient()
-  const { data } = await client.query<Query>({
+  const { data } = await client.query<ListFeaturedBlogQuery>({
     query: LIST_FEATURED_BLOG_QUERY
   })
 

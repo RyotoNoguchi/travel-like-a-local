@@ -19,8 +19,10 @@ const documents = {
     types.ListArticleDocument,
   '\n  query ListFeaturedBlog {\n    pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, limit: 10) {\n      items {\n        slug\n        featuredImage {\n          url\n          title\n        }\n      }\n    }\n  }\n':
     types.ListFeaturedBlogDocument,
-  '\n  query ListLatestBlog {\n    pageBlogPostCollection(limit: 10, order: publishedDate_DESC) {\n      items {\n        title\n        seoFields {\n          pageDescription\n        }\n        slug\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
-    types.ListLatestBlogDocument
+  '\n  query ListLatestBlog {\n    pageBlogPostCollection(order: publishedDate_DESC) {\n      items {\n        title\n        seoFields {\n          pageDescription\n        }\n        slug\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
+    types.ListLatestBlogDocument,
+  '\n  query GetAllArticles($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
+    types.GetAllArticlesDocument
 }
 
 /**
@@ -59,8 +61,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query ListLatestBlog {\n    pageBlogPostCollection(limit: 10, order: publishedDate_DESC) {\n      items {\n        title\n        seoFields {\n          pageDescription\n        }\n        slug\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n'
-): (typeof documents)['\n  query ListLatestBlog {\n    pageBlogPostCollection(limit: 10, order: publishedDate_DESC) {\n      items {\n        title\n        seoFields {\n          pageDescription\n        }\n        slug\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n']
+  source: '\n  query ListLatestBlog {\n    pageBlogPostCollection(order: publishedDate_DESC) {\n      items {\n        title\n        seoFields {\n          pageDescription\n        }\n        slug\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query ListLatestBlog {\n    pageBlogPostCollection(order: publishedDate_DESC) {\n      items {\n        title\n        seoFields {\n          pageDescription\n        }\n        slug\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query GetAllArticles($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetAllArticles($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n']
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {}
