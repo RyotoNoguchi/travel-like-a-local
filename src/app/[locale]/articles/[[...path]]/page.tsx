@@ -13,6 +13,7 @@ import { LIST_ARTICLE_QUERY } from '@/graphql/query'
 import { getAllArticles } from '@/lib/contentful/get-articles'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
+import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
 import { parseArticlePath } from '@/utils/path-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import { Redis } from '@upstash/redis'
@@ -107,8 +108,7 @@ export const generateStaticParams = async () => {
 
 const ArticlePage: NextPage<Props> = async ({ params }) => {
   const { locale, path } = await params
-  const { slug, category } = parseArticlePath(path)
-  const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1)
+  const { slug, category, region, area, prefecture } = parseArticlePath(path)
   const client = createApolloClient()
   const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const articleT = await getTranslations({ locale, namespace: 'Article' })
@@ -120,6 +120,9 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
     }
   })
   const article = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)
+
+  if (article === null || article === undefined) return null
+  const breadcrumbs = generateBreadcrumbs({ path, article, category, region, area, prefecture })
   const redis = Redis.fromEnv()
   const views = (await redis.get<number>([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))) ?? 0
   return (
@@ -136,13 +139,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
           'lg:max-w-screen-md'
         )}
       >
-        <Breadcrumbs
-          breadcrumbs={[
-            { label: 'Articles', href: '/articles' },
-            { label: formattedCategory, href: `/articles/${category}` },
-            { label: article?.title ?? '', href: `/articles/${category}/${slug}` }
-          ]}
-        />
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="flex flex-col pb-4 mb-2 border-b border-slate-200 border-solid gap-4">
           <div className="flex gap-2">
             <div className="flex gap-0.5 items-center px-1">

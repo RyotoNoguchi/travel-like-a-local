@@ -33,3 +33,4 @@ export enum CONCEPT_SCHEME {
   CATEGORIES = 'Categories',
   REGIONS = 'Regions'
 }
+export const ARTICLE_PATH = 'articles'
