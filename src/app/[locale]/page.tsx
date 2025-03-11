@@ -1,5 +1,6 @@
 import { ArticleListContainer } from '@/app/ui/article-list/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
+import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
 import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
 import { RichText } from '@/app/ui/rich-text'
@@ -27,9 +28,11 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
   const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const articleT = await getTranslations({ locale, namespace: 'Article' })
+  const breadcrumbs = [{ label: 'Home', href: '/' }]
 
   return (
     <>
+      <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
         <CarouselContainer width={300} height={200} />
