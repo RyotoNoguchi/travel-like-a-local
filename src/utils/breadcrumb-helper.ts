@@ -8,7 +8,7 @@ type BreadcrumbItem = {
 
 type Props = {
   path: string[]
-  article: Pick<PageBlogPost, '__typename' | 'slug' | 'title' | 'contentfulMetadata'>
+  article?: Pick<PageBlogPost, 'slug' | 'title' | 'contentfulMetadata'>
   category?: string
   region?: string
   area?: string
@@ -91,6 +91,8 @@ export const generateBreadcrumbs = ({ path, article, category, region, area, pre
       }
     }
   }
+
+  if (!article) return breadcrumbs
 
   // 記事ページ（最後のパンくず）
   breadcrumbs.push({
