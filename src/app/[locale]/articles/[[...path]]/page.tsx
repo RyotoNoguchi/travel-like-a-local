@@ -31,7 +31,7 @@ type Props = {
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { locale, path } = await params
-  const { slug } = parseArticlePath(path)
+  const { slug, category, region, area, prefecture } = await parseArticlePath(path)
   const client = createApolloClient()
   const { data } = await client.query<ListArticleQuery, ListArticleQueryVariables>({
     query: LIST_ARTICLE_QUERY,
@@ -43,7 +43,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 
   const seoFields = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)?.seoFields
   return {
-    title: `${seoFields?.pageTitle ?? ''} | ${LOGO_TITLE}`,
+    title: `${seoFields?.pageTitle ?? ''} ${category ? `| ${category}` : ''} ${region ? `| ${region}` : ''} ${area ? `| ${area}` : ''} ${prefecture ? `| ${prefecture}` : ''} | ${LOGO_TITLE}`,
     description: seoFields?.pageDescription ?? ''
   }
 }
@@ -106,7 +106,7 @@ export const generateStaticParams = async () => {
 
 const ArticlePage: NextPage<Props> = async ({ params }) => {
   const { locale, path } = await params
-  const { slug, category, region, area, prefecture } = parseArticlePath(path)
+  const { slug, category, region, area, prefecture } = await parseArticlePath(path)
   const client = createApolloClient()
   const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const articleT = await getTranslations({ locale, namespace: 'Article' })
