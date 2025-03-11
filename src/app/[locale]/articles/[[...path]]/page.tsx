@@ -6,6 +6,7 @@ import { EyeIcon } from '@/app/ui/components/atoms/icons/eye-icon'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
 import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents'
+import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE, REDIS_KEYS } from '@/constants'
 import type { ListArticleQuery, ListArticleQueryVariables, PageBlogPostContent } from '@/generated/graphql'
@@ -135,6 +136,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   const views = (await redis.get<number>([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))) ?? 0
   return (
     <div className={classNames('w-full flex justify-center', 'pt-2', 'semi-lg:gap-10')}>
+      <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <ReportView slug={slug} />
       <div
         className={classNames(
