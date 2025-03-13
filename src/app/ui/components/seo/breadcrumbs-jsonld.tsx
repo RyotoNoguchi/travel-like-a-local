@@ -1,10 +1,6 @@
 import type { LANGUAGE } from '@/constants'
+import type { BreadcrumbItem } from '@/types/breadcrumbs'
 import Script from 'next/script'
-
-type BreadcrumbItem = {
-  label: string
-  href: string
-}
 
 type Props = {
   locale: LANGUAGE
