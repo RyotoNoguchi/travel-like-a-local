@@ -42,31 +42,33 @@ export const ArticleDetail: FC<Props> = async ({ locale, breadcrumbs, slug, arti
     >
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="flex flex-col pb-4 mb-2 border-b border-slate-200 border-solid gap-4">
-        <div className="flex gap-2">
-          <div className="flex gap-0.5 items-center px-1">
-            <CalendarIcon width={16} height={16} />
-            <DateComponent date={article?.publishedDate as string} className="h-4 text-slate-500 text-sm" />
-          </div>
-          <div className="flex gap-0.5 items-center">
-            <EyeIcon width={16} height={16} />
-            <p className="text-sm text-slate-500 h-[18px] flex gap-0.5">
-              {views.count}
-              <span>{views.title}</span>
-            </p>
-          </div>
-        </div>
         <div className="flex flex-col gap-1">
           <h2 className="text-3xl font-bold">{article?.title}</h2>
-          {/* eslint-disable-next-line react/jsx-no-leaked-render */}
-          {article?.contentfulMetadata?.tags && (
-            <ul className="flex flex-wrap gap-2">
-              {article?.contentfulMetadata.tags?.map((tag) => (
-                <li key={tag?.name} className="bg-slate-100 rounded-sm px-2 py-1 text-sm text-slate-500">
-                  {tag?.name}
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="flex justify-between">
+            {/* eslint-disable-next-line react/jsx-no-leaked-render */}
+            {article?.contentfulMetadata?.tags && (
+              <ul className="flex flex-wrap gap-2">
+                {article?.contentfulMetadata.tags?.map((tag) => (
+                  <li key={tag?.name} className="bg-slate-100 rounded-sm px-2 py-1 text-sm text-slate-500">
+                    {tag?.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div className="flex gap-2">
+              <div className="flex gap-0.5 items-center px-1">
+                <CalendarIcon width={16} height={16} />
+                <DateComponent date={article?.publishedDate as string} className="h-4 text-slate-500 text-sm" />
+              </div>
+              <div className="flex gap-0.5 items-center">
+                <EyeIcon width={16} height={16} />
+                <p className="text-sm text-slate-500 h-[18px] flex gap-0.5">
+                  {views.count}
+                  <span>{views.title}</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-5">
