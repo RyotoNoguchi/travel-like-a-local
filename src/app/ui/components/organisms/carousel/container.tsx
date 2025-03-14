@@ -1,27 +1,68 @@
 import { createApolloClient } from '@/apolloClient'
-import type { ListFeaturedBlogQuery } from '@/generated/graphql'
+import { CONCEPT_SCHEME, type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
+import type { ListFeaturedBlogQuery, ListFeaturedBlogQueryVariables } from '@/generated/graphql'
 import { LIST_FEATURED_BLOG_QUERY } from '@/graphql/query'
+import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
+import { getConcepts } from '@/lib/contentful/get-concepts'
+import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { FC } from 'react'
 import { Carousel } from './presenter'
 
 type Props = {
   width: number
   height: number
+  locale: LANGUAGE
 }
 
-export const CarouselContainer: FC<Props> = async ({ width, height }) => {
+export const CarouselContainer: FC<Props> = async ({ width, height, locale }) => {
   const client = createApolloClient()
-  const { data } = await client.query<ListFeaturedBlogQuery>({
-    query: LIST_FEATURED_BLOG_QUERY
-  })
-
-  const blogs = data.pageBlogPostCollection?.items.map((item) => ({
-    slug: item?.slug ?? '',
-    featuredImage: {
-      url: item?.featuredImage?.url ? `${item?.featuredImage?.url}?w=${width}&h=${height}&fit=fill` : '',
-      title: item?.featuredImage?.title ?? ''
+  const { data } = await client.query<ListFeaturedBlogQuery, ListFeaturedBlogQueryVariables>({
+    query: LIST_FEATURED_BLOG_QUERY,
+    variables: {
+      locale: LOCALE_CODE_MAP[locale]
     }
-  }))
+  })
+  const concepts = await getConcepts()
+  const conceptSchemes = await getConceptSchemes()
+
+  const blogs = data.pageBlogPostCollection?.items
+    .map((item) => {
+      const contentfulMetadata = item?.contentfulMetadata
+      const articleConceptIds = contentfulMetadata?.concepts.map((concept) => ({ id: concept?.id }))
+
+      const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
+      const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)
+      const regionConceptIds = regionScheme?.topConceptIds || []
+      const regionConceptId = articleConceptIds?.find((article) => regionConceptIds.includes(article.id ?? ''))?.id
+      const regionName = concepts.find((concept) => concept.id === regionConceptId)?.label.toLowerCase() ?? ''
+
+      const areaConceptIds = concepts.filter((concept) => concept.upperLevelConceptIds.some((id) => regionConceptIds.includes(id))).map((concept) => concept.id)
+      const areaConceptId = articleConceptIds?.find((articleConceptId) => areaConceptIds.includes(articleConceptId.id ?? ''))?.id
+      const areaName = formatNameForUrl(concepts.find((concept) => concept.id === areaConceptId)?.label.toLowerCase() ?? '')
+
+      const prefectureConceptIds = concepts
+        .filter((concept) => concept.upperLevelConceptIds.some((id) => areaConceptIds.includes(id)))
+        .map((concept) => concept.id)
+      const prefectureConceptId = articleConceptIds?.find((articleConceptId) => prefectureConceptIds.includes(articleConceptId.id ?? ''))?.id
+      const prefectureName = concepts.find((concept) => concept.id === prefectureConceptId)?.label.toLowerCase() ?? ''
+
+      const categoryConceptIds = categoryScheme?.topConceptIds || []
+      const categoryConceptId = articleConceptIds?.find((article) => categoryConceptIds.includes(article.id ?? ''))?.id || articleConceptIds?.[0]?.id // カテゴリーが見つからない場合は最初のコンセプトを使用
+      const rawCategoryName = concepts.find((concept) => concept.id === categoryConceptId)?.label.toLowerCase() ?? ''
+      const categoryName = formatNameForUrl(rawCategoryName)
+
+      const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug: item?.slug ?? '' })
+
+      return {
+        slug: item?.slug ?? '',
+        href,
+        featuredImage: {
+          url: item?.featuredImage?.url ? `${item?.featuredImage?.url}?w=${width}&h=${height}&fit=fill` : '',
+          title: item?.featuredImage?.title ?? ''
+        }
+      }
+    })
+    .filter((blog) => blog.href !== '/articles/' && blog.slug !== '')
 
   if (!blogs) return null
 

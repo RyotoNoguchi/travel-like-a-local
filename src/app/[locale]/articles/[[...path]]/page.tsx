@@ -1,5 +1,7 @@
 import { createApolloClient } from '@/apolloClient'
 import { ArticleDetailContainer } from '@/app/ui/article-detail/container'
+import { ArticleListContainer } from '@/app/ui/article-list/container'
+import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
 import type { ListArticleQuery, ListArticleQueryVariables } from '@/generated/graphql'
 import { LIST_ARTICLE_QUERY } from '@/graphql/query'
@@ -9,6 +11,7 @@ import { getConcepts } from '@/lib/contentful/get-concepts'
 import { parseArticlePath } from '@/utils/path-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { Metadata, NextPage } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: Promise<{
@@ -95,8 +98,32 @@ export const generateStaticParams = async () => {
 const ArticlePage: NextPage<Props> = async ({ params }) => {
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
-  // TODO: return ArticleList component instead of null when slug is falsy
-  if (!slug) return null
+  const articleT = await getTranslations({ locale, namespace: 'Article' })
+  const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
+  const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
+  const getTitle = () => {
+    if (prefecture) {
+      return `${prefecture} ${articleListT('articles')}`
+    } else if (area) {
+      return `${area} ${articleListT('articles')}`
+    } else if (region) {
+      return `${region} ${articleListT('articles')}`
+    } else if (category) {
+      return `${category} ${articleListT('articles')}`
+    }
+    return articleListT('title')
+  }
+  if (!slug) {
+    return (
+      <div className="flex w-full justify-center gap-8 lg:gap-16 px-4 py-5">
+        <main className="">
+          <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
+        </main>
+        <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} />
+      </div>
+    )
+  }
+
   return <ArticleDetailContainer locale={locale} slug={slug} category={category} region={region} area={area} prefecture={prefecture} path={path} />
 }
 

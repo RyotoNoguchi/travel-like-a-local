@@ -29,7 +29,8 @@
   },
   "ArticleList": {
     "title": "Latest Articles",
-    "viewAll": "View All"
+    "viewAll": "View All",
+    "articles": "articles"
   },
   "PopularArticleList": {
     "title": "Popular Articles"

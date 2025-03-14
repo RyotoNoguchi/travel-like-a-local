@@ -35,9 +35,9 @@ const HomePage: NextPage<Props> = async ({ params }) => {
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
-        <CarouselContainer width={300} height={200} />
+        <CarouselContainer width={300} height={200} locale={locale} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
-          <ArticleListContainer title={articleListT('title')} viewAll={articleListT('viewAll')} />
+          <ArticleListContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} />
           <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} />
         </div>
       </main>

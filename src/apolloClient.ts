@@ -7,6 +7,9 @@ export const createApolloClient = () => {
     headers: {
       Authorization: `Bearer ${process.env.CONTENTFUL_CDA_ACCESS_TOKEN}`
     },
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    devtools: {
+      enabled: true
+    }
   })
 }

@@ -83,13 +83,63 @@ export const LIST_ARTICLE_QUERY = gql`
 `
 
 export const LIST_FEATURED_BLOG_QUERY = gql`
-  query ListFeaturedBlog {
-    pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, limit: 10) {
+  query ListFeaturedBlog($locale: String!) {
+    pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, locale: $locale, limit: 10) {
       items {
         slug
         featuredImage {
           url
           title
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+          concepts {
+            id
+          }
+        }
+      }
+    }
+  }
+`
+
+export const LIST_ARTICLES_QUERY = gql`
+  query ListArticles($locale: String!, $where: PageBlogPostFilter, $limit: Int, $skip: Int) {
+    pageBlogPostCollection(where: $where, locale: $locale, order: publishedDate_DESC, limit: $limit, skip: $skip) {
+      total
+      items {
+        sys {
+          id
+        }
+        title
+        slug
+        publishedDate
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+        seoFields {
+          pageDescription
+        }
+        author {
+          name
+          avatar {
+            title
+            url
+            width
+            height
+          }
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+          concepts {
+            id
+          }
         }
       }
     }
