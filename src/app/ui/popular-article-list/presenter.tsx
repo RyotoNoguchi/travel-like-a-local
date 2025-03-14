@@ -1,4 +1,4 @@
-import { SmallArticleItem } from '@/app/ui/components/molecules/small-article-item'
+import { SmallArticleItemContainer } from '@/app/ui/components/molecules/small-article-item/container'
 import type { PageBlogPost } from '@/generated/graphql'
 import type { FC } from 'react'
 
@@ -13,7 +13,7 @@ export const PopularArticleList: FC<Props> = ({ articles, title, viewCountText }
     <h3 className="w-full text-left text-2xl font-bold">{title}</h3>
     <ul className="flex flex-col w-full items-center gap-4">
       {articles.map((article) => (
-        <SmallArticleItem key={article.slug} {...article} viewCountText={viewCountText} />
+        <SmallArticleItemContainer key={article.slug} {...article} viewCountText={viewCountText} />
       ))}
     </ul>
   </aside>

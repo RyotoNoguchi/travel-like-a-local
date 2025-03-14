@@ -78,7 +78,7 @@ export const ArticleDetail: FC<Props> = async ({ locale, breadcrumbs, slug, arti
             {article?.content && article.content.__typename === 'PageBlogPostContent' ? <RichText content={article.content} /> : null}
           </div>
         </div>
-        <PopularArticleListContainer title={popularArticleListTitle} viewCountText={views.title} />
+        <PopularArticleListContainer title={popularArticleListTitle} viewCountText={views.title} locale={locale} />
       </div>
     </div>
   </div>

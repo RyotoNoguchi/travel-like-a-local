@@ -7,11 +7,10 @@ import { Link } from '@/i18n/routing'
 import type { FC } from 'react'
 
 type Props = PageBlogPost & {
-  categoryName: string
   href: string
 }
 
-export const ArticleListItem: FC<Props> = ({ categoryName, href, slug, featuredImage, title, seoFields, contentfulMetadata, author, publishedDate }) => (
+export const ArticleListItem: FC<Props> = ({ href, featuredImage, title, seoFields, contentfulMetadata, author, publishedDate }) => (
   <li className="flex flex-col sm:flex-row gap-2 w-full item-center sm:justify-start sm:gap-3 max-w-[300px] sm:max-w-[640px] lg:max-w-[800px]">
     <ImageLink
       className="rounded-2xl w-[300px] h-[200px] sm:max-w-[216px] sm:max-h-[144px]"

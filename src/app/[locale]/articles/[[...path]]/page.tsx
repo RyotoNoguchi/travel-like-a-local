@@ -119,7 +119,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
         <main className="">
           <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
         </main>
-        <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} />
+        <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
       </div>
     )
   }

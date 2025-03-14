@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
 import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
 import { RichText } from '@/app/ui/rich-text'
-import { LOGO_TITLE, type LANGUAGE } from '@/constants'
+import { type LANGUAGE, LOGO_TITLE } from '@/constants'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -38,7 +38,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <CarouselContainer width={300} height={200} locale={locale} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
           <ArticleListContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} />
-          <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} />
+          <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
         </div>
       </main>
     </>

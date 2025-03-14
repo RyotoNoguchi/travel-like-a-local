@@ -1,19 +1,28 @@
 import { createApolloClient } from '@/apolloClient'
 import { PopularArticleList } from '@/app/ui/popular-article-list/presenter'
-import type { ListFeaturedBlogQuery, ListLatestBlogQueryVariables, PageBlogPost } from '@/generated/graphql'
-import { LIST_LATEST_BLOG_QUERY } from '@/graphql/query'
+import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
+import type { ListArticlesQuery, ListArticlesQueryVariables, PageBlogPost } from '@/generated/graphql'
+import { LIST_ARTICLES_QUERY } from '@/graphql/query'
 import { getMultiplePageViews } from '@/utils/redis'
 import type { FC } from 'react'
 
 type Props = {
   title: string
   viewCountText: string
+  locale: LANGUAGE
+  limit?: number
+  skip?: number
 }
 
-export const PopularArticleListContainer: FC<Props> = async ({ title, viewCountText }) => {
+export const PopularArticleListContainer: FC<Props> = async ({ title, viewCountText, locale, limit = 10, skip = 0 }) => {
   const client = createApolloClient()
-  const { data } = await client.query<ListFeaturedBlogQuery, ListLatestBlogQueryVariables>({
-    query: LIST_LATEST_BLOG_QUERY
+  const { data } = await client.query<ListArticlesQuery, ListArticlesQueryVariables>({
+    query: LIST_ARTICLES_QUERY,
+    variables: {
+      locale: LOCALE_CODE_MAP[locale],
+      skip,
+      limit
+    }
   })
   const blogPosts = data.pageBlogPostCollection?.items.filter((post): post is PageBlogPost => post !== null)
   if (!blogPosts || blogPosts.length === 0) return null
