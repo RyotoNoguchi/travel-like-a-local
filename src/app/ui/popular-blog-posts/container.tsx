@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import { PopularArticleList } from '@/app/ui/popular-blog-posts/presenter'
+import { PopularBlogPosts } from '@/app/ui/popular-blog-posts/presenter'
 import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { ListArticlesQuery, ListArticlesQueryVariables, PageBlogPost } from '@/generated/graphql'
 import { LIST_ARTICLES_QUERY } from '@/graphql/query'
@@ -51,5 +51,5 @@ export const PopularBlogPostsContainer: FC<Props> = async ({ title, viewCountTex
   // 上位10件を取得
   const topTenPosts = sortedBlogPosts.slice(0, 10) as (PageBlogPost & { viewCount: number })[]
 
-  return <PopularArticleList articles={topTenPosts} title={title} viewCountText={viewCountText} />
+  return <PopularBlogPosts articles={topTenPosts} title={title} viewCountText={viewCountText} />
 }
