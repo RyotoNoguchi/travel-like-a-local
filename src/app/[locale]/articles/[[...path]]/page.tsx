@@ -7,7 +7,7 @@ import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
 import type { ListArticleQuery, ListArticleQueryVariables } from '@/generated/graphql'
 import { LIST_ARTICLE_QUERY } from '@/graphql/query'
-import { getAllArticles } from '@/lib/contentful/get-articles'
+import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
@@ -44,7 +44,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 }
 
 export const generateStaticParams = async () => {
-  const articles = await getAllArticles()
+  const articles = await getBlogPosts()
 
   const params = []
 

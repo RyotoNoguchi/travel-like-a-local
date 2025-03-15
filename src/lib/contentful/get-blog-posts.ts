@@ -3,7 +3,7 @@ import { LOCALE_CODE } from '@/constants'
 import type { GetAllArticlesQuery, GetAllArticlesQueryVariables } from '@/generated/graphql'
 import { GET_ALL_ARTICLES_QUERY } from '@/graphql/query'
 
-export const getAllArticles = async () => {
+export const getBlogPosts = async () => {
   const client = createApolloClient()
 
   const { data } = await client.query<GetAllArticlesQuery, GetAllArticlesQueryVariables>({
