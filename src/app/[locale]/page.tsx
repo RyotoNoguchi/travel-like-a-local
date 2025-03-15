@@ -1,4 +1,4 @@
-import { ArticleListContainer } from '@/app/ui/article-list/container'
+import { BlogPostsContainer } from '@/app/ui/blog-posts/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
@@ -37,7 +37,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
         <CarouselContainer width={300} height={200} locale={locale} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
-          <ArticleListContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} path={[]} />
+          <BlogPostsContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} path={[]} />
           <PopularBlogPostsContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
         </div>
       </main>

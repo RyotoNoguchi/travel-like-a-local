@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import { ArticleList } from '@/app/ui/article-list/presenter'
+import { ArticleList } from '@/app/ui/blog-posts/presenter'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { ListArticlesQuery, PageBlogPost } from '@/generated/graphql'
 import { LIST_ARTICLES_QUERY } from '@/graphql/query'
@@ -20,7 +20,7 @@ type Props = {
   skip?: number
 }
 
-export const ArticleListContainer: FC<Props> = async ({ title, viewAllButtonText, locale, category, region, area, prefecture, limit = 10, skip = 0, path }) => {
+export const BlogPostsContainer: FC<Props> = async ({ title, viewAllButtonText, locale, category, region, area, prefecture, limit = 10, skip = 0, path }) => {
   const client = createApolloClient()
   const concepts = await getConcepts()
   const where: Record<string, unknown> = {}

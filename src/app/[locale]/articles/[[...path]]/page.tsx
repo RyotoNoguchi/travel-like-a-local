@@ -1,6 +1,6 @@
 import { createApolloClient } from '@/apolloClient'
 import { ArticleDetailContainer } from '@/app/ui/article-detail/container'
-import { ArticleListContainer } from '@/app/ui/article-list/container'
+import { BlogPostsContainer } from '@/app/ui/blog-posts/container'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
@@ -154,7 +154,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <div className="flex w-full justify-center gap-8 lg:gap-16">
               <main className="flex-1 ">
-                <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
+                <BlogPostsContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
               </main>
               <PopularBlogPostsContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
             </div>
