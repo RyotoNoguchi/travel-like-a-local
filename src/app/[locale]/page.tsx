@@ -2,7 +2,7 @@ import { ArticleListContainer } from '@/app/ui/article-list/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
-import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
+import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { RichText } from '@/app/ui/rich-text'
 import { type LANGUAGE, LOGO_TITLE } from '@/constants'
 import type { Metadata, NextPage } from 'next'
@@ -38,7 +38,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <CarouselContainer width={300} height={200} locale={locale} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
           <ArticleListContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} path={[]} />
-          <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
+          <PopularBlogPostsContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
         </div>
       </main>
     </>

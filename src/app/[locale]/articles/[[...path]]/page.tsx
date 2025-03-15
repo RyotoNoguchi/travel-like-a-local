@@ -3,7 +3,7 @@ import { ArticleDetailContainer } from '@/app/ui/article-detail/container'
 import { ArticleListContainer } from '@/app/ui/article-list/container'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
-import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
+import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
 import type { ListArticleQuery, ListArticleQueryVariables } from '@/generated/graphql'
 import { LIST_ARTICLE_QUERY } from '@/graphql/query'
@@ -156,7 +156,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
               <main className="flex-1 ">
                 <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
               </main>
-              <PopularArticleListContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
+              <PopularBlogPostsContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
             <main className="flex-1">
               <ArticleDetailContainer locale={locale} slug={slug} blogPost={blogPost} />
             </main>
-            <PopularArticleListContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
+            <PopularBlogPostsContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
           </div>
         </div>
       </div>

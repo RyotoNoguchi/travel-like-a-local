@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import { PopularArticleList } from '@/app/ui/popular-article-list/presenter'
+import { PopularArticleList } from '@/app/ui/popular-blog-posts/presenter'
 import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { ListArticlesQuery, ListArticlesQueryVariables, PageBlogPost } from '@/generated/graphql'
 import { LIST_ARTICLES_QUERY } from '@/graphql/query'
@@ -14,7 +14,7 @@ type Props = {
   skip?: number
 }
 
-export const PopularArticleListContainer: FC<Props> = async ({ title, viewCountText, locale, limit = 10, skip = 0 }) => {
+export const PopularBlogPostsContainer: FC<Props> = async ({ title, viewCountText, locale, limit = 10, skip = 0 }) => {
   const client = createApolloClient()
   const { data } = await client.query<ListArticlesQuery, ListArticlesQueryVariables>({
     query: LIST_ARTICLES_QUERY,
