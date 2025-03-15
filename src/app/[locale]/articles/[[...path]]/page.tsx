@@ -109,7 +109,7 @@ const fetchBlogPost = async (slug: string, locale: LANGUAGE): Promise<NonNullabl
   return data.pageBlogPostCollection?.items?.find((pageBlogPost) => pageBlogPost?.slug === slug)
 }
 
-const ArticlePage: NextPage<Props> = async ({ params }) => {
+const BlogPostPage: NextPage<Props> = async ({ params }) => {
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
   const articleT = await getTranslations({ locale, namespace: 'Article' })
@@ -191,4 +191,4 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
   )
 }
 
-export default ArticlePage
+export default BlogPostPage
