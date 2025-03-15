@@ -1,4 +1,4 @@
-import { ArticleListItem } from '@/app/ui/components/molecules/article-list-item/presenter'
+import { ArticleListItem } from '@/app/ui/components/molecules/blog-post-item/presenter'
 import type { PageBlogPost } from '@/generated/graphql'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
@@ -6,7 +6,7 @@ import type { FC } from 'react'
 
 type Props = PageBlogPost
 
-export const ArticleListItemContainer: FC<Props> = async ({ slug, contentfulMetadata, ...props }) => {
+export const BlogPostItemContainer: FC<Props> = async ({ slug, contentfulMetadata, ...props }) => {
   if (slug === null || slug === undefined) return null
   const articleConceptIds = contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
 

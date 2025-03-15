@@ -1,5 +1,5 @@
 import { Button } from '@/app/ui/components/atoms/button'
-import { ArticleListItemContainer } from '@/app/ui/components/molecules/article-list-item/container'
+import { BlogPostItemContainer } from '@/app/ui/components/molecules/blog-post-item/container'
 import type { LANGUAGE } from '@/constants'
 import type { PageBlogPost } from '@/generated/graphql'
 import type { FC } from 'react'
@@ -24,7 +24,7 @@ export const BlogPosts: FC<Props> = ({ blogPosts, title, viewAllButtonText, view
     </div>
     <ul className="flex flex-col w-full items-center gap-4 pb-10">
       {blogPosts.map((blog) => (
-        <ArticleListItemContainer key={blog.slug} {...blog} />
+        <BlogPostItemContainer key={blog.slug} {...blog} />
       ))}
     </ul>
     {/* TODO: ページネーション（記事が多い場合のみ表示） */}
