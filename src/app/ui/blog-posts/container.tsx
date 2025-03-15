@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import { ArticleList } from '@/app/ui/blog-posts/presenter'
+import { BlogPosts } from '@/app/ui/blog-posts/presenter'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { ListArticlesQuery, PageBlogPost } from '@/generated/graphql'
 import { LIST_ARTICLES_QUERY } from '@/graphql/query'
@@ -99,7 +99,7 @@ export const BlogPostsContainer: FC<Props> = async ({ title, viewAllButtonText, 
   const viewAllHref = viewAllButtonText && path && path.length > 0 ? `/articles/${path.join('/')}` : viewAllButtonText ? '/articles' : undefined
 
   return (
-    <ArticleList
+    <BlogPosts
       blogPosts={blogPosts}
       title={title}
       viewAllButtonText={viewAllButtonText}
