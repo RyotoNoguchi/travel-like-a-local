@@ -1,4 +1,4 @@
-import { SmallArticleItem } from '@/app/ui/components/molecules/small-article-item/presenter'
+import { SmallArticleItem } from '@/app/ui/components/molecules/small-blog-post-item/presenter'
 import type { PageBlogPost } from '@/generated/graphql'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
@@ -6,7 +6,7 @@ import type { FC } from 'react'
 
 type Props = PageBlogPost & { viewCount: number; viewCountText: string }
 
-export const SmallArticleItemContainer: FC<Props> = async ({ slug, contentfulMetadata, ...props }) => {
+export const SmallBlogPostItemContainer: FC<Props> = async ({ slug, contentfulMetadata, ...props }) => {
   if (!slug) return null
   const articleConceptIds = contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
   if (!Boolean(articleConceptIds.length)) return null
