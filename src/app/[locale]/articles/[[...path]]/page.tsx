@@ -5,8 +5,8 @@ import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
-import type { ListArticleQuery, ListArticleQueryVariables } from '@/generated/graphql'
-import { LIST_ARTICLE_QUERY } from '@/graphql/query'
+import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
+import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
 import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
@@ -28,8 +28,8 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
   const client = createApolloClient()
-  const { data } = await client.query<ListArticleQuery, ListArticleQueryVariables>({
-    query: LIST_ARTICLE_QUERY,
+  const { data } = await client.query<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>({
+    query: GET_BLOG_POST_BY_SLUG_QUERY,
     variables: {
       slug,
       locale: LOCALE_CODE_MAP[locale]
@@ -99,10 +99,13 @@ export const generateStaticParams = async () => {
   return params
 }
 
-const fetchBlogPost = async (slug: string, locale: LANGUAGE): Promise<NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0] | undefined> => {
+const fetchBlogPost = async (
+  slug: string,
+  locale: LANGUAGE
+): Promise<NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0] | undefined> => {
   const client = createApolloClient()
-  const { data } = await client.query<ListArticleQuery, ListArticleQueryVariables>({
-    query: LIST_ARTICLE_QUERY,
+  const { data } = await client.query<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>({
+    query: GET_BLOG_POST_BY_SLUG_QUERY,
     variables: { slug, locale: LOCALE_CODE_MAP[locale] }
   })
 

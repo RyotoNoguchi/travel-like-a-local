@@ -9,8 +9,8 @@ export const GET_ASSET_QUERY = gql`
   }
 `
 
-export const LIST_ARTICLE_QUERY = gql`
-  query ListArticle($slug: String!, $locale: String!) {
+export const GET_BLOG_POST_BY_SLUG_QUERY = gql`
+  query GetBlogPostBySlug($slug: String!, $locale: String!) {
     pageBlogPostCollection(where: { slug: $slug }, locale: $locale) {
       items {
         seoFields {

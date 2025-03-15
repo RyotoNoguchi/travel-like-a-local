@@ -1526,12 +1526,12 @@ export type GetAssetQueryVariables = Exact<{
 
 export type GetAssetQuery = { __typename?: 'Query'; asset?: { __typename?: 'Asset'; title?: string | null; url?: string | null } | null }
 
-export type ListArticleQueryVariables = Exact<{
+export type GetBlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
   locale: Scalars['String']['input']
 }>
 
-export type ListArticleQuery = {
+export type GetBlogPostBySlugQuery = {
   __typename?: 'Query'
   pageBlogPostCollection?: {
     __typename?: 'PageBlogPostCollection'
@@ -1703,13 +1703,13 @@ export const GetAssetDocument = {
     }
   ]
 } as unknown as DocumentNode<GetAssetQuery, GetAssetQueryVariables>
-export const ListArticleDocument = {
+export const GetBlogPostBySlugDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'ListArticle' },
+      name: { kind: 'Name', value: 'GetBlogPostBySlug' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -1921,7 +1921,7 @@ export const ListArticleDocument = {
       }
     }
   ]
-} as unknown as DocumentNode<ListArticleQuery, ListArticleQueryVariables>
+} as unknown as DocumentNode<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>
 export const GetFeaturedBlogPostsDocument = {
   kind: 'Document',
   definitions: [
