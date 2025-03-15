@@ -1,10 +1,10 @@
-import type { ComponentAuthor, Maybe } from '@/generated/graphql'
+import type { GetBlogPostsQuery } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import type { FC } from 'react'
 
 type Props = {
-  author: Maybe<ComponentAuthor>
+  author: NonNullable<NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'][0]>['author']
 }
 
 export const Author: FC<Props> = ({ author }) => {

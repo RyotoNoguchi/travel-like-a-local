@@ -1,8 +1,8 @@
 import { createApolloClient } from '@/apolloClient'
 import { PopularBlogPosts } from '@/app/ui/popular-blog-posts/presenter'
 import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
-import type { ListArticlesQuery, ListArticlesQueryVariables, PageBlogPost } from '@/generated/graphql'
-import { LIST_ARTICLES_QUERY } from '@/graphql/query'
+import type { GetBlogPostsQuery, GetBlogPostsQueryVariables, PageBlogPost } from '@/generated/graphql'
+import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import { getMultiplePageViews } from '@/utils/redis'
 import type { FC } from 'react'
 
@@ -16,8 +16,8 @@ type Props = {
 
 export const PopularBlogPostsContainer: FC<Props> = async ({ title, viewCountText, locale, limit = 10, skip = 0 }) => {
   const client = createApolloClient()
-  const { data } = await client.query<ListArticlesQuery, ListArticlesQueryVariables>({
-    query: LIST_ARTICLES_QUERY,
+  const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
+    query: GET_BLOG_POSTS_QUERY,
     variables: {
       locale: LOCALE_CODE_MAP[locale],
       skip,

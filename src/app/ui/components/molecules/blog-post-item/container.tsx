@@ -1,10 +1,10 @@
 import { BlogPostItem } from '@/app/ui/components/molecules/blog-post-item/presenter'
-import type { PageBlogPost } from '@/generated/graphql'
+import type { GetBlogPostsQuery } from '@/generated/graphql'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
 import type { FC } from 'react'
 
-type Props = PageBlogPost
+type Props = NonNullable<NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'][0]>
 
 export const BlogPostItemContainer: FC<Props> = async ({ slug, contentfulMetadata, ...props }) => {
   if (slug === null || slug === undefined) return null
@@ -19,6 +19,5 @@ export const BlogPostItemContainer: FC<Props> = async ({ slug, contentfulMetadat
 
   const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug })
   if (href === '/articles/') return null
-
   return <BlogPostItem href={href} contentfulMetadata={contentfulMetadata} slug={slug} {...props} />
 }

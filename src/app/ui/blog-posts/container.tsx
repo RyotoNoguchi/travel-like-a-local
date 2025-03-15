@@ -1,8 +1,8 @@
 import { createApolloClient } from '@/apolloClient'
 import { BlogPosts } from '@/app/ui/blog-posts/presenter'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
-import type { ListArticlesQuery, PageBlogPost } from '@/generated/graphql'
-import { LIST_ARTICLES_QUERY } from '@/graphql/query'
+import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
+import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import type { FC } from 'react'
@@ -79,8 +79,8 @@ export const BlogPostsContainer: FC<Props> = async ({ title, viewAllButtonText, 
     where.AND = filters
   }
 
-  const { data } = await client.query<ListArticlesQuery>({
-    query: LIST_ARTICLES_QUERY,
+  const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
+    query: GET_BLOG_POSTS_QUERY,
     variables: {
       locale: LOCALE_CODE_MAP[locale],
       where: Object.keys(where).length > 0 ? where : undefined,
@@ -89,7 +89,7 @@ export const BlogPostsContainer: FC<Props> = async ({ title, viewAllButtonText, 
     }
   })
 
-  const blogPosts = data.pageBlogPostCollection?.items.filter((post: unknown): post is PageBlogPost => post !== null) || []
+  const blogPosts = data.pageBlogPostCollection?.items.filter((post) => post !== null) || []
   const total = data.pageBlogPostCollection?.total || 0
 
   // TODO: Create NoBlogPosts component and return it when blogPosts.length === 0

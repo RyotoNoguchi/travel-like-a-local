@@ -104,8 +104,8 @@ export const LIST_FEATURED_BLOG_QUERY = gql`
   }
 `
 
-export const LIST_ARTICLES_QUERY = gql`
-  query ListArticles($locale: String!, $where: PageBlogPostFilter, $limit: Int, $skip: Int) {
+export const GET_BLOG_POSTS_QUERY = gql`
+  query GetBlogPosts($locale: String!, $where: PageBlogPostFilter, $limit: Int, $skip: Int) {
     pageBlogPostCollection(where: $where, locale: $locale, order: publishedDate_DESC, limit: $limit, skip: $skip) {
       total
       items {

@@ -2,11 +2,11 @@ import { Author } from '@/app/ui/components/atoms/author'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { ImageLink } from '@/app/ui/components/atoms/icons/image-link'
 import { TagList } from '@/app/ui/components/molecules/tag-list'
-import type { PageBlogPost } from '@/generated/graphql'
+import type { GetBlogPostsQuery } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
 import type { FC } from 'react'
 
-type Props = PageBlogPost & {
+type Props = NonNullable<NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'][0]> & {
   href: string
 }
 
@@ -30,7 +30,7 @@ export const BlogPostItem: FC<Props> = ({ href, featuredImage, title, seoFields,
         {Array.isArray(contentfulMetadata.tags) && contentfulMetadata.tags.length > 0 && <TagList tags={contentfulMetadata.tags} />}
       </div>
       <div className="flex gap-2 sm:justify-end">
-        {author ? <Author author={author} /> : null}
+        {author !== null && author !== undefined && <Author author={author} />}
         <DateComponent date={publishedDate as string} />
       </div>
     </div>
