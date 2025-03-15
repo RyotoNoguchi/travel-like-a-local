@@ -1,4 +1,4 @@
-import { ArticleDetail } from '@/app/ui/blog-post/presenter'
+import { BlogPost } from '@/app/ui/blog-post/presenter'
 import { REDIS_KEYS, type LANGUAGE } from '@/constants'
 import type { ListArticleQuery } from '@/generated/graphql'
 import { Redis } from '@upstash/redis'
@@ -20,7 +20,7 @@ export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) =
   const views = (await redis.get<number>([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))) ?? 0
 
   return (
-    <ArticleDetail
+    <BlogPost
       locale={locale}
       slug={slug}
       article={blogPost}

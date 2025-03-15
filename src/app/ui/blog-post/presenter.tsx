@@ -20,7 +20,7 @@ type Props = {
   popularArticleListTitle: string
 }
 
-export const ArticleDetail: FC<Props> = async ({ slug, article, views }) => (
+export const BlogPost: FC<Props> = async ({ slug, article, views }) => (
   <div className={classNames('w-full flex justify-center')}>
     <ReportView slug={slug} />
     <div
