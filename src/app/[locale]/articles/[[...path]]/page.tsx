@@ -1,6 +1,8 @@
 import { createApolloClient } from '@/apolloClient'
 import { ArticleDetailContainer } from '@/app/ui/article-detail/container'
 import { ArticleListContainer } from '@/app/ui/article-list/container'
+import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
+import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { PopularArticleListContainer } from '@/app/ui/popular-article-list/container'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
 import type { ListArticleQuery, ListArticleQueryVariables } from '@/generated/graphql'
@@ -8,8 +10,10 @@ import { LIST_ARTICLE_QUERY } from '@/graphql/query'
 import { getAllArticles } from '@/lib/contentful/get-articles'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
+import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
 import { parseArticlePath } from '@/utils/path-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
+import classNames from 'classnames'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -113,14 +117,41 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
     }
     return articleListT('title')
   }
+  const breadcrumbs = generateBreadcrumbs({
+    path,
+    article: undefined,
+    category,
+    region,
+    area,
+    prefecture
+  })
+
   if (!slug) {
     return (
-      <div className="flex w-full justify-center gap-8 lg:gap-16 px-4 py-5">
-        <main className="">
-          <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
-        </main>
-        <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
-      </div>
+      <>
+        <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
+        <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
+          <div
+            className={classNames(
+              'flex flex-col gap-1 px-3 max-w-screen-xxs',
+              'xs:max-w-screen-xs',
+              'semi-sm:max-w-screen-semi-sm',
+              'sm:max-w-screen-sm',
+              'xs:px-4',
+              'sm:px-6',
+              'semi-lg:max-w-screen-xl'
+            )}
+          >
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <div className="flex w-full justify-center gap-8 lg:gap-16">
+              <main className="flex-1 ">
+                <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
+              </main>
+              <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
+            </div>
+          </div>
+        </div>
+      </>
     )
   }
 

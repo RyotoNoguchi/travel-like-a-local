@@ -1,11 +1,13 @@
 import { Button } from '@/app/ui/components/atoms/button'
 import { ArticleListItemContainer } from '@/app/ui/components/molecules/article-list-item/container'
+import type { LANGUAGE } from '@/constants'
 import type { PageBlogPost } from '@/generated/graphql'
 import type { FC } from 'react'
 
 type Props = {
   blogPosts: PageBlogPost[]
   title: string
+  locale: LANGUAGE
   viewAllButtonText?: string
   viewAllHref?: string
   total?: number
@@ -36,14 +38,11 @@ export const ArticleList: FC<Props> = ({
       {/*eslint-disable-next-line react/jsx-no-leaked-render */}
       {viewAllButtonText && <Button borderRadius="rounded-md" textColor="text-primary" text={viewAllButtonText} href={viewAllHref} />}
     </div>
-
-    {/* 記事一覧 */}
     <ul className="flex flex-col w-full items-center gap-4 pb-10">
       {blogPosts.map((blog) => (
         <ArticleListItemContainer key={blog.slug} {...blog} />
       ))}
     </ul>
-
     {/* TODO: ページネーション（記事が多い場合のみ表示） */}
     {/* {totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl={viewAllHref} />} */}
   </section>

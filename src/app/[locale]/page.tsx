@@ -37,7 +37,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('title', { ...tags })}</RichText>} enrichedSubtitle={t('subtitle')} />
         <CarouselContainer width={300} height={200} locale={locale} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
-          <ArticleListContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} />
+          <ArticleListContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} path={[]} />
           <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
         </div>
       </main>

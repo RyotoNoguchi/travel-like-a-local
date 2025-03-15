@@ -11,13 +11,13 @@ type Props = {
   title: string
   viewAllButtonText?: string
   locale: LANGUAGE
+  path: string[]
   category?: string
   region?: string
   area?: string
   prefecture?: string
   limit?: number
   skip?: number
-  path?: string[]
 }
 
 export const ArticleListContainer: FC<Props> = async ({ title, viewAllButtonText, locale, category, region, area, prefecture, limit = 10, skip = 0, path }) => {
@@ -112,6 +112,7 @@ export const ArticleListContainer: FC<Props> = async ({ title, viewAllButtonText
       region={region}
       area={area}
       prefecture={prefecture}
+      locale={locale}
     />
   )
 }
