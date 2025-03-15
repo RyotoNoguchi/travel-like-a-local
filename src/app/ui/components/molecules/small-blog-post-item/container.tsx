@@ -1,4 +1,4 @@
-import { SmallArticleItem } from '@/app/ui/components/molecules/small-blog-post-item/presenter'
+import { SmallBlogPostItem } from '@/app/ui/components/molecules/small-blog-post-item/presenter'
 import type { PageBlogPost } from '@/generated/graphql'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
@@ -17,5 +17,5 @@ export const SmallBlogPostItemContainer: FC<Props> = async ({ slug, contentfulMe
   const { categoryName, regionName, areaName, prefectureName } = await extractTaxonomyInfo(filteredArticleConceptIds)
   const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug })
   if (href === '/articles/') return null
-  return <SmallArticleItem href={href} slug={slug} {...props} />
+  return <SmallBlogPostItem href={href} slug={slug} {...props} />
 }
