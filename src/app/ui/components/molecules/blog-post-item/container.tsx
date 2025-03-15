@@ -1,4 +1,4 @@
-import { ArticleListItem } from '@/app/ui/components/molecules/blog-post-item/presenter'
+import { BlogPostItem } from '@/app/ui/components/molecules/blog-post-item/presenter'
 import type { PageBlogPost } from '@/generated/graphql'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
@@ -20,5 +20,5 @@ export const BlogPostItemContainer: FC<Props> = async ({ slug, contentfulMetadat
   const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug })
   if (href === '/articles/') return null
 
-  return <ArticleListItem href={href} contentfulMetadata={contentfulMetadata} slug={slug} {...props} />
+  return <BlogPostItem href={href} contentfulMetadata={contentfulMetadata} slug={slug} {...props} />
 }
