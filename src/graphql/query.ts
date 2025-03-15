@@ -146,44 +146,6 @@ export const LIST_ARTICLES_QUERY = gql`
   }
 `
 
-export const LIST_LATEST_BLOG_QUERY = gql`
-  query ListLatestBlog {
-    pageBlogPostCollection(order: publishedDate_DESC) {
-      items {
-        title
-        seoFields {
-          pageDescription
-        }
-        slug
-        author {
-          name
-          avatar {
-            title
-            url
-            width
-            height
-          }
-        }
-        publishedDate
-        featuredImage {
-          title
-          url
-          width
-          height
-        }
-        contentfulMetadata {
-          tags {
-            name
-          }
-          concepts {
-            id
-          }
-        }
-      }
-    }
-  }
-`
-
 export const GET_ALL_ARTICLES_QUERY = gql`
   query GetAllArticles($locale: String!) {
     pageBlogPostCollection(locale: $locale) {
