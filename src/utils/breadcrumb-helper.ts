@@ -1,5 +1,5 @@
 import { ARTICLE_PATH } from '@/constants'
-import type { PageBlogPost } from '@/generated/graphql'
+import type { ListArticleQuery } from '@/generated/graphql'
 
 type BreadcrumbItem = {
   label: string
@@ -8,14 +8,14 @@ type BreadcrumbItem = {
 
 type Props = {
   path: string[]
-  article?: Pick<PageBlogPost, 'slug' | 'title' | 'contentfulMetadata'>
+  blogPost?: NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]
   category?: string
   region?: string
   area?: string
   prefecture?: string
 }
 
-export const generateBreadcrumbs = ({ path, article, category, region, area, prefecture }: Props): BreadcrumbItem[] => {
+export const generateBreadcrumbs = ({ path, blogPost, category, region, area, prefecture }: Props): BreadcrumbItem[] => {
   const breadcrumbs: BreadcrumbItem[] = []
 
   // ホームページ
@@ -92,11 +92,11 @@ export const generateBreadcrumbs = ({ path, article, category, region, area, pre
     }
   }
 
-  if (!article) return breadcrumbs
+  if (!blogPost) return breadcrumbs
 
   // 記事ページ（最後のパンくず）
   breadcrumbs.push({
-    label: article.title ?? '',
+    label: blogPost.title ?? '',
     href: `/${ARTICLE_PATH}/${path.join('/')}`
   })
 

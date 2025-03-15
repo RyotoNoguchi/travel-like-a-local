@@ -1,14 +1,17 @@
-import type { PageBlogPostContent } from '@/generated/graphql'
+import type { ListArticleQuery } from '@/generated/graphql'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { type Block, BLOCKS, type Inline } from '@contentful/rich-text-types'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
 type Props = {
-  content: PageBlogPostContent
+  content: NonNullable<NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]>['content']
 }
 
 export const RichText: FC<Props> = ({ content }) => {
+  if (!content) notFound()
+
   // 見出しのテキストからIDを生成する関数
   const generateId = (text: string): string => {
     return text

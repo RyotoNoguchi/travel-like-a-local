@@ -696,6 +696,8 @@ export type ContentfulTag = {
 export type Entry = {
   contentfulMetadata: ContentfulMetadata
   sys: Sys
+  __typename?: 'ComponentRichImage'
+  image?: Maybe<Asset>
 }
 
 export type EntryCollection = {

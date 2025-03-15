@@ -13,25 +13,9 @@ type Props = {
   total?: number
   currentPage?: number
   totalPages?: number
-  category?: string
-  region?: string
-  area?: string
-  prefecture?: string
 }
 
-export const ArticleList: FC<Props> = ({
-  blogPosts,
-  title,
-  viewAllButtonText,
-  viewAllHref = '/articles',
-  total,
-  currentPage = 1,
-  totalPages = 1,
-  category,
-  region,
-  area,
-  prefecture
-}) => (
+export const ArticleList: FC<Props> = ({ blogPosts, title, viewAllButtonText, viewAllHref = '/articles', total, currentPage = 1, totalPages = 1 }) => (
   <section className="flex flex-col w-full gap-4 items-center sm:max-w-[640px] xl:max-w-[800px]">
     <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px] xl:max-w-[800px]">
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>

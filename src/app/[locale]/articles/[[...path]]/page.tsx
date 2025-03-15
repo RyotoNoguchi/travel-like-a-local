@@ -99,46 +99,55 @@ export const generateStaticParams = async () => {
   return params
 }
 
+const fetchBlogPost = async (slug: string, locale: LANGUAGE): Promise<NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0] | undefined> => {
+  const client = createApolloClient()
+  const { data } = await client.query<ListArticleQuery, ListArticleQueryVariables>({
+    query: LIST_ARTICLE_QUERY,
+    variables: { slug, locale: LOCALE_CODE_MAP[locale] }
+  })
+
+  return data.pageBlogPostCollection?.items?.find((pageBlogPost) => pageBlogPost?.slug === slug)
+}
+
 const ArticlePage: NextPage<Props> = async ({ params }) => {
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
   const articleT = await getTranslations({ locale, namespace: 'Article' })
-  const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-  const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
+  const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
+  const blogPostsT = await getTranslations({ locale, namespace: 'ArticleList' })
   const getTitle = () => {
     if (prefecture) {
-      return `${prefecture} ${articleListT('articles')}`
+      return `${prefecture} ${blogPostsT('articles')}`
     } else if (area) {
-      return `${area} ${articleListT('articles')}`
+      return `${area} ${blogPostsT('articles')}`
     } else if (region) {
-      return `${region} ${articleListT('articles')}`
+      return `${region} ${blogPostsT('articles')}`
     } else if (category) {
-      return `${category} ${articleListT('articles')}`
+      return `${category} ${blogPostsT('articles')}`
     }
-    return articleListT('title')
+    return blogPostsT('title')
   }
+  const blogPost = slug ? await fetchBlogPost(slug, locale) : undefined
   const breadcrumbs = generateBreadcrumbs({
     path,
-    article: undefined,
+    blogPost,
     category,
     region,
     area,
     prefecture
   })
 
-  if (!slug) {
+  if (!slug || !blogPost) {
     return (
       <>
         <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
         <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
           <div
             className={classNames(
-              'flex flex-col gap-1 px-3 max-w-screen-xxs',
+              'flex flex-col gap-1 max-w-screen-xxs',
               'xs:max-w-screen-xs',
               'semi-sm:max-w-screen-semi-sm',
               'sm:max-w-screen-sm',
-              'xs:px-4',
-              'sm:px-6',
               'semi-lg:max-w-screen-xl'
             )}
           >
@@ -147,15 +156,39 @@ const ArticlePage: NextPage<Props> = async ({ params }) => {
               <main className="flex-1 ">
                 <ArticleListContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
               </main>
-              <PopularArticleListContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
+              <PopularArticleListContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
             </div>
           </div>
         </div>
       </>
     )
   }
-
-  return <ArticleDetailContainer locale={locale} slug={slug} category={category} region={region} area={area} prefecture={prefecture} path={path} />
+  return (
+    <>
+      <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
+      <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
+        <div
+          className={classNames(
+            'flex flex-col gap-1 px-3 max-w-screen-xxs',
+            'xs:max-w-screen-xs',
+            'semi-sm:max-w-screen-semi-sm',
+            'sm:max-w-screen-sm',
+            'xs:px-4',
+            'sm:px-6',
+            'semi-lg:max-w-screen-xl'
+          )}
+        >
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <div className="flex w-full justify-center gap-8 lg:gap-16">
+            <main className="flex-1">
+              <ArticleDetailContainer locale={locale} slug={slug} blogPost={blogPost} />
+            </main>
+            <PopularArticleListContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default ArticlePage

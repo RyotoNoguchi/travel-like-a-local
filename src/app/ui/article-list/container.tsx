@@ -22,9 +22,7 @@ type Props = {
 
 export const ArticleListContainer: FC<Props> = async ({ title, viewAllButtonText, locale, category, region, area, prefecture, limit = 10, skip = 0, path }) => {
   const client = createApolloClient()
-
   const concepts = await getConcepts()
-
   const where: Record<string, unknown> = {}
   const filters: Array<Record<string, unknown>> = []
 
@@ -94,6 +92,7 @@ export const ArticleListContainer: FC<Props> = async ({ title, viewAllButtonText
   const blogPosts = data.pageBlogPostCollection?.items.filter((post: unknown): post is PageBlogPost => post !== null) || []
   const total = data.pageBlogPostCollection?.total || 0
 
+  // TODO: Create NoBlogPosts component and return it when blogPosts.length === 0
   if (blogPosts.length === 0) return null
 
   // 現在のパスに基づいてviewAllのリンク先を決定
@@ -108,10 +107,6 @@ export const ArticleListContainer: FC<Props> = async ({ title, viewAllButtonText
       total={total}
       currentPage={Math.floor(skip / limit) + 1}
       totalPages={Math.ceil(total / limit)}
-      category={category}
-      region={region}
-      area={area}
-      prefecture={prefecture}
       locale={locale}
     />
   )
