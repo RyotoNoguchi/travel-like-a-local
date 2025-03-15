@@ -146,8 +146,8 @@ export const GET_BLOG_POSTS_QUERY = gql`
   }
 `
 
-export const GET_ALL_ARTICLES_QUERY = gql`
-  query GetAllArticles($locale: String!) {
+export const GET_ALL_BLOG_POSTS_QUERY = gql`
+  query GetAllBlogPosts($locale: String!) {
     pageBlogPostCollection(locale: $locale) {
       items {
         slug

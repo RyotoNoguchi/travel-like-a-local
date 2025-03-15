@@ -21,8 +21,8 @@ const documents = {
     types.ListFeaturedBlogDocument,
   '\n  query GetBlogPosts($locale: String!, $where: PageBlogPostFilter, $limit: Int, $skip: Int) {\n    pageBlogPostCollection(where: $where, locale: $locale, order: publishedDate_DESC, limit: $limit, skip: $skip) {\n      total\n      items {\n        sys {\n          id\n        }\n        title\n        slug\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        seoFields {\n          pageDescription\n        }\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
     types.GetBlogPostsDocument,
-  '\n  query GetAllArticles($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
-    types.GetAllArticlesDocument
+  '\n  query GetAllBlogPosts($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
+    types.GetAllBlogPostsDocument
 }
 
 /**
@@ -67,8 +67,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query GetAllArticles($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n'
-): (typeof documents)['\n  query GetAllArticles($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n']
+  source: '\n  query GetAllBlogPosts($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetAllBlogPosts($locale: String!) {\n    pageBlogPostCollection(locale: $locale) {\n      items {\n        slug\n        title\n        contentfulMetadata {\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n']
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {}

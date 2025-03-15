@@ -1652,11 +1652,11 @@ export type GetBlogPostsQuery = {
   } | null
 }
 
-export type GetAllArticlesQueryVariables = Exact<{
+export type GetAllBlogPostsQueryVariables = Exact<{
   locale: Scalars['String']['input']
 }>
 
-export type GetAllArticlesQuery = {
+export type GetAllBlogPostsQuery = {
   __typename?: 'Query'
   pageBlogPostCollection?: {
     __typename?: 'PageBlogPostCollection'
@@ -2160,13 +2160,13 @@ export const GetBlogPostsDocument = {
     }
   ]
 } as unknown as DocumentNode<GetBlogPostsQuery, GetBlogPostsQueryVariables>
-export const GetAllArticlesDocument = {
+export const GetAllBlogPostsDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'GetAllArticles' },
+      name: { kind: 'Name', value: 'GetAllBlogPosts' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -2216,4 +2216,4 @@ export const GetAllArticlesDocument = {
       }
     }
   ]
-} as unknown as DocumentNode<GetAllArticlesQuery, GetAllArticlesQueryVariables>
+} as unknown as DocumentNode<GetAllBlogPostsQuery, GetAllBlogPostsQueryVariables>
