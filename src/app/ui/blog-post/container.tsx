@@ -1,4 +1,4 @@
-import { ArticleDetail } from '@/app/ui/article-detail/presenter'
+import { ArticleDetail } from '@/app/ui/blog-post/presenter'
 import { REDIS_KEYS, type LANGUAGE } from '@/constants'
 import type { ListArticleQuery } from '@/generated/graphql'
 import { Redis } from '@upstash/redis'
@@ -12,7 +12,7 @@ type Props = {
   blogPost: NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]
 }
 
-export const ArticleDetailContainer: FC<Props> = async ({ locale, slug, blogPost }) => {
+export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) => {
   if (!blogPost) notFound()
   const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const articleT = await getTranslations({ locale, namespace: 'Article' })
