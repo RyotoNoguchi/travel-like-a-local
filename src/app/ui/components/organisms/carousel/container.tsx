@@ -1,7 +1,7 @@
 import { createApolloClient } from '@/apolloClient'
 import { CONCEPT_SCHEME, type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
-import type { ListFeaturedBlogQuery, ListFeaturedBlogQueryVariables } from '@/generated/graphql'
-import { LIST_FEATURED_BLOG_QUERY } from '@/graphql/query'
+import type { GetFeaturedBlogPostsQuery, GetFeaturedBlogPostsQueryVariables } from '@/generated/graphql'
+import { GET_FEATURED_BLOG_POSTS_QUERY } from '@/graphql/query'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
@@ -16,8 +16,8 @@ type Props = {
 
 export const CarouselContainer: FC<Props> = async ({ width, height, locale }) => {
   const client = createApolloClient()
-  const { data } = await client.query<ListFeaturedBlogQuery, ListFeaturedBlogQueryVariables>({
-    query: LIST_FEATURED_BLOG_QUERY,
+  const { data } = await client.query<GetFeaturedBlogPostsQuery, GetFeaturedBlogPostsQueryVariables>({
+    query: GET_FEATURED_BLOG_POSTS_QUERY,
     variables: {
       locale: LOCALE_CODE_MAP[locale]
     }

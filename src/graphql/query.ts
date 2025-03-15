@@ -82,8 +82,8 @@ export const LIST_ARTICLE_QUERY = gql`
   }
 `
 
-export const LIST_FEATURED_BLOG_QUERY = gql`
-  query ListFeaturedBlog($locale: String!) {
+export const GET_FEATURED_BLOG_POSTS_QUERY = gql`
+  query GetFeaturedBlogPosts($locale: String!) {
     pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, locale: $locale, limit: 10) {
       items {
         slug
