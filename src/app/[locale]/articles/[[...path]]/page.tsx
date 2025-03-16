@@ -38,7 +38,19 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   // 最も具体的な地域を特定
   const mostSpecificRegion = formattedPrefecture || formattedArea || formattedRegion || ''
 
-  // 記事詳細ページの場合（slugがある場合）
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const getTitleText = (region: string, category: string, t: any) => {
+    if (region && category) {
+      return t('articlesOf', { region, category })
+    } else if (region) {
+      return t('articlesOf', { region, category: '' })
+    } else if (category) {
+      return t('articlesOf', { region: '', category })
+    } else {
+      return t('articles')
+    }
+  }
+
   if (slug) {
     const client = createApolloClient()
     const { data } = await client.query<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>({
@@ -52,27 +64,12 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
     const blogPost = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)
     const seoFields = blogPost?.seoFields
 
-    // 記事詳細ページのタイトル: [記事タイトル] | [地域名] | [サイト名]
     return {
       title: `${seoFields?.pageTitle || blogPost?.title || ''} ${mostSpecificRegion ? `| ${mostSpecificRegion}` : ''}`,
       description: seoFields?.pageDescription ?? ''
     }
-  }
-
-  // 記事一覧ページの場合
-  else {
-    // 記事一覧ページのタイトル: [地域名] [カテゴリ名] Articles | [サイト名]
-    let title = ''
-
-    if (mostSpecificRegion && formattedCategory) {
-      title = `${t('articlesOf', { region: mostSpecificRegion, category: formattedCategory })}`
-    } else if (mostSpecificRegion) {
-      title = `${t('articlesOf', { region: mostSpecificRegion, category: '' })}`
-    } else if (formattedCategory) {
-      title = `${t('articlesOf', { region: '', category: formattedCategory })}`
-    } else {
-      title = `${t('articles')}`
-    }
+  } else {
+    const title = getTitleText(mostSpecificRegion, formattedCategory, t)
 
     return {
       title,
