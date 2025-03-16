@@ -7,12 +7,13 @@ import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import classNames from 'classnames'
+import Image from 'next/image'
 import type { FC } from 'react'
 
 type Props = {
   locale: LANGUAGE
   slug: string
-  article: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
+  blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
   views: {
     count: number
     title: string
@@ -20,7 +21,7 @@ type Props = {
   popularArticleListTitle: string
 }
 
-export const BlogPost: FC<Props> = async ({ slug, article, views }) => (
+export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
   <div className={classNames('w-full flex justify-center')}>
     <ReportView slug={slug} />
     <div
@@ -33,13 +34,13 @@ export const BlogPost: FC<Props> = async ({ slug, article, views }) => (
       )}
     >
       <div className="flex flex-col">
-        <div className="flex flex-col pb-4 mb-2 border-b border-slate-200 border-solid gap-4">
+        <div className="flex flex-col pb-4 mb-5 border-b border-slate-200 border-solid gap-4">
           <div className="flex flex-col gap-1">
-            <h2 className="text-3xl font-bold">{article?.title}</h2>
+            <h2 className="text-3xl font-bold">{blogPost?.title}</h2>
             <div className="flex justify-between">
-              {article?.contentfulMetadata?.tags !== undefined && (
+              {blogPost?.contentfulMetadata?.tags !== undefined && (
                 <ul className="flex flex-wrap gap-2">
-                  {article?.contentfulMetadata.tags?.map((tag) => (
+                  {blogPost?.contentfulMetadata.tags?.map((tag) => (
                     <li key={tag?.name} className="bg-slate-100 rounded-sm px-2 py-1 text-sm text-slate-500">
                       {tag?.name}
                     </li>
@@ -49,7 +50,7 @@ export const BlogPost: FC<Props> = async ({ slug, article, views }) => (
               <div className="flex gap-2">
                 <div className="flex gap-0.5 items-center px-1">
                   <CalendarIcon width={16} height={16} />
-                  <DateComponent date={article?.publishedDate as string} className="h-4 text-slate-500 text-sm" />
+                  <DateComponent date={blogPost?.publishedDate as string} className="h-4 text-slate-500 text-sm" />
                 </div>
                 <div className="flex gap-0.5 items-center">
                   <EyeIcon width={16} height={16} />
@@ -63,8 +64,12 @@ export const BlogPost: FC<Props> = async ({ slug, article, views }) => (
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          {article?.content ? <TableOfContents content={article.content.json} /> : null}
-          {article?.content && article.content.__typename === 'PageBlogPostContent' ? <RichText content={article.content} /> : null}
+          {blogPost?.featuredImage?.url !== undefined && blogPost?.featuredImage?.url !== null && (
+            <Image src={blogPost.featuredImage.url} alt={blogPost.featuredImage.title ?? ''} width={1200} height={800} />
+          )}
+          {blogPost?.introduction !== undefined && blogPost.introduction !== null && <RichText content={blogPost.introduction} />}
+          {blogPost?.content !== undefined && blogPost.content !== null && <TableOfContents json={blogPost.content.json} />}
+          {blogPost?.content !== undefined && blogPost.content !== null && <RichText content={blogPost.content} />}
         </div>
       </div>
     </div>

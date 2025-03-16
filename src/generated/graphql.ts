@@ -829,6 +829,7 @@ export type PageBlogPost = Entry &
     contentfulMetadata: ContentfulMetadata
     featuredImage?: Maybe<Asset>
     internalName?: Maybe<Scalars['String']['output']>
+    introduction?: Maybe<PageBlogPostIntroduction>
     linkedFrom?: Maybe<PageBlogPostLinkingCollections>
     publishedDate?: Maybe<Scalars['DateTime']['output']>
     relatedBlogPostsCollection?: Maybe<PageBlogPostRelatedBlogPostsCollection>
@@ -859,6 +860,11 @@ export type PageBlogPostFeaturedImageArgs = {
 
 /** To create individual blog posts [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/pageBlogPost) */
 export type PageBlogPostInternalNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** To create individual blog posts [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/pageBlogPost) */
+export type PageBlogPostIntroductionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -977,6 +983,9 @@ export type PageBlogPostFilter = {
   internalName_not?: InputMaybe<Scalars['String']['input']>
   internalName_not_contains?: InputMaybe<Scalars['String']['input']>
   internalName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  introduction_contains?: InputMaybe<Scalars['String']['input']>
+  introduction_exists?: InputMaybe<Scalars['Boolean']['input']>
+  introduction_not_contains?: InputMaybe<Scalars['String']['input']>
   publishedDate?: InputMaybe<Scalars['DateTime']['input']>
   publishedDate_exists?: InputMaybe<Scalars['Boolean']['input']>
   publishedDate_gt?: InputMaybe<Scalars['DateTime']['input']>
@@ -1012,6 +1021,54 @@ export type PageBlogPostFilter = {
   title_not?: InputMaybe<Scalars['String']['input']>
   title_not_contains?: InputMaybe<Scalars['String']['input']>
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type PageBlogPostIntroduction = {
+  __typename?: 'PageBlogPostIntroduction'
+  json: Scalars['JSON']['output']
+  links: PageBlogPostIntroductionLinks
+}
+
+export type PageBlogPostIntroductionAssets = {
+  __typename?: 'PageBlogPostIntroductionAssets'
+  block: Array<Maybe<Asset>>
+  hyperlink: Array<Maybe<Asset>>
+}
+
+export type PageBlogPostIntroductionEntries = {
+  __typename?: 'PageBlogPostIntroductionEntries'
+  block: Array<Maybe<Entry>>
+  hyperlink: Array<Maybe<Entry>>
+  inline: Array<Maybe<Entry>>
+}
+
+export type PageBlogPostIntroductionLinks = {
+  __typename?: 'PageBlogPostIntroductionLinks'
+  assets: PageBlogPostIntroductionAssets
+  entries: PageBlogPostIntroductionEntries
+  resources: PageBlogPostIntroductionResources
+}
+
+export type PageBlogPostIntroductionResources = {
+  __typename?: 'PageBlogPostIntroductionResources'
+  block: Array<PageBlogPostIntroductionResourcesBlock>
+  hyperlink: Array<PageBlogPostIntroductionResourcesHyperlink>
+  inline: Array<PageBlogPostIntroductionResourcesInline>
+}
+
+export type PageBlogPostIntroductionResourcesBlock = ResourceLink & {
+  __typename?: 'PageBlogPostIntroductionResourcesBlock'
+  sys: ResourceSys
+}
+
+export type PageBlogPostIntroductionResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageBlogPostIntroductionResourcesHyperlink'
+  sys: ResourceSys
+}
+
+export type PageBlogPostIntroductionResourcesInline = ResourceLink & {
+  __typename?: 'PageBlogPostIntroductionResourcesInline'
+  sys: ResourceSys
 }
 
 export type PageBlogPostLinkingCollections = {
@@ -1485,6 +1542,9 @@ export type CfPageBlogPostNestedFilter = {
   internalName_not?: InputMaybe<Scalars['String']['input']>
   internalName_not_contains?: InputMaybe<Scalars['String']['input']>
   internalName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  introduction_contains?: InputMaybe<Scalars['String']['input']>
+  introduction_exists?: InputMaybe<Scalars['Boolean']['input']>
+  introduction_not_contains?: InputMaybe<Scalars['String']['input']>
   publishedDate?: InputMaybe<Scalars['DateTime']['input']>
   publishedDate_exists?: InputMaybe<Scalars['Boolean']['input']>
   publishedDate_gt?: InputMaybe<Scalars['DateTime']['input']>
@@ -1541,8 +1601,9 @@ export type GetBlogPostBySlugQuery = {
       title?: string | null
       publishedDate?: any | null
       seoFields?: { __typename?: 'ComponentSeo'; pageTitle?: string | null; pageDescription?: string | null } | null
+      introduction?: { __typename: 'PageBlogPostIntroduction'; json: any } | null
       content?: {
-        __typename?: 'PageBlogPostContent'
+        __typename: 'PageBlogPostContent'
         json: any
         links: {
           __typename?: 'PageBlogPostContentLinks'
@@ -1761,10 +1822,22 @@ export const GetBlogPostBySlugDocument = {
                       },
                       {
                         kind: 'Field',
+                        name: { kind: 'Name', value: 'introduction' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'json' } }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
                         name: { kind: 'Name', value: 'content' },
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'json' } },
                             {
                               kind: 'Field',

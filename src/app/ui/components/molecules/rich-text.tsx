@@ -1,4 +1,4 @@
-import type { ListArticleQuery } from '@/generated/graphql'
+import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { type Block, BLOCKS, type Inline } from '@contentful/rich-text-types'
 import Image from 'next/image'
@@ -6,7 +6,9 @@ import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
 type Props = {
-  content: NonNullable<NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]>['content']
+  content:
+    | NonNullable<NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]>['content']
+    | NonNullable<NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]>['introduction']
 }
 
 export const RichText: FC<Props> = ({ content }) => {
@@ -26,18 +28,20 @@ export const RichText: FC<Props> = ({ content }) => {
   const entryMap = new Map()
   const assetMap = new Map()
 
-  if (content.links?.entries?.block) {
-    content.links.entries.block.forEach((entry) => {
-      if (entry?.__typename === 'ComponentRichImage' && entry.image) {
-        entryMap.set(entry.sys?.id, entry)
-      }
-    })
-  }
+  if (content.__typename === 'PageBlogPostContent' && content.links) {
+    if (content.links.entries?.block) {
+      content.links.entries.block.forEach((entry) => {
+        if (entry?.__typename === 'ComponentRichImage' && entry.image) {
+          entryMap.set(entry.sys?.id, entry)
+        }
+      })
+    }
 
-  if (content.links?.assets?.block) {
-    content.links.assets.block.forEach((asset) => {
-      assetMap.set(asset?.sys.id, asset)
-    })
+    if (content.links.assets?.block) {
+      content.links.assets.block.forEach((asset) => {
+        assetMap.set(asset?.sys.id, asset)
+      })
+    }
   }
 
   const options = {

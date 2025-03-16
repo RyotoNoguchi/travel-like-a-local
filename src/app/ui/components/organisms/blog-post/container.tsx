@@ -3,7 +3,6 @@ import { REDIS_KEYS, type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { Redis } from '@upstash/redis'
 import { getTranslations } from 'next-intl/server'
-import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
 type Props = {
@@ -13,7 +12,6 @@ type Props = {
 }
 
 export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) => {
-  if (!blogPost) notFound()
   const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const articleT = await getTranslations({ locale, namespace: 'Article' })
   const redis = Redis.fromEnv()
@@ -23,7 +21,7 @@ export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) =
     <BlogPost
       locale={locale}
       slug={slug}
-      article={blogPost}
+      blogPost={blogPost}
       views={{ count: views, title: articleT('views') }}
       popularArticleListTitle={popularBlogPostsT('title')}
     />

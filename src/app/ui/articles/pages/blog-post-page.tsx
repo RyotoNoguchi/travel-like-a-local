@@ -4,6 +4,7 @@ import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
 import { getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
 type Props = {
@@ -16,6 +17,8 @@ type Props = {
 export const BlogPostDetailPage: FC<Props> = async ({ locale, breadcrumbs, slug, blogPost }) => {
   const articleT = await getTranslations({ locale, namespace: 'Article' })
   const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
+
+  if (!blogPost) notFound()
 
   return (
     <ArticleLayout locale={locale} breadcrumbs={breadcrumbs} popularArticlesTitle={popularBlogPostsT('title')} viewCountText={articleT('views')}>

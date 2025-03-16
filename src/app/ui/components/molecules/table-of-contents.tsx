@@ -1,3 +1,4 @@
+import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { BLOCKS, type Document, type TopLevelBlock } from '@contentful/rich-text-types'
 import { useTranslations } from 'next-intl'
 import type { FC } from 'react'
@@ -8,11 +9,11 @@ type Heading = {
   level: 1 | 2 | 3 | 4 | 5 | 6
 }
 
-type Props = { content: Document }
+type Props = NonNullable<NonNullable<NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]>['content']>['json']
 
-export const TableOfContents: FC<Props> = ({ content }) => {
+export const TableOfContents: FC<Props> = ({ json }) => {
   const t = useTranslations('TableOfContents')
-  const headings = extractHeadings(content)
+  const headings = extractHeadings(json)
   if (headings.length === 0) return null
 
   return (
@@ -33,12 +34,12 @@ export const TableOfContents: FC<Props> = ({ content }) => {
   )
 }
 
-const extractHeadings = (content: Document): Heading[] => {
+const extractHeadings = (json: Document): Heading[] => {
   const headings: Heading[] = []
 
   // Rich Textのコンテンツをトラバースして見出しを探す
-  if (content && content.content) {
-    content.content.forEach((node) => {
+  if (json && json.content) {
+    json.content.forEach((node) => {
       // 見出しノードを検出
       if (
         node.nodeType === BLOCKS.HEADING_1 ||

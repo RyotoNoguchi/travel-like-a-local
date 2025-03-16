@@ -17,7 +17,12 @@ export const GET_BLOG_POST_BY_SLUG_QUERY = gql`
           pageTitle
           pageDescription
         }
+        introduction {
+          __typename
+          json
+        }
         content {
+          __typename
           json
           links {
             entries {
