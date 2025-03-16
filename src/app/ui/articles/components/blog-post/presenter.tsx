@@ -5,14 +5,14 @@ import { EyeIcon } from '@/app/ui/components/atoms/icons/eye-icon'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
 import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents'
 import { type LANGUAGE } from '@/constants'
-import type { ListArticleQuery } from '@/generated/graphql'
+import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import classNames from 'classnames'
 import type { FC } from 'react'
 
 type Props = {
   locale: LANGUAGE
   slug: string
-  article: NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]
+  article: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
   views: {
     count: number
     title: string
@@ -37,8 +37,7 @@ export const BlogPost: FC<Props> = async ({ slug, article, views }) => (
           <div className="flex flex-col gap-1">
             <h2 className="text-3xl font-bold">{article?.title}</h2>
             <div className="flex justify-between">
-              {/* eslint-disable-next-line react/jsx-no-leaked-render */}
-              {article?.contentfulMetadata?.tags && (
+              {article?.contentfulMetadata?.tags !== undefined && (
                 <ul className="flex flex-wrap gap-2">
                   {article?.contentfulMetadata.tags?.map((tag) => (
                     <li key={tag?.name} className="bg-slate-100 rounded-sm px-2 py-1 text-sm text-slate-500">

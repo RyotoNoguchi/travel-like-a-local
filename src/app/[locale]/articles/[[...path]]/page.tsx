@@ -1,9 +1,6 @@
 import { createApolloClient } from '@/apolloClient'
-import { BlogPostContainer } from '@/app/ui/blog-post/container'
-import { BlogPostsContainer } from '@/app/ui/blog-posts/container'
-import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
-import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
-import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
+import { BlogPostDetailPage } from '@/app/ui/articles/pages/blog-post-page'
+import { BlogPostListPage } from '@/app/ui/articles/pages/blog-posts-page'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
@@ -13,7 +10,6 @@ import { getConcepts } from '@/lib/contentful/get-concepts'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
 import { parseArticlePath } from '@/utils/path-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
-import classNames from 'classnames'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -150,22 +146,7 @@ const fetchBlogPost = async (
 const BlogPostPage: NextPage<Props> = async ({ params }) => {
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
-  const articleT = await getTranslations({ locale, namespace: 'Article' })
-  const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-  const blogPostsT = await getTranslations({ locale, namespace: 'ArticleList' })
 
-  const getTitle = () => {
-    if (prefecture) {
-      return blogPostsT('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1), category: '' })
-    } else if (area) {
-      return blogPostsT('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1), category: '' })
-    } else if (region) {
-      return blogPostsT('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1), category: '' })
-    } else if (category) {
-      return blogPostsT('articlesOf', { region: '', category: category.charAt(0).toUpperCase() + category.slice(1) })
-    }
-    return blogPostsT('title')
-  }
   const blogPost = slug ? await fetchBlogPost(slug, locale) : undefined
   const breadcrumbs = generateBreadcrumbs({
     path,
@@ -176,57 +157,12 @@ const BlogPostPage: NextPage<Props> = async ({ params }) => {
     prefecture
   })
 
-  if (!slug || !blogPost) {
-    return (
-      <>
-        <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
-        <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
-          <div
-            className={classNames(
-              'flex flex-col gap-1 max-w-screen-xxs',
-              'xs:max-w-screen-xs',
-              'semi-sm:max-w-screen-semi-sm',
-              'sm:max-w-screen-sm',
-              'semi-lg:max-w-screen-xl'
-            )}
-          >
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <div className="flex w-full justify-center gap-8 lg:gap-16">
-              <main className="flex-1 ">
-                <BlogPostsContainer title={getTitle()} locale={locale} category={category} region={region} area={area} prefecture={prefecture} path={path} />
-              </main>
-              <PopularBlogPostsContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
-            </div>
-          </div>
-        </div>
-      </>
-    )
-  }
-  return (
-    <>
-      <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
-      <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
-        <div
-          className={classNames(
-            'flex flex-col gap-1 px-3 max-w-screen-xxs',
-            'xs:max-w-screen-xs',
-            'semi-sm:max-w-screen-semi-sm',
-            'sm:max-w-screen-sm',
-            'xs:px-4',
-            'sm:px-6',
-            'semi-lg:max-w-screen-xl'
-          )}
-        >
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <div className="flex w-full justify-center gap-8 lg:gap-16">
-            <main className="flex-1">
-              <BlogPostContainer locale={locale} slug={slug} blogPost={blogPost} />
-            </main>
-            <PopularBlogPostsContainer title={popularBlogPostsT('title')} viewCountText={articleT('views')} locale={locale} />
-          </div>
-        </div>
-      </div>
-    </>
+  const hasBlogPost = slug && blogPost
+
+  return hasBlogPost ? (
+    <BlogPostDetailPage locale={locale} breadcrumbs={breadcrumbs} slug={slug} blogPost={blogPost} />
+  ) : (
+    <BlogPostListPage locale={locale} breadcrumbs={breadcrumbs} category={category} region={region} area={area} prefecture={prefecture} path={path} />
   )
 }
 

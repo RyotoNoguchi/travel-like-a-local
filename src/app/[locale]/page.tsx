@@ -1,4 +1,4 @@
-import { BlogPostsContainer } from '@/app/ui/blog-posts/container'
+import { BlogPostsContainer } from '@/app/ui/articles/components/blog-posts/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'

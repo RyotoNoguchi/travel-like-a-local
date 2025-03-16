@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import { BlogPosts } from '@/app/ui/blog-posts/presenter'
+import { BlogPosts } from '@/app/ui/articles/components/blog-posts/presenter'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'

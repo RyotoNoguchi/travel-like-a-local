@@ -1,6 +1,6 @@
-import { BlogPost } from '@/app/ui/blog-post/presenter'
+import { BlogPost } from '@/app/ui/articles/components/blog-post/presenter'
 import { REDIS_KEYS, type LANGUAGE } from '@/constants'
-import type { ListArticleQuery } from '@/generated/graphql'
+import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { Redis } from '@upstash/redis'
 import { getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -9,7 +9,7 @@ import type { FC } from 'react'
 type Props = {
   locale: LANGUAGE
   slug: string
-  blogPost: NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]
+  blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
 }
 
 export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) => {
