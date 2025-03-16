@@ -31,7 +31,8 @@
     "title": "Derniers articles",
     "viewAll": "Voir tous",
     "articles": "articles",
-    "articlesOf": "Articles de {region}"
+    "articlesOf": "Articles de {region} {category}",
+    "description": "Découvrez les articles et guides de voyage sur {region} {category} sur Travel Like a Local in Japan."
   },
   "PopularArticleList": {
     "title": "Articles populaires"

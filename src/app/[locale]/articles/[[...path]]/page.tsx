@@ -4,7 +4,7 @@ import { BlogPostsContainer } from '@/app/ui/blog-posts/container'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
-import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
+import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
 import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
@@ -27,19 +27,57 @@ type Props = {
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
-  const client = createApolloClient()
-  const { data } = await client.query<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>({
-    query: GET_BLOG_POST_BY_SLUG_QUERY,
-    variables: {
-      slug,
-      locale: LOCALE_CODE_MAP[locale]
-    }
-  })
+  const t = await getTranslations({ locale, namespace: 'ArticleList' })
 
-  const seoFields = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)?.seoFields
-  return {
-    title: `${seoFields?.pageTitle ?? ''} ${category ? `| ${category}` : ''} ${region ? `| ${region}` : ''} ${area ? `| ${area}` : ''} ${prefecture ? `| ${prefecture}` : ''} | ${LOGO_TITLE}`,
-    description: seoFields?.pageDescription ?? ''
+  // カテゴリと地域の名前を整形（先頭大文字に）
+  const formattedCategory = category ? category.charAt(0).toUpperCase() + category.slice(1) : ''
+  const formattedRegion = region ? region.charAt(0).toUpperCase() + region.slice(1) : ''
+  const formattedArea = area ? area.charAt(0).toUpperCase() + area.slice(1) : ''
+  const formattedPrefecture = prefecture ? prefecture.charAt(0).toUpperCase() + prefecture.slice(1) : ''
+
+  // 最も具体的な地域を特定
+  const mostSpecificRegion = formattedPrefecture || formattedArea || formattedRegion || ''
+
+  // 記事詳細ページの場合（slugがある場合）
+  if (slug) {
+    const client = createApolloClient()
+    const { data } = await client.query<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>({
+      query: GET_BLOG_POST_BY_SLUG_QUERY,
+      variables: {
+        slug,
+        locale: LOCALE_CODE_MAP[locale]
+      }
+    })
+
+    const blogPost = data.pageBlogPostCollection?.items.find((item) => item?.slug === slug)
+    const seoFields = blogPost?.seoFields
+
+    // 記事詳細ページのタイトル: [記事タイトル] | [地域名] | [サイト名]
+    return {
+      title: `${seoFields?.pageTitle || blogPost?.title || ''} ${mostSpecificRegion ? `| ${mostSpecificRegion}` : ''}`,
+      description: seoFields?.pageDescription ?? ''
+    }
+  }
+
+  // 記事一覧ページの場合
+  else {
+    // 記事一覧ページのタイトル: [地域名] [カテゴリ名] Articles | [サイト名]
+    let title = ''
+
+    if (mostSpecificRegion && formattedCategory) {
+      title = `${t('articlesOf', { region: mostSpecificRegion, category: formattedCategory })}`
+    } else if (mostSpecificRegion) {
+      title = `${t('articlesOf', { region: mostSpecificRegion, category: '' })}`
+    } else if (formattedCategory) {
+      title = `${t('articlesOf', { region: '', category: formattedCategory })}`
+    } else {
+      title = `${t('articles')}`
+    }
+
+    return {
+      title,
+      description: t('description', { region: mostSpecificRegion, category: formattedCategory })
+    }
   }
 }
 
@@ -118,15 +156,16 @@ const BlogPostPage: NextPage<Props> = async ({ params }) => {
   const articleT = await getTranslations({ locale, namespace: 'Article' })
   const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
   const blogPostsT = await getTranslations({ locale, namespace: 'ArticleList' })
+
   const getTitle = () => {
     if (prefecture) {
-      return blogPostsT('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1) })
+      return blogPostsT('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1), category: '' })
     } else if (area) {
-      return blogPostsT('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1) })
+      return blogPostsT('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1), category: '' })
     } else if (region) {
-      return blogPostsT('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1) })
+      return blogPostsT('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1), category: '' })
     } else if (category) {
-      return blogPostsT('articlesOf', { region: category.charAt(0).toUpperCase() + category.slice(1) })
+      return blogPostsT('articlesOf', { region: '', category: category.charAt(0).toUpperCase() + category.slice(1) })
     }
     return blogPostsT('title')
   }
