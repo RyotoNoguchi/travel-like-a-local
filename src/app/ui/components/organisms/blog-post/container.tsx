@@ -1,4 +1,4 @@
-import { BlogPost } from '@/app/ui/articles/components/blog-post/presenter'
+import { BlogPost } from '@/app/ui/components/organisms/blog-post/presenter'
 import { REDIS_KEYS, type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { Redis } from '@upstash/redis'

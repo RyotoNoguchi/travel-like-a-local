@@ -1,5 +1,5 @@
-import { BlogPostContainer } from '@/app/ui/articles/components/blog-post/container'
 import { ArticleLayout } from '@/app/ui/articles/layout/article-layout'
+import { BlogPostContainer } from '@/app/ui/components/organisms/blog-post/container'
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'

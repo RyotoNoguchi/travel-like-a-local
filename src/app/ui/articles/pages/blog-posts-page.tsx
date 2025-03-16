@@ -1,5 +1,5 @@
-import { BlogPostsContainer } from '@/app/ui/articles/components/blog-posts/container'
 import { ArticleLayout } from '@/app/ui/articles/layout/article-layout'
+import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
 import { type LANGUAGE } from '@/constants'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
 import { getTranslations } from 'next-intl/server'
