@@ -30,7 +30,8 @@
   "ArticleList": {
     "title": "Latest Articles",
     "viewAll": "View All",
-    "articles": "articles"
+    "articles": "articles",
+    "articlesOf": "Articles of {region}"
   },
   "PopularArticleList": {
     "title": "Popular Articles"

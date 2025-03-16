@@ -120,13 +120,13 @@ const BlogPostPage: NextPage<Props> = async ({ params }) => {
   const blogPostsT = await getTranslations({ locale, namespace: 'ArticleList' })
   const getTitle = () => {
     if (prefecture) {
-      return `${prefecture} ${blogPostsT('articles')}`
+      return blogPostsT('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1) })
     } else if (area) {
-      return `${area} ${blogPostsT('articles')}`
+      return blogPostsT('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1) })
     } else if (region) {
-      return `${region} ${blogPostsT('articles')}`
+      return blogPostsT('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1) })
     } else if (category) {
-      return `${category} ${blogPostsT('articles')}`
+      return blogPostsT('articlesOf', { region: category.charAt(0).toUpperCase() + category.slice(1) })
     }
     return blogPostsT('title')
   }
