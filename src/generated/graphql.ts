@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { Document } from '@contentful/rich-text-types'
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
@@ -27,7 +26,7 @@ export type Scalars = {
   /** The 'HexColor' type represents color in `rgb:ffffff` string format. */
   HexColor: { input: any; output: any }
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: { input: any; output: Document }
+  JSON: { input: any; output: any }
   /** The 'Quality' type represents quality as whole numeric values between `1` and `100`. */
   Quality: { input: any; output: any }
 }
@@ -697,14 +696,6 @@ export type ContentfulTag = {
 export type Entry = {
   contentfulMetadata: ContentfulMetadata
   sys: Sys
-  __typename: string
-  image: {
-    title: string
-    description: string
-    width: number
-    height: number
-    url: string
-  }
 }
 
 export type EntryCollection = {
@@ -838,6 +829,7 @@ export type PageBlogPost = Entry &
     contentfulMetadata: ContentfulMetadata
     featuredImage?: Maybe<Asset>
     internalName?: Maybe<Scalars['String']['output']>
+    introduction?: Maybe<PageBlogPostIntroduction>
     linkedFrom?: Maybe<PageBlogPostLinkingCollections>
     publishedDate?: Maybe<Scalars['DateTime']['output']>
     relatedBlogPostsCollection?: Maybe<PageBlogPostRelatedBlogPostsCollection>
@@ -868,6 +860,11 @@ export type PageBlogPostFeaturedImageArgs = {
 
 /** To create individual blog posts [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/pageBlogPost) */
 export type PageBlogPostInternalNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** To create individual blog posts [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/pageBlogPost) */
+export type PageBlogPostIntroductionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -986,6 +983,9 @@ export type PageBlogPostFilter = {
   internalName_not?: InputMaybe<Scalars['String']['input']>
   internalName_not_contains?: InputMaybe<Scalars['String']['input']>
   internalName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  introduction_contains?: InputMaybe<Scalars['String']['input']>
+  introduction_exists?: InputMaybe<Scalars['Boolean']['input']>
+  introduction_not_contains?: InputMaybe<Scalars['String']['input']>
   publishedDate?: InputMaybe<Scalars['DateTime']['input']>
   publishedDate_exists?: InputMaybe<Scalars['Boolean']['input']>
   publishedDate_gt?: InputMaybe<Scalars['DateTime']['input']>
@@ -1021,6 +1021,54 @@ export type PageBlogPostFilter = {
   title_not?: InputMaybe<Scalars['String']['input']>
   title_not_contains?: InputMaybe<Scalars['String']['input']>
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type PageBlogPostIntroduction = {
+  __typename?: 'PageBlogPostIntroduction'
+  json: Scalars['JSON']['output']
+  links: PageBlogPostIntroductionLinks
+}
+
+export type PageBlogPostIntroductionAssets = {
+  __typename?: 'PageBlogPostIntroductionAssets'
+  block: Array<Maybe<Asset>>
+  hyperlink: Array<Maybe<Asset>>
+}
+
+export type PageBlogPostIntroductionEntries = {
+  __typename?: 'PageBlogPostIntroductionEntries'
+  block: Array<Maybe<Entry>>
+  hyperlink: Array<Maybe<Entry>>
+  inline: Array<Maybe<Entry>>
+}
+
+export type PageBlogPostIntroductionLinks = {
+  __typename?: 'PageBlogPostIntroductionLinks'
+  assets: PageBlogPostIntroductionAssets
+  entries: PageBlogPostIntroductionEntries
+  resources: PageBlogPostIntroductionResources
+}
+
+export type PageBlogPostIntroductionResources = {
+  __typename?: 'PageBlogPostIntroductionResources'
+  block: Array<PageBlogPostIntroductionResourcesBlock>
+  hyperlink: Array<PageBlogPostIntroductionResourcesHyperlink>
+  inline: Array<PageBlogPostIntroductionResourcesInline>
+}
+
+export type PageBlogPostIntroductionResourcesBlock = ResourceLink & {
+  __typename?: 'PageBlogPostIntroductionResourcesBlock'
+  sys: ResourceSys
+}
+
+export type PageBlogPostIntroductionResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageBlogPostIntroductionResourcesHyperlink'
+  sys: ResourceSys
+}
+
+export type PageBlogPostIntroductionResourcesInline = ResourceLink & {
+  __typename?: 'PageBlogPostIntroductionResourcesInline'
+  sys: ResourceSys
 }
 
 export type PageBlogPostLinkingCollections = {
@@ -1494,6 +1542,9 @@ export type CfPageBlogPostNestedFilter = {
   internalName_not?: InputMaybe<Scalars['String']['input']>
   internalName_not_contains?: InputMaybe<Scalars['String']['input']>
   internalName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  introduction_contains?: InputMaybe<Scalars['String']['input']>
+  introduction_exists?: InputMaybe<Scalars['Boolean']['input']>
+  introduction_not_contains?: InputMaybe<Scalars['String']['input']>
   publishedDate?: InputMaybe<Scalars['DateTime']['input']>
   publishedDate_exists?: InputMaybe<Scalars['Boolean']['input']>
   publishedDate_gt?: InputMaybe<Scalars['DateTime']['input']>
@@ -1535,12 +1586,12 @@ export type GetAssetQueryVariables = Exact<{
 
 export type GetAssetQuery = { __typename?: 'Query'; asset?: { __typename?: 'Asset'; title?: string | null; url?: string | null } | null }
 
-export type ListArticleQueryVariables = Exact<{
+export type GetBlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
   locale: Scalars['String']['input']
 }>
 
-export type ListArticleQuery = {
+export type GetBlogPostBySlugQuery = {
   __typename?: 'Query'
   pageBlogPostCollection?: {
     __typename?: 'PageBlogPostCollection'
@@ -1550,8 +1601,9 @@ export type ListArticleQuery = {
       title?: string | null
       publishedDate?: any | null
       seoFields?: { __typename?: 'ComponentSeo'; pageTitle?: string | null; pageDescription?: string | null } | null
+      introduction?: { __typename: 'PageBlogPostIntroduction'; json: any } | null
       content?: {
-        __typename?: 'PageBlogPostContent'
+        __typename: 'PageBlogPostContent'
         json: any
         links: {
           __typename?: 'PageBlogPostContentLinks'
@@ -1606,9 +1658,11 @@ export type ListArticleQuery = {
   } | null
 }
 
-export type ListFeaturedBlogQueryVariables = Exact<{ [key: string]: never }>
+export type GetFeaturedBlogPostsQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+}>
 
-export type ListFeaturedBlogQuery = {
+export type GetFeaturedBlogPostsQuery = {
   __typename?: 'Query'
   pageBlogPostCollection?: {
     __typename?: 'PageBlogPostCollection'
@@ -1616,33 +1670,62 @@ export type ListFeaturedBlogQuery = {
       __typename?: 'PageBlogPost'
       slug?: string | null
       featuredImage?: { __typename?: 'Asset'; url?: string | null; title?: string | null } | null
+      contentfulMetadata: {
+        __typename?: 'ContentfulMetadata'
+        tags: Array<{ __typename?: 'ContentfulTag'; name?: string | null } | null>
+        concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null>
+      }
     } | null>
   } | null
 }
 
-export type ListLatestBlogQueryVariables = Exact<{ [key: string]: never }>
+export type GetBlogPostsQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+  where?: InputMaybe<PageBlogPostFilter>
+  limit?: InputMaybe<Scalars['Int']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}>
 
-export type ListLatestBlogQuery = {
+export type GetBlogPostsQuery = {
   __typename?: 'Query'
   pageBlogPostCollection?: {
     __typename?: 'PageBlogPostCollection'
+    total: number
     items: Array<{
       __typename?: 'PageBlogPost'
       title?: string | null
       slug?: string | null
       publishedDate?: any | null
+      sys: { __typename?: 'Sys'; id: string }
+      featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
       seoFields?: { __typename?: 'ComponentSeo'; pageDescription?: string | null } | null
       author?: {
         __typename?: 'ComponentAuthor'
         name?: string | null
         avatar?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
       } | null
-      featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
       contentfulMetadata: {
         __typename?: 'ContentfulMetadata'
         tags: Array<{ __typename?: 'ContentfulTag'; name?: string | null } | null>
         concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null>
       }
+    } | null>
+  } | null
+}
+
+export type GetAllBlogPostsQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+}>
+
+export type GetAllBlogPostsQuery = {
+  __typename?: 'Query'
+  pageBlogPostCollection?: {
+    __typename?: 'PageBlogPostCollection'
+    items: Array<{
+      __typename?: 'PageBlogPost'
+      slug?: string | null
+      title?: string | null
+      contentfulMetadata: { __typename?: 'ContentfulMetadata'; concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null> }
     } | null>
   } | null
 }
@@ -1681,13 +1764,13 @@ export const GetAssetDocument = {
     }
   ]
 } as unknown as DocumentNode<GetAssetQuery, GetAssetQueryVariables>
-export const ListArticleDocument = {
+export const GetBlogPostBySlugDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'ListArticle' },
+      name: { kind: 'Name', value: 'GetBlogPostBySlug' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -1739,10 +1822,22 @@ export const ListArticleDocument = {
                       },
                       {
                         kind: 'Field',
+                        name: { kind: 'Name', value: 'introduction' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'json' } }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
                         name: { kind: 'Name', value: 'content' },
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'json' } },
                             {
                               kind: 'Field',
@@ -1899,14 +1994,21 @@ export const ListArticleDocument = {
       }
     }
   ]
-} as unknown as DocumentNode<ListArticleQuery, ListArticleQueryVariables>
-export const ListFeaturedBlogDocument = {
+} as unknown as DocumentNode<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>
+export const GetFeaturedBlogPostsDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'ListFeaturedBlog' },
+      name: { kind: 'Name', value: 'GetFeaturedBlogPosts' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -1946,6 +2048,7 @@ export const ListFeaturedBlogDocument = {
                   ]
                 }
               },
+              { kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } },
               { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '10' } }
             ],
             selectionSet: {
@@ -1966,87 +2069,6 @@ export const ListFeaturedBlogDocument = {
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'title' } }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-} as unknown as DocumentNode<ListFeaturedBlogQuery, ListFeaturedBlogQueryVariables>
-export const ListLatestBlogDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'ListLatestBlog' },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'pageBlogPostCollection' },
-            arguments: [
-              { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '10' } },
-              { kind: 'Argument', name: { kind: 'Name', value: 'order' }, value: { kind: 'EnumValue', value: 'publishedDate_DESC' } }
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'items' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'seoFields' },
-                        selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'pageDescription' } }] }
-                      },
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'author' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'avatar' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } }
-                                ]
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'featuredImage' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
                           ]
                         }
                       },
@@ -2079,4 +2101,192 @@ export const ListLatestBlogDocument = {
       }
     }
   ]
-} as unknown as DocumentNode<ListLatestBlogQuery, ListLatestBlogQueryVariables>
+} as unknown as DocumentNode<GetFeaturedBlogPostsQuery, GetFeaturedBlogPostsQueryVariables>
+export const GetBlogPostsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetBlogPosts' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'where' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'PageBlogPostFilter' } }
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } }
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pageBlogPostCollection' },
+            arguments: [
+              { kind: 'Argument', name: { kind: 'Name', value: 'where' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'where' } } },
+              { kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } },
+              { kind: 'Argument', name: { kind: 'Name', value: 'order' }, value: { kind: 'EnumValue', value: 'publishedDate_DESC' } },
+              { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } } },
+              { kind: 'Argument', name: { kind: 'Name', value: 'skip' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } } }
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'total' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'sys' },
+                        selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'featuredImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'seoFields' },
+                        selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'pageDescription' } }] }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'author' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'avatar' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'contentfulMetadata' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'tags' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'name' } }] }
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'concepts' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetBlogPostsQuery, GetBlogPostsQueryVariables>
+export const GetAllBlogPostsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetAllBlogPosts' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'pageBlogPostCollection' },
+            arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'contentfulMetadata' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'concepts' },
+                              selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetAllBlogPostsQuery, GetAllBlogPostsQueryVariables>

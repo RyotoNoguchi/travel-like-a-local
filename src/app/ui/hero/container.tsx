@@ -1,7 +1,7 @@
 import { createApolloClient } from '@/apolloClient'
 import { Hero } from '@/app/ui/hero/presenter'
 import { HERO_DESKTOP_ASSET_ID, HERO_MOBILE_ASSET_ID, HERO_TABLET_ASSET_ID } from '@/constants'
-import type { Query, QueryAssetArgs } from '@/generated/graphql'
+import type { GetAssetQuery, QueryAssetArgs } from '@/generated/graphql'
 import { GET_ASSET_QUERY } from '@/graphql/query'
 import type { FC } from 'react'
 
@@ -12,19 +12,19 @@ type Props = {
 
 export const HeroContainer: FC<Props> = async ({ enrichedTitle, enrichedSubtitle }) => {
   const client = createApolloClient()
-  const { data: heroMobileData } = await client.query<Query, QueryAssetArgs>({
+  const { data: heroMobileData } = await client.query<GetAssetQuery, QueryAssetArgs>({
     query: GET_ASSET_QUERY,
     variables: {
       id: HERO_MOBILE_ASSET_ID
     }
   })
-  const { data: heroDesktopData } = await client.query<Query, QueryAssetArgs>({
+  const { data: heroDesktopData } = await client.query<GetAssetQuery, QueryAssetArgs>({
     query: GET_ASSET_QUERY,
     variables: {
       id: HERO_DESKTOP_ASSET_ID
     }
   })
-  const { data: heroTabletData } = await client.query<Query, QueryAssetArgs>({
+  const { data: heroTabletData } = await client.query<GetAssetQuery, QueryAssetArgs>({
     query: GET_ASSET_QUERY,
     variables: {
       id: HERO_TABLET_ASSET_ID

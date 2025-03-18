@@ -29,3 +29,8 @@ export const REDIS_KEYS = {
   PAGEVIEWS: 'pageviews'
 }
 export const DEFAULT_LOCALE = LOCALE_CODE.EN
+export enum CONCEPT_SCHEME {
+  CATEGORIES = 'Categories',
+  REGIONS = 'Regions'
+}
+export const ARTICLE_PATH = 'articles'

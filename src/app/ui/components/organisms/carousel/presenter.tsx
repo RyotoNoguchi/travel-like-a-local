@@ -1,5 +1,6 @@
 'use client'
 import '@/app/globals.css'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import type { FC } from 'react'
 import 'swiper/css'
@@ -13,6 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 type Props = {
   blogs: {
     slug: string
+    href: string
     featuredImage: {
       url: string
       title: string
@@ -54,7 +56,9 @@ export const Carousel: FC<Props> = ({ blogs }) => (
         className="flex justify-center items-center focus:outline-none"
         style={{ display: 'flex', marginLeft: 0, marginRight: 0 }}
       >
-        <Image className="rounded-xl" src={blog.featuredImage.url} alt={blog.featuredImage.title} width={300} height={200} />
+        <Link href={blog.href}>
+          <Image className="rounded-xl" src={blog.featuredImage.url} alt={blog.featuredImage.title} width={300} height={200} />
+        </Link>
       </SwiperSlide>
     ))}
   </Swiper>

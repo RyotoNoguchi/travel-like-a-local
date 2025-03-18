@@ -10,26 +10,26 @@ type Props = {
   }[]
 }
 
-export const Breadcrumbs: FC<Props> = ({ breadcrumbs }) => {
-  const hasBreadcrumbs = breadcrumbs.length > 0
-  return (
-    <nav aria-label="breadcrumb" className="flex items-center overflow-x-scroll hidden-scrollbar">
-      <Link href="/" className="flex items-center cursor-pointer hover-animation">
-        <HomeIcon width={24} height={24} />
-      </Link>
-      {/* eslint-disable-next-line react/jsx-no-leaked-render */}
-      {hasBreadcrumbs && (
-        <ol className="flex items-center text-slate-500 pt-1">
-          {breadcrumbs.map((breadcrumb) => (
-            <li key={breadcrumb.href} className="flex items-center">
-              <ChevronIcon width={20} height={20} />
+export const Breadcrumbs: FC<Props> = ({ breadcrumbs }) => (
+  <nav aria-label="breadcrumb" className="flex items-center overflow-x-scroll hidden-scrollbar">
+    <ol className="flex items-center text-slate-500 pt-1">
+      {breadcrumbs.map((breadcrumb, i) => {
+        const isFirst = i === 0
+        return (
+          <li key={breadcrumb.href} className="flex items-center">
+            {!isFirst && <ChevronIcon width={20} height={20} />}
+            {isFirst ? (
+              <Link href={breadcrumb.href} className="flex items-center cursor-pointer hover-animation pb-1">
+                <HomeIcon width={20} height={20} />
+              </Link>
+            ) : (
               <Link href={breadcrumb.href} className="whitespace-nowrap cursor-pointer hover:text-dark-gray">
                 {breadcrumb.label}
               </Link>
-            </li>
-          ))}
-        </ol>
-      )}
-    </nav>
-  )
-}
+            )}
+          </li>
+        )
+      })}
+    </ol>
+  </nav>
+)

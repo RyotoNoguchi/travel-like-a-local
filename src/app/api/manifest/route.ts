@@ -1,6 +1,6 @@
 import { COLORS } from '@/app/ui/colors'
-import { getLogo } from '@/app/utils/logo'
 import { LANGUAGE, LOGO_TITLE, LOGO_TITLE_SHORT } from '@/constants'
+import { getLogo } from '@/utils/logo'
 import { getTranslations } from 'next-intl/server'
 import { type NextRequest, NextResponse } from 'next/server'
 import type { WebAppManifest } from 'web-app-manifest'

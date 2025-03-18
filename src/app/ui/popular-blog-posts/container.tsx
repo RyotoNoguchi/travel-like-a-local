@@ -1,19 +1,28 @@
 import { createApolloClient } from '@/apolloClient'
-import { PopularArticleList } from '@/app/ui/popular-article-list/presenter'
-import { getMultiplePageViews } from '@/app/utils/redis'
-import type { ListLatestBlogQueryVariables, PageBlogPost, Query } from '@/generated/graphql'
-import { LIST_LATEST_BLOG_QUERY } from '@/graphql/query'
+import { PopularBlogPosts } from '@/app/ui/popular-blog-posts/presenter'
+import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
+import type { GetBlogPostsQuery, GetBlogPostsQueryVariables, PageBlogPost } from '@/generated/graphql'
+import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
+import { getMultiplePageViews } from '@/utils/redis'
 import type { FC } from 'react'
 
 type Props = {
   title: string
   viewCountText: string
+  locale: LANGUAGE
+  limit?: number
+  skip?: number
 }
 
-export const PopularArticleListContainer: FC<Props> = async ({ title, viewCountText }) => {
+export const PopularBlogPostsContainer: FC<Props> = async ({ title, viewCountText, locale, limit = 10, skip = 0 }) => {
   const client = createApolloClient()
-  const { data } = await client.query<Query, ListLatestBlogQueryVariables>({
-    query: LIST_LATEST_BLOG_QUERY
+  const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
+    query: GET_BLOG_POSTS_QUERY,
+    variables: {
+      locale: LOCALE_CODE_MAP[locale],
+      skip,
+      limit
+    }
   })
   const blogPosts = data.pageBlogPostCollection?.items.filter((post): post is PageBlogPost => post !== null)
   if (!blogPosts || blogPosts.length === 0) return null
@@ -42,5 +51,5 @@ export const PopularArticleListContainer: FC<Props> = async ({ title, viewCountT
   // 上位10件を取得
   const topTenPosts = sortedBlogPosts.slice(0, 10) as (PageBlogPost & { viewCount: number })[]
 
-  return <PopularArticleList articles={topTenPosts} title={title} viewCountText={viewCountText} />
+  return <PopularBlogPosts articles={topTenPosts} title={title} viewCountText={viewCountText} />
 }
