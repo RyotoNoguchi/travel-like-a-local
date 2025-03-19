@@ -24,7 +24,6 @@ export const CarouselContainer: FC<Props> = async ({ width, height, locale }) =>
   })
   const concepts = await getConcepts()
   const conceptSchemes = await getConceptSchemes()
-
   const blogs = data.pageBlogPostCollection?.items
     .map((item) => {
       const contentfulMetadata = item?.contentfulMetadata
