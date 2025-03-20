@@ -1,4 +1,5 @@
 import type { Category } from '@/app/ui/templates/header/presenter'
+import { CATEGORY_ICONS } from '@/app/ui/templates/header/sub-header/category-icons'
 import { Link } from '@/i18n/routing'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import classNames from 'classnames'
@@ -13,7 +14,7 @@ type Props = {
 export const CategoriesNav: FC<Props> = ({ categories, isNavVisible, setIsNavVisible }) => (
   <nav
     className={classNames(
-      'hidden h-14 w-full justify-center items-center fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
+      'hidden h-20 w-full justify-center items-center fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
       'transition-all duration-300 ease-in-out',
       'sm:flex',
       isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
@@ -26,9 +27,10 @@ export const CategoriesNav: FC<Props> = ({ categories, isNavVisible, setIsNavVis
         <li key={category.id} className="flex flex-1 justify-center hover-animation cursor-pointer text-center hover:text-primary">
           <Link
             href={`/articles/${formatNameForUrl(category.label).toLowerCase()}`}
-            className={classNames('flex text-sm hover:bg-gray-100 cursor-pointer leading-none', 'semi-lg:text-base', 'lg:text-lg')}
+            className={classNames('flex flex-col gap-0.5 items-center justify-center text-md hover:bg-gray-100 cursor-pointer leading-none', 'semi-lg:text-lg')}
           >
-            <span className="leading-none">{category.label}</span>
+            <span className="flex items-center transition-colors duration-300 group-hover:text-primary">{CATEGORY_ICONS[category.label]}</span>
+            <span className="leading-none h-8 flex items-center">{category.label}</span>
           </Link>
         </li>
       ))}
