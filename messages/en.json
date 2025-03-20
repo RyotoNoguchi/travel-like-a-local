@@ -16,7 +16,8 @@
     "search": "Search",
     "favorite": "Favorite",
     "language": "English",
-    "selectLanguage": "Select Language"
+    "selectLanguage": "Select Language",
+    "back": "Back"
   },
   "Footer": {
     "first": "Navigation Menu",

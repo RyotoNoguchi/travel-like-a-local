@@ -33,7 +33,7 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
     <>
       <header
         className={classNames(
-          'fixed top-0 left-0 right-0 z-40',
+          'fixed top-0 left-0 right-0 z-30',
           'flex justify-between gap-2 bg-white drop-shadow-md h-14 px-3',
           'sm:justify-between sm:px-1',
           'md:px-2',
@@ -45,7 +45,7 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
         </Link>
         <div className="flex gap-1">
           <nav className="hidden sm:flex text-xl items-center">
-            <ul className="flex items-start gap-2">
+            <ul className="flex items-start gap-4">
               {navLinks.map(({ icon, label, href, isCategory }) => (
                 <li key={href}>
                   {isCategory ? (
@@ -66,7 +66,7 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
               </li>
             </ul>
           </nav>
-          <HamburgerMenu navLinks={hamburgerMenuNavLinks} locale={locale} />
+          <HamburgerMenu navLinks={hamburgerMenuNavLinks} locale={locale} categories={categories} />
         </div>
       </header>
       <CategoriesNav categories={categories} isNavVisible={isNavVisible} setIsNavVisible={setIsNavVisible} />

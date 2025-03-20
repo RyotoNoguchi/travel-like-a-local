@@ -18,6 +18,9 @@ export default {
         'semi-sm': '480px',
         'semi-md': '640px',
         'semi-lg': '992px'
+      },
+      fontSize: {
+        '3.5xl': '2rem'
       }
     }
   },
