@@ -1,7 +1,7 @@
 import '@/app/globals.css'
 import { zain } from '@/app/ui/fonts'
 import { FooterContainer } from '@/app/ui/templates/footer/container'
-import { Header } from '@/app/ui/templates/header/'
+import { HeaderContainer } from '@/app/ui/templates/header/container'
 import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER, TWITTER_HANDLE, TWITTER_ID } from '@/constants'
 import { routing } from '@/i18n/routing'
 import { getLogo } from '@/utils/logo'
@@ -125,7 +125,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
     <html lang={locale}>
       <body className={classNames(zain.className, 'antialiased')}>
         <NextIntlClientProvider messages={messages}>
-          {logo ? <Header logo={logo} locale={locale as LANGUAGE} /> : null}
+          {logo ? <HeaderContainer logo={logo} locale={locale as LANGUAGE} /> : null}
           {children}
           {logo ? <FooterContainer logo={logo} locale={locale as LANGUAGE} /> : null}
         </NextIntlClientProvider>

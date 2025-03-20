@@ -16,7 +16,8 @@
     "search": "Recherche",
     "favorite": "Favoris",
     "language": "Français",
-    "selectLanguage": "Choisir la langue"
+    "selectLanguage": "Choisir la langue",
+    "back": "Retour"
   },
   "Footer": {
     "first": "Menu de navigation",
@@ -42,5 +43,15 @@
   },
   "Article": {
     "views": "vues"
+  },
+  "CategoriesNav": {
+    "Food & Cuisine": "Cuisine & Gastronomie",
+    "Shopping": "Shopping",
+    "Nature & Outdoors": "Nature & Sorties",
+    "Culture & History": "Culture & Histoire",
+    "Accommodation": "Hébergement",
+    "Practical Information": "Informations pratiques",
+    "Events & Festivals": "Événements & Festivals",
+    "Onsen & Wellness": "Onsen & Bien-être"
   }
 }
