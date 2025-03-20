@@ -9,15 +9,10 @@ import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { LOGO_TITLE, type LANGUAGE } from '@/constants'
 import { Link } from '@/i18n/routing'
+import type { Category } from '@/types/category'
 import type { NavLinkType } from '@/types/navLinks'
 import classNames from 'classnames'
 import { useState, type FC } from 'react'
-
-export type Category = {
-  id: string
-  label: string
-  parentIds: string[]
-}
 
 type Props = {
   categories: Category[]

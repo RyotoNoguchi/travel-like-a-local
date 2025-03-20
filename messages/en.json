@@ -42,5 +42,15 @@
   },
   "Article": {
     "views": "views"
+  },
+  "CategoriesNav": {
+    "Food & Cuisine": "Food & Cuisine",
+    "Shopping": "Shopping",
+    "Nature & Outdoors": "Nature & Outdoors",
+    "Culture & History": "Culture & History",
+    "Accommodation": "Accommodation",
+    "Practical Information": "Practical Information",
+    "Events & Festivals": "Events & Festivals",
+    "Onsen & Wellness": "Onsen & Wellness"
   }
 }

@@ -7,14 +7,9 @@ import { Header } from '@/app/ui/templates/header/presenter'
 import { type LANGUAGE } from '@/constants'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
+import type { Category } from '@/types/category'
 import { getTranslations } from 'next-intl/server'
 import type { FC } from 'react'
-
-type Category = {
-  id: string
-  label: string
-  parentIds: string[]
-}
 
 type Props = {
   logo: {
@@ -27,6 +22,7 @@ type Props = {
 export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
   const tHeader = await getTranslations('NavMenu')
   const tFooter = await getTranslations('Footer')
+  const tCategoriesNav = await getTranslations('CategoriesNav')
 
   // Get Category Information
   const concepts = await getConcepts()
@@ -41,6 +37,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
           return {
             id: conceptId,
             label: concept?.label || '',
+            translatedLabel: tCategoriesNav(concept?.label || ''),
             parentIds: concept?.upperLevelConceptIds || []
           }
         })

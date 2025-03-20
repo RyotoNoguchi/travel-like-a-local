@@ -1,6 +1,6 @@
-import type { Category } from '@/app/ui/templates/header/presenter'
 import { CATEGORY_ICONS } from '@/app/ui/templates/header/sub-header/category-icons'
 import { Link } from '@/i18n/routing'
+import type { Category } from '@/types/category'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import classNames from 'classnames'
 import type { Dispatch, FC, SetStateAction } from 'react'
@@ -30,7 +30,7 @@ export const CategoriesNav: FC<Props> = ({ categories, isNavVisible, setIsNavVis
             className={classNames('flex flex-col gap-0.5 items-center justify-center text-md hover:bg-gray-100 cursor-pointer leading-none', 'semi-lg:text-lg')}
           >
             <span className="flex items-center transition-colors duration-300 group-hover:text-primary">{CATEGORY_ICONS[category.label]}</span>
-            <span className="leading-none h-8 flex items-center">{category.label}</span>
+            <span className="leading-none h-8 flex items-center">{category.translatedLabel}</span>
           </Link>
         </li>
       ))}
