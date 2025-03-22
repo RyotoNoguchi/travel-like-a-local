@@ -4,6 +4,7 @@ import { COLORS } from '@/app/ui/colors'
 import { CloseIcon } from '@/app/ui/components/atoms/icons/close-icon'
 import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { HamburgerIcon } from '@/app/ui/components/atoms/icons/hamburger-icon'
+import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { CategoryList } from '@/app/ui/templates/header/hamburger-menu/category-list'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
@@ -79,6 +80,9 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
               locale={locale}
               gap="gap-2"
             />
+          </li>
+          <li className="h-7">
+            <LoginStatus />
           </li>
         </ul>
       </div>
