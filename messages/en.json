@@ -53,5 +53,13 @@
     "Practical Information": "Practical Information",
     "Events & Festivals": "Events & Festivals",
     "Onsen & Wellness": "Onsen & Wellness"
+  },
+  "Auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signInError": "Sign In Error",
+    "signInSuccess": "Sign In Success",
+    "accessDenied": "Access Denied",
+    "somethingWentWrong": "Ops! Something went wrong"
   }
 }
