@@ -9,7 +9,7 @@ type Props = {
     url: string
     title: string
   }
-  subtitle: string
+  subtitle?: string
   withinFooter?: boolean
 }
 export const Logo: FC<Props> = ({ logo, subtitle, withinFooter = false }) => (
@@ -21,6 +21,6 @@ export const Logo: FC<Props> = ({ logo, subtitle, withinFooter = false }) => (
         <span className="text-primary">{LOGO_TITLE_SUFFIX}</span>
       </span>
     </div>
-    {Boolean(withinFooter) && <span className={`text-white text-sm text-center ${zain.className}`}>{subtitle}</span>}
+    {Boolean(withinFooter) && subtitle !== undefined && <span className={`text-white text-sm text-center ${zain.className}`}>{subtitle}</span>}
   </div>
 )
