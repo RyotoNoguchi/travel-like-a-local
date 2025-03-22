@@ -60,6 +60,7 @@
     "signInError": "Sign In Error",
     "signInSuccess": "Sign In Success",
     "accessDenied": "Access Denied",
-    "somethingWentWrong": "Ops! Something went wrong"
+    "somethingWentWrong": "Ops! Something went wrong",
+    "signInWithGoogle": "Sign In with Google"
   }
 }

@@ -60,6 +60,7 @@
     "signInError": "Erreur de connexion",
     "signInSuccess": "Connexion réussie",
     "accessDenied": "Accès refusé",
-    "somethingWentWrong": "Quelque chose s'est mal passé"
+    "somethingWentWrong": "Quelque chose s'est mal passé",
+    "signInWithGoogle": "Connexion avec Google"
   }
 }
