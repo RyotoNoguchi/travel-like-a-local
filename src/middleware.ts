@@ -10,9 +10,16 @@ export const middleware = (request: NextRequest) => {
   requestHeaders.set('x-url', request.url)
 
   if (request.nextUrl.pathname === '/') {
-    const acceptLanguage = request.headers.get('accept-language') || ''
-    const prefersFrench = /fr/i.test(acceptLanguage)
-    const locale = prefersFrench ? LANGUAGE.FR : LANGUAGE.EN
+    const savedLocale = request.cookies.get('NEXT_LOCALE')?.value
+
+    // savedLocaleが有効な値の場合はそれを使用、そうでない場合はaccept-languageヘッダーから判定
+    const locale =
+      savedLocale && (savedLocale === LANGUAGE.FR || savedLocale === LANGUAGE.EN)
+        ? savedLocale
+        : /fr/i.test(request.headers.get('accept-language') || '')
+          ? LANGUAGE.FR
+          : LANGUAGE.EN
+
     const newUrl = new URL(`/${locale}`, request.url)
 
     return NextResponse.redirect(newUrl, {
