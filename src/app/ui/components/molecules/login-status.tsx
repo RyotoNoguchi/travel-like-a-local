@@ -1,12 +1,17 @@
 'use client'
 
+import { LoginIcon } from '@/app/ui/components/atoms/icons/login-icon'
 import { Link } from '@/i18n/routing'
 import { signOut, useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { type FC, useState } from 'react'
 
-export const LoginStatus: FC = () => {
+type Props = {
+  isHamburger?: boolean
+}
+
+export const LoginStatus: FC<Props> = ({ isHamburger = false }) => {
   const [isOpen, setIsOpen] = useState(false)
   const { data: session } = useSession()
   const t = useTranslations('Auth')
@@ -18,8 +23,9 @@ export const LoginStatus: FC = () => {
 
   if (!session) {
     return (
-      <Link href="/auth/signin" className="flex items-center gap-2 sm:hidden md:flex hover:opacity-80 transition-opacity">
-        {t('signIn')}
+      <Link href="/auth/signin" className="flex items-center gap-2 md:gap-1 md:flex hover-animation h-8 sm:h-6">
+        <LoginIcon width={isHamburger ? 28 : 24} height={isHamburger ? 28 : 24} />
+        <span className="block sm:hidden semi-lg:block">{t('signIn')}</span>
       </Link>
     )
   }

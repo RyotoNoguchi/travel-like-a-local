@@ -15,6 +15,6 @@ type Props = {
 export const NavLink: FC<Props> = ({ icon, label, href, gap, withinHamburger, withinFooter }) => (
   <Link href={href} className={classNames('flex items-start lg:gap-1 hover-animation', gap)} aria-label={label}>
     {icon}
-    <span className={`${Boolean(withinHamburger) || Boolean(withinFooter) ? 'block' : 'hidden semi-lg:block'}`}>{label}</span>
+    <span className={`${Boolean(withinHamburger) || Boolean(withinFooter) ? 'block h-8 sm:h-7' : 'hidden semi-lg:block'}`}>{label}</span>
   </Link>
 )
