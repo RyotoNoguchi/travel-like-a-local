@@ -9,11 +9,19 @@ import { useEffect, useState, type FC } from 'react'
 type Props = {
   blogPostSlug: string
   blogPostTitle: string
-  width?: number
-  height?: number
+  width: number
+  height: number
+  strokeColor: {
+    active: string
+    inactive: string
+  }
+  fillColor: {
+    active: string
+    inactive: string
+  }
 }
 
-export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle, width = 24, height = 24 }) => {
+export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle, ...props }) => {
   const { data: session } = useSession()
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -73,5 +81,5 @@ export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle
     }
   }
 
-  return <BookmarkButton isBookmarked={isBookmarked} handleBookmark={handleBookmark} isLoading={isLoading} width={width} height={height} />
+  return <BookmarkButton isBookmarked={isBookmarked} handleBookmark={handleBookmark} isLoading={isLoading} {...props} />
 }

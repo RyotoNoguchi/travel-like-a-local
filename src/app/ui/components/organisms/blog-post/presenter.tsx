@@ -1,3 +1,4 @@
+import { COLORS } from '@/app/ui/colors'
 import { ReportView } from '@/app/ui/components/atoms/anaylytics/viewcount'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { CalendarIcon } from '@/app/ui/components/atoms/icons/calendar-icon'
@@ -39,7 +40,14 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
           <div className="flex flex-col gap-1">
             <div className="flex w-full justify-between">
               <h2 className="text-3xl font-bold">{blogPost?.title}</h2>
-              <BookmarkButtonContainer blogPostSlug={slug} blogPostTitle={blogPost?.title ?? ''} width={28} height={28} />
+              <BookmarkButtonContainer
+                blogPostSlug={slug}
+                blogPostTitle={blogPost?.title ?? ''}
+                width={28}
+                height={28}
+                strokeColor={{ active: COLORS.WHITE, inactive: COLORS.GRAY }}
+                fillColor={{ active: COLORS.PRIMARY, inactive: COLORS.WHITE }}
+              />
             </div>
             <div className="flex justify-between">
               {blogPost?.contentfulMetadata?.tags !== undefined && (
