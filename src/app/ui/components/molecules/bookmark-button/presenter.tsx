@@ -1,7 +1,6 @@
 import { COLORS } from '@/app/ui/colors'
 import { BookmarkIcon } from '@/app/ui/components/atoms/icons/bookmark-icon'
 import { SpinnerIcon } from '@/app/ui/components/atoms/icons/spinner-icon'
-import { useTranslations } from 'next-intl'
 import type { FC } from 'react'
 
 type Props = {
@@ -9,6 +8,10 @@ type Props = {
   isLoading: boolean
   width: number
   height: number
+  bookmarkActionTranslation: {
+    add: string
+    remove: string
+  }
   strokeColor: {
     active: string
     inactive: string
@@ -37,10 +40,9 @@ export const BookmarkButton: FC<Props> = ({
   strokeColor,
   fillColor,
   hoverFillColor,
-  hoverStrokeColor
+  hoverStrokeColor,
+  bookmarkActionTranslation
 }) => {
-  const t = useTranslations('Bookmark')
-
   if (isLoading) {
     return <SpinnerIcon size={width} color={COLORS.GRAY} />
   }
@@ -48,9 +50,9 @@ export const BookmarkButton: FC<Props> = ({
   return (
     <button
       onClick={handleBookmark}
-      aria-label={isBookmarked ? t('removeBookmark') : t('addBookmark')}
+      aria-label={isBookmarked ? bookmarkActionTranslation.remove : bookmarkActionTranslation.add}
       aria-pressed={isBookmarked}
-      title={isBookmarked ? t('removeBookmark') : t('addBookmark')}
+      title={isBookmarked ? bookmarkActionTranslation.remove : bookmarkActionTranslation.add}
       disabled={isLoading}
       className="group focus:outline-none rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
     >
@@ -73,7 +75,7 @@ export const BookmarkButton: FC<Props> = ({
           hoverFillColor={hoverFillColor.active}
         />
       )}
-      <span className="sr-only">{isBookmarked ? t('removeBookmark') : t('addBookmark')}</span>
+      <span className="sr-only">{isBookmarked ? bookmarkActionTranslation.remove : bookmarkActionTranslation.add}</span>
     </button>
   )
 }

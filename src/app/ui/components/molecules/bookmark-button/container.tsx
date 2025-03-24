@@ -4,6 +4,7 @@
 import { BookmarkButton } from '@/app/ui/components/molecules/bookmark-button/presenter'
 import { useRouter } from '@/i18n/routing'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState, type FC } from 'react'
 
 type Props = {
@@ -25,6 +26,7 @@ export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle
   const { data: session } = useSession()
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const t = useTranslations('Bookmark')
   const router = useRouter()
 
   useEffect(() => {
@@ -87,6 +89,7 @@ export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle
       handleBookmark={handleBookmark}
       isLoading={isLoading}
       strokeColor={strokeColor}
+      bookmarkActionTranslation={{ add: t('addBookmark'), remove: t('removeBookmark') }}
       fillColor={fillColor}
       hoverFillColor={{ active: 'group-hover:fill-[#16A34A]', inactive: 'group-hover:fill-[#FFF]' }} // Tailwind doesn't support template literals
       hoverStrokeColor={{ active: 'group-hover:stroke-[#22C55E]', inactive: 'group-hover:stroke-[#CBD5E1]' }}
