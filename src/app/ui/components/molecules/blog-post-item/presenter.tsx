@@ -32,8 +32,8 @@ export const BlogPostItem: FC<Props> = ({ href, featuredImage, title, seoFields,
             blogPostTitle={title}
             width={28}
             height={28}
-            strokeColor={{ active: COLORS.GRAY, inactive: COLORS.GRAY }}
-            fillColor={{ active: COLORS.PRIMARY, inactive: COLORS.WHITE }}
+            strokeColor={{ active: COLORS.GREEN_500, inactive: COLORS.SLATE_300 }}
+            fillColor={{ active: COLORS.GREEN_600, inactive: COLORS.WHITE }}
           />
         </div>
       </div>
