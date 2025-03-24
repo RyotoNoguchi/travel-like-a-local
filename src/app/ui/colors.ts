@@ -11,5 +11,6 @@ export enum COLORS {
   SLATE_500 = '#64748B',
   SLATE_600 = '#475569',
   SLATE_700 = '#334155',
-  SLATE_800 = '#1E293B'
+  SLATE_800 = '#1E293B',
+  TRANSPARENT = 'transparent'
 }

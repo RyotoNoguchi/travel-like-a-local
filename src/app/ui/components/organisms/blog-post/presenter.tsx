@@ -9,6 +9,7 @@ import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import classNames from 'classnames'
 import Image from 'next/image'
 import type { FC } from 'react'
+import { BookmarkButtonContainer } from '../../molecules/bookmark-button/container'
 
 type Props = {
   locale: LANGUAGE
@@ -36,7 +37,10 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
       <div className="flex flex-col">
         <div className="flex flex-col pb-4 mb-5 border-b border-slate-200 border-solid gap-4">
           <div className="flex flex-col gap-1">
-            <h2 className="text-3xl font-bold">{blogPost?.title}</h2>
+            <div className="flex w-full justify-between">
+              <h2 className="text-3xl font-bold">{blogPost?.title}</h2>
+              <BookmarkButtonContainer blogPostSlug={slug} blogPostTitle={blogPost?.title ?? ''} width={28} height={28} />
+            </div>
             <div className="flex justify-between">
               {blogPost?.contentfulMetadata?.tags !== undefined && (
                 <ul className="flex flex-wrap gap-2">

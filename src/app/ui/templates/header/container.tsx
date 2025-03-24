@@ -1,7 +1,7 @@
 import { COLORS } from '@/app/ui/colors'
 import { AreaIcon } from '@/app/ui/components/atoms/icons/area-icon'
+import { BookmarkIcon } from '@/app/ui/components/atoms/icons/bookmark-icon'
 import { CategoryIcon } from '@/app/ui/components/atoms/icons/category-icon'
-import { FavoriteIcon } from '@/app/ui/components/atoms/icons/favorite-icon'
 import { SearchIcon } from '@/app/ui/components/atoms/icons/search-icon'
 import { Header } from '@/app/ui/templates/header/presenter'
 import { type LANGUAGE } from '@/constants'
@@ -55,7 +55,11 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
       href: '/category',
       isCategory: true
     },
-    { icon: <FavoriteIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('favorite'), href: '/favorite' }
+    {
+      icon: <BookmarkIcon width={px} height={px} color={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} />,
+      label: tHeader('bookmarks'),
+      href: '/bookmarks'
+    }
   ]
   return (
     <Header

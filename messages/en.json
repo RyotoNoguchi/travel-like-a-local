@@ -15,6 +15,7 @@
     "category": "Category",
     "search": "Search",
     "favorite": "Favorite",
+    "bookmarks": "Bookmarks",
     "language": "English",
     "selectLanguage": "Select Language",
     "back": "Back"
@@ -64,5 +65,9 @@
     "signInWithGoogle": "Sign In with Google",
     "logout": "Logout",
     "loggedInUser": "Logged in User"
+  },
+  "Bookmark": {
+    "addBookmark": "Add Bookmark",
+    "removeBookmark": "Remove Bookmark"
   }
 }
