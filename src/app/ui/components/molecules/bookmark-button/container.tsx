@@ -21,7 +21,7 @@ type Props = {
   }
 }
 
-export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle, ...props }) => {
+export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle, strokeColor, fillColor, ...props }) => {
   const { data: session } = useSession()
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -81,5 +81,16 @@ export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle
     }
   }
 
-  return <BookmarkButton isBookmarked={isBookmarked} handleBookmark={handleBookmark} isLoading={isLoading} {...props} />
+  return (
+    <BookmarkButton
+      isBookmarked={isBookmarked}
+      handleBookmark={handleBookmark}
+      isLoading={isLoading}
+      strokeColor={strokeColor}
+      fillColor={fillColor}
+      hoverFillColor={{ active: 'group-hover:fill-[#16A34A]', inactive: 'group-hover:fill-[#FFF]' }} // Tailwind doesn't support template literals
+      hoverStrokeColor={{ active: 'group-hover:stroke-[#22C55E]', inactive: 'group-hover:stroke-[#CBD5E1]' }}
+      {...props}
+    />
+  )
 }

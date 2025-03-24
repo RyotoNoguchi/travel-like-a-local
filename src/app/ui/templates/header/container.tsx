@@ -56,7 +56,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
       isCategory: true
     },
     {
-      icon: <BookmarkIcon width={px} height={px} color={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} />,
+      icon: <BookmarkIcon width={px} height={px} strokeColor={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} />,
       label: tHeader('bookmarks'),
       href: '/bookmarks'
     }

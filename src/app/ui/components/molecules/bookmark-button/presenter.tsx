@@ -17,10 +17,28 @@ type Props = {
     active: string
     inactive: string
   }
+  hoverFillColor: {
+    active: string
+    inactive: string
+  }
+  hoverStrokeColor: {
+    active: string
+    inactive: string
+  }
   handleBookmark: () => void
 }
 
-export const BookmarkButton: FC<Props> = ({ isBookmarked, handleBookmark, isLoading, width, height, strokeColor, fillColor }) => {
+export const BookmarkButton: FC<Props> = ({
+  isBookmarked,
+  handleBookmark,
+  isLoading,
+  width,
+  height,
+  strokeColor,
+  fillColor,
+  hoverFillColor,
+  hoverStrokeColor
+}) => {
   const t = useTranslations('Bookmark')
 
   if (isLoading) {
@@ -34,12 +52,26 @@ export const BookmarkButton: FC<Props> = ({ isBookmarked, handleBookmark, isLoad
       aria-pressed={isBookmarked}
       title={isBookmarked ? t('removeBookmark') : t('addBookmark')}
       disabled={isLoading}
-      className="focus:outline-none rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="group focus:outline-none rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       {isBookmarked ? (
-        <BookmarkIcon width={width} height={height} strokeColor={strokeColor.active} fillColor={fillColor.active} />
+        <BookmarkIcon
+          width={width}
+          height={height}
+          strokeColor={strokeColor.active}
+          fillColor={fillColor.active}
+          hoverStrokeColor={hoverStrokeColor.inactive}
+          hoverFillColor={hoverFillColor.inactive}
+        />
       ) : (
-        <BookmarkIcon width={width} height={height} strokeColor={strokeColor.inactive} fillColor={fillColor.inactive} />
+        <BookmarkIcon
+          width={width}
+          height={height}
+          strokeColor={strokeColor.inactive}
+          fillColor={fillColor.inactive}
+          hoverStrokeColor={hoverStrokeColor.active}
+          hoverFillColor={hoverFillColor.active}
+        />
       )}
       <span className="sr-only">{isBookmarked ? t('removeBookmark') : t('addBookmark')}</span>
     </button>

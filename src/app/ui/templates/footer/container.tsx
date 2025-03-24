@@ -24,7 +24,7 @@ export const FooterContainer: FC<Props> = ({ locale, logo }) => {
     { icon: <SearchIcon width={24} height={24} color={COLORS.WHITE} />, label: tHeader('search'), href: '/search' },
     { icon: <AreaIcon width={24} height={24} color={COLORS.WHITE} />, label: tHeader('area'), href: '/area' },
     { icon: <CategoryIcon width={24} height={24} color={COLORS.WHITE} />, label: tHeader('category'), href: '/category' },
-    { icon: <BookmarkIcon width={24} height={24} color={COLORS.WHITE} fillColor={COLORS.TRANSPARENT} />, label: tHeader('bookmarks'), href: '/bookmarks' }
+    { icon: <BookmarkIcon width={24} height={24} strokeColor={COLORS.WHITE} fillColor={COLORS.TRANSPARENT} />, label: tHeader('bookmarks'), href: '/bookmarks' }
   ]
 
   const socialLinks = listSocialLinks({ width: 32, height: 32 })
