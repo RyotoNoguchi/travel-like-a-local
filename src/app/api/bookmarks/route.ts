@@ -5,9 +5,7 @@ import type { Bookmark } from '@/types/bookmark'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 
-// ブックマークを追加するAPI
-export async function POST(req: Request) {
-  // ログインチェック
+export const POST = async (req: Request) => {
   const session = await getServerSession(authOptions)
   if (!session?.user) {
     return new NextResponse('Unauthorized', { status: 401 })
@@ -15,7 +13,6 @@ export async function POST(req: Request) {
   try {
     const { blogPostSlug, blogPostTitle } = await req.json()
 
-    // バリデーション
     if (!blogPostSlug) {
       return new NextResponse('Blog post slug is required', { status: 400 })
     }
@@ -23,7 +20,6 @@ export async function POST(req: Request) {
     const client = await clientPromise
     const db = client.db(process.env.MONGODB_DB || 'travel-like-a-local')
 
-    // 既存のブックマークをチェック
     const existingBookmark = await db.collection('bookmarks').findOne({
       userId: session.user.id,
       blogPostSlug,
@@ -34,7 +30,6 @@ export async function POST(req: Request) {
       return new NextResponse('Already bookmarked', { status: 400 })
     }
 
-    // 新しいブックマークを作成
     const bookmark: Bookmark = {
       userId: session.user.id,
       blogPostSlug,
@@ -52,25 +47,29 @@ export async function POST(req: Request) {
   }
 }
 
-// ブックマーク一覧を取得するAPI
-export async function GET() {
+export const GET = async (req: Request) => {
+  const { searchParams } = new URL(req.url)
+  const blogPostSlug = searchParams.get('blogPostSlug')
+
   const session = await getServerSession(authOptions)
   if (!session?.user) {
     return new NextResponse('Unauthorized', { status: 401 })
+  }
+
+  const query: { userId: string; isActive: boolean; blogPostSlug?: string } = {
+    userId: session.user.id,
+    isActive: true
+  }
+
+  if (blogPostSlug) {
+    query.blogPostSlug = blogPostSlug
   }
 
   try {
     const client = await clientPromise
     const db = client.db(process.env.MONGODB_DB || 'travel-like-a-local')
 
-    const bookmarks = await db
-      .collection('bookmarks')
-      .find({
-        userId: session.user.id,
-        isActive: true
-      })
-      .sort({ createdAt: -1 })
-      .toArray()
+    const bookmarks = await db.collection('bookmarks').find(query).sort({ createdAt: -1 }).toArray()
 
     return NextResponse.json(bookmarks)
   } catch (error) {
@@ -79,8 +78,7 @@ export async function GET() {
   }
 }
 
-// ブックマークを削除（論理削除）するAPI
-export async function DELETE(req: Request) {
+export const DELETE = async (req: Request) => {
   const session = await getServerSession(authOptions)
   if (!session?.user) {
     return new NextResponse('Unauthorized', { status: 401 })
@@ -89,7 +87,6 @@ export async function DELETE(req: Request) {
   try {
     const { blogPostSlug } = await req.json()
 
-    // バリデーション
     if (!blogPostSlug) {
       return new NextResponse('Blog post slug is required', { status: 400 })
     }
