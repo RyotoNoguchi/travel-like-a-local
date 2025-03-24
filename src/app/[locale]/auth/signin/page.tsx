@@ -1,14 +1,15 @@
 import { GoogleLoginButton } from '@/app/ui/components/molecules/login/google-login-button'
 import { Logo } from '@/app/ui/templates/logo'
+import type { LANGUAGE } from '@/constants'
 import { getLogo } from '@/utils/logo'
 import type { NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
-  params: { locale: string }
+  params: { locale: LANGUAGE }
 }
 
-const SignIn: NextPage<Props> = async ({ params }) => {
+const SignInPage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'Auth' })
   const logo = await getLogo({ width: 500, height: 500 })
@@ -22,10 +23,10 @@ const SignIn: NextPage<Props> = async ({ params }) => {
       )}
       <div className="w-full max-w-sm space-y-4 rounded-lg bg-white p-6 shadow-md">
         <h2 className="text-center text-2xl font-bold">{t('signIn')}</h2>
-        <GoogleLoginButton />
+        <GoogleLoginButton locale={locale} />
       </div>
     </div>
   )
 }
 
-export default SignIn
+export default SignInPage
