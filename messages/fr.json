@@ -15,6 +15,7 @@
     "category": "Catégorie",
     "search": "Recherche",
     "favorite": "Favoris",
+    "bookmarks": "Favoris",
     "language": "Français",
     "selectLanguage": "Choisir la langue",
     "back": "Retour"
@@ -53,5 +54,20 @@
     "Practical Information": "Informations pratiques",
     "Events & Festivals": "Événements & Festivals",
     "Onsen & Wellness": "Onsen & Bien-être"
+  },
+  "Auth": {
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
+    "signInError": "Erreur de connexion",
+    "signInSuccess": "Connexion réussie",
+    "accessDenied": "Accès refusé",
+    "somethingWentWrong": "Quelque chose s'est mal passé",
+    "signInWithGoogle": "Connexion avec Google",
+    "logout": "Déconnexion",
+    "loggedInUser": "Utilisateur connecté"
+  },
+  "Bookmark": {
+    "addBookmark": "Ajouter aux favoris",
+    "removeBookmark": "Supprimer des favoris"
   }
 }

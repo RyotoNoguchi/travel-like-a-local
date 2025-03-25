@@ -4,6 +4,7 @@ import { COLORS } from '@/app/ui/colors'
 import { CloseIcon } from '@/app/ui/components/atoms/icons/close-icon'
 import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { HamburgerIcon } from '@/app/ui/components/atoms/icons/hamburger-icon'
+import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { CategoryList } from '@/app/ui/templates/header/hamburger-menu/category-list'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
@@ -60,9 +61,9 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
         </button>
         <ul className="text-3xl flex flex-col gap-3">
           {navLinks.map(({ icon, label, href, isCategory }) => (
-            <li key={href}>
+            <li key={href} className="h-8 sm:h-7">
               {isCategory ? (
-                <button className="flex items-center gap-2 w-full" onClick={handleCategoryClick}>
+                <button className="flex items-center gap-2 w-full h-8 sm:h-7" onClick={handleCategoryClick}>
                   {icon}
                   <span>{label}</span>
                 </button>
@@ -71,7 +72,7 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
               )}
             </li>
           ))}
-          <li className="h-7">
+          <li className="h-8 sm:h-7">
             <LanguageNavLink
               icon={<GlobeIcon width={32} height={32} color={COLORS.GRAY} />}
               label={t('language')}
@@ -79,6 +80,9 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
               locale={locale}
               gap="gap-2"
             />
+          </li>
+          <li className="h-8 sm:h-7">
+            <LoginStatus isHamburger />
           </li>
         </ul>
       </div>

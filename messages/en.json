@@ -15,6 +15,7 @@
     "category": "Category",
     "search": "Search",
     "favorite": "Favorite",
+    "bookmarks": "Bookmarks",
     "language": "English",
     "selectLanguage": "Select Language",
     "back": "Back"
@@ -53,5 +54,20 @@
     "Practical Information": "Practical Information",
     "Events & Festivals": "Events & Festivals",
     "Onsen & Wellness": "Onsen & Wellness"
+  },
+  "Auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signInError": "Sign In Error",
+    "signInSuccess": "Sign In Success",
+    "accessDenied": "Access Denied",
+    "somethingWentWrong": "Ops! Something went wrong",
+    "signInWithGoogle": "Sign In with Google",
+    "logout": "Logout",
+    "loggedInUser": "Logged in User"
+  },
+  "Bookmark": {
+    "addBookmark": "Add Bookmark",
+    "removeBookmark": "Remove Bookmark"
   }
 }

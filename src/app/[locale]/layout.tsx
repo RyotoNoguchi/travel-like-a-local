@@ -1,7 +1,9 @@
 import '@/app/globals.css'
+import AuthProvider from '@/app/providers'
 import { zain } from '@/app/ui/fonts'
 import { FooterContainer } from '@/app/ui/templates/footer/container'
 import { HeaderContainer } from '@/app/ui/templates/header/container'
+import { LayoutWrapper } from '@/app/ui/templates/layout-wrapper'
 import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER, TWITTER_HANDLE, TWITTER_ID } from '@/constants'
 import { routing } from '@/i18n/routing'
 import { getLogo } from '@/utils/logo'
@@ -117,18 +119,20 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
   const logo = await getLogo({ width: 500, height: 500 })
   // Providing all messages to the client　side is the easiest way to get started
   const messages = await getMessages({ locale })
-  // const headersList = await headers()
-  // const currentUrl = headersList.get('x-url') || '' // http://localhost:3000/fr
-  // const pathname = currentUrl.split('/').slice(3).join('/') // fr
 
   return (
     <html lang={locale}>
       <body className={classNames(zain.className, 'antialiased')}>
-        <NextIntlClientProvider messages={messages}>
-          {logo ? <HeaderContainer logo={logo} locale={locale as LANGUAGE} /> : null}
-          {children}
-          {logo ? <FooterContainer logo={logo} locale={locale as LANGUAGE} /> : null}
-        </NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider messages={messages}>
+            <LayoutWrapper
+              header={logo !== null && logo !== undefined && <HeaderContainer logo={logo} locale={locale as LANGUAGE} />}
+              footer={logo !== null && logo !== undefined && <FooterContainer logo={logo} locale={locale as LANGUAGE} />}
+            >
+              {children}
+            </LayoutWrapper>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   )
