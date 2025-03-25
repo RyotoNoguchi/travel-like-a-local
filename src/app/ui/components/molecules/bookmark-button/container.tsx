@@ -91,8 +91,6 @@ export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle
       strokeColor={strokeColor}
       bookmarkActionTranslation={{ add: t('addBookmark'), remove: t('removeBookmark') }}
       fillColor={fillColor}
-      hoverFillColor={{ active: 'group-hover:fill-[#2563EB]', inactive: 'group-hover:fill-[#FFF]' }} // Tailwind doesn't support template literals
-      hoverStrokeColor={{ active: 'group-hover:stroke-[#2563EB]', inactive: 'group-hover:stroke-[#CBD5E1]' }}
       {...props}
     />
   )
