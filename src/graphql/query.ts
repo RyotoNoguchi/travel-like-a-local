@@ -151,6 +151,48 @@ export const GET_BLOG_POSTS_QUERY = gql`
   }
 `
 
+export const GET_BLOG_POSTS_BY_SLUGS_QUERY = gql`
+  query GetBlogPostsBySlugs($slugs: [String!]!) {
+    pageBlogPostCollection(where: { slug_in: $slugs }) {
+      total
+      items {
+        sys {
+          id
+        }
+        title
+        slug
+        publishedDate
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+        seoFields {
+          pageDescription
+        }
+        author {
+          name
+          avatar {
+            title
+            url
+            width
+            height
+          }
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+          concepts {
+            id
+          }
+        }
+      }
+    }
+  }
+`
+
 export const GET_ALL_BLOG_POSTS_QUERY = gql`
   query GetAllBlogPosts($locale: String!) {
     pageBlogPostCollection(locale: $locale) {
