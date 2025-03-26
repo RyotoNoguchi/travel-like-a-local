@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { getBookmarks } from '@/lib/bookmarks/get-bookmarks'
 import clientPromise from '@/lib/mongodb'
 import type { Bookmark } from '@/types/bookmark'
 import { getServerSession } from 'next-auth'
@@ -49,31 +50,16 @@ export const POST = async (req: Request) => {
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url)
-  const blogPostSlug = searchParams.get('blogPostSlug')
-
-  const session = await getServerSession(authOptions)
-  if (!session?.user) {
-    return new NextResponse('Unauthorized', { status: 401 })
-  }
-
-  const query: { userId: string; isActive: boolean; blogPostSlug?: string } = {
-    userId: session.user.id,
-    isActive: true
-  }
-
-  if (blogPostSlug) {
-    query.blogPostSlug = blogPostSlug
-  }
+  const blogPostSlug = searchParams.get('blogPostSlug') || undefined
 
   try {
-    const client = await clientPromise
-    const db = client.db(process.env.MONGODB_DB || 'travel-like-a-local')
+    const bookmarks = await getBookmarks({ blogPostSlug })
 
-    const bookmarks = await db.collection('bookmarks').find(query).sort({ createdAt: -1 }).toArray()
+    if (bookmarks === null) return new NextResponse('Unauthorized', { status: 401 })
 
     return NextResponse.json(bookmarks)
   } catch (error) {
-    console.error('Bookmark fetch error:', error)
+    console.error('Error in bookmarks GET route:', error)
     return new NextResponse('Internal Server Error', { status: 500 })
   }
 }
