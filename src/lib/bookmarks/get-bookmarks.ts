@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import clientPromise from '@/lib/mongodb'
 import type { Bookmark } from '@/types/bookmark'
