@@ -122,6 +122,7 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
         total={total}
         currentPage={Math.floor(skip / limit) + 1}
         totalPages={Math.ceil(total / limit)}
+        isBookmarksPage={false}
       />
     </ArticleLayout>
   )

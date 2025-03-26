@@ -1,12 +1,16 @@
-import { BlogPosts } from '@/app/ui/components/organisms/blog-posts/presenter'
+import { BlogPostsClientContainer } from '@/app/ui/components/organisms/blog-posts/client-container'
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostsBySlugsQuery, GetBlogPostsQuery } from '@/generated/graphql'
+import type { BlogPostWithHref } from '@/types/blog-post'
+import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
+import { generateHref } from '@/utils/url-helpers'
 import type { FC } from 'react'
 
 type Props = {
   title: string
   viewAllButtonText?: string
   locale: LANGUAGE
+  isBookmarksPage: boolean
   viewAllHref?: string
   blogPosts: NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'] | NonNullable<GetBlogPostsBySlugsQuery['pageBlogPostCollection']>['items']
   total?: number
@@ -14,13 +18,49 @@ type Props = {
   totalPages?: number
 }
 
-export const BlogPostsContainer: FC<Props> = async ({ title, viewAllButtonText, viewAllHref, locale, blogPosts, total, currentPage, totalPages }) => {
+export const BlogPostsContainer: FC<Props> = async ({
+  title,
+  viewAllHref,
+  viewAllButtonText,
+  locale,
+  blogPosts,
+  total,
+  currentPage,
+  totalPages,
+  isBookmarksPage
+}) => {
   // TODO: Create NoBlogPosts component and return it when blogPosts.length === 0
   if (blogPosts.length === 0) return null
 
+  const blogPostsWithHref = (
+    await Promise.all(
+      blogPosts
+        .filter((blogPost) => blogPost !== null)
+        .filter((blogPost) => blogPost.contentfulMetadata.concepts.length > 0)
+        .filter((blogPost) => blogPost.slug !== null && blogPost.slug !== undefined)
+        .map(async (blogPost) => {
+          const blogPostConceptIds = blogPost.contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
+
+          if (!Boolean(blogPostConceptIds.length)) return null
+          const filteredBlogPostConceptIds = blogPostConceptIds
+            .filter((concept): concept is { id: string } => typeof concept.id === 'string')
+            .map((concept) => concept.id)
+          const { categoryName, regionName, areaName, prefectureName } = await extractTaxonomyInfo(filteredBlogPostConceptIds)
+
+          const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug: blogPost.slug as string })
+          if (href === '/articles/') return null
+
+          return {
+            ...blogPost,
+            href
+          }
+        })
+    )
+  ).filter((blogPost): blogPost is BlogPostWithHref => blogPost !== null)
+
   return (
-    <BlogPosts
-      blogPosts={blogPosts}
+    <BlogPostsClientContainer
+      blogPosts={blogPostsWithHref}
       title={title}
       viewAllButtonText={viewAllButtonText}
       viewAllHref={viewAllHref}
@@ -28,6 +68,7 @@ export const BlogPostsContainer: FC<Props> = async ({ title, viewAllButtonText, 
       currentPage={currentPage}
       totalPages={totalPages}
       locale={locale}
+      isBookmarksPage={isBookmarksPage}
     />
   )
 }

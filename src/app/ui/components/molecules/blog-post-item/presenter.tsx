@@ -10,9 +10,22 @@ import type { FC } from 'react'
 
 type Props = NonNullable<NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'][0]> & {
   href: string
+  isBookmarksPage: boolean
+  onBookmarkChange?: (blogPostSlug: string, isBookmarked: boolean) => void
 }
 
-export const BlogPostItem: FC<Props> = ({ href, featuredImage, title, seoFields, contentfulMetadata, author, publishedDate, slug }) => {
+export const BlogPostItem: FC<Props> = ({
+  href,
+  featuredImage,
+  title,
+  seoFields,
+  contentfulMetadata,
+  author,
+  publishedDate,
+  slug,
+  isBookmarksPage,
+  onBookmarkChange
+}) => {
   if (!slug || !title) return null
   return (
     <li className="flex flex-col sm:flex-row gap-2 w-full item-center sm:justify-start sm:gap-3 max-w-[300px] sm:max-w-[640px] lg:max-w-[800px]">
@@ -34,6 +47,8 @@ export const BlogPostItem: FC<Props> = ({ href, featuredImage, title, seoFields,
             height={28}
             strokeColor={{ active: COLORS.BLUE_600, inactive: COLORS.SLATE_300 }}
             fillColor={{ active: COLORS.BLUE_600, inactive: COLORS.WHITE }}
+            isBookmarksPage={isBookmarksPage}
+            onBookmarkChange={onBookmarkChange}
           />
         </div>
       </div>

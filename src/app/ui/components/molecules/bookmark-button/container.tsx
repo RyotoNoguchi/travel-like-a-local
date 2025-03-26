@@ -20,9 +20,11 @@ type Props = {
     active: string
     inactive: string
   }
+  isBookmarksPage: boolean
+  onBookmarkChange?: (blogPostSlug: string, isBookmarked: boolean) => void
 }
 
-export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle, strokeColor, fillColor, ...props }) => {
+export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle, strokeColor, fillColor, isBookmarksPage, onBookmarkChange, ...props }) => {
   const { data: session } = useSession()
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -65,6 +67,9 @@ export const BookmarkButtonContainer: FC<Props> = ({ blogPostSlug, blogPostTitle
           body: JSON.stringify({ blogPostSlug })
         })
         setIsBookmarked(false)
+        if (isBookmarksPage && onBookmarkChange) {
+          onBookmarkChange(blogPostSlug, false)
+        }
       } else {
         // 追加処理
         await fetch('/api/bookmarks', {

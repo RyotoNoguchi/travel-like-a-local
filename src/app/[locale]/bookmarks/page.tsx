@@ -51,7 +51,7 @@ const BookmarksPage: NextPage<Props> = async ({ params }) => {
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main>
         <ArticleLayout locale={locale} breadcrumbs={breadcrumbs}>
-          <BlogPostsContainer title={t('title')} locale={locale} blogPosts={blogPosts} />
+          <BlogPostsContainer title={t('title')} locale={locale} blogPosts={blogPosts} isBookmarksPage />
         </ArticleLayout>
       </main>
     </>
