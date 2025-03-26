@@ -16,7 +16,7 @@ export const BreadcrumbJsonLd: React.FC<Props> = ({ locale, breadcrumbs }) => {
       '@type': 'ListItem',
       position: index + 1,
       name: breadcrumb.label,
-      item: `${siteUrl}${locale}${breadcrumb.href}`
+      item: `${siteUrl}/${locale}${breadcrumb.href}`
     }))
   }
 

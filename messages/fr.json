@@ -69,5 +69,10 @@
   "Bookmark": {
     "addBookmark": "Ajouter aux favoris",
     "removeBookmark": "Supprimer des favoris"
+  },
+  "BookmarksPage": {
+    "title": "Vos favoris",
+    "noBookmarks": "Aucun favoris pour le moment",
+    "description": "Consultez et gérez vos articles sauvegardés"
   }
 }

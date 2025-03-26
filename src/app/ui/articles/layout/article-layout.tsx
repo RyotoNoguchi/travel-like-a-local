@@ -10,11 +10,9 @@ type Props = {
   children: ReactNode
   locale: LANGUAGE
   breadcrumbs: BreadcrumbItem[]
-  popularArticlesTitle: string
-  viewCountText: string
 }
 
-export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs, popularArticlesTitle, viewCountText }) => (
+export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
   <>
     <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
     <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
@@ -32,7 +30,7 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs, popula
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="flex w-full justify-center gap-8 lg:gap-16">
           <main className="flex-1">{children}</main>
-          <PopularBlogPostsContainer title={popularArticlesTitle} viewCountText={viewCountText} locale={locale} />
+          <PopularBlogPostsContainer locale={locale} />
         </div>
       </div>
     </div>

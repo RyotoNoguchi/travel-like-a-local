@@ -21,11 +21,8 @@ type Props = {
 }
 
 export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, category, region, area, prefecture, path }) => {
-  const articleT = await getTranslations({ locale, namespace: 'Article' })
-  const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-  const blogPostsT = await getTranslations({ locale, namespace: 'ArticleList' })
+  const t = await getTranslations({ locale, namespace: 'ArticleList' })
 
-  // ここでデータ取得ロジックを実装（BlogPostsContainerから移動）
   const client = createApolloClient()
   const concepts = await getConcepts()
   const where: Record<string, unknown> = {}
@@ -103,24 +100,24 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
 
   const getTitle = () => {
     if (prefecture) {
-      return blogPostsT('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1), category: '' })
+      return t('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1), category: '' })
     } else if (area) {
-      return blogPostsT('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1), category: '' })
+      return t('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1), category: '' })
     } else if (region) {
-      return blogPostsT('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1), category: '' })
+      return t('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1), category: '' })
     } else if (category) {
-      return blogPostsT('articlesOf', { region: '', category: category.charAt(0).toUpperCase() + category.slice(1) })
+      return t('articlesOf', { region: '', category: category.charAt(0).toUpperCase() + category.slice(1) })
     }
-    return blogPostsT('title')
+    return t('title')
   }
 
   return (
-    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs} popularArticlesTitle={popularBlogPostsT('title')} viewCountText={articleT('views')}>
+    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs}>
       <BlogPostsContainer
         blogPosts={blogPosts}
         title={getTitle()}
         locale={locale}
-        viewAllButtonText={blogPostsT('viewAll')}
+        viewAllButtonText={t('viewAll')}
         viewAllHref={viewAllHref}
         total={total}
         currentPage={Math.floor(skip / limit) + 1}

@@ -28,10 +28,9 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 const HomePage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'Hero' })
+  const metaDataT = await getTranslations({ locale, namespace: 'Metadata' })
   const articleListT = await getTranslations({ locale, namespace: 'ArticleList' })
-  const popularArticleListT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-  const articleT = await getTranslations({ locale, namespace: 'Article' })
-  const breadcrumbs = [{ label: 'Home', href: '/' }]
+  const breadcrumbs = [{ label: metaDataT('home'), href: '' }]
   const client = createApolloClient()
   const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
     query: GET_BLOG_POSTS_QUERY,
@@ -47,7 +46,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <CarouselContainer width={300} height={200} locale={locale} />
         <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
           <BlogPostsContainer title={articleListT('title')} viewAllButtonText={articleListT('viewAll')} locale={locale} blogPosts={blogPosts} />
-          <PopularBlogPostsContainer title={popularArticleListT('title')} viewCountText={articleT('views')} locale={locale} />
+          <PopularBlogPostsContainer locale={locale} />
         </div>
       </main>
     </>

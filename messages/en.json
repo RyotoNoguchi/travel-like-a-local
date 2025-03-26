@@ -69,5 +69,10 @@
   "Bookmark": {
     "addBookmark": "Add Bookmark",
     "removeBookmark": "Remove Bookmark"
+  },
+  "BookmarksPage": {
+    "title": "Your Bookmarks",
+    "noBookmarks": "No bookmarks yet",
+    "description": "View and manage your saved articles"
   }
 }

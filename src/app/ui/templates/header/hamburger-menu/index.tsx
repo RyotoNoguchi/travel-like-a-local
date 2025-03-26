@@ -8,7 +8,7 @@ import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { CategoryList } from '@/app/ui/templates/header/hamburger-menu/category-list'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
-import { type LANGUAGE } from '@/constants'
+import { BOOKMARKS_PATH, type LANGUAGE } from '@/constants'
 import type { Category } from '@/types/category'
 import { type NavLinkType } from '@/types/navLinks'
 import classNames from 'classnames'
@@ -68,7 +68,7 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
                   <span>{label}</span>
                 </button>
               ) : (
-                <NavLink icon={icon} label={label} href={href} gap="gap-2" withinHamburger />
+                <NavLink icon={icon} label={label} href={href} gap="gap-2" withinHamburger onClick={href === `/${BOOKMARKS_PATH}` ? handleClick : undefined} />
               )}
             </li>
           ))}
