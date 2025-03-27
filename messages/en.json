@@ -72,7 +72,11 @@
   },
   "BookmarksPage": {
     "title": "Your Bookmarks",
-    "noBookmarks": "No bookmarks yet",
+    "noBookmarks": "No bookmarks yet, add articles to your bookmarks by clicking the button in the top right of the article",
     "description": "View and manage your saved articles"
+  },
+  "BlogPosts": {
+    "noBlogPosts": "No articles yet",
+    "noBlogPostsMessage": "Check back later"
   }
 }

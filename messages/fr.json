@@ -72,7 +72,11 @@
   },
   "BookmarksPage": {
     "title": "Vos favoris",
-    "noBookmarks": "Aucun favoris pour le moment",
+    "noBookmarks": "Aucun favoris pour le moment, ajoutez des articles à vos favoris en cliquant sur le bouton en haut à droite de l'article",
     "description": "Consultez et gérez vos articles sauvegardés"
+  },
+  "BlogPosts": {
+    "noBlogPosts": "Aucun article pour le moment",
+    "noBlogPostsMessage": "Vérifiez plus tard"
   }
 }

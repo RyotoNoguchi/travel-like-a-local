@@ -29,17 +29,13 @@ export const BlogPostsContainer: FC<Props> = async ({
   totalPages,
   isBookmarksPage
 }) => {
-  // TODO: Create NoBlogPosts component and return it when blogPosts.length === 0
-  if (blogPosts.length === 0) return null
-
   const blogPostsWithHref = (
     await Promise.all(
       blogPosts
-        .filter((blogPost) => blogPost !== null)
-        .filter((blogPost) => blogPost.contentfulMetadata.concepts.length > 0)
-        .filter((blogPost) => blogPost.slug !== null && blogPost.slug !== undefined)
+        .filter((blogPost) => blogPost !== null && blogPost.contentfulMetadata.concepts.length > 0 && blogPost.slug !== null && blogPost.slug !== undefined)
         .map(async (blogPost) => {
-          const blogPostConceptIds = blogPost.contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
+          const nonNullBlogPost = blogPost as NonNullable<typeof blogPost>
+          const blogPostConceptIds = nonNullBlogPost.contentfulMetadata.concepts.map((concept) => ({ id: concept?.id }))
 
           if (!Boolean(blogPostConceptIds.length)) return null
           const filteredBlogPostConceptIds = blogPostConceptIds
@@ -47,11 +43,11 @@ export const BlogPostsContainer: FC<Props> = async ({
             .map((concept) => concept.id)
           const { categoryName, regionName, areaName, prefectureName } = await extractTaxonomyInfo(filteredBlogPostConceptIds)
 
-          const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug: blogPost.slug as string })
+          const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug: nonNullBlogPost.slug as string })
           if (href === '/articles/') return null
 
           return {
-            ...blogPost,
+            ...nonNullBlogPost,
             href
           }
         })

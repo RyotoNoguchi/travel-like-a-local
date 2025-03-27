@@ -47,6 +47,7 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
                 height={28}
                 strokeColor={{ active: COLORS.BLUE_600, inactive: COLORS.SLATE_300 }}
                 fillColor={{ active: COLORS.BLUE_600, inactive: COLORS.WHITE }}
+                isBookmarksPage={false}
               />
             </div>
             <div className="flex justify-between">
