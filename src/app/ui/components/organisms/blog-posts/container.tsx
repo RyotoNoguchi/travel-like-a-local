@@ -13,6 +13,8 @@ type Props = {
   isBookmarksPage: boolean
   viewAllHref?: string
   blogPosts: NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'] | NonNullable<GetBlogPostsBySlugsQuery['pageBlogPostCollection']>['items']
+  noBlogPostsTitle: string
+  noBlogPostsMessage: string
   total?: number
   currentPage?: number
   totalPages?: number
@@ -27,7 +29,9 @@ export const BlogPostsContainer: FC<Props> = async ({
   total,
   currentPage,
   totalPages,
-  isBookmarksPage
+  isBookmarksPage,
+  noBlogPostsTitle,
+  noBlogPostsMessage
 }) => {
   const blogPostsWithHref = (
     await Promise.all(
@@ -65,6 +69,8 @@ export const BlogPostsContainer: FC<Props> = async ({
       totalPages={totalPages}
       locale={locale}
       isBookmarksPage={isBookmarksPage}
+      noBlogPostsTitle={noBlogPostsTitle}
+      noBlogPostsMessage={noBlogPostsMessage}
     />
   )
 }

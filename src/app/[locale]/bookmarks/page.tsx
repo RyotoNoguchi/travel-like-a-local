@@ -26,20 +26,18 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 
 const BookmarksPage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'BookmarksPage' })
-  const metaDataT = await getTranslations({ locale, namespace: 'Metadata' })
+  const t = await getTranslations({ locale })
   const bookmarks = await getBookmarks({ blogPostSlug: undefined })
   const slugs = bookmarks?.map((bookmark) => bookmark.blogPostSlug)
   const breadcrumbs = [
-    { label: metaDataT('home'), href: '' },
-    { label: t('title'), href: `/${BOOKMARKS_PATH}` }
+    { label: t('Metadata.home'), href: '' },
+    { label: t('BookmarksPage.title'), href: `/${BOOKMARKS_PATH}` }
   ]
-  if (!slugs) return <div>No bookmarks</div>
 
   const client = createApolloClient()
   const { data } = await client.query<GetBlogPostsBySlugsQuery, GetBlogPostsBySlugsQueryVariables>({
     query: GET_BLOG_POSTS_BY_SLUGS_QUERY,
-    variables: { slugs }
+    variables: { slugs: slugs ?? '' }
   })
 
   const blogPosts = data.pageBlogPostCollection?.items.filter((post) => post !== null)
@@ -51,7 +49,14 @@ const BookmarksPage: NextPage<Props> = async ({ params }) => {
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main>
         <ArticleLayout locale={locale} breadcrumbs={breadcrumbs}>
-          <BlogPostsContainer title={t('title')} locale={locale} blogPosts={blogPosts} isBookmarksPage />
+          <BlogPostsContainer
+            title={t('BookmarksPage.title')}
+            locale={locale}
+            blogPosts={blogPosts}
+            isBookmarksPage
+            noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
+            noBlogPostsMessage={t('BookmarksPage.noBookmarks')}
+          />
         </ArticleLayout>
       </main>
     </>

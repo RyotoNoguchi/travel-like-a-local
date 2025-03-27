@@ -17,6 +17,8 @@ type Props = {
   currentPage?: number
   totalPages?: number
   isBookmarksPage: boolean
+  noBlogPostsTitle: string
+  noBlogPostsMessage: string
 }
 
 export const BlogPostsClientContainer: FC<Props> = ({
@@ -28,6 +30,8 @@ export const BlogPostsClientContainer: FC<Props> = ({
   total,
   currentPage,
   totalPages,
+  noBlogPostsTitle,
+  noBlogPostsMessage,
   isBookmarksPage
 }) => {
   const [posts, setPosts] = useState<Array<BlogPostWithHref>>(initialBlogPosts)
@@ -44,7 +48,7 @@ export const BlogPostsClientContainer: FC<Props> = ({
       }
     : undefined
 
-  if (posts.length === 0) return <NoBlogPosts title={t('BlogPosts.noBlogPosts')} message={t('BookmarksPage.noBookmarks')} />
+  if (posts.length === 0) return <NoBlogPosts title={noBlogPostsTitle} message={noBlogPostsMessage} />
 
   return (
     <BlogPosts

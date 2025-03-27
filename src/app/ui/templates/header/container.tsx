@@ -20,9 +20,7 @@ type Props = {
 }
 
 export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
-  const tHeader = await getTranslations('NavMenu')
-  const tFooter = await getTranslations('Footer')
-  const tCategoriesNav = await getTranslations('CategoriesNav')
+  const t = await getTranslations({ locale })
 
   // Get Category Information
   const concepts = await getConcepts()
@@ -37,7 +35,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
           return {
             id: conceptId,
             label: concept?.label || '',
-            translatedLabel: tCategoriesNav(concept?.label || ''),
+            translatedLabel: t(`CategoriesNav.${concept?.label}`),
             parentIds: concept?.upperLevelConceptIds || []
           }
         })
@@ -47,17 +45,17 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
   const topLevelCategories: Category[] = categories.filter((category) => category.parentIds.length === 0)
 
   const listNavLinks = (px: number) => [
-    { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('search'), href: '/search' },
-    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: tHeader('area'), href: '/area' },
+    { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.search'), href: '/search' },
+    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/area' },
     {
       icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />,
-      label: tHeader('category'),
+      label: t('NavMenu.category'),
       href: '/category',
       isCategory: true
     },
     {
-      icon: <BookmarkIcon width={px} height={px} strokeColor={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} />,
-      label: tHeader('bookmarks'),
+      icon: <BookmarkIcon width={px} height={px} strokeColor={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} strokeWidth={2} />,
+      label: t('NavMenu.bookmarks'),
       href: '/bookmarks'
     }
   ]
@@ -68,8 +66,8 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
       categories={topLevelCategories}
       navLinks={listNavLinks(24)}
       hamburgerMenuNavLinks={listNavLinks(32)}
-      languageTitle={tHeader('language')}
-      subtitle={tFooter('subtitle')}
+      languageTitle={t('NavMenu.language')}
+      subtitle={t('Footer.subtitle')}
     />
   )
 }

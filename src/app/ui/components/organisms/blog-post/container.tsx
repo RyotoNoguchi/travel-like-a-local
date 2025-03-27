@@ -12,8 +12,7 @@ type Props = {
 }
 
 export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) => {
-  const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-  const articleT = await getTranslations({ locale, namespace: 'Article' })
+  const t = await getTranslations({ locale })
   const redis = Redis.fromEnv()
   const views = (await redis.get<number>([REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, slug].join(':'))) ?? 0
 
@@ -22,8 +21,8 @@ export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) =
       locale={locale}
       slug={slug}
       blogPost={blogPost}
-      views={{ count: views, title: articleT('views') }}
-      popularArticleListTitle={popularBlogPostsT('title')}
+      views={{ count: views, title: t('Article.views') }}
+      popularArticleListTitle={t('PopularArticleList.title')}
     />
   )
 }

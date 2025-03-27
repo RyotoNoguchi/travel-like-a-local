@@ -38,9 +38,9 @@ export const BookmarkButton: FC<Props> = ({ isBookmarked, handleBookmark, isLoad
       className="group focus:outline-none rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       {isBookmarked ? (
-        <BookmarkIcon width={width} height={height} strokeColor={strokeColor.active} fillColor={fillColor.active} />
+        <BookmarkIcon width={width} height={height} strokeColor={strokeColor.active} fillColor={fillColor.active} strokeWidth={1} />
       ) : (
-        <BookmarkIcon width={width} height={height} strokeColor={strokeColor.inactive} fillColor={fillColor.inactive} />
+        <BookmarkIcon width={width} height={height} strokeColor={strokeColor.inactive} fillColor={fillColor.inactive} strokeWidth={1} />
       )}
       <span className="sr-only">{isBookmarked ? bookmarkActionTranslation.remove : bookmarkActionTranslation.add}</span>
     </button>

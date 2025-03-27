@@ -14,8 +14,7 @@ type Props = {
 }
 
 export const PopularBlogPostsContainer: FC<Props> = async ({ locale, limit = 10, skip = 0 }) => {
-  const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-  const blogPostsT = await getTranslations({ locale, namespace: 'Article' })
+  const t = await getTranslations({ locale })
   const client = createApolloClient()
   const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
     query: GET_BLOG_POSTS_QUERY,
@@ -52,5 +51,5 @@ export const PopularBlogPostsContainer: FC<Props> = async ({ locale, limit = 10,
   // 上位10件を取得
   const topTenPosts = sortedBlogPosts.slice(0, 10) as (PageBlogPost & { viewCount: number })[]
 
-  return <PopularBlogPosts articles={topTenPosts} title={popularBlogPostsT('title')} viewCountText={blogPostsT('views')} />
+  return <PopularBlogPosts articles={topTenPosts} title={t('PopularArticleList.title')} viewCountText={t('Article.views')} />
 }

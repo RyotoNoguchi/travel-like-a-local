@@ -21,7 +21,7 @@ type Props = {
 }
 
 export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, category, region, area, prefecture, path }) => {
-  const t = await getTranslations({ locale, namespace: 'ArticleList' })
+  const t = await getTranslations({ locale })
 
   const client = createApolloClient()
   const concepts = await getConcepts()
@@ -100,15 +100,15 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
 
   const getTitle = () => {
     if (prefecture) {
-      return t('articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1), category: '' })
+      return t('ArticleList.articlesOf', { region: prefecture.charAt(0).toUpperCase() + prefecture.slice(1), category: '' })
     } else if (area) {
-      return t('articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1), category: '' })
+      return t('ArticleList.articlesOf', { region: area.charAt(0).toUpperCase() + area.slice(1), category: '' })
     } else if (region) {
-      return t('articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1), category: '' })
+      return t('ArticleList.articlesOf', { region: region.charAt(0).toUpperCase() + region.slice(1), category: '' })
     } else if (category) {
-      return t('articlesOf', { region: '', category: category.charAt(0).toUpperCase() + category.slice(1) })
+      return t('ArticleList.articlesOf', { region: '', category: category.charAt(0).toUpperCase() + category.slice(1) })
     }
-    return t('title')
+    return t('ArticleList.title')
   }
 
   return (
@@ -117,11 +117,13 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
         blogPosts={blogPosts}
         title={getTitle()}
         locale={locale}
-        viewAllButtonText={t('viewAll')}
+        viewAllButtonText={t('ArticleList.viewAll')}
         viewAllHref={viewAllHref}
         total={total}
         currentPage={Math.floor(skip / limit) + 1}
         totalPages={Math.ceil(total / limit)}
+        noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
+        noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}
         isBookmarksPage={false}
       />
     </ArticleLayout>

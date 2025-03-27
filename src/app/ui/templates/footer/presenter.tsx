@@ -1,22 +1,15 @@
-import { COLORS } from '@/app/ui/colors'
-import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
-import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
-import { type LANGUAGE, LOGO_TITLE } from '@/constants'
+import { LOGO_TITLE } from '@/constants'
 import type { Logo as LogoType } from '@/types/logo'
 import type { FC, JSX } from 'react'
 
 type Props = {
-  locale: LANGUAGE
   logo: LogoType
   footerColumnTitles: {
     first: string
     second: string
     subtitle: string
-  }
-  headerNavLinkTitles: {
-    language: string
   }
   navLinks: {
     icon: JSX.Element
@@ -29,7 +22,7 @@ type Props = {
   }[]
 }
 
-export const Footer: FC<Props> = ({ locale, logo, footerColumnTitles, headerNavLinkTitles, navLinks, socialLinks }) => (
+export const Footer: FC<Props> = ({ logo, footerColumnTitles, navLinks, socialLinks }) => (
   <footer className="bg-dark-gray text-white h-full px-4 pt-10 pb-5">
     <div className="flex flex-col gap-14 justify-evenly">
       <div className="flex flex-col sm:flex-row gap-4 sm:justify-evenly">
@@ -42,15 +35,6 @@ export const Footer: FC<Props> = ({ locale, logo, footerColumnTitles, headerNavL
                   <NavLink key={label} icon={icon} label={label} href={href} gap="gap-1" withinFooter />
                 </li>
               ))}
-              <li className="h-7">
-                <LanguageNavLink
-                  icon={<GlobeIcon width={24} height={24} color={COLORS.WHITE} />}
-                  label={headerNavLinkTitles.language}
-                  href="/language"
-                  locale={locale}
-                  gap="gap-1"
-                />
-              </li>
             </ul>
           </nav>
         </div>
