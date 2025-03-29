@@ -78,5 +78,14 @@
   "BlogPosts": {
     "noBlogPosts": "No articles yet",
     "noBlogPostsMessage": "Check back later"
+  },
+  "Popup": {
+    "loginRequired": "Login Required",
+    "loginToBookmark": "Login to bookmark",
+    "cancel": "Cancel",
+    "login": "Login"
+  },
+  "Common": {
+    "close": "Close"
   }
 }

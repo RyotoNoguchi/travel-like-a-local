@@ -78,5 +78,14 @@
   "BlogPosts": {
     "noBlogPosts": "Aucun article pour le moment",
     "noBlogPostsMessage": "Vérifiez plus tard"
+  },
+  "Popup": {
+    "loginRequired": "Connexion requise",
+    "loginToBookmark": "Connectez-vous pour ajouter aux favoris",
+    "cancel": "Annuler",
+    "login": "Connexion"
+  },
+  "Common": {
+    "close": "Fermer"
   }
 }

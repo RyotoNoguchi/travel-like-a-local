@@ -4,7 +4,6 @@ import { NoBlogPosts } from '@/app/ui/components/organisms/blog-posts/no-blog-po
 import { BlogPosts } from '@/app/ui/components/organisms/blog-posts/presenter'
 import { type LANGUAGE } from '@/constants'
 import type { BlogPostWithHref } from '@/types/blog-post'
-import { useTranslations } from 'next-intl'
 import { useEffect, useState, type FC } from 'react'
 
 type Props = {
@@ -35,7 +34,6 @@ export const BlogPostsClientContainer: FC<Props> = ({
   isBookmarksPage
 }) => {
   const [posts, setPosts] = useState<Array<BlogPostWithHref>>(initialBlogPosts)
-  const t = useTranslations()
   useEffect(() => {
     setPosts(initialBlogPosts)
   }, [initialBlogPosts])
