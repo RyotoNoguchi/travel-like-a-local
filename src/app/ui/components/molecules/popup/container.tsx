@@ -1,13 +1,8 @@
 'use client'
 
 import { Popup } from '@/app/ui/components/molecules/popup/presenter'
+import type { ButtonConfig } from '@/types/button'
 import { useEffect, useRef, useState, type FC } from 'react'
-
-export type ButtonConfig = {
-  text: string
-  variant?: 'primary' | 'secondary'
-  onClick: () => void
-}
 
 type Props = {
   isOpen: boolean

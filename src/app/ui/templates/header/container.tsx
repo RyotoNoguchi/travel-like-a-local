@@ -50,7 +50,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
     {
       icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />,
       label: t('NavMenu.category'),
-      href: '/category',
+      href: '#',
       isCategory: true
     },
     {

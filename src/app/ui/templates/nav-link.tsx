@@ -8,7 +8,7 @@ type Props = {
   label: string
   href: string
   gap: Tailwind['gap']
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent) => void
   withinHamburger?: boolean
   withinFooter?: boolean
 }

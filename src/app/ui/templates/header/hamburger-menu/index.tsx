@@ -8,7 +8,7 @@ import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { CategoryList } from '@/app/ui/templates/header/hamburger-menu/category-list'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
-import { BOOKMARKS_PATH, type LANGUAGE } from '@/constants'
+import { type LANGUAGE } from '@/constants'
 import type { Category } from '@/types/category'
 import { type NavLinkType } from '@/types/navLinks'
 import classNames from 'classnames'
@@ -19,17 +19,19 @@ type Props = {
   navLinks: NavLinkType[]
   locale: LANGUAGE
   categories: Category[]
+  handleClick: (e: React.MouseEvent, href: string) => void
 }
 
-export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
-  const t = useTranslations('NavMenu')
+export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, handleClick }) => {
+  const t = useTranslations()
   const [isOpen, setIsOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
-  const handleClick = () => setIsOpen(!isOpen)
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto'
   }, [isOpen])
+
+  const toggleHamburgerMenu = () => setIsOpen(!isOpen)
 
   const handleCategoryClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -43,10 +45,9 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
     setIsCategoryOpen(false)
     setIsOpen(false)
   }
-
   return (
     <>
-      <button className={classNames('flex items-center justify-center hover-animation', 'sm:hidden')} onClick={handleClick}>
+      <button className={classNames('flex items-center justify-center hover-animation', 'sm:hidden')} onClick={toggleHamburgerMenu}>
         <HamburgerIcon />
       </button>
       <div
@@ -56,7 +57,7 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        <button className="flex justify-end" onClick={handleClick}>
+        <button className="flex justify-end" onClick={toggleHamburgerMenu}>
           <CloseIcon />
         </button>
         <ul className="text-3xl flex flex-col gap-3">
@@ -68,14 +69,24 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
                   <span>{label}</span>
                 </button>
               ) : (
-                <NavLink icon={icon} label={label} href={href} gap="gap-2" withinHamburger onClick={href === `/${BOOKMARKS_PATH}` ? handleClick : undefined} />
+                <NavLink
+                  icon={icon}
+                  label={label}
+                  href={href}
+                  gap="gap-2"
+                  withinHamburger
+                  onClick={(e: React.MouseEvent) => {
+                    toggleHamburgerMenu()
+                    handleClick(e, href)
+                  }}
+                />
               )}
             </li>
           ))}
           <li className="h-8 sm:h-7">
             <LanguageNavLink
               icon={<GlobeIcon width={32} height={32} color={COLORS.GRAY} />}
-              label={t('language')}
+              label={t('NavMenu.language')}
               href="/language"
               locale={locale}
               gap="gap-2"
@@ -86,7 +97,7 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories }) => {
           </li>
         </ul>
       </div>
-      <CategoryList categories={categories} isOpen={isCategoryOpen} onBack={handleCategoryBack} backLabel={t('back')} onClose={handleCategoryClose} />
+      <CategoryList categories={categories} isOpen={isCategoryOpen} onBack={handleCategoryBack} backLabel={t('NavMenu.back')} onClose={handleCategoryClose} />
     </>
   )
 }

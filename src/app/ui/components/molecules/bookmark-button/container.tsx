@@ -2,8 +2,9 @@
 
 /* eslint-disable no-console */
 import { BookmarkButton } from '@/app/ui/components/molecules/bookmark-button/presenter'
-import { PopupContainer, type ButtonConfig } from '@/app/ui/components/molecules/popup/container'
+import { PopupContainer } from '@/app/ui/components/molecules/popup/container'
 import { useRouter } from '@/i18n/routing'
+import type { ButtonConfig } from '@/types/button'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState, type FC } from 'react'

@@ -1,5 +1,5 @@
 import { CloseIcon } from '@/app/ui/components/atoms/icons/close-icon'
-import type { ButtonConfig } from '@/app/ui/components/molecules/popup/container'
+import type { ButtonConfig } from '@/types/button'
 import { useTranslations } from 'next-intl'
 import { type FC, type RefObject } from 'react'
 
