@@ -19,7 +19,7 @@ export const Breadcrumbs: FC<Props> = ({ breadcrumbs }) => (
           <li key={breadcrumb.href} className="flex items-center">
             {!isFirst && <ChevronIcon width={20} height={20} />}
             {isFirst ? (
-              <Link href={breadcrumb.href} className="flex items-center cursor-pointer hover-animation pb-1">
+              <Link href="/" className="flex items-center cursor-pointer hover-animation pb-1">
                 <HomeIcon width={20} height={20} />
               </Link>
             ) : (

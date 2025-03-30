@@ -2,17 +2,21 @@
 import { COLORS } from '@/app/ui/colors'
 import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { LoginStatus } from '@/app/ui/components/molecules/login-status'
+import { PopupContainer } from '@/app/ui/components/molecules/popup/container'
 import { CategoryNav } from '@/app/ui/templates/header/category-nav'
 import { HamburgerMenu } from '@/app/ui/templates/header/hamburger-menu'
 import { CategoriesNav } from '@/app/ui/templates/header/sub-header/categories-nav'
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
-import { LOGO_TITLE, type LANGUAGE } from '@/constants'
-import { Link } from '@/i18n/routing'
+import { BOOKMARKS_PATH, LOGO_TITLE, type LANGUAGE } from '@/constants'
+import { Link, useRouter } from '@/i18n/routing'
+import type { ButtonConfig } from '@/types/button'
 import type { Category } from '@/types/category'
 import type { NavLinkType } from '@/types/navLinks'
 import classNames from 'classnames'
+import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useState, type FC } from 'react'
 
 type Props = {
@@ -30,6 +34,23 @@ type Props = {
 
 export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks, hamburgerMenuNavLinks, languageTitle }) => {
   const [isNavVisible, setIsNavVisible] = useState(false)
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const t = useTranslations()
+  const { data: session } = useSession()
+  const router = useRouter()
+  const handleClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault()
+    if (session) {
+      router.push(href)
+    } else {
+      setIsPopupOpen(true)
+    }
+  }
+  const popupButtons: ButtonConfig[] = [
+    { text: t('Popup.cancel'), onClick: () => {}, variant: 'secondary' },
+    { text: t('Popup.login'), onClick: () => router.push(`/${BOOKMARKS_PATH}`), variant: 'primary' }
+  ]
+
   return (
     <>
       <header
@@ -52,7 +73,7 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
                   {isCategory ? (
                     <CategoryNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isNavVisible} onHover={setIsNavVisible} />
                   ) : (
-                    <NavLink key={label} icon={icon} label={label} href={href} gap="gap-0" />
+                    <NavLink key={label} icon={icon} label={label} href={href} gap="gap-0" onClick={(e: React.MouseEvent) => handleClick(e, href)} />
                   )}
                 </li>
               ))}
@@ -70,10 +91,17 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
               </li>
             </ul>
           </nav>
-          <HamburgerMenu navLinks={hamburgerMenuNavLinks} locale={locale} categories={categories} />
+          <HamburgerMenu navLinks={hamburgerMenuNavLinks} locale={locale} categories={categories} handleClick={handleClick} />
         </div>
       </header>
       <CategoriesNav categories={categories} isNavVisible={isNavVisible} setIsNavVisible={setIsNavVisible} />
+      <PopupContainer
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        message={t('Popup.loginRequired')}
+        title={t('Popup.loginRequired')}
+        buttons={popupButtons}
+      />
     </>
   )
 }

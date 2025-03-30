@@ -4,17 +4,17 @@ import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables, PageBlogPost } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import { getMultiplePageViews } from '@/utils/redis'
+import { getTranslations } from 'next-intl/server'
 import type { FC } from 'react'
 
 type Props = {
-  title: string
-  viewCountText: string
   locale: LANGUAGE
   limit?: number
   skip?: number
 }
 
-export const PopularBlogPostsContainer: FC<Props> = async ({ title, viewCountText, locale, limit = 10, skip = 0 }) => {
+export const PopularBlogPostsContainer: FC<Props> = async ({ locale, limit = 10, skip = 0 }) => {
+  const t = await getTranslations({ locale })
   const client = createApolloClient()
   const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
     query: GET_BLOG_POSTS_QUERY,
@@ -51,5 +51,5 @@ export const PopularBlogPostsContainer: FC<Props> = async ({ title, viewCountTex
   // 上位10件を取得
   const topTenPosts = sortedBlogPosts.slice(0, 10) as (PageBlogPost & { viewCount: number })[]
 
-  return <PopularBlogPosts articles={topTenPosts} title={title} viewCountText={viewCountText} />
+  return <PopularBlogPosts articles={topTenPosts} title={t('PopularArticleList.title')} viewCountText={t('Article.views')} />
 }

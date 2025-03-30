@@ -34,3 +34,4 @@ export enum CONCEPT_SCHEME {
   REGIONS = 'Regions'
 }
 export const ARTICLE_PATH = 'articles'
+export const BOOKMARKS_PATH = 'bookmarks'

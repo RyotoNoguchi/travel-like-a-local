@@ -3,6 +3,7 @@ import { ReportView } from '@/app/ui/components/atoms/anaylytics/viewcount'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { CalendarIcon } from '@/app/ui/components/atoms/icons/calendar-icon'
 import { EyeIcon } from '@/app/ui/components/atoms/icons/eye-icon'
+import { BookmarkButtonContainer } from '@/app/ui/components/molecules/bookmark-button/container'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
 import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents'
 import { type LANGUAGE } from '@/constants'
@@ -10,7 +11,6 @@ import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import classNames from 'classnames'
 import Image from 'next/image'
 import type { FC } from 'react'
-import { BookmarkButtonContainer } from '../../molecules/bookmark-button/container'
 
 type Props = {
   locale: LANGUAGE
@@ -47,6 +47,7 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
                 height={28}
                 strokeColor={{ active: COLORS.BLUE_600, inactive: COLORS.SLATE_300 }}
                 fillColor={{ active: COLORS.BLUE_600, inactive: COLORS.WHITE }}
+                isBookmarksPage={false}
               />
             </div>
             <div className="flex justify-between">

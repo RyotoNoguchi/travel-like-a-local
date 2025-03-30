@@ -3,7 +3,6 @@ import { BlogPostContainer } from '@/app/ui/components/organisms/blog-post/conta
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
-import { getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
@@ -14,14 +13,11 @@ type Props = {
   blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
 }
 
-export const BlogPostDetailPage: FC<Props> = async ({ locale, breadcrumbs, slug, blogPost }) => {
-  const articleT = await getTranslations({ locale, namespace: 'Article' })
-  const popularBlogPostsT = await getTranslations({ locale, namespace: 'PopularArticleList' })
-
+export const BlogPostDetailPage: FC<Props> = ({ locale, breadcrumbs, slug, blogPost }) => {
   if (!blogPost) notFound()
 
   return (
-    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs} popularArticlesTitle={popularBlogPostsT('title')} viewCountText={articleT('views')}>
+    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs}>
       <BlogPostContainer locale={locale} slug={slug} blogPost={blogPost} />
     </ArticleLayout>
   )
