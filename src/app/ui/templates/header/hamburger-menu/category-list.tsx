@@ -25,7 +25,9 @@ export const CategoryList: FC<Props> = ({ categories, isOpen, onBack, backLabel,
   >
     <div className="flex items-center mb-6">
       <button onClick={onBack} className="flex items-center gap-2 text-lg hover:text-primary transition-colors">
-        <ChevronIcon width={24} height={24} />
+        <span className="text-slate-400">
+          <ChevronIcon width={24} height={24} />
+        </span>
         <span>{backLabel}</span>
       </button>
     </div>
