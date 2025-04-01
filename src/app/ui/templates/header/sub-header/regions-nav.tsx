@@ -13,8 +13,16 @@ type Props = {
 
 export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNavVisible }) => {
   // 展開状態を管理するための状態
-  // regionの展開状態 (regionId -> 展開されているかどうか)
-  const [expandedRegions, setExpandedRegions] = useState<Record<string, boolean>>({})
+  // regionの展開状態 (regionId -> 展開されているかどうか) - Initially expand all regions
+  const [expandedRegions, setExpandedRegions] = useState<Record<string, boolean>>(() =>
+    regionsHierarchy.reduce(
+      (acc, region) => {
+        acc[region.id] = true // Set all regions to expanded initially
+        return acc
+      },
+      {} as Record<string, boolean>
+    )
+  )
   // divisionの展開状態 (divisionId -> 展開されているかどうか)
   const [expandedDivisions, setExpandedDivisions] = useState<Record<string, boolean>>({})
   const [visibleDivisions, setVisibleDivisions] = useState<Record<string, boolean>>({})
@@ -111,7 +119,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
   return (
     <nav
       className={classNames(
-        'hidden h-72 w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
+        'hidden h-64 w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
         'transition-all duration-300 ease-in-out',
         'sm:flex',
         isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
