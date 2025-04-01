@@ -119,7 +119,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
   return (
     <nav
       className={classNames(
-        'hidden h-64 w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
+        'hidden h-[500px] lg:h-64 w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
         'transition-all duration-300 ease-in-out',
         'sm:flex',
         isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
@@ -127,7 +127,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
       onMouseEnter={() => setIsNavVisible(true)}
       onMouseLeave={() => setIsNavVisible(false)}
     >
-      <ul className="w-full grid grid-cols-9 gap-4 px-4 items-start justify-center py-4">
+      <ul className="w-full grid grid-cols-5 lg:grid-cols-9 gap-4 px-4 items-start justify-center py-4 grid-rows-[240px]">
         {regionsHierarchy.map((region) => (
           <li className="flex flex-col items-start w-full" key={region.id}>
             <div className="flex items-center gap-2 justify-between cursor-pointer h-5">
