@@ -28,12 +28,38 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
     }))
   }
 
-  // divisionの展開状態を切り替える
-  const toggleDivision = (divisionId: string) => {
-    setExpandedDivisions((prev) => ({
-      ...prev,
-      [divisionId]: !prev[divisionId]
-    }))
+  // divisionの展開状態を切り替える (同一region内では1つだけ展開)
+  const toggleDivision = (regionId: string, divisionId: string) => {
+    setExpandedDivisions((prev) => {
+      const isCurrentlyExpanded = prev[divisionId]
+      const newExpandedState: Record<string, boolean> = {}
+
+      // Find the specific region
+      const region = regionsHierarchy.find((r) => r.id === regionId)
+      if (!region) {
+        return prev // Should not happen
+      }
+
+      // Iterate through all divisions in the hierarchy to build the new state
+      regionsHierarchy.forEach((r) => {
+        r.divisions.forEach((d) => {
+          if (r.id === regionId) {
+            // If this division is the one clicked and it was closed, open it
+            if (d.id === divisionId && !isCurrentlyExpanded) {
+              newExpandedState[d.id] = true
+            } else {
+              // Otherwise (either different division in the same region, or the clicked one was open), close it
+              newExpandedState[d.id] = false
+            }
+          } else {
+            // Keep the state of divisions in other regions
+            newExpandedState[d.id] = prev[d.id] || false
+          }
+        })
+      })
+
+      return newExpandedState
+    })
   }
 
   useEffect(() => {
@@ -85,18 +111,18 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
   return (
     <nav
       className={classNames(
-        'hidden h-full w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
+        'hidden h-72 w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
         'transition-all duration-300 ease-in-out',
-        'sm:flex',
-        isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
+        'sm:flex'
+        // isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
       )}
       onMouseEnter={() => setIsNavVisible(true)}
       onMouseLeave={() => setIsNavVisible(false)}
     >
       <ul className="w-full grid grid-cols-9 gap-4 px-4 items-start justify-center py-4">
         {regionsHierarchy.map((region) => (
-          <li className="flex flex-col" key={region.id}>
-            <div className="flex items-center justify-between cursor-pointer">
+          <li className="flex flex-col items-start" key={region.id}>
+            <div className="flex items-center gap-2 justify-between cursor-pointer">
               <Link
                 href={`/articles/${region.label.toLowerCase()}`}
                 className="hover-animation hover:text-primary text-xl font-semibold text-left flex-grow leading-none"
@@ -112,8 +138,8 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
               {region.divisions.length > 0 && (
                 <button onClick={() => toggleRegion(region.id)} className="p-1 hover:bg-gray-100 rounded-full transition-transform">
                   <ChevronIcon
-                    width={16}
-                    height={16}
+                    width={24}
+                    height={24}
                     className={classNames('transition-transform duration-300', expandedRegions[region.id] ? 'rotate-90' : '')}
                   />
                 </button>
@@ -142,17 +168,17 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                         onClick={(e) => {
                           if (division.subDivisions.length > 0) {
                             e.preventDefault() // リンクのデフォルト動作を停止
-                            toggleDivision(division.id)
+                            toggleDivision(region.id, division.id)
                           }
                         }}
                       >
                         {division.label}
                       </Link>
                       {division.subDivisions.length > 0 && (
-                        <button onClick={() => toggleDivision(division.id)} className="p-1 hover:bg-gray-100 rounded-full transition-transform">
+                        <button onClick={() => toggleDivision(region.id, division.id)} className="hover:bg-gray-100 rounded-full transition-transform">
                           <ChevronIcon
-                            width={14}
-                            height={14}
+                            width={18}
+                            height={18}
                             className={classNames('transition-transform duration-300', expandedDivisions[division.id] ? 'rotate-90' : '')}
                           />
                         </button>
