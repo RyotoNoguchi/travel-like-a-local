@@ -14,13 +14,17 @@ import { Link, useRouter } from '@/i18n/routing'
 import type { ButtonConfig } from '@/types/button'
 import type { Category } from '@/types/category'
 import type { NavLinkType } from '@/types/navLinks'
+import type { RegionHierarchy } from '@/types/region'
 import classNames from 'classnames'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { useState, type FC } from 'react'
+import { RegionNav } from './region-nav'
+import { RegionsNav } from './sub-header/regions-nav'
 
 type Props = {
   categories: Category[]
+  regionsHierarchy: RegionHierarchy[]
   locale: LANGUAGE
   navLinks: NavLinkType[]
   subtitle: string
@@ -32,8 +36,9 @@ type Props = {
   languageTitle: string
 }
 
-export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks, hamburgerMenuNavLinks, languageTitle }) => {
-  const [isNavVisible, setIsNavVisible] = useState(false)
+export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks, hamburgerMenuNavLinks, languageTitle, regionsHierarchy }) => {
+  const [isCategoryNavVisible, setIsCategoryNavVisible] = useState(false)
+  const [isRegionNavVisible, setIsRegionNavVisible] = useState(false)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const t = useTranslations()
   const { data: session } = useSession()
@@ -68,10 +73,12 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
         <div className="flex gap-1">
           <nav className="hidden sm:flex text-xl items-center">
             <ul className="flex items-start gap-4 h-6">
-              {navLinks.map(({ icon, label, href, isCategory }) => (
+              {navLinks.map(({ icon, label, href, isCategory, isDivision }) => (
                 <li key={href}>
                   {isCategory ? (
-                    <CategoryNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isNavVisible} onHover={setIsNavVisible} />
+                    <CategoryNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isCategoryNavVisible} onHover={setIsCategoryNavVisible} />
+                  ) : isDivision ? (
+                    <RegionNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isRegionNavVisible} onHover={setIsRegionNavVisible} />
                   ) : (
                     <NavLink key={label} icon={icon} label={label} href={href} gap="gap-0" onClick={(e: React.MouseEvent) => handleClick(e, href)} />
                   )}
@@ -94,7 +101,8 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
           <HamburgerMenu navLinks={hamburgerMenuNavLinks} locale={locale} categories={categories} handleClick={handleClick} />
         </div>
       </header>
-      <CategoriesNav categories={categories} isNavVisible={isNavVisible} setIsNavVisible={setIsNavVisible} />
+      <CategoriesNav categories={categories} isNavVisible={isCategoryNavVisible} setIsNavVisible={setIsCategoryNavVisible} />
+      <RegionsNav regionsHierarchy={regionsHierarchy} isNavVisible={isRegionNavVisible} setIsNavVisible={setIsRegionNavVisible} />
       <PopupContainer
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
