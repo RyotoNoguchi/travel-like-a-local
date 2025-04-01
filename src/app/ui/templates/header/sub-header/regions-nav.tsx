@@ -113,16 +113,16 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
       className={classNames(
         'hidden h-72 w-full justify-center items-start fixed top-14 left-0 right-0 z-50 bg-white drop-shadow-md',
         'transition-all duration-300 ease-in-out',
-        'sm:flex'
-        // isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
+        'sm:flex',
+        isNavVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-1 pointer-events-none'
       )}
       onMouseEnter={() => setIsNavVisible(true)}
       onMouseLeave={() => setIsNavVisible(false)}
     >
       <ul className="w-full grid grid-cols-9 gap-4 px-4 items-start justify-center py-4">
         {regionsHierarchy.map((region) => (
-          <li className="flex flex-col items-start" key={region.id}>
-            <div className="flex items-center gap-2 justify-between cursor-pointer">
+          <li className="flex flex-col items-start w-full" key={region.id}>
+            <div className="flex items-center gap-2 justify-between cursor-pointer h-5">
               <Link
                 href={`/articles/${region.label.toLowerCase()}`}
                 className="hover-animation hover:text-primary text-xl font-semibold text-left flex-grow leading-none"
@@ -136,11 +136,11 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                 {region.label}
               </Link>
               {region.divisions.length > 0 && (
-                <button onClick={() => toggleRegion(region.id)} className="p-1 hover:bg-gray-100 rounded-full transition-transform">
+                <button onClick={() => toggleRegion(region.id)} className="p-1 rounded-full transition-transform group text-slate-400">
                   <ChevronIcon
                     width={24}
                     height={24}
-                    className={classNames('transition-transform duration-300', expandedRegions[region.id] ? 'rotate-90' : '')}
+                    className={classNames('transition-transform duration-300 group-hover:text-primary', expandedRegions[region.id] ? 'rotate-90' : '')}
                   />
                 </button>
               )}
@@ -175,11 +175,17 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                         {division.label}
                       </Link>
                       {division.subDivisions.length > 0 && (
-                        <button onClick={() => toggleDivision(region.id, division.id)} className="hover:bg-gray-100 rounded-full transition-transform">
+                        <button
+                          onClick={() => toggleDivision(region.id, division.id)}
+                          className="hover:bg-gray-100 rounded-full transition-transform group text-slate-400"
+                        >
                           <ChevronIcon
                             width={18}
                             height={18}
-                            className={classNames('transition-transform duration-300', expandedDivisions[division.id] ? 'rotate-90' : '')}
+                            className={classNames(
+                              'transition-transform duration-300 group-hover:text-primary',
+                              expandedDivisions[division.id] ? 'rotate-90' : ''
+                            )}
                           />
                         </button>
                       )}

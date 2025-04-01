@@ -17,7 +17,11 @@ export const Breadcrumbs: FC<Props> = ({ breadcrumbs }) => (
         const isFirst = i === 0
         return (
           <li key={breadcrumb.href} className="flex items-center">
-            {!isFirst && <ChevronIcon width={20} height={20} />}
+            {!isFirst && (
+              <div className="text-slate-300">
+                <ChevronIcon width={20} height={20} />
+              </div>
+            )}
             {isFirst ? (
               <Link href="/" className="flex items-center cursor-pointer hover-animation pb-1">
                 <HomeIcon width={20} height={20} />
