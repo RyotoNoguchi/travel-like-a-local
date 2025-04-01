@@ -135,6 +135,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                 href={`/articles/${region.label.toLowerCase()}`}
                 className="hover-animation hover:text-primary text-xl font-semibold text-left flex-grow leading-none"
                 onClick={() => {
+                  setIsNavVisible(false) // Close nav on click
                   if (region.divisions.length > 0) {
                     toggleRegion(region.id)
                   }
@@ -173,6 +174,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                         href={`/articles/${region.label.toLowerCase()}/${division.label.toLowerCase()}`}
                         className="hover-animation hover:text-primary text-lg flex-grow leading-none"
                         onClick={() => {
+                          setIsNavVisible(false) // Close nav on click
                           if (division.subDivisions.length > 0) {
                             toggleDivision(region.id, division.id)
                           }
@@ -214,6 +216,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                             <Link
                               href={`/articles/${region.label.toLowerCase()}/${division.label.toLowerCase()}/${subDivision.label.toLowerCase()}`}
                               className="hover-animation hover:text-primary"
+                              onClick={() => setIsNavVisible(false)} // Close nav on click
                             >
                               {subDivision.label}
                             </Link>
