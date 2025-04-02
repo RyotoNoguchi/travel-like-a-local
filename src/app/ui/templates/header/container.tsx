@@ -69,7 +69,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
 
   const listNavLinks = (px: number) => [
     { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.search'), href: '/search' },
-    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/#', isDivision: true },
+    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/#', isRegion: true },
     {
       icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />,
       label: t('NavMenu.category'),

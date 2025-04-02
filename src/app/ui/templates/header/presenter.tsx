@@ -73,11 +73,11 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
         <div className="flex gap-1">
           <nav className="hidden sm:flex text-xl items-center">
             <ul className="flex items-start gap-4 h-6">
-              {navLinks.map(({ icon, label, href, isCategory, isDivision }) => (
+              {navLinks.map(({ icon, label, href, isCategory, isRegion }) => (
                 <li key={href}>
                   {isCategory ? (
                     <CategoryNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isCategoryNavVisible} onHover={setIsCategoryNavVisible} />
-                  ) : isDivision ? (
+                  ) : isRegion ? (
                     <RegionNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isRegionNavVisible} onHover={setIsRegionNavVisible} />
                   ) : (
                     <NavLink key={label} icon={icon} label={label} href={href} gap="gap-0" onClick={(e: React.MouseEvent) => handleClick(e, href)} />
@@ -98,7 +98,13 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
               </li>
             </ul>
           </nav>
-          <HamburgerMenu navLinks={hamburgerMenuNavLinks} locale={locale} categories={categories} handleClick={handleClick} />
+          <HamburgerMenu
+            navLinks={hamburgerMenuNavLinks}
+            locale={locale}
+            categories={categories}
+            regionsHierarchy={regionsHierarchy}
+            handleClick={handleClick}
+          />
         </div>
       </header>
       <CategoriesNav categories={categories} isNavVisible={isCategoryNavVisible} setIsNavVisible={setIsCategoryNavVisible} />
