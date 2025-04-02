@@ -108,7 +108,6 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
       )}
     >
       <div className="flex items-center mb-6 sticky top-0 bg-white pt-4 pb-2 z-10">
-        {' '}
         {/* Made header sticky */}
         <button onClick={onBack} className="flex items-center gap-2 text-lg hover:text-primary transition-colors">
           <span className="text-slate-400">
@@ -117,13 +116,12 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
           <span>{backLabel}</span>
         </button>
       </div>
-      <ul className="flex flex-col gap-1 pb-4">
-        {' '}
+      <ul className="flex flex-col gap-4 pb-4">
         {/* Reduced gap */}
         {regionsHierarchy.map((region) => (
           <li key={region.id} className="flex flex-col items-start w-full">
             {/* Region Item */}
-            <div className="flex items-center justify-between w-full p-2 hover:bg-gray-50 rounded-md">
+            <div className="flex items-center justify-between w-full hover:bg-gray-50 rounded-md">
               <Link
                 href={`/articles/${formatNameForUrl(region.label).toLowerCase()}`}
                 className="text-2xl xs:text-3xl leading-none flex-grow"
@@ -131,6 +129,7 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                   if (region.divisions.length === 0) {
                     onClose() // Close menu if it's a direct link
                   } else {
+                    onClose()
                     toggleRegion(region.id) // Toggle if it has children
                   }
                 }}
@@ -138,10 +137,10 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                 {region.label}
               </Link>
               {region.divisions.length > 0 && (
-                <button onClick={() => toggleRegion(region.id)} className="p-1 text-slate-400">
+                <button onClick={() => toggleRegion(region.id)} className="text-slate-400 w-full flex justify-end">
                   <ChevronIcon
-                    width={20}
-                    height={20}
+                    width={28}
+                    height={28}
                     className={classNames('transition-transform duration-300', expandedRegions[region.id] ? 'rotate-90' : '')}
                   />
                 </button>
@@ -149,7 +148,7 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
             </div>
             {/* Divisions List (Accordion) */}
             {expandedRegions[region.id] === true && region.divisions.length > 0 === true && (
-              <ul className="flex flex-col justify-start items-start gap-1 pl-4 mt-1 w-full">
+              <ul className="flex flex-col justify-start items-start gap-1 pl-4 w-full">
                 {region.divisions.map((division, index) => (
                   <li
                     key={division.id}
@@ -162,14 +161,15 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                     }}
                   >
                     {/* Division Item */}
-                    <div className="flex items-center justify-between w-full p-2 hover:bg-gray-50 rounded-md">
+                    <div className="flex items-center justify-between hover:bg-gray-50 rounded-md">
                       <Link
                         href={`/articles/${formatNameForUrl(region.label).toLowerCase()}/${formatNameForUrl(division.label).toLowerCase()}`}
-                        className="text-xl xs:text-2xl leading-none flex-grow"
+                        className="text-xl xs:text-2xl leading-none flex-grow w-full"
                         onClick={() => {
                           if (division.subDivisions.length === 0) {
-                            onClose() // Close menu if it's a direct link
+                            onClose()
                           } else {
+                            onClose()
                             toggleDivision(region.id, division.id) // Toggle if it has children
                           }
                         }}
@@ -177,10 +177,10 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                         {division.label}
                       </Link>
                       {division.subDivisions.length > 0 && (
-                        <button onClick={() => toggleDivision(region.id, division.id)} className="p-1 text-slate-400">
+                        <button onClick={() => toggleDivision(region.id, division.id)} className="text-slate-400 w-full flex justify-end">
                           <ChevronIcon
-                            width={18}
-                            height={18}
+                            width={20}
+                            height={20}
                             className={classNames('transition-transform duration-300', expandedDivisions[division.id] ? 'rotate-90' : '')}
                           />
                         </button>
@@ -189,7 +189,7 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
 
                     {/* SubDivisions List (Accordion) */}
                     {expandedDivisions[division.id] === true && division.subDivisions.length > 0 === true && (
-                      <ul className="flex flex-col justify-start items-start gap-1 pl-4 mt-1 w-full">
+                      <ul className="flex flex-col justify-start items-start gap-1 pl-4 w-full">
                         {division.subDivisions.map((subDivision, subIndex) => (
                           <li
                             key={subDivision.id}
@@ -204,7 +204,7 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                             {/* SubDivision Item */}
                             <Link
                               href={`/articles/${formatNameForUrl(region.label).toLowerCase()}/${formatNameForUrl(division.label).toLowerCase()}/${formatNameForUrl(subDivision.label).toLowerCase()}`}
-                              className="block p-2 hover:bg-gray-50 rounded-md text-lg xs:text-xl leading-none"
+                              className="block hover:bg-gray-50 rounded-md text-lg xs:text-xl leading-none"
                               onClick={onClose}
                             >
                               {subDivision.label}
