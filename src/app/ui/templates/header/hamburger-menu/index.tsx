@@ -49,12 +49,9 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, regions
     setIsOpen(false)
   }
 
-  // Handlers for Regions List
   const handleRegionClick = (e: React.MouseEvent) => {
-    console.log('%csrc/app/ui/templates/header/hamburger-menu/index.tsx:54 isRegionOpen', 'color: #26bfa5;', isRegionOpen)
     e.preventDefault()
     setIsRegionOpen(true)
-    console.log('%csrc/app/ui/templates/header/hamburger-menu/index.tsx:57 isRegionOpen', 'color: #047857;', isRegionOpen)
   }
   const handleRegionBack = () => {
     setIsRegionOpen(false)
@@ -86,12 +83,12 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, regions
             ) => (
               <li key={href} className="h-8 sm:h-7">
                 {isCategory ? (
-                  <button className="flex items-center gap-2 w-full h-8 sm:h-7" onClick={handleCategoryClick}>
+                  <button className="flex items-center gap-2 w-full h-8 sm:h-7 hover-animation" onClick={handleCategoryClick}>
                     {icon}
                     <span>{label}</span>
                   </button>
-                ) : isRegion ? ( // Handle region link
-                  <button className="flex items-center gap-2 w-full h-8 sm:h-7" onClick={handleRegionClick}>
+                ) : isRegion ? (
+                  <button className="flex items-center gap-2 w-full h-8 sm:h-7 hover-animation" onClick={handleRegionClick}>
                     {icon}
                     <span>{label}</span>
                   </button>
