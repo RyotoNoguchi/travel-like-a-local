@@ -12,7 +12,7 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cache-data": "npx tsx scripts/cache-concept-schemes.ts && npx tsx scripts/cache-concepts.ts"
+    "cache-data": "dotenv -e .env -e .env.local -- npx tsx scripts/cache-concept-schemes.ts && dotenv -e .env -e .env.local -- npx tsx scripts/cache-concepts.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.12.7",

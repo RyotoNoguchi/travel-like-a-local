@@ -26,7 +26,7 @@
   },
   {
     "id": "37tcbi79v1EN5hsrQNqcl2",
-    "label": "Practical Information",
+    "label": "Practical Info",
     "upperLevelConceptIds": []
   },
   {
@@ -353,5 +353,25 @@
     "id": "2dC0RPrpnNhffPtNVgzTc3",
     "label": "Gifu",
     "upperLevelConceptIds": ["uH9r8Qjnt9W0bD47kjXlw"]
+  },
+  {
+    "id": "1ksvkm7bhR3SQT2o4IxhFA",
+    "label": "Northern Hokkaido",
+    "upperLevelConceptIds": ["4HpOvLoVoRlY1T0wmVfxX2"]
+  },
+  {
+    "id": "3xbQgJlb5nwsz7HkNYjw58",
+    "label": "Central Hokkaido",
+    "upperLevelConceptIds": ["4HpOvLoVoRlY1T0wmVfxX2"]
+  },
+  {
+    "id": "3YA5TQCi4YvQaPazimqCMw",
+    "label": "Southern Hokkaido",
+    "upperLevelConceptIds": ["4HpOvLoVoRlY1T0wmVfxX2"]
+  },
+  {
+    "id": "3cy5768OUygHVxdTAEi5gG",
+    "label": "Easten Hokkaido",
+    "upperLevelConceptIds": ["4HpOvLoVoRlY1T0wmVfxX2"]
   }
 ]
