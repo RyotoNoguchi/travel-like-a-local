@@ -1,3 +1,5 @@
+import { CONCEPT_SCHEME } from '@/constants' // Added
+import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes' // Added
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import { formatNameForUrl } from '@/utils/url-helpers'
 
@@ -19,43 +21,61 @@ export const parseArticlePath = async (path: string[] = []) => {
   let prefecture = ''
   let slug = ''
 
+  // コンセプトとコンセプトスキームを取得
+  const [concepts, conceptSchemes] = await Promise.all([getConcepts(), getConceptSchemes()]) // Fetch both
+
+  // カテゴリスキームとIDを取得
+  const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
+  const categoryConceptIds = categoryScheme?.topConceptIds || []
+
   // 最後のセグメントがslugかどうかを判定
-  const concepts = await getConcepts()
   const lastSegment = pathSegments[pathSegments.length - 1]
 
   // 最後のセグメントがコンセプトに含まれているか確認
   const isLastSegmentConcept = concepts.some((concept) => formatNameForUrl(concept.label.toLowerCase()) === lastSegment)
 
+  // 最初のセグメントがカテゴリかどうかを判定するヘルパー関数
+  const isFirstSegmentCategory = (segments: string[]): boolean => {
+    if (segments.length === 0) return false
+    const firstSegmentConcept = concepts.find((concept) => formatNameForUrl(concept.label.toLowerCase()) === segments[0])
+    return firstSegmentConcept ? categoryConceptIds.includes(firstSegmentConcept.id) : false
+  }
+
   // 最後のセグメントがコンセプトの場合は記事一覧ページ、そうでない場合は記事詳細ページ
   if (isLastSegmentConcept) {
     // 記事一覧ページの場合のパス解析
-    if (pathSegments.length >= 1) {
-      category = pathSegments[0]
-    }
-    if (pathSegments.length >= 2) {
-      region = pathSegments[1]
-    }
-    if (pathSegments.length >= 3) {
-      area = pathSegments[2]
-    }
-    if (pathSegments.length >= 4) {
-      prefecture = pathSegments[3]
+    const firstIsCategory = isFirstSegmentCategory(pathSegments)
+
+    if (firstIsCategory) {
+      // 最初のセグメントがカテゴリの場合 (Current Logic)
+      if (pathSegments.length >= 1) category = pathSegments[0]
+      if (pathSegments.length >= 2) region = pathSegments[1]
+      if (pathSegments.length >= 3) area = pathSegments[2]
+      if (pathSegments.length >= 4) prefecture = pathSegments[3]
+    } else {
+      // 最初のセグメントがカテゴリでない場合 (Shifted Logic)
+      if (pathSegments.length >= 1) region = pathSegments[0]
+      if (pathSegments.length >= 2) area = pathSegments[1]
+      if (pathSegments.length >= 3) prefecture = pathSegments[2]
+      // Note: Max 3 geographical levels assumed if no category
     }
   } else {
     // 記事詳細ページの場合のパス解析
     slug = pathSegments.pop() || '' // 最後の要素をslugとして取得
+    const firstIsCategory = isFirstSegmentCategory(pathSegments) // Check remaining segments
 
-    if (pathSegments.length >= 1) {
-      category = pathSegments[0]
-    }
-    if (pathSegments.length >= 2) {
-      region = pathSegments[1]
-    }
-    if (pathSegments.length >= 3) {
-      area = pathSegments[2]
-    }
-    if (pathSegments.length >= 4) {
-      prefecture = pathSegments[3]
+    if (firstIsCategory) {
+      // 最初のセグメントがカテゴリの場合 (Current Logic)
+      if (pathSegments.length >= 1) category = pathSegments[0]
+      if (pathSegments.length >= 2) region = pathSegments[1]
+      if (pathSegments.length >= 3) area = pathSegments[2]
+      if (pathSegments.length >= 4) prefecture = pathSegments[3]
+    } else {
+      // 最初のセグメントがカテゴリでない場合 (Shifted Logic)
+      if (pathSegments.length >= 1) region = pathSegments[0]
+      if (pathSegments.length >= 2) area = pathSegments[1]
+      if (pathSegments.length >= 3) prefecture = pathSegments[2]
+      // Note: Max 3 geographical levels assumed if no category
     }
   }
   return {
