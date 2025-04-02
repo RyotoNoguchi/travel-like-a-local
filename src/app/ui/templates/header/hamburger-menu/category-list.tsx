@@ -39,7 +39,7 @@ export const CategoryList: FC<Props> = ({ categories, isOpen, onBack, backLabel,
             className="flex items-center xs:items-end gap-3 p-3 hover:bg-gray-50 rounded-md transition-colors"
             onClick={onClose}
           >
-            <span className="text-gray-600">{CATEGORY_ICONS[category.label]}</span>
+            <span className="text-gray-600">{CATEGORY_ICONS[formatNameForUrl(category.label).toLowerCase()]}</span>
             <span className="text-2xl xs:text-3.5xl leading-none">{category.translatedLabel || category.label}</span>
           </Link>
         </li>

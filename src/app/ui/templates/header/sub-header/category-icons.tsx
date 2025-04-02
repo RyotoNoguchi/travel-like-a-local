@@ -8,12 +8,12 @@ import { SceneryIcon } from '@/app/ui/components/atoms/icons/scenery-icon'
 import { ShopIcon } from '@/app/ui/components/atoms/icons/shop-icon'
 
 export const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  'Food & Cuisine': <FoodIcon width={36} height={36} />,
-  Shopping: <ShopIcon width={36} height={36} />,
-  'Nature & Outdoors': <SceneryIcon width={36} height={36} />,
-  'Culture & History': <CultureIcon width={36} height={36} />,
-  Accommodation: <AccommodationIcon width={36} height={36} />,
-  'Practical Information': <InfoIcon width={36} height={36} />,
-  'Events & Festivals': <EventCalendarIcon width={36} height={36} />,
-  'Onsen & Wellness': <OnsenIcon width={36} height={36} />
+  'food-and-cuisine': <FoodIcon width={36} height={36} />,
+  shopping: <ShopIcon width={36} height={36} />,
+  'nature-and-outdoors': <SceneryIcon width={36} height={36} />,
+  'culture-and-history': <CultureIcon width={36} height={36} />,
+  accommodation: <AccommodationIcon width={36} height={36} />,
+  'practical-info': <InfoIcon width={36} height={36} />,
+  'events-and-festivals': <EventCalendarIcon width={36} height={36} />,
+  'onsen-and-wellness': <OnsenIcon width={36} height={36} />
 }
