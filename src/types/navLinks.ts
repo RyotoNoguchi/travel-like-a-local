@@ -5,5 +5,5 @@ export type NavLinkType = {
   label: string
   href: string
   isCategory?: boolean
-  isDivision?: boolean
+  isRegion?: boolean
 }
