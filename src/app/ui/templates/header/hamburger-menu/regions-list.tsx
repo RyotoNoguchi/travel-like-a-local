@@ -2,6 +2,7 @@
 import { ChevronIcon } from '@/app/ui/components/atoms/icons/chevron-icon'
 import { Link } from '@/i18n/routing'
 import type { RegionHierarchy } from '@/types/region'
+import { formatNameForUrl } from '@/utils/url-helpers'
 import classNames from 'classnames'
 import { type FC, useEffect, useState } from 'react'
 
@@ -124,7 +125,7 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
             {/* Region Item */}
             <div className="flex items-center justify-between w-full p-2 hover:bg-gray-50 rounded-md">
               <Link
-                href={`/articles/${region.label.toLowerCase()}`}
+                href={`/articles/${formatNameForUrl(region.label).toLowerCase()}`}
                 className="text-2xl xs:text-3xl leading-none flex-grow"
                 onClick={() => {
                   if (region.divisions.length === 0) {
@@ -163,7 +164,7 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                     {/* Division Item */}
                     <div className="flex items-center justify-between w-full p-2 hover:bg-gray-50 rounded-md">
                       <Link
-                        href={`/articles/${region.label.toLowerCase()}/${division.label.toLowerCase()}`}
+                        href={`/articles/${formatNameForUrl(region.label).toLowerCase()}/${formatNameForUrl(division.label).toLowerCase()}`}
                         className="text-xl xs:text-2xl leading-none flex-grow"
                         onClick={() => {
                           if (division.subDivisions.length === 0) {

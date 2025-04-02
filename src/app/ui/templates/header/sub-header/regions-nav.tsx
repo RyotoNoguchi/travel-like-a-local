@@ -2,6 +2,7 @@
 import { ChevronIcon } from '@/app/ui/components/atoms/icons/chevron-icon'
 import { Link } from '@/i18n/routing'
 import type { RegionHierarchy } from '@/types/region'
+import { formatNameForUrl } from '@/utils/url-helpers'
 import classNames from 'classnames'
 import { useEffect, useState, type Dispatch, type FC, type SetStateAction } from 'react'
 
@@ -132,7 +133,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
           <li className="flex flex-col items-start w-full" key={region.id}>
             <div className="flex items-center gap-2 justify-between cursor-pointer h-5">
               <Link
-                href={`/articles/${region.label.toLowerCase()}`}
+                href={`/articles/${formatNameForUrl(region.label).toLowerCase()}`}
                 className="hover-animation hover:text-primary text-xl font-semibold text-left flex-grow leading-none"
                 onClick={() => {
                   setIsNavVisible(false) // Close nav on click
@@ -171,7 +172,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                   >
                     <div className="flex items-center justify-between cursor-pointer">
                       <Link
-                        href={`/articles/${region.label.toLowerCase()}/${division.label.toLowerCase()}`}
+                        href={`/articles/${formatNameForUrl(region.label).toLowerCase()}/${formatNameForUrl(division.label).toLowerCase()}`}
                         className="hover-animation hover:text-primary text-lg flex-grow leading-none"
                         onClick={() => {
                           setIsNavVisible(false) // Close nav on click
@@ -214,7 +215,7 @@ export const RegionsNav: FC<Props> = ({ regionsHierarchy, isNavVisible, setIsNav
                             }}
                           >
                             <Link
-                              href={`/articles/${region.label.toLowerCase()}/${division.label.toLowerCase()}/${subDivision.label.toLowerCase()}`}
+                              href={`/articles/${formatNameForUrl(region.label).toLowerCase()}/${formatNameForUrl(division.label).toLowerCase()}/${formatNameForUrl(subDivision.label).toLowerCase()}`}
                               className="hover-animation hover:text-primary"
                               onClick={() => setIsNavVisible(false)} // Close nav on click
                             >
