@@ -203,9 +203,9 @@ export const RegionsList: FC<Props> = ({ regionsHierarchy, isOpen, onBack, backL
                           >
                             {/* SubDivision Item */}
                             <Link
-                              href={`/articles/${region.label.toLowerCase()}/${division.label.toLowerCase()}/${subDivision.label.toLowerCase()}`}
+                              href={`/articles/${formatNameForUrl(region.label).toLowerCase()}/${formatNameForUrl(division.label).toLowerCase()}/${formatNameForUrl(subDivision.label).toLowerCase()}`}
                               className="block p-2 hover:bg-gray-50 rounded-md text-lg xs:text-xl leading-none"
-                              onClick={onClose} // Always close on final link click
+                              onClick={onClose}
                             >
                               {subDivision.label}
                             </Link>
