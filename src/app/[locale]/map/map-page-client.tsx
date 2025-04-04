@@ -3,17 +3,21 @@
 import { JapanMap } from '@/app/ui/components/organisms/japan-map/japan-map'
 import { RegionArticleList } from '@/app/ui/components/organisms/region-article-list/region-article-list'
 import type { BlogPostWithHref } from '@/types/blog-post'
-import type { ConceptData } from '@/utils/concept-helper'
 import { type FC, useState } from 'react'
 
+export type Region = {
+  id: string
+  name: string
+}
+
 type Props = {
-  initialRegions: ConceptData[]
+  initialRegions: Region[]
   initialAllPosts: BlogPostWithHref[]
 }
 
 export const MapPageClient: FC<Props> = ({ initialRegions, initialAllPosts }) => {
   // State is managed here
-  const [regions] = useState<ConceptData[]>(initialRegions) // Use initial data
+  const [regions] = useState<Region[]>(initialRegions) // Use initial data
   const [allPosts] = useState<BlogPostWithHref[]>(initialAllPosts) // Use initial data
   const [selectedRegionId, setSelectedRegionId] = useState<string | null>(null)
 
@@ -36,7 +40,7 @@ export const MapPageClient: FC<Props> = ({ initialRegions, initialAllPosts }) =>
         </div>
         <div>
           <h2 className="text-2xl font-semibold mb-4">
-            {selectedRegionId ? `Articles in ${regions.find((r) => r.id === selectedRegionId)?.label || 'Selected Region'}` : 'All Articles'}
+            {selectedRegionId ? `Articles in ${regions.find((r) => r.id === selectedRegionId)?.name || 'Selected Region'}` : 'All Articles'}
           </h2>
           <RegionArticleList articles={filteredPosts} />
         </div>

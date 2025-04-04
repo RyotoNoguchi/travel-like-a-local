@@ -1,13 +1,13 @@
 'use client'
 
-import type { ConceptData } from '@/utils/concept-helper'
+import type { Region } from '@/app/[locale]/map/map-page-client'
 import React from 'react'
 
-interface JapanSvgMapProps {
+type Props = {
   onClick: (event: React.MouseEvent<SVGPathElement>) => void
   onHover?: (event: React.MouseEvent<SVGPathElement>) => void // Optional hover handler
   selectedRegionId: string | null
-  regions: ConceptData[] // Pass regions to map IDs to SVG paths
+  regions: Region[] // Pass regions to map IDs to SVG paths
 }
 
 // TODO: Find and embed an actual SVG map of Japan here.
@@ -24,9 +24,9 @@ const svgPathsData = [
   // ... add all other prefecture paths from the actual SVG
 ]
 
-const JapanSvgMap: React.FC<JapanSvgMapProps> = ({ onClick, onHover, selectedRegionId, regions }) => {
+const JapanSvgMap: React.FC<Props> = ({ onClick, onHover, selectedRegionId, regions }) => {
   // Create a map for quick lookup of region data by label (lowercase)
-  const regionMap = new Map(regions.map((r) => [r.label.toLowerCase(), r]))
+  const regionMap = new Map(regions.map((r) => [r.name.toLowerCase(), r]))
 
   return (
     <svg

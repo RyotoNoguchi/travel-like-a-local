@@ -1,12 +1,12 @@
 'use client' // Required for event handlers and state
 
+import type { Region } from '@/app/[locale]/map/map-page-client'
 import JapanSvgMap from '@/app/ui/components/atoms/japan-svg-map' // Import the SVG component
-import type { ConceptData } from '@/utils/concept-helper'
 import React from 'react'
 
 // Define props type
 interface JapanMapProps {
-  regions: ConceptData[] // Expecting region concepts (prefectures for now)
+  regions: Region[] // Expecting region concepts (prefectures for now)
   onSelectRegion: (regionId: string) => void
   selectedRegionId: string | null
 }

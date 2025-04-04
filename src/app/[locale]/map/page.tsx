@@ -6,15 +6,14 @@ import type { BlogPostWithHref } from '@/types/blog-post'
 import { getRegions } from '@/utils/concept-helper'
 import { getArticleHref } from '@/utils/path-helper'
 import type { FC } from 'react'
+import { MapPageClient } from './map-page-client'
 
-// Props type remains the same
 type Props = {
   params: {
     locale: LANGUAGE
   }
 }
 
-// Component is now async for data fetching
 export const MapPage: FC<Props> = async ({ params }) => {
   const client = createApolloClient()
   const { locale } = await params
@@ -58,11 +57,7 @@ export const MapPage: FC<Props> = async ({ params }) => {
       href: getArticleHref(post.slug)
     }))
 
-  console.log('%csrc/app/[locale]/map/page.tsx:62 postsWithHref', 'color: #26bfa5;', postsWithHref)
-
-  // Render the Client Component and pass data as props
-  // return <MapPageClient initialRegions={fetchedRegions} initialAllPosts={postsWithHref} />
-  return <div>MapPage</div>
+  return <MapPageClient initialRegions={regions} initialAllPosts={postsWithHref} />
 }
 
 export default MapPage
