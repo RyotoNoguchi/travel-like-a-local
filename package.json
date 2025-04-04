@@ -31,6 +31,7 @@
     "next-intl": "^3.26.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-simple-maps": "^3.0.0",
     "swiper": "^11.2.2"
   },
   "devDependencies": {
@@ -50,6 +51,7 @@
     "@types/node": "^20.17.24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-simple-maps": "^3.0.6",
     "@types/web-app-manifest": "^1.0.8",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
@@ -72,6 +74,22 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
+  },
+  "overrides": {
+    "react-simple-maps": {
+      "d3-geo": "^3.1.0",
+      "d3-color": "^3.1.0",
+      "d3-selection": "^3.0.0",
+      "d3-zoom": "^3.0.0",
+      "react": "^16.8.0 || 17.x || 18.x || 19.x",
+      "react-dom": "^16.8.0 || 17.x || 18.x || 19.x"
+    },
+    "d3-interpolate": {
+      "d3-color": "^3.1.0"
+    },
+    "d3-transition": {
+      "d3-color": "^3.1.0"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
