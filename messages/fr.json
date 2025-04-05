@@ -94,6 +94,7 @@
     "articlesInPrefecture": "Articles dans {prefectureName}",
     "selectedRegionFallback": "Région sélectionnée",
     "allArticles": "Tous les articles",
-    "selectPrefecturePrompt": "Sélectionnez une préfecture sur la carte pour voir les articles associés."
+    "selectPrefecturePrompt": "Sélectionnez une préfecture sur la carte pour voir les articles associés.",
+    "metadataDescription": "Explorez les articles sur le Japon par préfecture à l'aide d'une carte interactive. Trouvez des guides de voyage et des conseils pour des régions spécifiques."
   }
 }

@@ -1,4 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
+import { MapPageClient } from '@/app/[locale]/map/map-page-client'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
@@ -6,12 +7,22 @@ import type { BlogPostWithHref } from '@/types/blog-post'
 import type { Prefecture, Region } from '@/types/region'
 import { getPrefectures, getRegions } from '@/utils/concept-helper'
 import { getArticleHref } from '@/utils/path-helper'
+import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import type { FC } from 'react'
-import { MapPageClient } from './map-page-client'
 
 type Props = {
   params: {
     locale: LANGUAGE
+  }
+}
+
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'MapPage' })
+  return {
+    title: t('title'),
+    description: t('metadataDescription')
   }
 }
 
