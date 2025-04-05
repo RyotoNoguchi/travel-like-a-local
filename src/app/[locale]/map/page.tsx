@@ -1,5 +1,6 @@
 import { createApolloClient } from '@/apolloClient'
 import { MapPageClient } from '@/app/[locale]/map/map-page-client'
+import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
@@ -29,6 +30,12 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 export const MapPage: FC<Props> = async ({ params }) => {
   const client = createApolloClient()
   const { locale } = await params
+  const t = await getTranslations({ locale })
+
+  const breadcrumbs = [
+    { label: t('Metadata.home'), href: '' },
+    { label: t('MapPage.title'), href: '/map' }
+  ]
 
   const where: Record<string, unknown> = {}
   const filters: Array<Record<string, unknown>> = []
@@ -70,7 +77,12 @@ export const MapPage: FC<Props> = async ({ params }) => {
       href: getArticleHref(post.slug)
     }))
 
-  return <MapPageClient initialPrefectures={prefectures} initialAllPosts={postsWithHref} />
+  return (
+    <>
+      <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
+      <MapPageClient initialPrefectures={prefectures} initialAllPosts={postsWithHref} breadcrumbs={breadcrumbs} />
+    </>
+  )
 }
 
 export default MapPage
