@@ -18,7 +18,8 @@
     "bookmarks": "Favoris",
     "language": "Français",
     "selectLanguage": "Choisir la langue",
-    "back": "Retour"
+    "back": "Retour",
+    "map": "Carte"
   },
   "Footer": {
     "first": "Menu de navigation",

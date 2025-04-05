@@ -86,3 +86,17 @@ export const parseArticlePath = async (path: string[] = []) => {
     prefecture
   }
 }
+
+/**
+ * Constructs the href for a blog post given its slug and locale.
+ * Assumes a simple /articles/[slug] structure for now.
+ * Adjust if the actual URL structure is more complex (e.g., includes categories/regions).
+ */
+export const getArticleHref = (slug: string | null | undefined): string => {
+  if (!slug) {
+    // Handle cases where slug might be missing
+    console.warn('Attempted to generate article href with missing slug.')
+    return `/articles` // Fallback URL
+  }
+  return `/articles/${slug}`
+}

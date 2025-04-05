@@ -4,7 +4,7 @@ import { BlogPostListPage } from '@/app/ui/articles/pages/blog-posts-page'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
-import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
+import { getAllBlogPosts } from '@/lib/contentful/get-blog-posts'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
@@ -75,7 +75,8 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 }
 
 export const generateStaticParams = async () => {
-  const articles = await getBlogPosts()
+  // デフォルトロケールでまずブログ記事を取得
+  const articles = await getAllBlogPosts()
 
   const params = []
 

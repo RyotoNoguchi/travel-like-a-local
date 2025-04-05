@@ -16,7 +16,7 @@ type TaxonomyResult = {
  * @param articleConceptIds 記事に関連付けられたコンセプトID
  * @returns categoryName, rawCategoryName, regionName, areaName, prefectureName
  */
-export async function extractTaxonomyInfo(articleConceptIds: string[]): Promise<TaxonomyResult> {
+export const extractTaxonomyInfo = async (articleConceptIds: string[]): Promise<TaxonomyResult> => {
   // コンセプトとコンセプトスキームを取得
   const concepts = await getConcepts()
   const conceptSchemes = await getConceptSchemes()
