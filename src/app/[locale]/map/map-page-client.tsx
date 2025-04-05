@@ -1,7 +1,7 @@
 'use client'
 
 import { JapanMap } from '@/app/ui/components/organisms/japan-map'
-import { RegionArticleList } from '@/app/ui/components/organisms/region-article-list'
+import { PrefectureArticleList } from '@/app/ui/components/organisms/prefecture-article-list'
 import type { BlogPostWithHref } from '@/types/blog-post'
 import type { Prefecture } from '@/types/region'
 import { type FC, useState } from 'react'
@@ -33,7 +33,7 @@ export const MapPageClient: FC<Props> = ({ initialPrefectures, initialAllPosts }
           <h2 className="text-2xl font-semibold mb-4">
             {selectedRegionId ? `Articles in ${prefectures.find((r) => r.id === selectedRegionId)?.name || 'Selected Region'}` : 'All Articles'}
           </h2>
-          <RegionArticleList blogPosts={filteredPosts} />
+          <PrefectureArticleList blogPosts={filteredPosts} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { CONCEPT_SCHEME, type LANGUAGE } from '@/constants'
+import { CONCEPT_SCHEME } from '@/constants'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import { loadConcepts, loadConceptSchemes } from './concept-helper'
 
@@ -87,15 +87,10 @@ export const parseArticlePath = async (path: string[] = []) => {
   }
 }
 
-/**
- * Constructs the href for a blog post given its slug and locale.
- * Assumes a simple /articles/[slug] structure for now.
- * Adjust if the actual URL structure is more complex (e.g., includes categories/regions).
- */
-export const getArticleHref = (slug: string | null | undefined, locale: LANGUAGE): string => {
+export const getArticleHref = (slug: string | null | undefined): string => {
   if (!slug) {
     console.warn('Attempted to generate article href with missing slug.')
-    return `/${locale}/articles` // Fallback URL
+    return `/articles` // Fallback URL
   }
-  return `/${locale}/articles/${slug}`
+  return `/articles/${slug}`
 }

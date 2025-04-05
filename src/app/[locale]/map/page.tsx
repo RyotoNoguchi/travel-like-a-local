@@ -56,7 +56,7 @@ export const MapPage: FC<Props> = async ({ params }) => {
     ?.filter((post): post is NonNullable<typeof post> => post !== null)
     .map((post) => ({
       ...post,
-      href: getArticleHref(post.slug, locale)
+      href: getArticleHref(post.slug)
     }))
 
   return <MapPageClient initialPrefectures={prefectures} initialAllPosts={postsWithHref} />
