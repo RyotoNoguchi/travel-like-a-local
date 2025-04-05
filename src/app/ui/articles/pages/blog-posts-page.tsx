@@ -4,8 +4,8 @@ import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/con
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
-import { getConcepts } from '@/lib/contentful/get-concepts'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
+import { loadConcepts } from '@/utils/concept-helper'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import { getTranslations } from 'next-intl/server'
 import type { FC } from 'react'
@@ -24,7 +24,7 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
   const t = await getTranslations({ locale })
 
   const client = createApolloClient()
-  const concepts = await getConcepts()
+  const concepts = await loadConcepts()
   const where: Record<string, unknown> = {}
   const filters: Array<Record<string, unknown>> = []
   const limit = 10
