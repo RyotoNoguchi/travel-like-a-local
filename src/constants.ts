@@ -35,3 +35,5 @@ export enum CONCEPT_SCHEME {
 }
 export const ARTICLE_PATH = 'articles'
 export const BOOKMARKS_PATH = 'bookmarks'
+
+export const GEO_URL = 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson'

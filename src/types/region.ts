@@ -10,3 +10,13 @@ export type RegionHierarchy = {
     }[]
   }[]
 }
+
+export type Prefecture = {
+  id: string
+  name: string
+}
+
+export type Region = {
+  id: string
+  name: string
+}

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { CONCEPT_SCHEME } from '@/constants' // Added
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes' // Added
+import { CONCEPT_SCHEME, type LANGUAGE } from '@/constants'
+import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import { formatNameForUrl } from '@/utils/url-helpers'
 
@@ -93,10 +93,10 @@ export const parseArticlePath = async (path: string[] = []) => {
  * Assumes a simple /articles/[slug] structure for now.
  * Adjust if the actual URL structure is more complex (e.g., includes categories/regions).
  */
-export const getArticleHref = (slug: string | null | undefined): string => {
+export const getArticleHref = (slug: string | null | undefined, locale: LANGUAGE): string => {
   if (!slug) {
     console.warn('Attempted to generate article href with missing slug.')
-    return `/articles` // Fallback URL
+    return `/${locale}/articles` // Fallback URL
   }
-  return `/articles/${slug}`
+  return `/${locale}/articles/${slug}`
 }

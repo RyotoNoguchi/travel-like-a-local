@@ -3,20 +3,11 @@ import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import type { BlogPostWithHref } from '@/types/blog-post'
+import type { Prefecture, Region } from '@/types/region'
 import { getPrefectures, getRegions } from '@/utils/concept-helper'
 import { getArticleHref } from '@/utils/path-helper'
 import type { FC } from 'react'
 import { MapPageClient } from './map-page-client'
-
-export type Region = {
-  id: string
-  name: string
-}
-
-export type Prefecture = {
-  id: string
-  name: string
-}
 
 type Props = {
   params: {
@@ -35,12 +26,12 @@ export const MapPage: FC<Props> = async ({ params }) => {
 
   const regions: Region[] = await getRegions()
   const prefectures: Prefecture[] = await getPrefectures()
-  const regionConceptIds = regions.map((region) => region.id) // Assuming this filtering logic is still desired
+  const prefectureConceptIds = prefectures.map((prefecture) => prefecture.id)
 
   filters.push({
     contentfulMetadata: {
       concepts: {
-        id_contains_some: regionConceptIds
+        id_contains_some: prefectureConceptIds
       }
     }
   })
@@ -65,10 +56,10 @@ export const MapPage: FC<Props> = async ({ params }) => {
     ?.filter((post): post is NonNullable<typeof post> => post !== null)
     .map((post) => ({
       ...post,
-      href: getArticleHref(post.slug)
+      href: getArticleHref(post.slug, locale)
     }))
 
-  return <MapPageClient initialRegions={regions} initialPrefectures={prefectures} initialAllPosts={postsWithHref} />
+  return <MapPageClient initialPrefectures={prefectures} initialAllPosts={postsWithHref} />
 }
 
 export default MapPage
