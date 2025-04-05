@@ -2,6 +2,7 @@ import { COLORS } from '@/app/ui/colors'
 import { AreaIcon } from '@/app/ui/components/atoms/icons/area-icon'
 import { BookmarkIcon } from '@/app/ui/components/atoms/icons/bookmark-icon'
 import { CategoryIcon } from '@/app/ui/components/atoms/icons/category-icon'
+import { MapIcon } from '@/app/ui/components/atoms/icons/map-icon'
 import { SearchIcon } from '@/app/ui/components/atoms/icons/search-icon'
 import { Header } from '@/app/ui/templates/header/presenter'
 import { BOOKMARKS_PATH, type LANGUAGE } from '@/constants'
@@ -26,8 +27,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
 
   const listNavLinks = (px: number) => [
     { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.search'), href: '/search' },
-    // TODO: Add MapIcon link here
-    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.map'), href: '/map' },
+    { icon: <MapIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.map'), href: '/map' },
     { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/#', isRegion: true },
     {
       icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />,

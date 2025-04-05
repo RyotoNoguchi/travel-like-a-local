@@ -28,7 +28,7 @@ export const MapPageClient: FC<Props> = ({ initialPrefectures, initialAllPosts, 
   }
 
   return (
-    <div className="container mx-auto flex flex-col gap-2">
+    <div className="container mx-auto flex flex-col gap-2 pb-10">
       <div className="flex pt-2">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
       </div>
