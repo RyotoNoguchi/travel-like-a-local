@@ -4,6 +4,7 @@ import { JapanMap } from '@/app/ui/components/organisms/japan-map'
 import { PrefectureArticleList } from '@/app/ui/components/organisms/prefecture-article-list'
 import type { BlogPostWithHref } from '@/types/blog-post'
 import type { Prefecture } from '@/types/region'
+import { useTranslations } from 'next-intl'
 import { type FC, useState } from 'react'
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 }
 
 export const MapPageClient: FC<Props> = ({ initialPrefectures, initialAllPosts }) => {
+  const t = useTranslations('MapPage')
   const [prefectures] = useState<Prefecture[]>(initialPrefectures)
   const [allPosts] = useState<BlogPostWithHref[]>(initialAllPosts)
   const [selectedRegionId, setSelectedRegionId] = useState<string | null>(null)
@@ -24,14 +26,16 @@ export const MapPageClient: FC<Props> = ({ initialPrefectures, initialAllPosts }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Explore Articles by Prefecture</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('title')}</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <JapanMap prefectures={prefectures} onSelectRegion={handleRegionSelect} selectedRegionId={selectedRegionId} />
         </div>
         <div>
           <h2 className="text-2xl font-semibold mb-4">
-            {selectedRegionId ? `Articles in ${prefectures.find((r) => r.id === selectedRegionId)?.name || 'Selected Region'}` : 'All Articles'}
+            {selectedRegionId
+              ? t('articlesInPrefecture', { prefectureName: prefectures.find((r) => r.id === selectedRegionId)?.name || t('selectedRegionFallback') })
+              : t('allArticles')}
           </h2>
           <PrefectureArticleList blogPosts={filteredPosts} />
         </div>

@@ -88,5 +88,12 @@
   },
   "Common": {
     "close": "Fermer"
+  },
+  "MapPage": {
+    "title": "Explorer les articles par préfecture",
+    "articlesInPrefecture": "Articles dans {prefectureName}",
+    "selectedRegionFallback": "Région sélectionnée",
+    "allArticles": "Tous les articles",
+    "selectPrefecturePrompt": "Sélectionnez une préfecture sur la carte pour voir les articles associés."
   }
 }

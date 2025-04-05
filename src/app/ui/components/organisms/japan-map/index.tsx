@@ -1,4 +1,4 @@
-'use client' // Required for event handlers and state
+'use client'
 
 import { COLORS } from '@/app/ui/colors'
 import { GEO_URL } from '@/constants'
@@ -57,10 +57,10 @@ export const JapanMap: FC<Props> = ({ prefectures, onSelectRegion, selectedRegio
                   style={{
                     default: {
                       fill: isSelected ? COLORS.PRIMARY : COLORS.GRAY_300,
-                      stroke: '#FFF', // White borders
+                      stroke: '#FFF',
                       strokeWidth: 0.5,
                       outline: 'none',
-                      cursor: isClickable ? 'pointer' : 'default' // Pointer if clickable
+                      cursor: isClickable ? 'pointer' : 'default'
                     },
                     hover: {
                       fill: isClickable ? (isSelected ? COLORS.PRIMARY_600 : COLORS.GRAY_400) : COLORS.GRAY_300,
@@ -77,7 +77,6 @@ export const JapanMap: FC<Props> = ({ prefectures, onSelectRegion, selectedRegio
           }
         </Geographies>
       </ComposableMap>
-      {/* Tooltip component using anchorSelect */}
       <Tooltip anchorSelect="[data-tooltip-id='region-tooltip']" place="top" style={{ fontSize: '1.25rem', fontWeight: 700, padding: '0.5rem 1rem' }} />
     </div>
   )
