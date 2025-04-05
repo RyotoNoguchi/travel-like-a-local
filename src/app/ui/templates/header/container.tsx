@@ -4,10 +4,11 @@ import { BookmarkIcon } from '@/app/ui/components/atoms/icons/bookmark-icon'
 import { CategoryIcon } from '@/app/ui/components/atoms/icons/category-icon'
 import { SearchIcon } from '@/app/ui/components/atoms/icons/search-icon'
 import { Header } from '@/app/ui/templates/header/presenter'
-import { type LANGUAGE } from '@/constants'
+import { BOOKMARKS_PATH, type LANGUAGE } from '@/constants'
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
 import { getConcepts } from '@/lib/contentful/get-concepts'
 import type { Category } from '@/types/category'
+import type { RegionHierarchy } from '@/types/region'
 import { getTranslations } from 'next-intl/server'
 import type { FC } from 'react'
 
@@ -26,6 +27,28 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
   const concepts = await getConcepts()
   const conceptSchemes = await getConceptSchemes()
   const categoryScheme = conceptSchemes.find((scheme) => scheme.label.toLowerCase().includes('categories'))
+  const regionConceptIds = conceptSchemes.find((scheme) => scheme.label.toLowerCase().includes('regions'))?.topConceptIds
+
+  const regionsHierarchy: RegionHierarchy[] = regionConceptIds
+    ? concepts
+        .filter((concept) => regionConceptIds.includes(concept.id))
+        .map((regionConcept) => ({
+          id: regionConcept.id,
+          label: regionConcept.label || '',
+          divisions: concepts
+            .filter((concept) => concept.upperLevelConceptIds.includes(regionConcept.id))
+            .map((areaConcept) => ({
+              id: areaConcept.id,
+              label: areaConcept.label || '',
+              subDivisions: concepts
+                .filter((concept) => concept.upperLevelConceptIds.includes(areaConcept.id))
+                .map((subDivisionConcept) => ({
+                  id: subDivisionConcept.id,
+                  label: subDivisionConcept.label || ''
+                }))
+            }))
+        }))
+    : []
 
   // Create Category Hierarchy
   const categories = categoryScheme
@@ -46,7 +69,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
 
   const listNavLinks = (px: number) => [
     { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.search'), href: '/search' },
-    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/area' },
+    { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/#', isRegion: true },
     {
       icon: <CategoryIcon width={px} height={px} color={COLORS.GRAY} />,
       label: t('NavMenu.category'),
@@ -56,7 +79,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
     {
       icon: <BookmarkIcon width={px} height={px} strokeColor={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} strokeWidth={2} />,
       label: t('NavMenu.bookmarks'),
-      href: '/bookmarks'
+      href: `/${BOOKMARKS_PATH}`
     }
   ]
   return (
@@ -64,6 +87,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
       logo={logo}
       locale={locale}
       categories={topLevelCategories}
+      regionsHierarchy={regionsHierarchy}
       navLinks={listNavLinks(24)}
       hamburgerMenuNavLinks={listNavLinks(32)}
       languageTitle={t('NavMenu.language')}

@@ -29,7 +29,9 @@ export const CategoriesNav: FC<Props> = ({ categories, isNavVisible, setIsNavVis
             href={`/articles/${formatNameForUrl(category.label).toLowerCase()}`}
             className={classNames('flex flex-col gap-0.5 items-center justify-center text-md hover:bg-gray-100 cursor-pointer leading-none', 'semi-lg:text-lg')}
           >
-            <span className="flex items-center transition-colors duration-300 group-hover:text-primary">{CATEGORY_ICONS[category.label]}</span>
+            <span className="flex items-center transition-colors duration-300 group-hover:text-primary">
+              {CATEGORY_ICONS[formatNameForUrl(category.label).toLowerCase()]}
+            </span>
             <span className="leading-none h-8 flex items-center">{category.translatedLabel}</span>
           </Link>
         </li>

@@ -6,11 +6,13 @@ import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { HamburgerIcon } from '@/app/ui/components/atoms/icons/hamburger-icon'
 import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { CategoryList } from '@/app/ui/templates/header/hamburger-menu/category-list'
+import { RegionsList } from '@/app/ui/templates/header/hamburger-menu/regions-list' // Added import
 import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { type LANGUAGE } from '@/constants'
 import type { Category } from '@/types/category'
 import { type NavLinkType } from '@/types/navLinks'
+import type { RegionHierarchy } from '@/types/region' // Added import
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { type FC, useEffect, useState } from 'react'
@@ -19,17 +21,19 @@ type Props = {
   navLinks: NavLinkType[]
   locale: LANGUAGE
   categories: Category[]
+  regionsHierarchy: RegionHierarchy[] // Added prop
   handleClick: (e: React.MouseEvent, href: string) => void
 }
 
-export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, handleClick }) => {
+export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, regionsHierarchy, handleClick }) => {
   const t = useTranslations()
   const [isOpen, setIsOpen] = useState(false)
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
+  const [isRegionOpen, setIsRegionOpen] = useState(false) // Added state for regions
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
-  }, [isOpen])
+    document.body.style.overflow = isOpen || isCategoryOpen || isRegionOpen ? 'hidden' : 'auto' // Updated overflow logic
+  }, [isCategoryOpen, isOpen, isRegionOpen])
 
   const toggleHamburgerMenu = () => setIsOpen(!isOpen)
 
@@ -40,11 +44,23 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, handleC
   const handleCategoryBack = () => {
     setIsCategoryOpen(false)
   }
-
   const handleCategoryClose = () => {
     setIsCategoryOpen(false)
     setIsOpen(false)
   }
+
+  const handleRegionClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsRegionOpen(true)
+  }
+  const handleRegionBack = () => {
+    setIsRegionOpen(false)
+  }
+  const handleRegionClose = () => {
+    setIsRegionOpen(false)
+    setIsOpen(false)
+  }
+
   return (
     <>
       <button className={classNames('flex items-center justify-center hover-animation', 'sm:hidden')} onClick={toggleHamburgerMenu}>
@@ -61,28 +77,37 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, handleC
           <CloseIcon />
         </button>
         <ul className="text-3xl flex flex-col gap-3">
-          {navLinks.map(({ icon, label, href, isCategory }) => (
-            <li key={href} className="h-8 sm:h-7">
-              {isCategory ? (
-                <button className="flex items-center gap-2 w-full h-8 sm:h-7" onClick={handleCategoryClick}>
-                  {icon}
-                  <span>{label}</span>
-                </button>
-              ) : (
-                <NavLink
-                  icon={icon}
-                  label={label}
-                  href={href}
-                  gap="gap-2"
-                  withinHamburger
-                  onClick={(e: React.MouseEvent) => {
-                    toggleHamburgerMenu()
-                    handleClick(e, href)
-                  }}
-                />
-              )}
-            </li>
-          ))}
+          {navLinks.map(
+            (
+              { icon, label, href, isCategory, isRegion } // Added isRegion check
+            ) => (
+              <li key={href} className="h-8 sm:h-7">
+                {isCategory ? (
+                  <button className="flex items-center gap-2 w-full h-8 sm:h-7 hover-animation" onClick={handleCategoryClick}>
+                    {icon}
+                    <span>{label}</span>
+                  </button>
+                ) : isRegion ? (
+                  <button className="flex items-center gap-2 w-full h-8 sm:h-7 hover-animation" onClick={handleRegionClick}>
+                    {icon}
+                    <span>{label}</span>
+                  </button>
+                ) : (
+                  <NavLink
+                    icon={icon}
+                    label={label}
+                    href={href}
+                    gap="gap-2"
+                    withinHamburger
+                    onClick={(e: React.MouseEvent) => {
+                      toggleHamburgerMenu()
+                      handleClick(e, href)
+                    }}
+                  />
+                )}
+              </li>
+            )
+          )}
           <li className="h-8 sm:h-7">
             <LanguageNavLink
               icon={<GlobeIcon width={32} height={32} color={COLORS.GRAY} />}
@@ -98,6 +123,13 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, handleC
         </ul>
       </div>
       <CategoryList categories={categories} isOpen={isCategoryOpen} onBack={handleCategoryBack} backLabel={t('NavMenu.back')} onClose={handleCategoryClose} />
+      <RegionsList
+        regionsHierarchy={regionsHierarchy}
+        isOpen={isRegionOpen}
+        onBack={handleRegionBack}
+        backLabel={t('NavMenu.back')}
+        onClose={handleRegionClose}
+      />
     </>
   )
 }
