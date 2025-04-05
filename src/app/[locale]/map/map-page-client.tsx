@@ -1,24 +1,21 @@
-'use client' // This component handles state and interactivity
+'use client'
 
 import { JapanMap } from '@/app/ui/components/organisms/japan-map/japan-map'
 import { RegionArticleList } from '@/app/ui/components/organisms/region-article-list/region-article-list'
 import type { BlogPostWithHref } from '@/types/blog-post'
 import { type FC, useState } from 'react'
-
-export type Region = {
-  id: string
-  name: string
-}
+import type { Prefecture, Region } from './page'
 
 type Props = {
   initialRegions: Region[]
   initialAllPosts: BlogPostWithHref[]
+  initialPrefectures: Prefecture[]
 }
 
-export const MapPageClient: FC<Props> = ({ initialRegions, initialAllPosts }) => {
-  // State is managed here
-  const [regions] = useState<Region[]>(initialRegions) // Use initial data
-  const [allPosts] = useState<BlogPostWithHref[]>(initialAllPosts) // Use initial data
+export const MapPageClient: FC<Props> = ({ initialRegions, initialPrefectures, initialAllPosts }) => {
+  const [regions] = useState<Region[]>(initialRegions)
+  const [prefectures] = useState<Prefecture[]>(initialPrefectures)
+  const [allPosts] = useState<BlogPostWithHref[]>(initialAllPosts)
   const [selectedRegionId, setSelectedRegionId] = useState<string | null>(null)
 
   // Filtering logic remains the same
@@ -36,7 +33,7 @@ export const MapPageClient: FC<Props> = ({ initialRegions, initialAllPosts }) =>
       <h1 className="text-3xl font-bold mb-6">Explore Articles by Region</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
-          <JapanMap regions={regions} onSelectRegion={handleRegionSelect} selectedRegionId={selectedRegionId} />
+          <JapanMap regions={regions} prefectures={prefectures} onSelectRegion={handleRegionSelect} selectedRegionId={selectedRegionId} />
         </div>
         <div>
           <h2 className="text-2xl font-semibold mb-4">

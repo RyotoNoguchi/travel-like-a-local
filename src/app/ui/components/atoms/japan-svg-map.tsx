@@ -1,13 +1,15 @@
 'use client'
 
-import type { Region } from '@/app/[locale]/map/map-page-client'
+// Import ConceptData from the correct utility file
+import type { ConceptData } from '@/utils/concept-helper'
 import React from 'react'
 
-type Props = {
+interface JapanSvgMapProps {
   onClick: (event: React.MouseEvent<SVGPathElement>) => void
   onHover?: (event: React.MouseEvent<SVGPathElement>) => void // Optional hover handler
   selectedRegionId: string | null
-  regions: Region[] // Pass regions to map IDs to SVG paths
+  // Ensure this uses ConceptData
+  regions: ConceptData[] // Pass regions to map IDs to SVG paths
 }
 
 // TODO: Find and embed an actual SVG map of Japan here.
@@ -24,9 +26,11 @@ const svgPathsData = [
   // ... add all other prefecture paths from the actual SVG
 ]
 
-const JapanSvgMap: React.FC<Props> = ({ onClick, onHover, selectedRegionId, regions }) => {
+// Correct the component definition to use JapanSvgMapProps
+const JapanSvgMap: React.FC<JapanSvgMapProps> = ({ onClick, onHover, selectedRegionId, regions }) => {
   // Create a map for quick lookup of region data by label (lowercase)
-  const regionMap = new Map(regions.map((r) => [r.name.toLowerCase(), r]))
+  // Explicitly type the map and the map parameter 'r', use 'label' instead of 'name'
+  const regionMap = new Map<string, ConceptData>(regions.map((r: ConceptData) => [r.label.toLowerCase(), r]))
 
   return (
     <svg
@@ -38,7 +42,7 @@ const JapanSvgMap: React.FC<Props> = ({ onClick, onHover, selectedRegionId, regi
       <g>
         {svgPathsData.map((pathInfo) => {
           // Find corresponding region data by matching the path's name (adjust matching logic if needed)
-          const regionData = regionMap.get(pathInfo.name.toLowerCase())
+          const regionData: ConceptData | undefined = regionMap.get(pathInfo.name.toLowerCase()) // Explicit type for regionData
           const isSelected = regionData?.id === selectedRegionId
           const isClickable = Boolean(regionData)
 

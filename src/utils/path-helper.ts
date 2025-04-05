@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { CONCEPT_SCHEME } from '@/constants' // Added
 import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes' // Added
 import { getConcepts } from '@/lib/contentful/get-concepts'
@@ -94,7 +95,6 @@ export const parseArticlePath = async (path: string[] = []) => {
  */
 export const getArticleHref = (slug: string | null | undefined): string => {
   if (!slug) {
-    // Handle cases where slug might be missing
     console.warn('Attempted to generate article href with missing slug.')
     return `/articles` // Fallback URL
   }

@@ -3,10 +3,20 @@ import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import type { BlogPostWithHref } from '@/types/blog-post'
-import { getRegions } from '@/utils/concept-helper'
+import { getPrefectures, getRegions } from '@/utils/concept-helper'
 import { getArticleHref } from '@/utils/path-helper'
 import type { FC } from 'react'
 import { MapPageClient } from './map-page-client'
+
+export type Region = {
+  id: string
+  name: string
+}
+
+export type Prefecture = {
+  id: string
+  name: string
+}
 
 type Props = {
   params: {
@@ -23,8 +33,9 @@ export const MapPage: FC<Props> = async ({ params }) => {
   const limit = 10
   const skip = 0
 
-  const regions = await getRegions()
-  const regionConceptIds = regions.map((region) => region.id)
+  const regions: Region[] = await getRegions()
+  const prefectures: Prefecture[] = await getPrefectures()
+  const regionConceptIds = regions.map((region) => region.id) // Assuming this filtering logic is still desired
 
   filters.push({
     contentfulMetadata: {
@@ -57,7 +68,7 @@ export const MapPage: FC<Props> = async ({ params }) => {
       href: getArticleHref(post.slug)
     }))
 
-  return <MapPageClient initialRegions={regions} initialAllPosts={postsWithHref} />
+  return <MapPageClient initialRegions={regions} initialPrefectures={prefectures} initialAllPosts={postsWithHref} />
 }
 
 export default MapPage
