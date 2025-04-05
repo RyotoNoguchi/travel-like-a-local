@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import { CONCEPT_SCHEME, type LANGUAGE } from '@/constants'
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
-import { getConcepts } from '@/lib/contentful/get-concepts'
 import { formatNameForUrl } from '@/utils/url-helpers'
+import { loadConcepts, loadConceptSchemes } from './concept-helper'
 
 /**
  * URLパスからスラッグとカテゴリー情報を抽出する
@@ -23,7 +22,7 @@ export const parseArticlePath = async (path: string[] = []) => {
   let slug = ''
 
   // コンセプトとコンセプトスキームを取得
-  const [concepts, conceptSchemes] = await Promise.all([getConcepts(), getConceptSchemes()]) // Fetch both
+  const [concepts, conceptSchemes] = await Promise.all([loadConcepts(), loadConceptSchemes()]) // Fetch both
 
   // カテゴリスキームとIDを取得
   const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)

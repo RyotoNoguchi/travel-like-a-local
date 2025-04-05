@@ -1,7 +1,6 @@
 import { CONCEPT_SCHEME } from '@/constants'
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
-import { getConcepts } from '@/lib/contentful/get-concepts'
 import { formatNameForUrl } from '@/utils/url-helpers'
+import { loadConcepts, loadConceptSchemes } from './concept-helper'
 
 type TaxonomyResult = {
   categoryName: string
@@ -18,8 +17,8 @@ type TaxonomyResult = {
  */
 export const extractTaxonomyInfo = async (articleConceptIds: string[]): Promise<TaxonomyResult> => {
   // コンセプトとコンセプトスキームを取得
-  const concepts = await getConcepts()
-  const conceptSchemes = await getConceptSchemes()
+  const concepts = await loadConcepts()
+  const conceptSchemes = await loadConceptSchemes()
 
   // カテゴリースキームと地域スキームを見つける
   const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)

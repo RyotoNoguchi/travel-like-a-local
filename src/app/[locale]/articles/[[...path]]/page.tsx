@@ -5,9 +5,8 @@ import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
 import { getAllBlogPosts } from '@/lib/contentful/get-blog-posts'
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
-import { getConcepts } from '@/lib/contentful/get-concepts'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
+import { loadConcepts, loadConceptSchemes } from '@/utils/concept-helper'
 import { parseArticlePath } from '@/utils/path-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { Metadata, NextPage } from 'next'
@@ -85,8 +84,8 @@ export const generateStaticParams = async () => {
     const articleConceptIds = article?.contentfulMetadata?.concepts?.map((concept) => concept?.id).filter((id): id is string => id !== null) || []
     if (!articleConceptIds.length) continue
 
-    const concepts = await getConcepts()
-    const conceptSchemes = await getConceptSchemes()
+    const concepts = await loadConcepts()
+    const conceptSchemes = await loadConceptSchemes()
 
     const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
     const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)

@@ -16,7 +16,7 @@ type ConceptSchemeData = {
   conceptIds: string[]
 }
 
-async function cacheConceptSchemes(): Promise<void> {
+const cacheConceptSchemes = async (): Promise<void> => {
   try {
     console.log('Fetching concept schemes from Contentful...')
 
