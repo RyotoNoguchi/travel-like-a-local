@@ -5,6 +5,19 @@ export const GET_ASSET_QUERY = gql`
     asset(id: $id) {
       title
       url
+      fileName
+    }
+  }
+`
+
+export const GET_ASSETS_BY_TAG_QUERY = gql`
+  query GetAssetsByTag($tag: String!) {
+    assetCollection(where: { contentfulMetadata: { tags: { id_contains_some: [$tag] } } }) {
+      items {
+        title
+        url
+        fileName
+      }
     }
   }
 `

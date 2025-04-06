@@ -8,9 +8,8 @@ import type { BlogPostWithHref } from '@/types/blog-post'
 import type { Prefecture, Region } from '@/types/region'
 import { getPrefectures, getRegions } from '@/utils/concept-helper'
 import { getArticleHref } from '@/utils/path-helper'
-import type { Metadata } from 'next'
+import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
-import type { FC } from 'react'
 
 type Props = {
   params: {
@@ -27,7 +26,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 }
 
-export const MapPage: FC<Props> = async ({ params }) => {
+export const MapPage: NextPage<Props> = async ({ params }) => {
   const client = createApolloClient()
   const { locale } = await params
   const t = await getTranslations({ locale })

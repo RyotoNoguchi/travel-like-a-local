@@ -1,4 +1,5 @@
 export const LOGO_ASSET_ID = '5x2sMehGUOBlAhVBVzmWoB'
+export const JAPAN_MAP_ASSET_ID = '25B0oANu72SzTcK0vteCCP'
 export const HERO_MOBILE_ASSET_ID = '20Dn5MjJUlh6fy6xNt6RBZ'
 export const HERO_DESKTOP_ASSET_ID = '76pMKRS0OXj7oi6qzpVzl1'
 export const HERO_TABLET_ASSET_ID = 'LCUChXjqIsyc786zGKEQx'
@@ -37,3 +38,81 @@ export const ARTICLE_PATH = 'articles'
 export const BOOKMARKS_PATH = 'bookmarks'
 
 export const GEO_URL = 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson'
+
+export enum REGION {
+  HOKKAIDO = 'Hokkaido',
+  TOHOKU = 'Tohoku',
+  KANTO = 'Kanto',
+  TOKAI = 'Tokai',
+  KOSHINETSU = 'Koshinetsu',
+  HOKURIKU = 'Hokuriku',
+  KANSAI = 'Kansai',
+  CHUGOKU = 'Chugoku',
+  SHIKOKU = 'Shikoku',
+  KYUSHU = 'Kyushu',
+  OKINAWA = 'Okinawa'
+}
+
+export enum PREFECTURE {
+  HOKKAIDO = 'Hokkaido',
+  AOMORI = 'Aomori',
+  IWATE = 'Iwate',
+  MIYAGI = 'Miyagi',
+  AKITA = 'Akita',
+  YAMAGATA = 'Yamagata',
+  FUKUSHIMA = 'Fukushima',
+  IBARAKI = 'Ibaraki',
+  TOCHIGI = 'Tochigi',
+  GUNMA = 'Gunma',
+  SAITAMA = 'Saitama',
+  CHIBA = 'Chiba',
+  TOKYO = 'Tokyo',
+  KANAGAWA = 'Kanagawa',
+  NIIGATA = 'Niigata',
+  TOYAMA = 'Toyama',
+  ISHIKAWA = 'Ishikawa',
+  FUKUI = 'Fukui',
+  YAMANASHI = 'Yamanashi',
+  NAGANO = 'Nagano',
+  GIFU = 'Gifu',
+  SHIZUOKA = 'Shizuoka',
+  AICHI = 'Aichi',
+  MIE = 'Mie',
+  SHIGA = 'Shiga',
+  KYOTO = 'Kyoto',
+  OSAKA = 'Osaka',
+  HYOGO = 'Hyogo',
+  NARA = 'Nara',
+  WAKAYAMA = 'Wakayama',
+  TOTTORI = 'Tottori',
+  SHIMANE = 'Shimane',
+  OKAYAMA = 'Okayama',
+  HIROSHIMA = 'Hiroshima',
+  YAMAGUCHI = 'Yamaguchi',
+  TOKUSHIMA = 'Tokushima',
+  KAGAWA = 'Kagawa',
+  EHIME = 'Ehime',
+  KOCHI = 'Kochi',
+  FUKUOKA = 'Fukuoka',
+  SAGA = 'Saga',
+  NAGASAKI = 'Nagasaki',
+  KUMAMOTO = 'Kumamoto',
+  OITA = 'Oita',
+  MIYAZAKI = 'Miyazaki',
+  KAGOSHIMA = 'Kagoshima',
+  OKINAWA = 'Okinawa'
+}
+
+export const REGION_PREFECTURE_MAP = {
+  [REGION.HOKKAIDO]: [],
+  [REGION.TOHOKU]: [PREFECTURE.AOMORI, PREFECTURE.IWATE, PREFECTURE.MIYAGI, PREFECTURE.AKITA, PREFECTURE.YAMAGATA, PREFECTURE.FUKUSHIMA],
+  [REGION.KANTO]: [PREFECTURE.IBARAKI, PREFECTURE.TOCHIGI, PREFECTURE.GUNMA, PREFECTURE.SAITAMA, PREFECTURE.CHIBA, PREFECTURE.TOKYO, PREFECTURE.KANAGAWA],
+  [REGION.KOSHINETSU]: [PREFECTURE.NIIGATA, PREFECTURE.YAMANASHI, PREFECTURE.NAGANO],
+  [REGION.HOKURIKU]: [PREFECTURE.TOYAMA, PREFECTURE.ISHIKAWA, PREFECTURE.FUKUI],
+  [REGION.TOKAI]: [PREFECTURE.GIFU, PREFECTURE.SHIZUOKA, PREFECTURE.AICHI, PREFECTURE.MIE],
+  [REGION.KANSAI]: [PREFECTURE.SHIGA, PREFECTURE.KYOTO, PREFECTURE.OSAKA, PREFECTURE.HYOGO, PREFECTURE.NARA, PREFECTURE.WAKAYAMA],
+  [REGION.CHUGOKU]: [PREFECTURE.TOTTORI, PREFECTURE.SHIMANE, PREFECTURE.OKAYAMA, PREFECTURE.HIROSHIMA, PREFECTURE.YAMAGUCHI],
+  [REGION.SHIKOKU]: [PREFECTURE.TOKUSHIMA, PREFECTURE.KAGAWA, PREFECTURE.EHIME, PREFECTURE.KOCHI],
+  [REGION.KYUSHU]: [PREFECTURE.FUKUOKA, PREFECTURE.SAGA, PREFECTURE.NAGASAKI, PREFECTURE.KUMAMOTO, PREFECTURE.OITA, PREFECTURE.MIYAZAKI, PREFECTURE.KAGOSHIMA],
+  [REGION.OKINAWA]: []
+}

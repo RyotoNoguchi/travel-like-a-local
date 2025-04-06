@@ -1270,6 +1270,7 @@ export enum PageLandingOrder {
 export type Query = {
   __typename?: 'Query'
   _node?: Maybe<_Node>
+  _nodes: Array<Maybe<_Node>>
   asset?: Maybe<Asset>
   assetCollection?: Maybe<AssetCollection>
   componentAuthor?: Maybe<ComponentAuthor>
@@ -1287,6 +1288,12 @@ export type Query = {
 
 export type Query_NodeArgs = {
   id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+export type Query_NodesArgs = {
+  ids: Array<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['String']['input']>
   preview?: InputMaybe<Scalars['Boolean']['input']>
 }
@@ -1584,7 +1591,22 @@ export type GetAssetQueryVariables = Exact<{
   id: Scalars['String']['input']
 }>
 
-export type GetAssetQuery = { __typename?: 'Query'; asset?: { __typename?: 'Asset'; title?: string | null; url?: string | null } | null }
+export type GetAssetQuery = {
+  __typename?: 'Query'
+  asset?: { __typename?: 'Asset'; title?: string | null; url?: string | null; fileName?: string | null } | null
+}
+
+export type GetAssetsByTagQueryVariables = Exact<{
+  tag: Scalars['String']['input']
+}>
+
+export type GetAssetsByTagQuery = {
+  __typename?: 'Query'
+  assetCollection?: {
+    __typename?: 'AssetCollection'
+    items: Array<{ __typename?: 'Asset'; title?: string | null; url?: string | null; fileName?: string | null } | null>
+  } | null
+}
 
 export type GetBlogPostBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
@@ -1786,7 +1808,8 @@ export const GetAssetDocument = {
               kind: 'SelectionSet',
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'url' } }
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'fileName' } }
               ]
             }
           }
@@ -1795,6 +1818,83 @@ export const GetAssetDocument = {
     }
   ]
 } as unknown as DocumentNode<GetAssetQuery, GetAssetQueryVariables>
+export const GetAssetsByTagDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetAssetsByTag' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'tag' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'assetCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'contentfulMetadata' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'tags' },
+                            value: {
+                              kind: 'ObjectValue',
+                              fields: [
+                                {
+                                  kind: 'ObjectField',
+                                  name: { kind: 'Name', value: 'id_contains_some' },
+                                  value: { kind: 'ListValue', values: [{ kind: 'Variable', name: { kind: 'Name', value: 'tag' } }] }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'fileName' } }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetAssetsByTagQuery, GetAssetsByTagQueryVariables>
 export const GetBlogPostBySlugDocument = {
   kind: 'Document',
   definitions: [

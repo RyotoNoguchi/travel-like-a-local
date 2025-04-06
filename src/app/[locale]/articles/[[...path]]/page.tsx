@@ -8,6 +8,7 @@ import { getAllBlogPosts } from '@/lib/contentful/get-blog-posts'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
 import { loadConcepts, loadConceptSchemes } from '@/utils/concept-helper'
 import { parseArticlePath } from '@/utils/path-helper'
+import { capitalizeFirstLetter } from '@/utils/string-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
@@ -25,10 +26,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   const t = await getTranslations({ locale, namespace: 'ArticleList' })
 
   // カテゴリと地域の名前を整形（先頭大文字に）
-  const formattedCategory = category ? category.charAt(0).toUpperCase() + category.slice(1) : ''
-  const formattedRegion = region ? region.charAt(0).toUpperCase() + region.slice(1) : ''
-  const formattedArea = area ? area.charAt(0).toUpperCase() + area.slice(1) : ''
-  const formattedPrefecture = prefecture ? prefecture.charAt(0).toUpperCase() + prefecture.slice(1) : ''
+  const formattedCategory = category ? capitalizeFirstLetter(category) : ''
+  const formattedRegion = region ? capitalizeFirstLetter(region) : ''
+  const formattedArea = area ? capitalizeFirstLetter(area) : ''
+  const formattedPrefecture = prefecture ? capitalizeFirstLetter(prefecture) : ''
 
   // 最も具体的な地域を特定
   const mostSpecificRegion = formattedPrefecture || formattedArea || formattedRegion || ''
