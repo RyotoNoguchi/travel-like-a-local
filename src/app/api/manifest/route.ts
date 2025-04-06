@@ -1,11 +1,11 @@
 import { COLORS } from '@/app/ui/colors'
 import { LANGUAGE, LOGO_TITLE, LOGO_TITLE_SHORT } from '@/constants'
-import { getLogo } from '@/utils/logo'
+import { getLogo } from '@/utils/assets'
 import { getTranslations } from 'next-intl/server'
 import { type NextRequest, NextResponse } from 'next/server'
 import type { WebAppManifest } from 'web-app-manifest'
 
-export async function GET(request: NextRequest) {
+export const GET = async (request: NextRequest) => {
   const { searchParams } = new URL(request.url)
   const locale = searchParams.get('locale') || LANGUAGE.EN
   const t = await getTranslations({ locale, namespace: 'Metadata' })
