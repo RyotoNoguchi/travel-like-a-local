@@ -17,7 +17,7 @@ type Props = {
 }
 
 const RegionPage: NextPage<Props> = async ({ params }) => {
-  const { locale } = params
+  const { locale } = await params
   const regionImages = await getImagesByTag({ width: 300, height: 300, tag: 'region' })
   const sortedRegionImages = regionImages.sort((a, b) => {
     const regionA = parseInt(a.fileName.split('_')[1].split(' ')[0])
