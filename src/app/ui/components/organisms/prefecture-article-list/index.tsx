@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const PrefectureArticleList: React.FC<Props> = ({ blogPosts }) => {
-  const t = useTranslations('MapPage')
+  const t = useTranslations('PrefecturesMapPage')
 
   if (!blogPosts || blogPosts.length === 0) {
     return <p className="text-gray-500">{t('selectPrefecturePrompt')}</p>

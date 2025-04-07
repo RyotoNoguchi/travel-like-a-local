@@ -15,8 +15,8 @@ type Props = {
   breadcrumbs: BreadcrumbItem[]
 }
 
-export const MapPageClient: FC<Props> = ({ initialPrefectures, initialAllPosts, breadcrumbs }) => {
-  const t = useTranslations('MapPage')
+export const PrefecturesMapPageClient: FC<Props> = ({ initialPrefectures, initialAllPosts, breadcrumbs }) => {
+  const t = useTranslations('PrefecturesMapPage')
   const [prefectures] = useState<Prefecture[]>(initialPrefectures)
   const [allPosts] = useState<BlogPostWithHref[]>(initialAllPosts)
   const [selectedRegionId, setSelectedRegionId] = useState<string | null>(null)

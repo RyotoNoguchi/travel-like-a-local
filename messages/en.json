@@ -89,7 +89,7 @@
   "Common": {
     "close": "Close"
   },
-  "MapPage": {
+  "PrefecturesMapPage": {
     "title": "Explore Articles by Prefecture",
     "articlesInPrefecture": "Articles in {prefectureName}",
     "selectedRegionFallback": "Selected Region",
