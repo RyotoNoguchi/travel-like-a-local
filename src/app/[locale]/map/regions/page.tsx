@@ -8,7 +8,7 @@ import { generatePrefecturesData } from '@/utils/prefecture-helper'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
 import type { NextPage } from 'next'
-import { RegionPageClient } from './region-page-client'
+import { RegionPageClient } from './regions-map-page-client'
 
 type Props = {
   params: {
@@ -16,7 +16,7 @@ type Props = {
   }
 }
 
-const RegionPage: NextPage<Props> = async ({ params }) => {
+const RegionsPage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const regionImages = await getImagesByTag({ width: 300, height: 300, tag: 'region' })
   const sortedRegionImages = regionImages.sort((a, b) => {
@@ -79,4 +79,4 @@ const RegionPage: NextPage<Props> = async ({ params }) => {
   return <RegionPageClient regionMapImages={regionMapImages} regionImages={sortedRegionImages} regions={regions} initialBlogPosts={postsWithHref} />
 }
 
-export default RegionPage
+export default RegionsPage

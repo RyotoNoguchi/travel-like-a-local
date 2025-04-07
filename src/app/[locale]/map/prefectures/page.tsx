@@ -1,5 +1,5 @@
 import { createApolloClient } from '@/apolloClient'
-import { PrefecturesMapPageClient } from '@/app/[locale]/map/map-page-client'
+import { PrefecturesMapPageClient } from '@/app/[locale]/map/prefectures/prefectures-map-page-client'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
@@ -26,7 +26,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 }
 
-export const PrefecturesMapPage: NextPage<Props> = async ({ params }) => {
+const PrefecturesMapPage: NextPage<Props> = async ({ params }) => {
   const client = createApolloClient()
   const { locale } = await params
   const t = await getTranslations({ locale })
