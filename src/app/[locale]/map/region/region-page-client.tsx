@@ -59,7 +59,10 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
                   onMouseEnter={() => setHoveredRegionTitle(image.title ?? '')}
                   onMouseLeave={() => setHoveredRegionTitle(null)}
                   role="button"
-                  onClick={() => setSelectedRegionName(image.title ?? '')}
+                  onClick={() => {
+                    setSelectedRegionName(image.title ?? '')
+                    document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
                 >
                   <Image src={image.url ?? ''} alt={image.title ?? ''} width={80} height={80} />
                   <div className="flex flex-col">
@@ -86,7 +89,7 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
           <p className="text-center text-3xl">No articles found for {selectedRegionName}.</p>
         ) : (
           <div className="flex flex-col">
-            <h2 className="text-3xl text-center font-bold mb-4">
+            <h2 id="articles" className="text-3xl text-center font-bold mb-4">
               {selectedRegionName ? `Articles in ${capitalizeFirstLetter(selectedRegionName)}` : 'All articles'}
             </h2>
             <ul className="min-h-[400px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
