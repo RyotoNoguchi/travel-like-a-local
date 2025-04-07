@@ -12,13 +12,13 @@ type Props = {
 export const BlogPostCard: FC<Props> = ({ blogPost }) => (
   <div key={blogPost.sys.id} className="h-fit bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ease-in-out">
     {typeof blogPost.featuredImage?.url === 'string' && (
-      <Link href={blogPost.href} className="block relative w-full h-36">
+      <Link href={blogPost.href} className="block relative w-full max-h-48 h-36">
         <Image
           src={blogPost.featuredImage.url}
           alt={blogPost.featuredImage.title || blogPost.title || 'Article image'}
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+          width={400}
+          height={400}
+          className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
         />
       </Link>
     )}
