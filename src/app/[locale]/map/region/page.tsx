@@ -4,6 +4,7 @@ import type { GetBlogPostsQuery, GetBlogPostsQueryVariables, PageBlogPost } from
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import { getImagesByTag } from '@/utils/assets'
 import { getRegionsHierarchy } from '@/utils/concept-helper'
+import { generatePrefecturesData } from '@/utils/prefecture-helper'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
 import type { NextPage } from 'next'
@@ -26,18 +27,20 @@ const RegionPage: NextPage<Props> = async ({ params }) => {
 
   const regionMapImages = await getImagesByTag({ width: 300, height: 300, tag: 'regionFocusedMap' })
   const regionHierarchy = await getRegionsHierarchy()
-
+  const prefectures = generatePrefecturesData(regionHierarchy)
   const regions = regionHierarchy
     .map((region) => {
       if (region.label === 'Chubu') {
         return region.divisions.map((division) => ({
           id: division.id,
-          name: division.label.toLowerCase()
+          name: division.label.toLowerCase(),
+          prefectures: prefectures[division.label.toLowerCase()]
         }))
       }
       return {
         id: region.id,
-        name: region.label.toLowerCase()
+        name: region.label.toLowerCase(),
+        prefectures: prefectures[region.label.toLowerCase()]
       }
     })
     .flat()

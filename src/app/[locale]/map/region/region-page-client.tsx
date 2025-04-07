@@ -2,6 +2,7 @@
 
 import { BlogPostCard } from '@/app/ui/components/molecules/blog-post-card'
 import type { Asset } from '@/generated/graphql'
+import { Link } from '@/i18n/routing'
 import type { BlogPostWithHref } from '@/types/blog-post'
 import type { Region } from '@/types/region'
 import { capitalizeFirstLetter } from '@/utils/string-helper'
@@ -12,7 +13,7 @@ type Props = {
   regionMapImages: Pick<Asset, 'url' | 'title' | 'fileName'>[]
   regionImages: Pick<Asset, 'url' | 'title' | 'fileName'>[]
   initialBlogPosts: BlogPostWithHref[]
-  regions: Region[]
+  regions: (Region & { prefectures: { prefecture: string; path: string }[] })[]
 }
 
 export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, regions, initialBlogPosts }) => {
@@ -31,8 +32,8 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
     <div className="lg:container mx-auto px-4 py-4 flex flex-col gap-4">
       <h1 className="text-3xl font-bold text-center">Explore articles by region</h1>
       <div className="flex flex-col gap-8 md:gap-6">
-        <div className="grid grid-cols-1 md:grid-cols-5">
-          <div className="col-span-2 flex justify-center items-center relative mb-4 md:mb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-5">
+          <div className="lg:col-span-2 flex justify-center items-center relative mb-4 md:mb-0">
             {hoveredRegionTitle ? (
               <Image
                 src={hoveredRegionMapImage?.url ?? japanMapImage?.url ?? ''}
@@ -49,8 +50,8 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
               />
             )}
           </div>
-          <div className="col-span-3">
-            <ul className="grid grid-cols-3 gap-4">
+          <div className="lg:col-span-3">
+            <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {regionImages.map((image) => (
                 <li
                   key={image.url}
@@ -62,8 +63,18 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
                 >
                   <Image src={image.url ?? ''} alt={image.title ?? ''} width={80} height={80} />
                   <div className="flex flex-col">
-                    <p className="text-xl">{capitalizeFirstLetter(image.title ?? '')}</p>
-                    <ul className=""></ul>
+                    <p className="text-base md:text-xl">{capitalizeFirstLetter(image.title ?? '')}</p>
+                    <ul className="flex flex-wrap gap-x-0.5">
+                      {regions
+                        .find((region) => region.name === image.title)
+                        ?.prefectures.map((prefecture, i) => (
+                          <li key={prefecture.prefecture} className="text-xs md:text-sm">
+                            <Link href={`/articles${prefecture.path}`} className="text-slate-500 hover:text-primary">
+                              {i === 0 ? capitalizeFirstLetter(prefecture.prefecture) : `/ ${capitalizeFirstLetter(prefecture.prefecture)}`}
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
                   </div>
                 </li>
               ))}
