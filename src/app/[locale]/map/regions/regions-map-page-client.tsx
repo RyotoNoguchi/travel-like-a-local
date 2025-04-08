@@ -1,9 +1,11 @@
 'use client'
 
 import { BlogPostCard } from '@/app/ui/components/molecules/blog-post-card'
+import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import type { Asset } from '@/generated/graphql'
 import { Link } from '@/i18n/routing'
 import type { BlogPostWithHref } from '@/types/blog-post'
+import type { BreadcrumbItem } from '@/types/breadcrumbs'
 import type { Region } from '@/types/region'
 import { capitalizeFirstLetter } from '@/utils/string-helper'
 import Image from 'next/image'
@@ -14,9 +16,10 @@ type Props = {
   regionImages: Pick<Asset, 'url' | 'title' | 'fileName'>[]
   initialBlogPosts: BlogPostWithHref[]
   regions: (Region & { prefectures: { prefecture: string; path: string }[] })[]
+  breadcrumbs: BreadcrumbItem[]
 }
 
-export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, regions, initialBlogPosts }) => {
+export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, regions, initialBlogPosts, breadcrumbs }) => {
   const [hoveredRegionTitle, setHoveredRegionTitle] = useState<string | null>(null)
   const [selectedRegionName, setSelectedRegionName] = useState<string | null>(null)
   const selectedRegionMapImage = regionMapImages.find((regionMapImage) => regionMapImage.title === selectedRegionName)
@@ -30,6 +33,7 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
 
   return (
     <div className="lg:container mx-auto px-4 py-4 flex flex-col gap-4">
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <h1 className="text-3xl font-bold text-center">Explore articles by region</h1>
       <div className="flex flex-col gap-8 md:gap-6">
         <div className="grid grid-cols-1 lg:grid-cols-5">

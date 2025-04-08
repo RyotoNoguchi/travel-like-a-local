@@ -1,4 +1,6 @@
 import { createApolloClient } from '@/apolloClient'
+import { RegionPageClient } from '@/app/[locale]/map/regions/regions-map-page-client'
+import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostsQuery, GetBlogPostsQueryVariables, PageBlogPost } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
@@ -7,8 +9,8 @@ import { getRegionsHierarchy } from '@/utils/concept-helper'
 import { generatePrefecturesData } from '@/utils/prefecture-helper'
 import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
 import { generateHref } from '@/utils/url-helpers'
-import type { NextPage } from 'next'
-import { RegionPageClient } from './regions-map-page-client'
+import type { Metadata, NextPage } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: {
@@ -16,8 +18,25 @@ type Props = {
   }
 }
 
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { locale } = await params
+  const t = await getTranslations({ locale })
+  return {
+    title: t('RegionsMapPage.title'),
+    description: t('RegionsMapPage.metadataDescription')
+  }
+}
+
 const RegionsPage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
+  const t = await getTranslations({ locale })
+
+  const breadcrumbs = [
+    { label: t('Metadata.home'), href: '' },
+    { label: t('MapPage.map'), href: '/map' },
+    { label: t('RegionsMapPage.title'), href: '/map/regions' }
+  ]
+
   const regionImages = await getImagesByTag({ width: 300, height: 300, tag: 'region' })
   const sortedRegionImages = regionImages.sort((a, b) => {
     const regionA = parseInt(a.fileName.split('_')[1].split(' ')[0])
@@ -76,7 +95,18 @@ const RegionsPage: NextPage<Props> = async ({ params }) => {
       })
   )
 
-  return <RegionPageClient regionMapImages={regionMapImages} regionImages={sortedRegionImages} regions={regions} initialBlogPosts={postsWithHref} />
+  return (
+    <>
+      <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
+      <RegionPageClient
+        regionMapImages={regionMapImages}
+        regionImages={sortedRegionImages}
+        regions={regions}
+        initialBlogPosts={postsWithHref}
+        breadcrumbs={breadcrumbs}
+      />
+    </>
+  )
 }
 
 export default RegionsPage

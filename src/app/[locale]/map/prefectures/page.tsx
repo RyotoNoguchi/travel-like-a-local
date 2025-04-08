@@ -19,10 +19,10 @@ type Props = {
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'PrefecturesMapPage' })
+  const t = await getTranslations({ locale })
   return {
-    title: t('title'),
-    description: t('metadataDescription')
+    title: t('PrefecturesMapPage.title'),
+    description: t('PrefecturesMapPage.metadataDescription')
   }
 }
 
@@ -33,7 +33,8 @@ const PrefecturesMapPage: NextPage<Props> = async ({ params }) => {
 
   const breadcrumbs = [
     { label: t('Metadata.home'), href: '' },
-    { label: t('PrefecturesMapPage.title'), href: '/map' }
+    { label: t('MapPage.map'), href: '/map' },
+    { label: t('PrefecturesMapPage.title'), href: '/map/prefectures' }
   ]
 
   const where: Record<string, unknown> = {}

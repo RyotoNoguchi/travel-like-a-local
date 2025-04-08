@@ -89,6 +89,9 @@
   "Common": {
     "close": "Fermer"
   },
+  "MapPage": {
+    "map": "Carte"
+  },
   "PrefecturesMapPage": {
     "title": "Explorer les articles par préfecture",
     "articlesInPrefecture": "Articles dans {prefectureName}",
@@ -96,5 +99,9 @@
     "allArticles": "Tous les articles",
     "selectPrefecturePrompt": "Sélectionnez une préfecture sur la carte pour voir les articles associés.",
     "metadataDescription": "Explorez les articles sur le Japon par préfecture à l'aide d'une carte interactive. Trouvez des guides de voyage et des conseils pour des régions spécifiques."
+  },
+  "RegionsMapPage": {
+    "title": "Explorer les articles par région",
+    "metadataDescription": "Explorez les articles sur le Japon par région à l'aide d'une carte interactive. Trouvez des guides de voyage et des conseils pour des régions spécifiques."
   }
 }

@@ -96,5 +96,10 @@
     "allArticles": "All Articles",
     "selectPrefecturePrompt": "Select a prefecture on the map to see related articles.",
     "metadataDescription": "Explore Japan articles by prefecture using an interactive map. Find travel guides and tips for specific regions."
+  },
+  "RegionsMapPage": {
+    "title": "Explore Articles by Region",
+    "map": "Map",
+    "metadataDescription": "Explore Japan articles by region using an interactive map. Find travel guides and tips for specific regions."
   }
 }
