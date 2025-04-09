@@ -3,12 +3,13 @@
 import { BlogPostCard } from '@/app/ui/components/molecules/blog-post-card'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import type { Asset } from '@/generated/graphql'
-import { Link } from '@/i18n/routing'
+import { Link, usePathname } from '@/i18n/routing'
 import type { BlogPostWithHref } from '@/types/blog-post'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
 import type { Region } from '@/types/region'
 import { capitalizeFirstLetter } from '@/utils/string-helper'
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
 import { useState, type FC } from 'react'
 
 type Props = {
@@ -20,8 +21,13 @@ type Props = {
 }
 
 export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, regions, initialBlogPosts, breadcrumbs }) => {
+  const params = useParams<{ locale: string }>()
+  const locale = params?.locale
+  const pathname = usePathname() // e.g /map/regions/koshinetsu
+  const regionName = pathname.split('/').pop()
+
   const [hoveredRegionTitle, setHoveredRegionTitle] = useState<string | null>(null)
-  const [selectedRegionName, setSelectedRegionName] = useState<string | null>(null)
+  const [selectedRegionName, setSelectedRegionName] = useState<string | null>(regionName ?? null)
   const selectedRegionMapImage = regionMapImages.find((regionMapImage) => regionMapImage.title === selectedRegionName)
   const hoveredRegionMapImage = regionMapImages.find((regionMapImage) => regionMapImage.title === hoveredRegionTitle)
   const japanMapImage = regionMapImages.find((regionMapImage) => regionMapImage.title === 'japan')
@@ -56,35 +62,42 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
           </div>
           <div className="lg:col-span-3">
             <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {regionImages.map((image) => (
-                <li
-                  key={image.url}
-                  className="cursor-pointer hover-animation flex items-center shadow-md px-2 gap-1.5"
-                  onMouseEnter={() => setHoveredRegionTitle(image.title ?? '')}
-                  onMouseLeave={() => setHoveredRegionTitle(null)}
-                  role="button"
-                  onClick={() => {
-                    setSelectedRegionName(image.title ?? '')
-                    document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' })
-                  }}
-                >
-                  <Image src={image.url ?? ''} alt={image.title ?? ''} width={80} height={80} />
-                  <div className="flex flex-col">
-                    <p className="text-base md:text-xl">{capitalizeFirstLetter(image.title ?? '')}</p>
-                    <ul className="flex flex-wrap gap-x-0.5">
-                      {regions
-                        .find((region) => region.name === image.title)
-                        ?.prefectures.map((prefecture, i) => (
-                          <li key={prefecture.prefecture} className="text-xs md:text-sm">
-                            <Link href={`/articles${prefecture.path}`} className="text-slate-500 hover:text-primary">
-                              {i === 0 ? capitalizeFirstLetter(prefecture.prefecture) : `/ ${capitalizeFirstLetter(prefecture.prefecture)}`}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                </li>
-              ))}
+              {regionImages.map((image) => {
+                const regionName = image.title ?? ''
+                return (
+                  <li
+                    key={image.url}
+                    className="cursor-pointer hover-animation flex items-center shadow-md px-2 gap-1.5"
+                    onMouseEnter={() => setHoveredRegionTitle(regionName)}
+                    onMouseLeave={() => setHoveredRegionTitle(null)}
+                    role="button"
+                    onClick={() => {
+                      setSelectedRegionName(regionName)
+                      if (locale) {
+                        const newPath = `/${locale}/map/regions/${regionName}`
+                        window.history.pushState(null, '', newPath)
+                      }
+                      document.getElementById('articles')?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                  >
+                    <Image src={image.url ?? ''} alt={regionName} width={80} height={80} />
+                    <div className="flex flex-col">
+                      <p className="text-base md:text-xl">{capitalizeFirstLetter(regionName)}</p>
+                      <ul className="flex flex-wrap gap-x-0.5">
+                        {regions
+                          .find((region) => region.name === regionName)
+                          ?.prefectures.map((prefecture, i) => (
+                            <li key={prefecture.prefecture} className="text-xs md:text-sm">
+                              <Link href={`/articles${prefecture.path}`} className="text-slate-500 hover:text-primary">
+                                {i === 0 ? capitalizeFirstLetter(prefecture.prefecture) : `/ ${capitalizeFirstLetter(prefecture.prefecture)}`}
+                              </Link>
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         </div>
