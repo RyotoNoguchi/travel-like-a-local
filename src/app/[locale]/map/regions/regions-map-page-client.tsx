@@ -38,7 +38,7 @@ export const RegionPageClient: FC<Props> = ({ regionMapImages, regionImages, reg
     : initialBlogPosts
 
   return (
-    <div className="lg:container mx-auto px-4 py-4 flex flex-col gap-4">
+    <div className="lg:container mx-auto px-4 py-2 flex flex-col gap-4">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <h1 className="text-3xl font-bold text-center">Explore articles by region</h1>
       <div className="flex flex-col gap-8 md:gap-6">
