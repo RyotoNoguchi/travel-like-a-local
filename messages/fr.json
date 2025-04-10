@@ -90,6 +90,13 @@
     "close": "Fermer"
   },
   "MapPage": {
+    "title": "Explorer la Carte du Japon",
+    "metadataDescription": "Naviguez au Japon grâce à des cartes interactives. Choisissez d'explorer par région ou par préfecture pour trouver des articles de voyage et des guides pertinents.",
+    "exploreTitle": "Explorer la Carte du Japon",
+    "exploreByRegionTitle": "Explorer par Région",
+    "exploreByRegionDescription": "Découvrez des articles basés sur les principales régions du Japon.",
+    "exploreByPrefectureTitle": "Explorer par Préfecture",
+    "exploreByPrefectureDescription": "Trouvez des articles relatifs à des préfectures spécifiques à travers le pays.",
     "map": "Carte"
   },
   "PrefecturesMapPage": {

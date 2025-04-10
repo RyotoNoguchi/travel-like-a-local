@@ -89,6 +89,16 @@
   "Common": {
     "close": "Close"
   },
+  "MapPage": {
+    "title": "Explore Japan Map",
+    "metadataDescription": "Navigate Japan through interactive maps. Choose to explore by region or prefecture to find relevant travel articles and guides.",
+    "exploreTitle": "Explore Japan Map",
+    "exploreByRegionTitle": "Explore by Region",
+    "exploreByRegionDescription": "Discover articles based on Japan's major regions.",
+    "exploreByPrefectureTitle": "Explore by Prefecture",
+    "exploreByPrefectureDescription": "Find articles related to specific prefectures across the country.",
+    "map": "Map"
+  },
   "PrefecturesMapPage": {
     "title": "Explore Articles by Prefecture",
     "articlesInPrefecture": "Articles in {prefectureName}",
