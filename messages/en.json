@@ -18,7 +18,8 @@
     "bookmarks": "Bookmarks",
     "language": "English",
     "selectLanguage": "Select Language",
-    "back": "Back"
+    "back": "Back",
+    "map": "Map"
   },
   "Footer": {
     "first": "Navigation Menu",
@@ -87,5 +88,28 @@
   },
   "Common": {
     "close": "Close"
+  },
+  "MapPage": {
+    "title": "Explore Japan Map",
+    "metadataDescription": "Navigate Japan through interactive maps. Choose to explore by region or prefecture to find relevant travel articles and guides.",
+    "exploreTitle": "Explore Japan Map",
+    "exploreByRegionTitle": "Explore by Region",
+    "exploreByRegionDescription": "Discover articles based on Japan's major regions.",
+    "exploreByPrefectureTitle": "Explore by Prefecture",
+    "exploreByPrefectureDescription": "Find articles related to specific prefectures across the country.",
+    "map": "Map"
+  },
+  "PrefecturesMapPage": {
+    "title": "Explore Articles by Prefecture",
+    "articlesInPrefecture": "Articles in {prefectureName}",
+    "selectedRegionFallback": "Selected Region",
+    "allArticles": "All Articles",
+    "selectPrefecturePrompt": "Select a prefecture on the map to see related articles.",
+    "metadataDescription": "Explore Japan articles by prefecture using an interactive map. Find travel guides and tips for specific regions."
+  },
+  "RegionsMapPage": {
+    "title": "Explore Articles by Region",
+    "map": "Map",
+    "metadataDescription": "Explore Japan articles by region using an interactive map. Find travel guides and tips for specific regions."
   }
 }

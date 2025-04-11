@@ -4,11 +4,11 @@ import { BlogPostListPage } from '@/app/ui/articles/pages/blog-posts-page'
 import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
-import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
-import { getConcepts } from '@/lib/contentful/get-concepts'
+import { getAllBlogPosts } from '@/lib/contentful/get-blog-posts'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
+import { loadConcepts, loadConceptSchemes } from '@/utils/concept-helper'
 import { parseArticlePath } from '@/utils/path-helper'
+import { capitalizeFirstLetter } from '@/utils/string-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
@@ -26,10 +26,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   const t = await getTranslations({ locale, namespace: 'ArticleList' })
 
   // カテゴリと地域の名前を整形（先頭大文字に）
-  const formattedCategory = category ? category.charAt(0).toUpperCase() + category.slice(1) : ''
-  const formattedRegion = region ? region.charAt(0).toUpperCase() + region.slice(1) : ''
-  const formattedArea = area ? area.charAt(0).toUpperCase() + area.slice(1) : ''
-  const formattedPrefecture = prefecture ? prefecture.charAt(0).toUpperCase() + prefecture.slice(1) : ''
+  const formattedCategory = category ? capitalizeFirstLetter(category) : ''
+  const formattedRegion = region ? capitalizeFirstLetter(region) : ''
+  const formattedArea = area ? capitalizeFirstLetter(area) : ''
+  const formattedPrefecture = prefecture ? capitalizeFirstLetter(prefecture) : ''
 
   // 最も具体的な地域を特定
   const mostSpecificRegion = formattedPrefecture || formattedArea || formattedRegion || ''
@@ -75,17 +75,16 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 }
 
 export const generateStaticParams = async () => {
-  const articles = await getBlogPosts()
-
+  const articles = await getAllBlogPosts()
   const params = []
+
+  const concepts = await loadConcepts()
+  const conceptSchemes = await loadConceptSchemes()
 
   for (const article of articles) {
     if (!article?.slug) continue
     const articleConceptIds = article?.contentfulMetadata?.concepts?.map((concept) => concept?.id).filter((id): id is string => id !== null) || []
     if (!articleConceptIds.length) continue
-
-    const concepts = await getConcepts()
-    const conceptSchemes = await getConceptSchemes()
 
     const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
     const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)

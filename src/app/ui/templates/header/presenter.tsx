@@ -80,7 +80,14 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
                   ) : isRegion ? (
                     <RegionNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isRegionNavVisible} onHover={setIsRegionNavVisible} />
                   ) : (
-                    <NavLink key={label} icon={icon} label={label} href={href} gap="gap-0" onClick={(e: React.MouseEvent) => handleClick(e, href)} />
+                    <NavLink
+                      key={label}
+                      icon={icon}
+                      label={label}
+                      href={href}
+                      gap="gap-0"
+                      onClick={href === `/${BOOKMARKS_PATH}` ? (e: React.MouseEvent) => handleClick(e, href) : undefined}
+                    />
                   )}
                 </li>
               ))}

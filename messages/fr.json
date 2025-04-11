@@ -18,7 +18,8 @@
     "bookmarks": "Favoris",
     "language": "Français",
     "selectLanguage": "Choisir la langue",
-    "back": "Retour"
+    "back": "Retour",
+    "map": "Carte"
   },
   "Footer": {
     "first": "Menu de navigation",
@@ -87,5 +88,27 @@
   },
   "Common": {
     "close": "Fermer"
+  },
+  "MapPage": {
+    "title": "Explorer la Carte du Japon",
+    "metadataDescription": "Naviguez au Japon grâce à des cartes interactives. Choisissez d'explorer par région ou par préfecture pour trouver des articles de voyage et des guides pertinents.",
+    "exploreTitle": "Explorer la Carte du Japon",
+    "exploreByRegionTitle": "Explorer par Région",
+    "exploreByRegionDescription": "Découvrez des articles basés sur les principales régions du Japon.",
+    "exploreByPrefectureTitle": "Explorer par Préfecture",
+    "exploreByPrefectureDescription": "Trouvez des articles relatifs à des préfectures spécifiques à travers le pays.",
+    "map": "Carte"
+  },
+  "PrefecturesMapPage": {
+    "title": "Explorer les articles par préfecture",
+    "articlesInPrefecture": "Articles dans {prefectureName}",
+    "selectedRegionFallback": "Région sélectionnée",
+    "allArticles": "Tous les articles",
+    "selectPrefecturePrompt": "Sélectionnez une préfecture sur la carte pour voir les articles associés.",
+    "metadataDescription": "Explorez les articles sur le Japon par préfecture à l'aide d'une carte interactive. Trouvez des guides de voyage et des conseils pour des régions spécifiques."
+  },
+  "RegionsMapPage": {
+    "title": "Explorer les articles par région",
+    "metadataDescription": "Explorez les articles sur le Japon par région à l'aide d'une carte interactive. Trouvez des guides de voyage et des conseils pour des régions spécifiques."
   }
 }

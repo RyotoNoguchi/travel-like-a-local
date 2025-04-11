@@ -1,7 +1,7 @@
 import { GoogleLoginButton } from '@/app/ui/components/molecules/login/google-login-button'
 import { Logo } from '@/app/ui/templates/logo'
 import type { LANGUAGE } from '@/constants'
-import { getLogo } from '@/utils/logo'
+import { getLogo } from '@/utils/assets'
 import type { NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 

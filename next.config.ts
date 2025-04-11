@@ -15,6 +15,18 @@ const nextConfig: NextConfig = {
   },
   env: {
     METADATA_BASE_URL: process.env.METADATA_BASE_URL
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/:locale/map/regions/:region',
+        destination: '/:locale/map/regions'
+      },
+      {
+        source: '/:locale/map/prefectures/:prefecture',
+        destination: '/:locale/map/prefectures'
+      }
+    ]
   }
 }
 

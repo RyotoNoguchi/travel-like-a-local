@@ -2,8 +2,7 @@ import { createApolloClient } from '@/apolloClient'
 import { CONCEPT_SCHEME, type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetFeaturedBlogPostsQuery, GetFeaturedBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_FEATURED_BLOG_POSTS_QUERY } from '@/graphql/query'
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes'
-import { getConcepts } from '@/lib/contentful/get-concepts'
+import { loadConcepts, loadConceptSchemes } from '@/utils/concept-helper'
 import { formatNameForUrl, generateHref } from '@/utils/url-helpers'
 import type { FC } from 'react'
 import { Carousel } from './presenter'
@@ -22,8 +21,8 @@ export const CarouselContainer: FC<Props> = async ({ width, height, locale }) =>
       locale: LOCALE_CODE_MAP[locale]
     }
   })
-  const concepts = await getConcepts()
-  const conceptSchemes = await getConceptSchemes()
+  const concepts = await loadConcepts()
+  const conceptSchemes = await loadConceptSchemes()
   const blogs = data.pageBlogPostCollection?.items
     .map((item) => {
       const contentfulMetadata = item?.contentfulMetadata

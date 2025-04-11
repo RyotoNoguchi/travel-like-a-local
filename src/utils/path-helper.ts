@@ -1,7 +1,7 @@
-import { CONCEPT_SCHEME } from '@/constants' // Added
-import { getConceptSchemes } from '@/lib/contentful/get-concept-schemes' // Added
-import { getConcepts } from '@/lib/contentful/get-concepts'
+/* eslint-disable no-console */
+import { CONCEPT_SCHEME } from '@/constants'
 import { formatNameForUrl } from '@/utils/url-helpers'
+import { loadConcepts, loadConceptSchemes } from './concept-helper'
 
 /**
  * URLパスからスラッグとカテゴリー情報を抽出する
@@ -22,7 +22,7 @@ export const parseArticlePath = async (path: string[] = []) => {
   let slug = ''
 
   // コンセプトとコンセプトスキームを取得
-  const [concepts, conceptSchemes] = await Promise.all([getConcepts(), getConceptSchemes()]) // Fetch both
+  const [concepts, conceptSchemes] = await Promise.all([loadConcepts(), loadConceptSchemes()]) // Fetch both
 
   // カテゴリスキームとIDを取得
   const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
@@ -85,4 +85,12 @@ export const parseArticlePath = async (path: string[] = []) => {
     area,
     prefecture
   }
+}
+
+export const getArticleHref = (slug: string | null | undefined): string => {
+  if (!slug) {
+    console.warn('Attempted to generate article href with missing slug.')
+    return `/articles` // Fallback URL
+  }
+  return `/articles/${slug}`
 }

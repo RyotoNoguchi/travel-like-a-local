@@ -15,7 +15,7 @@ type ConceptData = {
   upperLevelConceptIds: string[]
 }
 
-async function cacheConcepts(): Promise<void> {
+const cacheConcepts = async (): Promise<void> => {
   try {
     console.log('Fetching concepts from Contentful...')
 

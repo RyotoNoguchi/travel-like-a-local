@@ -14,7 +14,9 @@ import * as types from './graphql'
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-  '\n  query GetAsset($id: String!) {\n    asset(id: $id) {\n      title\n      url\n    }\n  }\n': types.GetAssetDocument,
+  '\n  query GetAsset($id: String!) {\n    asset(id: $id) {\n      title\n      url\n      fileName\n    }\n  }\n': types.GetAssetDocument,
+  '\n  query GetAssetsByTag($tag: String!) {\n    assetCollection(where: { contentfulMetadata: { tags: { id_contains_some: [$tag] } } }) {\n      items {\n        title\n        url\n        fileName\n      }\n    }\n  }\n':
+    types.GetAssetsByTagDocument,
   '\n  query GetBlogPostBySlug($slug: String!, $locale: String!) {\n    pageBlogPostCollection(where: { slug: $slug }, locale: $locale) {\n      items {\n        seoFields {\n          pageTitle\n          pageDescription\n        }\n        introduction {\n          __typename\n          json\n        }\n        content {\n          __typename\n          json\n          links {\n            entries {\n              block {\n                sys {\n                  id\n                }\n                __typename\n                ... on ComponentRichImage {\n                  image {\n                    title\n                    url\n                    width\n                    height\n                    description\n                  }\n                }\n              }\n            }\n            assets {\n              block {\n                sys {\n                  id\n                }\n                url\n                title\n                width\n                height\n                description\n              }\n            }\n          }\n        }\n        slug\n        title\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
     types.GetBlogPostBySlugDocument,
   '\n  query GetFeaturedBlogPosts($locale: String!) {\n    pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, locale: $locale, limit: 10) {\n      items {\n        slug\n        featuredImage {\n          url\n          title\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
@@ -45,8 +47,14 @@ export function graphql(source: string): unknown
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query GetAsset($id: String!) {\n    asset(id: $id) {\n      title\n      url\n    }\n  }\n'
-): (typeof documents)['\n  query GetAsset($id: String!) {\n    asset(id: $id) {\n      title\n      url\n    }\n  }\n']
+  source: '\n  query GetAsset($id: String!) {\n    asset(id: $id) {\n      title\n      url\n      fileName\n    }\n  }\n'
+): (typeof documents)['\n  query GetAsset($id: String!) {\n    asset(id: $id) {\n      title\n      url\n      fileName\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query GetAssetsByTag($tag: String!) {\n    assetCollection(where: { contentfulMetadata: { tags: { id_contains_some: [$tag] } } }) {\n      items {\n        title\n        url\n        fileName\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetAssetsByTag($tag: String!) {\n    assetCollection(where: { contentfulMetadata: { tags: { id_contains_some: [$tag] } } }) {\n      items {\n        title\n        url\n        fileName\n      }\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

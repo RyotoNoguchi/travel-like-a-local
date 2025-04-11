@@ -86,7 +86,7 @@
   },
   {
     "id": "2qEbTdYRFGgUWnb586QfSR",
-    "label": "Northan Tohoku",
+    "label": "Northern Tohoku",
     "upperLevelConceptIds": ["4ccX6hngb9EocRX4xpvq8K"]
   },
   {
@@ -186,7 +186,7 @@
   },
   {
     "id": "2BRMxtFkAD1sFACq7Xoopi",
-    "label": "Northen Kanto",
+    "label": "Northern Kanto",
     "upperLevelConceptIds": ["dckcGyO2tbcG7uhiNMxcu"]
   },
   {
@@ -371,7 +371,7 @@
   },
   {
     "id": "3cy5768OUygHVxdTAEi5gG",
-    "label": "Easten Hokkaido",
+    "label": "Eastern Hokkaido",
     "upperLevelConceptIds": ["4HpOvLoVoRlY1T0wmVfxX2"]
   }
 ]
