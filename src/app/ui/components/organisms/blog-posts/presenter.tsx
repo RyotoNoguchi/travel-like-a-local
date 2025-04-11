@@ -31,7 +31,7 @@ export const BlogPosts: FC<Props> = ({
   <section className="flex flex-col w-full gap-4 items-center sm:max-w-[640px] xl:max-w-[800px]">
     <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px] xl:max-w-[800px]">
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>
-      {viewAllButtonText !== undefined && <Button borderRadius="rounded-md" textColor="text-primary" text={viewAllButtonText} href={viewAllHref} />}
+      {Boolean(viewAllButtonText) && <Button borderRadius="rounded-md" textColor="text-primary" text={viewAllButtonText ?? ''} href={viewAllHref} />}
     </div>
     <ul className="flex flex-col w-full items-center gap-4 pb-10">
       {blogPosts.map(
