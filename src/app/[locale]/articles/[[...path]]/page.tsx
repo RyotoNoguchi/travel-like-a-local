@@ -75,18 +75,16 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 }
 
 export const generateStaticParams = async () => {
-  // デフォルトロケールでまずブログ記事を取得
   const articles = await getAllBlogPosts()
-
   const params = []
+
+  const concepts = await loadConcepts()
+  const conceptSchemes = await loadConceptSchemes()
 
   for (const article of articles) {
     if (!article?.slug) continue
     const articleConceptIds = article?.contentfulMetadata?.concepts?.map((concept) => concept?.id).filter((id): id is string => id !== null) || []
     if (!articleConceptIds.length) continue
-
-    const concepts = await loadConcepts()
-    const conceptSchemes = await loadConceptSchemes()
 
     const categoryScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.CATEGORIES)
     const regionScheme = conceptSchemes.find((scheme) => scheme.label === CONCEPT_SCHEME.REGIONS)
