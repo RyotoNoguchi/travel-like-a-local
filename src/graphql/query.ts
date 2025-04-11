@@ -223,7 +223,7 @@ export const GET_ALL_BLOG_POSTS_QUERY = gql`
 `
 
 export const SEARCH_BLOG_POSTS_QUERY = gql`
-  query SearchBlogPosts($locale: String!, $searchTerm: String!, $limit: Int, $skip: Int) {
+  query SearchBlogPosts($locale: String!, $searchTerm: String!, $conceptId: String, $limit: Int, $skip: Int) {
     pageBlogPostCollection(
       where: {
         OR: [
@@ -232,7 +232,7 @@ export const SEARCH_BLOG_POSTS_QUERY = gql`
           { content_contains: $searchTerm }
           { shortDescription_contains: $searchTerm }
           { slug_contains: $searchTerm }
-          { contentfulMetadata: { concepts: { id_contains_some: [$searchTerm] } } }
+          { contentfulMetadata: { concepts: { id_contains_some: [$conceptId] } } }
         ]
       }
       locale: $locale

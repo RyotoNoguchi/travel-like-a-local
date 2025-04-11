@@ -18,8 +18,9 @@ import type { RegionHierarchy } from '@/types/region'
 import classNames from 'classnames'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
-import { useState, type FC } from 'react'
+import { useRef, useState, type FC } from 'react'
 import { RegionNav } from './region-nav'
+import { SearchBar } from './search-bar'
 import { RegionsNav } from './sub-header/regions-nav'
 
 type Props = {
@@ -40,9 +41,14 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
   const [isCategoryNavVisible, setIsCategoryNavVisible] = useState(false)
   const [isRegionNavVisible, setIsRegionNavVisible] = useState(false)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [isSearchVisible, setIsSearchVisible] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const searchInputRef = useRef<HTMLInputElement>(null)
+
   const t = useTranslations()
   const { data: session } = useSession()
   const router = useRouter()
+
   const handleClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault()
     if (session) {
@@ -51,6 +57,27 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
       setIsPopupOpen(true)
     }
   }
+
+  const handleSearchClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsSearchVisible(true)
+    // 入力フィールドが表示された後にフォーカスを当てる
+    setTimeout(() => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus()
+      }
+    }, 100)
+  }
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
+      setIsSearchVisible(false)
+      setSearchQuery('')
+    }
+  }
+
   const popupButtons: ButtonConfig[] = [
     { text: t('Popup.cancel'), onClick: () => {}, variant: 'secondary' },
     { text: t('Popup.login'), onClick: () => router.push(`/${BOOKMARKS_PATH}`), variant: 'primary' }
@@ -70,15 +97,29 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
         <Link href="/" className="flex items-center gap-2 hover-animation" aria-label={LOGO_TITLE}>
           <Logo logo={logo} subtitle={subtitle} />
         </Link>
-        <div className="flex gap-1">
-          <nav className="hidden sm:flex text-xl items-center">
+        <div className="flex gap-2 items-center">
+          {isSearchVisible === true && (
+            <SearchBar
+              value={searchQuery}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+              onSubmit={handleSearchSubmit}
+              onClose={() => {
+                setIsSearchVisible(false)
+                setSearchQuery('')
+              }}
+              inputRef={searchInputRef}
+            />
+          )}
+          <nav className={classNames('hidden sm:flex text-xl items-center', isSearchVisible && 'sm:hidden xl:flex')}>
             <ul className="flex items-start gap-4 h-6">
-              {navLinks.map(({ icon, label, href, isCategory, isRegion }) => (
+              {navLinks.map(({ icon, label, href, isCategory, isRegion, isSearch }) => (
                 <li key={href}>
                   {isCategory ? (
                     <CategoryNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isCategoryNavVisible} onHover={setIsCategoryNavVisible} />
                   ) : isRegion ? (
                     <RegionNav icon={icon} label={label} href={href} gap="gap-0" isNavVisible={isRegionNavVisible} onHover={setIsRegionNavVisible} />
+                  ) : isSearch ? (
+                    !isSearchVisible && <NavLink key={label} icon={icon} label={label} href="#" gap="gap-0" onClick={handleSearchClick} />
                   ) : (
                     <NavLink
                       key={label}

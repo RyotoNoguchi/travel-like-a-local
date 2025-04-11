@@ -6,4 +6,5 @@ export type NavLinkType = {
   href: string
   isCategory?: boolean
   isRegion?: boolean
+  isSearch?: boolean
 }

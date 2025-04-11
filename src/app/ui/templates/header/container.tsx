@@ -26,7 +26,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
   const topLevelCategories: Category[] = categories.filter((category) => category.parentIds.length === 0)
 
   const listNavLinks = (px: number) => [
-    { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.search'), href: '/search' },
+    { icon: <SearchIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.search'), href: '/search', isSearch: true },
     { icon: <MapIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.map'), href: '/map' },
     { icon: <AreaIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.area'), href: '/#', isRegion: true },
     {

@@ -19,7 +19,9 @@
     "language": "English",
     "selectLanguage": "Select Language",
     "back": "Back",
-    "map": "Map"
+    "map": "Map",
+    "closeSearch": "Close Search",
+    "searchPlaceholder": "Search"
   },
   "Footer": {
     "first": "Navigation Menu",

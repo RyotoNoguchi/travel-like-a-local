@@ -19,7 +19,9 @@
     "language": "Français",
     "selectLanguage": "Choisir la langue",
     "back": "Retour",
-    "map": "Carte"
+    "map": "Carte",
+    "closeSearch": "Fermer la recherche",
+    "searchPlaceholder": "Rechercher"
   },
   "Footer": {
     "first": "Menu de navigation",

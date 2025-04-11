@@ -1786,6 +1786,7 @@ export type GetAllBlogPostsQuery = {
 export type SearchBlogPostsQueryVariables = Exact<{
   locale: Scalars['String']['input']
   searchTerm: Scalars['String']['input']
+  conceptId?: InputMaybe<Scalars['String']['input']>
   limit?: InputMaybe<Scalars['Int']['input']>
   skip?: InputMaybe<Scalars['Int']['input']>
 }>
@@ -2599,6 +2600,11 @@ export const SearchBlogPostsDocument = {
         },
         {
           kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'conceptId' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
+        },
+        {
+          kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'limit' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } }
         },
@@ -2695,7 +2701,7 @@ export const SearchBlogPostsDocument = {
                                           {
                                             kind: 'ObjectField',
                                             name: { kind: 'Name', value: 'id_contains_some' },
-                                            value: { kind: 'ListValue', values: [{ kind: 'Variable', name: { kind: 'Name', value: 'searchTerm' } }] }
+                                            value: { kind: 'ListValue', values: [{ kind: 'Variable', name: { kind: 'Name', value: 'conceptId' } }] }
                                           }
                                         ]
                                       }
