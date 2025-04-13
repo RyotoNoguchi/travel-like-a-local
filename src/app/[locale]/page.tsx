@@ -1,4 +1,3 @@
-import { createApolloClient } from '@/apolloClient'
 import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
@@ -6,10 +5,14 @@ import { HeroContainer } from '@/app/ui/hero/container'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { RichText } from '@/app/ui/rich-text'
 import { type LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
-import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
-import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
+import type { GetBlogPostsQuery } from '@/generated/graphql'
+import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
+import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
+import { categorizeBlogPosts } from '@/utils/category-helper'
+import { getCategories } from '@/utils/concept-helper'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { BlogPostCards } from '../ui/components/organisms/blog-post-cards'
 
 type Props = {
   params: Promise<{ locale: LANGUAGE }>
@@ -29,12 +32,13 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale })
   const breadcrumbs = [{ label: t('Metadata.home'), href: '' }]
-  const client = createApolloClient()
-  const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
-    query: GET_BLOG_POSTS_QUERY,
-    variables: { limit: 20, skip: 0, locale: LOCALE_CODE_MAP[locale] }
-  })
-  const blogPosts = data.pageBlogPostCollection?.items.filter((post) => post !== null) || []
+  const blogPosts =
+    (await getBlogPosts(LOCALE_CODE_MAP[locale]))
+      .filter((blogPost): blogPost is NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items']['0'] => blogPost !== null)
+      .filter((post) => post !== null) || []
+  const categories = await getCategories(locale)
+  const blogPostsWithHref = await getBlogPostsWithHref(blogPosts)
+  const categorizedBlogPosts = categorizeBlogPosts(blogPostsWithHref, categories)
 
   return (
     <>
@@ -42,16 +46,19 @@ const HomePage: NextPage<Props> = async ({ params }) => {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>} enrichedSubtitle={t('Hero.subtitle')} />
         <CarouselContainer width={300} height={200} locale={locale} />
-        <div className="flex w-full justify-center gap-8 lg:gap-16 px-4">
-          <BlogPostsContainer
-            title={t('ArticleList.title')}
-            viewAllButtonText={t('ArticleList.viewAll')}
-            locale={locale}
-            blogPosts={blogPosts}
-            noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
-            noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}
-            isBookmarksPage={false}
-          />
+        <div className="flex w-full justify-center items-start gap-8 lg:gap-16 px-4 container mx-auto">
+          <div className="flex flex-col gap-4">
+            <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />
+            <BlogPostsContainer
+              title={t('ArticleList.title')}
+              viewAllButtonText={t('ArticleList.viewAll')}
+              locale={locale}
+              blogPosts={blogPosts}
+              noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
+              noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}
+              isBookmarksPage={false}
+            />
+          </div>
           <PopularBlogPostsContainer locale={locale} />
         </div>
       </main>
