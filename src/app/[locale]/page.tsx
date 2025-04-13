@@ -1,5 +1,6 @@
 import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
+import { ExploreMapSection } from '@/app/ui/components/organisms/explore-map-section'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
@@ -46,6 +47,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>} enrichedSubtitle={t('Hero.subtitle')} />
         <CarouselContainer width={300} height={200} locale={locale} />
+        <ExploreMapSection locale={locale} />
         <div className="flex w-full justify-center items-start gap-8 lg:gap-16 px-4 container mx-auto">
           <div className="flex flex-col gap-4">
             <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />

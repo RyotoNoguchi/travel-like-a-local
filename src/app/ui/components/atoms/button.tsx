@@ -5,17 +5,20 @@ import type { FC } from 'react'
 
 type Props = {
   borderRadius: Tailwind['borderRadius']
-  textColor: Tailwind['color']
+  textColor?: Tailwind['color']
   text: string
   href: string
+  variant?: 'outline' | 'solid'
 }
 
-export const Button: FC<Props> = ({ borderRadius, text, textColor, href }) => (
-  <Link
-    href={href}
-    className={classNames('flex items-center justify-center text-md border border-solid border-primary px-2 py-1 hover-animation', borderRadius, textColor)}
-    role="button"
-  >
-    {text}
-  </Link>
-)
+export const Button: FC<Props> = ({ borderRadius, text, textColor, href, variant = 'outline' }) => {
+  const baseClasses = 'flex items-center justify-center text-md px-2 py-1 hover-animation'
+
+  const variantClasses = variant === 'solid' ? 'bg-primary text-white' : 'border border-solid border-primary'
+
+  return (
+    <Link href={href} className={classNames(baseClasses, variantClasses, borderRadius, variant === 'outline' ? textColor : '')} role="button">
+      {text}
+    </Link>
+  )
+}
