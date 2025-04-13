@@ -221,3 +221,60 @@ export const GET_ALL_BLOG_POSTS_QUERY = gql`
     }
   }
 `
+
+export const SEARCH_BLOG_POSTS_QUERY = gql`
+  query SearchBlogPosts($locale: String!, $searchTerm: String!, $conceptId: String, $limit: Int, $skip: Int) {
+    pageBlogPostCollection(
+      where: {
+        OR: [
+          { title_contains: $searchTerm }
+          { introduction_contains: $searchTerm }
+          { content_contains: $searchTerm }
+          { shortDescription_contains: $searchTerm }
+          { slug_contains: $searchTerm }
+          { contentfulMetadata: { concepts: { id_contains_some: [$conceptId] } } }
+        ]
+      }
+      locale: $locale
+      order: publishedDate_DESC
+      limit: $limit
+      skip: $skip
+    ) {
+      total
+      items {
+        sys {
+          id
+        }
+        title
+        slug
+        publishedDate
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+        seoFields {
+          pageDescription
+        }
+        author {
+          name
+          avatar {
+            title
+            url
+            width
+            height
+          }
+        }
+        contentfulMetadata {
+          tags {
+            name
+          }
+          concepts {
+            id
+          }
+        }
+      }
+    }
+  }
+`

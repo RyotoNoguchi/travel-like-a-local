@@ -19,7 +19,9 @@
     "language": "English",
     "selectLanguage": "Select Language",
     "back": "Back",
-    "map": "Map"
+    "map": "Map",
+    "closeSearch": "Close Search",
+    "searchPlaceholder": "Search"
   },
   "Footer": {
     "first": "Navigation Menu",
@@ -111,5 +113,9 @@
     "title": "Explore Articles by Region",
     "map": "Map",
     "metadataDescription": "Explore Japan articles by region using an interactive map. Find travel guides and tips for specific regions."
+  },
+  "SearchPage": {
+    "title": "Search Articles",
+    "metadataDescription": "Search for articles by keyword or phrase."
   }
 }
