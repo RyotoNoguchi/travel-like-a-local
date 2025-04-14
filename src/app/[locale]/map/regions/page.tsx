@@ -2,13 +2,12 @@ import { createApolloClient } from '@/apolloClient'
 import { RegionPageClient } from '@/app/[locale]/map/regions/regions-map-page-client'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { type LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
-import type { GetBlogPostsQuery, GetBlogPostsQueryVariables, PageBlogPost } from '@/generated/graphql'
+import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
 import { getImagesByTag } from '@/utils/assets'
+import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 import { getRegionsHierarchy } from '@/utils/concept-helper'
 import { generatePrefecturesData } from '@/utils/prefecture-helper'
-import { extractTaxonomyInfo } from '@/utils/taxonomy-helper'
-import { generateHref } from '@/utils/url-helpers'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -79,21 +78,12 @@ const RegionsPage: NextPage<Props> = async ({ params }) => {
     }
   })
 
-  const blogPosts = data.pageBlogPostCollection?.items.map((item) => item) || []
+  const blogPosts =
+    data.pageBlogPostCollection?.items
+      .filter((blogPost): blogPost is NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items']['0'] => blogPost !== null)
+      .map((item) => item) || []
 
-  const postsWithHref = await Promise.all(
-    blogPosts
-      .filter((blogPost): blogPost is PageBlogPost => blogPost !== null)
-      .map(async (post) => {
-        const blogPostConceptIds = post.contentfulMetadata.concepts.map((concept) => concept?.id ?? '')
-        const { categoryName, regionName, areaName, prefectureName } = await extractTaxonomyInfo(blogPostConceptIds)
-        const href = generateHref({ categoryName, regionName, areaName, prefectureName, slug: post.slug as string })
-        return {
-          ...post,
-          href
-        }
-      })
-  )
+  const postsWithHref = await getBlogPostsWithHref(blogPosts)
 
   return (
     <>

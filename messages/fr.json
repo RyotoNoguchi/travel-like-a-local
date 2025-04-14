@@ -116,5 +116,10 @@
   "SearchPage": {
     "title": "Rechercher des articles",
     "metadataDescription": "Recherchez des articles par mot-clé ou phrase."
+  },
+  "ExploreMapSection": {
+    "title": "Explorer les Articles par Lieu",
+    "description": "Trouvez des articles basés sur des régions ou préfectures spécifiques sur notre carte interactive.",
+    "buttonText": "Aller à la Carte"
   }
 }

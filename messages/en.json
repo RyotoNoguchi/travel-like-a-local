@@ -117,5 +117,10 @@
   "SearchPage": {
     "title": "Search Articles",
     "metadataDescription": "Search for articles by keyword or phrase."
+  },
+  "ExploreMapSection": {
+    "title": "Explore Articles by Location",
+    "description": "Find articles based on specific regions or prefectures on our interactive map.",
+    "buttonText": "Go to Map"
   }
 }
