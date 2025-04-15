@@ -122,5 +122,47 @@
     "title": "Explore Articles by Location",
     "description": "Find articles based on specific regions or prefectures on our interactive map.",
     "buttonText": "Go to Map"
+  },
+  "AboutPage": {
+    "metadata": {
+      "title": "About - Travel Like a Local Japan",
+      "description": "Learn about the guide behind Travel Like a Local Japan, offering authentic travel experiences, consulting, booking, and personalized tours across Japan."
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "about": "About"
+    },
+    "hero": {
+      "title": "Travel Like a Local Japan: Your Authentic Journey Begins",
+      "intro": "Hi, I'm Ryoto, founder of Travel Like a Local Japan. As a National Government Licensed Guide Interpreter, I'm passionate about sharing the real Japan. This site offers insights for your travels, and I provide personalized trip consulting, booking assistance, and guided tours to help you experience Japan authentically."
+    },
+    "story": {
+      "title": "More Than Just a Tour Guide: The Story Behind It All",
+      "p1": "My journey started with a simple idea: travel is richer when you connect with locals. Inspired by experiences like CouchSurfing and guiding friends visiting Japan, I saw how much more meaningful travel becomes when you step off the beaten path and experience a place through local eyes.",
+      "p2": "That's the heart of \"Travel Like a Local Japan.\" It's not just about seeing sights; it's about understanding the culture, discovering hidden gems, and creating genuine memories. As a licensed guide who has explored extensively throughout Japan, I use my firsthand knowledge to craft these unique experiences for you."
+    },
+    "services": {
+      "title": "What \"Traveling Like a Local\" Means for You",
+      "consulting": {
+        "title": "Trip Consulting",
+        "desc": "Let's craft an itinerary beyond the guidebooks, tailored to your interests but open to the kind of spontaneous local encounters and hidden gems that make a trip truly memorable."
+      },
+      "booking": {
+        "title": "Booking Assistance",
+        "desc": "From navigating complex transport to finding unique stays, I'll handle the logistics smoothly, freeing you up to simply enjoy the journey and embrace unexpected opportunities."
+      },
+      "tours": {
+        "title": "Personalized Guided Tours",
+        "desc": "Go beyond sightseeing. I'll guide you to authentic experiences, facilitate connections with locals, and help you discover the true heart of Japan, just like my own inspiring encounters."
+      },
+      "websiteResource": "This website also serves as your resource for planning an authentic Japanese adventure, filled with tips and articles based on real experiences."
+    },
+    "cta": {
+      "title": "Ready for Your Adventure? Let's Plan Your Trip!",
+      "connect": "Connect with me directly to discuss your dream trip to Japan:",
+      "explore": "Or, continue exploring the site:",
+      "browseArticles": "Browse Articles",
+      "exploreMap": "Explore the Map"
+    }
   }
 }

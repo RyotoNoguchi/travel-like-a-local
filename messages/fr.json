@@ -121,5 +121,47 @@
     "title": "Explorer les Articles par Lieu",
     "description": "Trouvez des articles basés sur des régions ou préfectures spécifiques sur notre carte interactive.",
     "buttonText": "Aller à la Carte"
+  },
+  "AboutPage": {
+    "metadata": {
+      "title": "À propos - Travel Like a Local Japan",
+      "description": "Découvrez le guide derrière Travel Like a Local Japan, qui offre des expériences de voyage authentiques, des conseils, des réservations et des visites personnalisées à travers le Japon."
+    },
+    "breadcrumbs": {
+      "home": "Accueil",
+      "about": "À propos"
+    },
+    "hero": {
+      "title": "Travel Like a Local Japan : Votre voyage authentique commence ici",
+      "intro": "Bonjour, je suis Ryoto, fondateur de Travel Like a Local Japan. En tant que Guide Interprète Agréé par le Gouvernement National, je suis passionné par le partage du vrai Japon. Ce site offre des insights pour vos voyages, et je propose des conseils personnalisés, une assistance de réservation et des visites guidées pour vous aider à vivre le Japon de façon authentique."
+    },
+    "story": {
+      "title": "Plus qu'un simple guide touristique : L'histoire derrière tout ça",
+      "p1": "Mon parcours a commencé avec une idée simple : le voyage est plus riche quand on se connecte avec les locaux. Inspiré par des expériences comme CouchSurfing et guider des amis visitant le Japon, j'ai compris combien le voyage devient plus significatif lorsqu'on sort des sentiers battus et qu'on découvre un lieu à travers les yeux des locaux.",
+      "p2": "C'est le cœur de \"Travel Like a Local Japan\". Il ne s'agit pas seulement de voir des sites touristiques, mais de comprendre la culture, découvrir des trésors cachés et créer des souvenirs authentiques. En tant que guide agréé qui a exploré tout le Japon, j'utilise mes connaissances de première main pour créer ces expériences uniques pour vous."
+    },
+    "services": {
+      "title": "Ce que signifie \"Voyager comme un local\" pour vous",
+      "consulting": {
+        "title": "Conseil de Voyage",
+        "desc": "Créons ensemble un itinéraire au-delà des guides touristiques, adapté à vos intérêts mais ouvert aux rencontres locales spontanées et aux trésors cachés qui rendent un voyage vraiment mémorable."
+      },
+      "booking": {
+        "title": "Assistance de Réservation",
+        "desc": "De la navigation dans les transports complexes à la recherche de séjours uniques, je m'occupe de la logistique en douceur, vous libérant pour simplement profiter du voyage et saisir les opportunités inattendues."
+      },
+      "tours": {
+        "title": "Visites Guidées Personnalisées",
+        "desc": "Allez au-delà du tourisme. Je vous guiderai vers des expériences authentiques, faciliterai les connexions avec les locaux et vous aiderai à découvrir le vrai cœur du Japon, tout comme mes propres rencontres inspirantes."
+      },
+      "websiteResource": "Ce site web sert également de ressource pour planifier une aventure japonaise authentique, rempli de conseils et d'articles basés sur des expériences réelles."
+    },
+    "cta": {
+      "title": "Prêt pour votre aventure ? Planifions votre voyage !",
+      "connect": "Connectez-vous directement avec moi pour discuter de votre voyage de rêve au Japon :",
+      "explore": "Ou continuez à explorer le site :",
+      "browseArticles": "Parcourir les Articles",
+      "exploreMap": "Explorer la Carte"
+    }
   }
 }
