@@ -26,7 +26,7 @@ const MapPage: NextPage<Props> = async ({ params }) => {
   const t = await getTranslations({ locale })
 
   const breadcrumbs = [
-    { label: t('Metadata.home'), href: '/' },
+    { label: t('Metadata.home'), href: '' },
     { label: t('MapPage.map'), href: '/map' }
   ]
 
