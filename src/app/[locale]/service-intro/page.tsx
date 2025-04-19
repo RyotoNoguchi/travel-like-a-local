@@ -64,7 +64,10 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
         <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center px-4 z-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 max-w-3xl">{t('hero.title')}</h1>
           <p className="text-lg sm:text-xl text-white max-w-2xl mb-8">{t('hero.intro')}</p>
-          <a href="#contact" className="bg-white text-blue-700 font-semibold py-3 px-8 rounded-full text-lg hover:bg-blue-50 transition duration-300 shadow-lg">
+          <a
+            href="#contact"
+            className="bg-white text-primary font-semibold py-3 px-8 rounded-full text-lg hover:bg-primary-50 transition duration-300 shadow-lg"
+          >
             Plan Your Authentic Journey
           </a>
         </div>
