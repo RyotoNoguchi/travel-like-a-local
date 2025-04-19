@@ -164,5 +164,73 @@
       "browseArticles": "Browse Articles",
       "exploreMap": "Explore the Map"
     }
+  },
+  "ServicesPage": {
+    "metadata": {
+      "title": "Our Services - Travel Like a Local Japan",
+      "description": "Discover our personalized travel services including trip planning, booking assistance, and guided tours to experience Japan authentically."
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "services": "Services"
+    },
+    "hero": {
+      "title": "Experience Japan Beyond the Guidebooks: Your Private Guide to Authentic Japan",
+      "intro": "Tailored experiences for travelers seeking the real Japan."
+    },
+    "overview": {
+      "title": "How We Help You Experience the Real Japan",
+      "description": "Our services are designed to give you an authentic Japanese experience, connecting you with local culture and hidden gems that most tourists never discover."
+    },
+    "services": {
+      "title": "Our Travel Services",
+      "consulting": {
+        "title": "Trip Planning & Consulting",
+        "description": "Let me design a personalized itinerary that matches your interests, preferences, and travel style. I'll help you discover places that most tourists never find.",
+        "feature1": "Customized travel itineraries beyond typical tourist routes",
+        "feature2": "Local insights and recommendations for authentic experiences",
+        "feature3": "Budget-friendly options and practical travel advice",
+        "cta": "Get Your Custom Plan"
+      },
+      "booking": {
+        "title": "Booking & Reservation Support",
+        "description": "Navigating Japanese booking systems can be challenging. I'll handle all your reservations - from traditional ryokans to local experiences that don't appear on regular booking sites.",
+        "feature1": "Assistance with accommodation bookings, including traditional stays",
+        "feature2": "Restaurant reservations at authentic local establishments",
+        "feature3": "Transportation arrangements and tickets for cultural events",
+        "cta": "Book With Confidence"
+      },
+      "tours": {
+        "title": "Private Guided Tours",
+        "description": "Experience Japan with a licensed local guide who can provide cultural context, language support, and access to places you wouldn't discover on your own.",
+        "feature1": "Personalized tours tailored to your specific interests",
+        "feature2": "Local cultural and historical insights beyond guidebooks",
+        "feature3": "Flexible itineraries that can adapt to your preferences",
+        "cta": "Explore With Me"
+      }
+    },
+    "pricing": {
+      "title": "Service Pricing",
+      "description": "Transparent pricing tailored to your specific needs and travel duration."
+    },
+    "testimonials": {
+      "title": "What Travelers Say About Us",
+      "traveler1": {
+        "name": "Sarah J.",
+        "country": "Australia",
+        "quote": "Ryoto's insider knowledge made our trip to Japan unforgettable. We discovered places we would never have found in guidebooks!"
+      },
+      "traveler2": {
+        "name": "Marco L.",
+        "country": "Italy",
+        "quote": "The personalized itinerary was perfect. Having local help with bookings saved us so much time and frustration."
+      }
+    },
+    "cta": {
+      "title": "Ready to Experience the Real Japan?",
+      "description": "Let's plan your authentic Japanese journey together.",
+      "contactButton": "Contact Me",
+      "learnMoreButton": "About Me"
+    }
   }
 }
