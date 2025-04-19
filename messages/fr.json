@@ -230,6 +230,24 @@
       "description": "Planifions ensemble votre voyage japonais authentique.",
       "contactButton": "Me Contacter",
       "learnMoreButton": "À Propos de Moi"
+    },
+    "contact": {
+      "name": "Votre Nom",
+      "email": "Adresse E-mail",
+      "message": "Votre Message",
+      "submit": "Envoyer",
+      "success": "Votre demande a été reçue. Veuillez vérifier votre e-mail pour une confirmation automatique.",
+      "error": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer plus tard.",
+      "sending": "Envoi en cours...",
+      "autoReply": {
+        "subject": "【Travel Like a Local】Merci pour votre demande",
+        "greeting": "Cher/Chère {name},",
+        "thankYou": "Merci d'avoir contacté Travel Like a Local.",
+        "receivedMessage": "Nous avons bien reçu votre demande avec le contenu suivant :",
+        "willReply": "Nous examinerons votre message et vous répondrons bientôt.",
+        "pleaseWait": "Merci pour votre patience.",
+        "autoReplyNote": "* Ceci est une réponse automatique. Veuillez ne pas répondre à cet email."
+      }
     }
   }
 }

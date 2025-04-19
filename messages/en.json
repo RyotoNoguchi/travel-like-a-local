@@ -231,6 +231,24 @@
       "description": "Let's plan your authentic Japanese journey together.",
       "contactButton": "Contact Me",
       "learnMoreButton": "About Me"
+    },
+    "contact": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "success": "Your inquiry has been received. Please check your email for an automatic confirmation.",
+      "error": "An error occurred while sending. Please try again later.",
+      "sending": "Sending...",
+      "autoReply": {
+        "subject": "【Travel Like a Local】Thank you for your inquiry",
+        "greeting": "Dear {name},",
+        "thankYou": "Thank you for contacting Travel Like a Local.",
+        "receivedMessage": "We have received your inquiry with the following content:",
+        "willReply": "We will review your message and get back to you soon.",
+        "pleaseWait": "Thank you for your patience.",
+        "autoReplyNote": "* This is an automated reply. Please do not respond to this email."
+      }
     }
   }
 }
