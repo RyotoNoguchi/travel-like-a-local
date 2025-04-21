@@ -176,7 +176,8 @@
     },
     "hero": {
       "title": "Experience Japan Beyond the Guidebooks: Your Private Guide to Authentic Japan",
-      "intro": "Tailored experiences for travelers seeking the real Japan."
+      "intro": "Tailored experiences for travelers seeking the real Japan.",
+      "ctaButton": "Plan Your Authentic Journey"
     },
     "overview": {
       "title": "How We Help You Experience the Real Japan",
@@ -232,7 +233,14 @@
       "contactButton": "Contact Me",
       "learnMoreButton": "About Me"
     },
+    "finalCta": {
+      "title": "Ready for Your Authentic Japan Adventure?",
+      "description": "Limited availability for the upcoming season. Secure your personalized Japan experience today!",
+      "contactButton": "Contact Now",
+      "learnMoreButton": "Learn More About Me"
+    },
     "contact": {
+      "title": "Contact Us",
       "name": "Your Name",
       "email": "Email Address",
       "message": "Your Message",
@@ -248,6 +256,45 @@
         "willReply": "We will review your message and get back to you soon.",
         "pleaseWait": "Thank you for your patience.",
         "autoReplyNote": "* This is an automated reply. Please do not respond to this email."
+      }
+    },
+    "guideIntroduction": {
+      "title": "Your Licensed Guide to Authentic Japan",
+      "paragraph1": "Hi, I'm Ryoto, a National Government Licensed Guide Interpreter passionate about sharing the real Japan beyond tourist spots.",
+      "paragraph2": "After years of guiding visitors and living as both a local and traveler, I've created a service that bridges cultural gaps and offers truly immersive experiences.",
+      "imageAlt": "Ryoto - Licensed Japan Tour Guide"
+    },
+    "features": {
+      "feature1": {
+        "title": "Fully Customized Itineraries",
+        "description": "Tailored specifically for experienced Japan travelers seeking authentic experiences."
+      },
+      "feature2": {
+        "title": "Access to Hidden Gems",
+        "description": "Discover places only known to locals and experience Japan beyond the typical tourist route."
+      },
+      "feature3": {
+        "title": "Language & Cultural Bridge",
+        "description": "Break through language barriers and cultural differences with expert guidance."
+      },
+      "feature4": {
+        "title": "Extended Stay Support",
+        "description": "Comprehensive assistance for longer journeys (2+ weeks) for deep cultural immersion."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "booking": {
+        "question": "How does the booking process work?",
+        "answer": "We start with a free consultation call to understand your needs, then create a custom itinerary proposal. Once approved, we handle all the bookings and provide you with a final detailed plan."
+      },
+      "cost": {
+        "question": "What is the typical cost for your services?",
+        "answer": "Our services are customized based on your specific needs, trip duration, and complexity. Guided tour services typically start from $500 USD per day, with discounts available for longer bookings."
+      },
+      "languages": {
+        "question": "What languages do you speak?",
+        "answer": "I am fluent in English and Japanese, and can communicate at a basic level in French."
       }
     }
   }

@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 type Props = {
   translations: {
+    title: string
     name: string
     email: string
     message: string
@@ -26,7 +27,8 @@ type Props = {
 }
 
 export const ContactForm: FC<Props> = ({ translations, handleSubmit, handleChange, formData, status }) => (
-  <form onSubmit={handleSubmit} className="space-y-6 w-full px-5 max-w-screen-md mx-auto md:px-0">
+  <form onSubmit={handleSubmit} className="space-y-6 w-full mb-10 px-5 max-w-screen-md mx-auto md:px-0">
+    <h2 className="text-2xl font-bold text-gray-800 text-center">{translations.title}</h2>
     <div className="grid md:grid-cols-2 gap-4 md:gap-6">
       <div>
         <label htmlFor="name" className="block text-gray-700 font-medium mb-2">

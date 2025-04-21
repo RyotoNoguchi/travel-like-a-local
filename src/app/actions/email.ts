@@ -11,8 +11,6 @@ type Props = {
   locale?: string
 }
 
-// TODO greetingの翻訳
-
 export const sendContactEmail = async (data: Props) => {
   // バリデーション
   if (!data.name || !data.email || !data.message) {

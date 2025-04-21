@@ -175,7 +175,8 @@
     },
     "hero": {
       "title": "Expérience le Japon authentiquement avec nos services",
-      "intro": "Nous offrons des solutions de voyage personnalisées pour vous aider à découvrir le Japon authentique. De la planification de voyages experts à des visites guidées personnalisées, nous sommes là pour créer votre aventure japonaise parfaite."
+      "intro": "Nous offrons des solutions de voyage personnalisées pour vous aider à découvrir le Japon authentique. De la planification de voyages experts à des visites guidées personnalisées, nous sommes là pour créer votre aventure japonaise parfaite.",
+      "ctaButton": "Planifiez Votre Voyage Authentique"
     },
     "overview": {
       "title": "Comment nous vous aider à expériencer le Japon authentique",
@@ -232,6 +233,7 @@
       "learnMoreButton": "À Propos de Moi"
     },
     "contact": {
+      "title": "Contactez-nous",
       "name": "Votre Nom",
       "email": "Adresse E-mail",
       "message": "Votre Message",
@@ -247,6 +249,51 @@
         "willReply": "Nous examinerons votre message et vous répondrons bientôt.",
         "pleaseWait": "Merci pour votre patience.",
         "autoReplyNote": "* Ceci est une réponse automatique. Veuillez ne pas répondre à cet email."
+      }
+    },
+    "finalCta": {
+      "title": "Prêt pour votre aventure japonaise authentique ?",
+      "description": "Disponibilité limitée pour la saison à venir. Réservez dès aujourd'hui votre expérience japonaise personnalisée !",
+      "contactButton": "Contactez-nous",
+      "learnMoreButton": "En savoir plus sur moi"
+    },
+    "guideIntroduction": {
+      "title": "Votre Guide Certifié pour un Japon Authentique",
+      "paragraph1": "Bonjour, je suis Ryoto, Guide Interprète Certifié par le Gouvernement National, passionné par le partage du vrai Japon au-delà des lieux touristiques.",
+      "paragraph2": "Après des années à guider des visiteurs et à vivre à la fois comme un local et un voyageur, j'ai créé un service qui comble les écarts culturels et offre des expériences véritablement immersives.",
+      "imageAlt": "Ryoto - Guide Touristique Certifié du Japon"
+    },
+    "features": {
+      "feature1": {
+        "title": "Itinéraires Entièrement Personnalisés",
+        "description": "Spécialement conçus pour les voyageurs expérimentés du Japon à la recherche d'expériences authentiques."
+      },
+      "feature2": {
+        "title": "Accès aux Trésors Cachés",
+        "description": "Découvrez des endroits connus uniquement des locaux et vivez le Japon au-delà des circuits touristiques typiques."
+      },
+      "feature3": {
+        "title": "Pont Linguistique & Culturel",
+        "description": "Surmontez les barrières linguistiques et les différences culturelles avec les conseils d'un expert."
+      },
+      "feature4": {
+        "title": "Soutien pour Séjours Prolongés",
+        "description": "Assistance complète pour les voyages plus longs (2+ semaines) pour une immersion culturelle profonde."
+      }
+    },
+    "faq": {
+      "title": "Questions Fréquemment Posées",
+      "booking": {
+        "question": "Comment fonctionne le processus de réservation ?",
+        "answer": "Nous commençons par un appel de consultation gratuit pour comprendre vos besoins, puis créons une proposition d'itinéraire personnalisé. Une fois approuvé, nous gérons toutes les réservations et vous fournissons un plan détaillé final."
+      },
+      "cost": {
+        "question": "Quel est le coût typique de vos services ?",
+        "answer": "Nos services sont personnalisés en fonction de vos besoins spécifiques, de la durée du voyage et de sa complexité. Les services de visite guidée commencent généralement à partir de 500 USD par jour, avec des réductions disponibles pour les réservations plus longues."
+      },
+      "languages": {
+        "question": "Quelles langues parlez-vous ?",
+        "answer": "Je parle couramment l'anglais et le japonais, et je peux communiquer à un niveau basique en français."
       }
     }
   }

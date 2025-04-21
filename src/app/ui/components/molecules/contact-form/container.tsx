@@ -6,6 +6,7 @@ import { useState, type FC } from 'react'
 
 type Props = {
   translations: {
+    title: string
     name: string
     email: string
     message: string
