@@ -1,5 +1,5 @@
 import { ARTICLE_PATH } from '@/constants'
-import type { ListArticleQuery } from '@/generated/graphql'
+import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 
 type BreadcrumbItem = {
   label: string
@@ -8,7 +8,7 @@ type BreadcrumbItem = {
 
 type Props = {
   path: string[]
-  blogPost?: NonNullable<ListArticleQuery['pageBlogPostCollection']>['items'][0]
+  blogPost?: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
   category?: string
   region?: string
   area?: string
@@ -21,7 +21,7 @@ export const generateBreadcrumbs = ({ path, blogPost, category, region, area, pr
   // ホームページ
   breadcrumbs.push({
     label: 'Home',
-    href: `/`
+    href: ''
   })
 
   // 記事一覧ページ

@@ -121,5 +121,222 @@
     "title": "Explorer les Articles par Lieu",
     "description": "Trouvez des articles basés sur des régions ou préfectures spécifiques sur notre carte interactive.",
     "buttonText": "Aller à la Carte"
+  },
+  "AboutPage": {
+    "metadata": {
+      "title": "À propos - Travel Like a Local Japan",
+      "description": "Découvrez le guide derrière Travel Like a Local Japan, qui offre des expériences de voyage authentiques, des conseils, des réservations et des visites personnalisées à travers le Japon."
+    },
+    "breadcrumbs": {
+      "home": "Accueil",
+      "about": "À propos"
+    },
+    "hero": {
+      "title": "Travel Like a Local Japan : Votre voyage authentique commence ici",
+      "intro": "Bonjour, je suis Ryoto, fondateur de Travel Like a Local Japan. En tant que Guide Interprète Agréé par le Gouvernement National, je suis passionné par le partage du vrai Japon. Ce site offre des insights pour vos voyages, et je propose des conseils personnalisés, une assistance de réservation et des visites guidées pour vous aider à vivre le Japon de façon authentique."
+    },
+    "story": {
+      "title": "Plus qu'un simple guide touristique : L'histoire derrière tout ça",
+      "p1": "Mon parcours a commencé avec une idée simple : le voyage est plus riche quand on se connecte avec les locaux. Inspiré par des expériences comme CouchSurfing et guider des amis visitant le Japon, j'ai compris combien le voyage devient plus significatif lorsqu'on sort des sentiers battus et qu'on découvre un lieu à travers les yeux des locaux.",
+      "p2": "C'est le cœur de \"Travel Like a Local Japan\". Il ne s'agit pas seulement de voir des sites touristiques, mais de comprendre la culture, découvrir des trésors cachés et créer des souvenirs authentiques. En tant que guide agréé qui a exploré tout le Japon, j'utilise mes connaissances de première main pour créer ces expériences uniques pour vous."
+    },
+    "services": {
+      "title": "Ce que signifie \"Voyager comme un local\" pour vous",
+      "consulting": {
+        "title": "Conseil de Voyage",
+        "desc": "Créons ensemble un itinéraire au-delà des guides touristiques, adapté à vos intérêts mais ouvert aux rencontres locales spontanées et aux trésors cachés qui rendent un voyage vraiment mémorable."
+      },
+      "booking": {
+        "title": "Assistance de Réservation",
+        "desc": "De la navigation dans les transports complexes à la recherche de séjours uniques, je m'occupe de la logistique en douceur, vous libérant pour simplement profiter du voyage et saisir les opportunités inattendues."
+      },
+      "tours": {
+        "title": "Visites Guidées Personnalisées",
+        "desc": "Allez au-delà du tourisme. Je vous guiderai vers des expériences authentiques, faciliterai les connexions avec les locaux et vous aiderai à découvrir le vrai cœur du Japon, tout comme mes propres rencontres inspirantes."
+      },
+      "websiteResource": "Ce site web sert également de ressource pour planifier une aventure japonaise authentique, rempli de conseils et d'articles basés sur des expériences réelles."
+    },
+    "philosophy": {
+      "title": "Ma Philosophie de Voyage",
+      "description": "Ce qui rend le voyage vraiment significatif et comment j'approche le partage du vrai Japon avec les autres",
+      "value1": {
+        "title": "Se Connecter avec les Locaux",
+        "description": "Les vraies expériences de voyage viennent des connexions significatives avec les locaux qui partagent leur culture et leur vie quotidienne."
+      },
+      "value2": {
+        "title": "Au-delà des Lieux Touristiques",
+        "description": "La vraie magie du Japon se trouve au-delà des guides dans les lieux quotidiens où la culture authentique s'épanouit."
+      },
+      "value3": {
+        "title": "Voyage Durable",
+        "description": "Je crois en un voyage qui respecte les communautés locales, soutient les petites entreprises et préserve les traditions culturelles."
+      }
+    },
+    "background": {
+      "title": "Mon Parcours & Qualifications",
+      "qualification1": {
+        "title": "Guide Interprète Agréé par le Gouvernement National",
+        "description": "Certification officielle du gouvernement japonais pour fournir des services de guide et d'interprétation aux visiteurs étrangers."
+      },
+      "qualification2": {
+        "title": "Communication Multilingue",
+        "description": "Je parle couramment le japonais, l'anglais et le français conversationnel, me permettant de créer des ponts culturels et linguistiques efficacement."
+      },
+      "qualification3": {
+        "title": "Expérience de Voyage Étendue",
+        "description": "Voyageur expérimenté à travers le Japon et à l'international, avec une connaissance approfondie de ce qui rend les expériences de voyage significatives et mémorables."
+      },
+      "qualification4": {
+        "title": "Expérience Professionnelle de Guide Touristique",
+        "descriptionPart1": "J'ai travaillé comme guide bilingue (anglais/français) chez ",
+        "satoyamaText": "SATOYAMA EXPERIENCE",
+        "descriptionPart2": " pendant un an, une entreprise touristique très bien notée avec plus de 1 100 avis 'Excellent' sur TripAdvisor. Cette expérience a perfectionné mes compétences dans la création d'expériences culturelles authentiques et la gestion des besoins divers des visiteurs."
+      }
+    },
+    "cta": {
+      "title": "Prêt pour votre aventure ? Planifions votre voyage !",
+      "connect": "Connectez-vous directement avec moi pour discuter de votre voyage de rêve au Japon :",
+      "explore": "Ou continuez à explorer le site :",
+      "browseArticles": "Parcourir les Articles",
+      "exploreMap": "Explorer la Carte",
+      "serviceButton": "Voir Mes Services"
+    }
+  },
+  "ServicesPage": {
+    "metadata": {
+      "title": "Nos Services - Travel Like a Local Japan",
+      "description": "Découvrez nos services de voyage personnalisés, y compris la planification de voyages, l'assistance à la réservation et les visites guidées pour vivre le Japon authentiquement."
+    },
+    "breadcrumbs": {
+      "home": "Accueil",
+      "services": "Services"
+    },
+    "hero": {
+      "title": "Expérience le Japon authentiquement avec nos services",
+      "intro": "Nous offrons des solutions de voyage personnalisées pour vous aider à découvrir le Japon authentique. De la planification de voyages experts à des visites guidées personnalisées, nous sommes là pour créer votre aventure japonaise parfaite.",
+      "ctaButton": "Planifiez Votre Voyage Authentique"
+    },
+    "overview": {
+      "title": "Comment nous vous aider à expériencer le Japon authentique",
+      "description": "Nos services sont conçus pour vous offrir une expérience japonaise authentique, vous connectant avec la culture locale et les trésors cachés que la plupart des touristes ne découvrent pas."
+    },
+    "services": {
+      "title": "Nos Services de Voyage",
+      "consulting": {
+        "title": "Planification & Conseil de Voyage",
+        "description": "Je conçois un itinéraire personnalisé qui correspond à vos intérêts, préférences et style de voyage. Je vous aide à découvrir des endroits que la plupart des touristes ne trouvent jamais.",
+        "feature1": "Itinéraires de voyage personnalisés au-delà des circuits touristiques typiques",
+        "feature2": "Conseils locaux et recommandations pour des expériences authentiques",
+        "feature3": "Options économiques et conseils pratiques de voyage",
+        "cta": "Obtenez votre plan personnalisé"
+      },
+      "booking": {
+        "title": "Soutien aux Réservations",
+        "description": "Naviguer dans les systèmes de réservation japonais peut être difficile. Je m'occupe de toutes vos réservations - des ryokans traditionnels aux expériences locales qui n'apparaissent pas sur les sites de réservation habituels.",
+        "feature1": "Assistance pour les réservations d'hébergement, y compris les séjours traditionnels",
+        "feature2": "Réservations de restaurants dans des établissements locaux authentiques",
+        "feature3": "Organisation des transports et billets pour événements culturels",
+        "cta": "Réservez en toute confiance"
+      },
+      "tours": {
+        "title": "Visites Guidées Privées",
+        "description": "Découvrez le Japon avec un guide local agréé qui peut fournir un contexte culturel, un soutien linguistique et l'accès à des endroits que vous ne découvririez pas par vous-même.",
+        "feature1": "Visites personnalisées adaptées à vos intérêts spécifiques",
+        "feature2": "Aperçus culturels et historiques locaux au-delà des guides touristiques",
+        "feature3": "Itinéraires flexibles qui peuvent s'adapter à vos préférences",
+        "cta": "Explorez avec moi"
+      }
+    },
+    "pricing": {
+      "title": "Tarification des Services",
+      "description": "Tarification transparente adaptée à vos besoins spécifiques et à la durée de votre voyage."
+    },
+    "testimonials": {
+      "title": "Ce que disent les voyageurs à propos de nous",
+      "traveler1": {
+        "name": "Sarah J.",
+        "country": "Australie",
+        "quote": "Les connaissances d'initié de Ryoto ont rendu notre voyage au Japon inoubliable. Nous avons découvert des endroits que nous n'aurions jamais trouvés dans les guides!"
+      },
+      "traveler2": {
+        "name": "Marco L.",
+        "country": "Italie",
+        "quote": "L'itinéraire personnalisé était parfait. Avoir une aide locale pour les réservations nous a fait gagner beaucoup de temps et évité bien des frustrations."
+      }
+    },
+    "cta": {
+      "title": "Prêt à découvrir le vrai Japon?",
+      "description": "Planifions ensemble votre voyage japonais authentique.",
+      "contactButton": "Me Contacter",
+      "learnMoreButton": "À Propos de Moi"
+    },
+    "contact": {
+      "title": "Contactez-nous",
+      "name": "Votre Nom",
+      "email": "Adresse E-mail",
+      "message": "Votre Message",
+      "submit": "Envoyer",
+      "success": "Votre demande a été reçue. Veuillez vérifier votre e-mail pour une confirmation automatique.",
+      "error": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer plus tard.",
+      "sending": "Envoi en cours...",
+      "autoReply": {
+        "subject": "【Travel Like a Local】Merci pour votre demande",
+        "greeting": "Cher/Chère {name},",
+        "thankYou": "Merci d'avoir contacté Travel Like a Local.",
+        "receivedMessage": "Nous avons bien reçu votre demande avec le contenu suivant :",
+        "willReply": "Nous examinerons votre message et vous répondrons bientôt.",
+        "pleaseWait": "Merci pour votre patience.",
+        "autoReplyNote": "* Ceci est une réponse automatique. Veuillez ne pas répondre à cet email."
+      }
+    },
+    "finalCta": {
+      "title": "Prêt pour votre aventure japonaise authentique ?",
+      "description": "Disponibilité limitée pour la saison à venir. Réservez dès aujourd'hui votre expérience japonaise personnalisée !",
+      "contactButton": "Contactez-nous",
+      "learnMoreButton": "En savoir plus sur moi"
+    },
+    "guideIntroduction": {
+      "title": "Votre Guide Certifié pour un Japon Authentique",
+      "paragraph1": "Bonjour, je suis Ryoto, Guide Interprète Certifié par le Gouvernement National, passionné par le partage du vrai Japon au-delà des lieux touristiques.",
+      "paragraph2": "Après des années à guider des visiteurs et à vivre à la fois comme un local et un voyageur, j'ai créé un service qui comble les écarts culturels et offre des expériences véritablement immersives.",
+      "imageAlt": "Ryoto - Guide Touristique Certifié du Japon"
+    },
+    "features": {
+      "feature1": {
+        "title": "Itinéraires Entièrement Personnalisés",
+        "description": "Spécialement conçus pour les voyageurs expérimentés du Japon à la recherche d'expériences authentiques."
+      },
+      "feature2": {
+        "title": "Accès aux Trésors Cachés",
+        "description": "Découvrez des endroits connus uniquement des locaux et vivez le Japon au-delà des circuits touristiques typiques."
+      },
+      "feature3": {
+        "title": "Pont Linguistique & Culturel",
+        "description": "Surmontez les barrières linguistiques et les différences culturelles avec les conseils d'un expert."
+      },
+      "feature4": {
+        "title": "Soutien pour Séjours Prolongés",
+        "description": "Assistance complète pour les voyages plus longs (2+ semaines) pour une immersion culturelle profonde."
+      }
+    },
+    "faq": {
+      "title": "Questions Fréquemment Posées",
+      "booking": {
+        "question": "Comment fonctionne le processus de réservation ?",
+        "answer": "Nous commençons par un appel de consultation gratuit pour comprendre vos besoins, puis créons une proposition d'itinéraire personnalisé. Une fois approuvé, nous gérons toutes les réservations et vous fournissons un plan détaillé final."
+      },
+      "cost": {
+        "question": "Quel est le coût typique de vos services ?",
+        "answer": "Nos services sont personnalisés en fonction de vos besoins spécifiques, de la durée du voyage et de sa complexité. Les services de visite guidée commencent généralement à partir de 500 USD par jour, avec des réductions disponibles pour les réservations plus longues."
+      },
+      "languages": {
+        "question": "Quelles langues parlez-vous ?",
+        "answer": "Je parle couramment l'anglais et le japonais, et je peux communiquer à un niveau basique en français."
+      }
+    },
+    "testimonialSource": "Ces avis sont sélectionnés parmi plus de 60 références sur Couchsurfing",
+    "testimonialCouchsurfing": "Couchsurfing",
+    "seeAll": "Voir tous",
+    "close": "Fermer"
   }
 }

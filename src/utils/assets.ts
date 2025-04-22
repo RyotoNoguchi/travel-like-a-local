@@ -45,6 +45,20 @@ export const getJapanMapImage = async ({ width, height }: Props) => {
   return null
 }
 
+export const getImageById = async ({ width, height, id }: Props & { id: string }) => {
+  const client = createApolloClient()
+  const { data } = await client.query<GetAssetQuery, GetAssetQueryVariables>({
+    query: GET_ASSET_QUERY,
+    variables: { id }
+  })
+  const asset = data.asset
+  if (asset && asset.url) {
+    const resizedUrl = `${asset.url}${width && height ? `?w=${width}&h=${height}&fit=fill` : ''}`
+    return { url: resizedUrl, title: asset.title ?? '', fileName: asset.fileName ?? '' }
+  }
+  return null
+}
+
 export const getImagesByTag = async ({ width, height, tag }: Props & { tag: string }) => {
   const client = createApolloClient()
   const { data } = await client.query<GetAssetsByTagQuery, GetAssetsByTagQueryVariables>({

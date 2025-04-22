@@ -122,5 +122,222 @@
     "title": "Explore Articles by Location",
     "description": "Find articles based on specific regions or prefectures on our interactive map.",
     "buttonText": "Go to Map"
+  },
+  "AboutPage": {
+    "metadata": {
+      "title": "About - Travel Like a Local Japan",
+      "description": "Learn about the guide behind Travel Like a Local Japan, offering authentic travel experiences, consulting, booking, and personalized tours across Japan."
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "about": "About"
+    },
+    "hero": {
+      "title": "Travel Like a Local Japan: Your Authentic Journey Begins",
+      "intro": "Hi, I'm Ryoto, founder of Travel Like a Local Japan. As a National Government Licensed Guide Interpreter, I'm passionate about sharing the real Japan. This site offers insights for your travels, and I provide personalized trip consulting, booking assistance, and guided tours to help you experience Japan authentically."
+    },
+    "story": {
+      "title": "More Than Just a Tour Guide: The Story Behind It All",
+      "p1": "My journey started with a simple idea: travel is richer when you connect with locals. Inspired by experiences like CouchSurfing and guiding friends visiting Japan, I saw how much more meaningful travel becomes when you step off the beaten path and experience a place through local eyes.",
+      "p2": "That's the heart of \"Travel Like a Local Japan.\" It's not just about seeing sights; it's about understanding the culture, discovering hidden gems, and creating genuine memories. As a licensed guide who has explored extensively throughout Japan, I use my firsthand knowledge to craft these unique experiences for you."
+    },
+    "services": {
+      "title": "What \"Traveling Like a Local\" Means for You",
+      "consulting": {
+        "title": "Trip Consulting",
+        "desc": "Let's craft an itinerary beyond the guidebooks, tailored to your interests but open to the kind of spontaneous local encounters and hidden gems that make a trip truly memorable."
+      },
+      "booking": {
+        "title": "Booking Assistance",
+        "desc": "From navigating complex transport to finding unique stays, I'll handle the logistics smoothly, freeing you up to simply enjoy the journey and embrace unexpected opportunities."
+      },
+      "tours": {
+        "title": "Personalized Guided Tours",
+        "desc": "Go beyond sightseeing. I'll guide you to authentic experiences, facilitate connections with locals, and help you discover the true heart of Japan, just like my own inspiring encounters."
+      },
+      "websiteResource": "This website also serves as your resource for planning an authentic Japanese adventure, filled with tips and articles based on real experiences."
+    },
+    "philosophy": {
+      "title": "My Travel Philosophy",
+      "description": "What makes travel truly meaningful and how I approach showing others the real Japan",
+      "value1": {
+        "title": "Connect With Locals",
+        "description": "True travel experiences come from meaningful connections with locals who share their culture and daily life."
+      },
+      "value2": {
+        "title": "Beyond Tourist Spots",
+        "description": "The real magic of Japan lies beyond guidebooks in the everyday places where authentic culture thrives."
+      },
+      "value3": {
+        "title": "Sustainable Travel",
+        "description": "I believe in travel that respects local communities, supports small businesses, and preserves cultural traditions."
+      }
+    },
+    "background": {
+      "title": "My Background & Qualifications",
+      "qualification1": {
+        "title": "Licensed National Government Guide Interpreter",
+        "description": "Official certification by the Japanese government to provide guide and interpretation services to foreign visitors."
+      },
+      "qualification2": {
+        "title": "Multilingual Communication",
+        "description": "Fluent in Japanese, English, and conversational French, allowing me to bridge cultural and language barriers effectively."
+      },
+      "qualification3": {
+        "title": "Extensive Travel Experience",
+        "description": "Experienced traveler through Japan and internationally, with deep knowledge of what makes travel experiences meaningful and memorable."
+      },
+      "qualification4": {
+        "title": "Professional Tour Guide Experience",
+        "descriptionPart1": "I worked as a bilingual (English/French) tour guide at ",
+        "satoyamaText": "SATOYAMA EXPERIENCE",
+        "descriptionPart2": " for a year, a top-rated travel company with over 1,100 'Excellent' reviews on TripAdvisor. This experience honed my skills in creating authentic cultural experiences and managing diverse visitor needs."
+      }
+    },
+    "cta": {
+      "title": "Ready for Your Adventure? Let's Plan Your Trip!",
+      "connect": "Connect with me directly to discuss your dream trip to Japan:",
+      "explore": "Or, continue exploring the site:",
+      "browseArticles": "Browse Articles",
+      "exploreMap": "Explore the Map",
+      "serviceButton": "View My Services"
+    }
+  },
+  "ServicesPage": {
+    "metadata": {
+      "title": "Our Services - Travel Like a Local Japan",
+      "description": "Discover our personalized travel services including trip planning, booking assistance, and guided tours to experience Japan authentically."
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "services": "Services"
+    },
+    "hero": {
+      "title": "Experience Japan Beyond the Guidebooks: Your Private Guide to Authentic Japan",
+      "intro": "Tailored experiences for travelers seeking the real Japan.",
+      "ctaButton": "Plan Your Authentic Journey"
+    },
+    "overview": {
+      "title": "How We Help You Experience the Real Japan",
+      "description": "Our services are designed to give you an authentic Japanese experience, connecting you with local culture and hidden gems that most tourists never discover."
+    },
+    "services": {
+      "title": "Our Travel Services",
+      "consulting": {
+        "title": "Trip Planning & Consulting",
+        "description": "Let me design a personalized itinerary that matches your interests, preferences, and travel style. I'll help you discover places that most tourists never find.",
+        "feature1": "Customized travel itineraries beyond typical tourist routes",
+        "feature2": "Local insights and recommendations for authentic experiences",
+        "feature3": "Budget-friendly options and practical travel advice",
+        "cta": "Get Your Custom Plan"
+      },
+      "booking": {
+        "title": "Booking & Reservation Support",
+        "description": "Navigating Japanese booking systems can be challenging. I'll handle all your reservations - from traditional ryokans to local experiences that don't appear on regular booking sites.",
+        "feature1": "Assistance with accommodation bookings, including traditional stays",
+        "feature2": "Restaurant reservations at authentic local establishments",
+        "feature3": "Transportation arrangements and tickets for cultural events",
+        "cta": "Book With Confidence"
+      },
+      "tours": {
+        "title": "Private Guided Tours",
+        "description": "Experience Japan with a licensed local guide who can provide cultural context, language support, and access to places you wouldn't discover on your own.",
+        "feature1": "Personalized tours tailored to your specific interests",
+        "feature2": "Local cultural and historical insights beyond guidebooks",
+        "feature3": "Flexible itineraries that can adapt to your preferences",
+        "cta": "Explore With Me"
+      }
+    },
+    "pricing": {
+      "title": "Service Pricing",
+      "description": "Transparent pricing tailored to your specific needs and travel duration."
+    },
+    "testimonials": {
+      "title": "What Travelers Say About Us",
+      "traveler1": {
+        "name": "Sarah J.",
+        "country": "Australia",
+        "quote": "Ryoto's insider knowledge made our trip to Japan unforgettable. We discovered places we would never have found in guidebooks!"
+      },
+      "traveler2": {
+        "name": "Marco L.",
+        "country": "Italy",
+        "quote": "The personalized itinerary was perfect. Having local help with bookings saved us so much time and frustration."
+      }
+    },
+    "cta": {
+      "title": "Ready to Experience the Real Japan?",
+      "description": "Let's plan your authentic Japanese journey together.",
+      "contactButton": "Contact Me",
+      "learnMoreButton": "About Me"
+    },
+    "finalCta": {
+      "title": "Ready for Your Authentic Japan Adventure?",
+      "description": "Limited availability for the upcoming season. Secure your personalized Japan experience today!",
+      "contactButton": "Contact Now",
+      "learnMoreButton": "Learn More About Me"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "name": "Your Name",
+      "email": "Email Address",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "success": "Your inquiry has been received. Please check your email for an automatic confirmation.",
+      "error": "An error occurred while sending. Please try again later.",
+      "sending": "Sending...",
+      "autoReply": {
+        "subject": "【Travel Like a Local】Thank you for your inquiry",
+        "greeting": "Dear {name},",
+        "thankYou": "Thank you for contacting Travel Like a Local.",
+        "receivedMessage": "We have received your inquiry with the following content:",
+        "willReply": "We will review your message and get back to you soon.",
+        "pleaseWait": "Thank you for your patience.",
+        "autoReplyNote": "* This is an automated reply. Please do not respond to this email."
+      }
+    },
+    "guideIntroduction": {
+      "title": "Your Licensed Guide to Authentic Japan",
+      "paragraph1": "Hi, I'm Ryoto, a National Government Licensed Guide Interpreter passionate about sharing the real Japan beyond tourist spots.",
+      "paragraph2": "After years of guiding visitors and living as both a local and traveler, I've created a service that bridges cultural gaps and offers truly immersive experiences.",
+      "imageAlt": "Ryoto - Licensed Japan Tour Guide"
+    },
+    "features": {
+      "feature1": {
+        "title": "Fully Customized Itineraries",
+        "description": "Tailored specifically for experienced Japan travelers seeking authentic experiences."
+      },
+      "feature2": {
+        "title": "Access to Hidden Gems",
+        "description": "Discover places only known to locals and experience Japan beyond the typical tourist route."
+      },
+      "feature3": {
+        "title": "Language & Cultural Bridge",
+        "description": "Break through language barriers and cultural differences with expert guidance."
+      },
+      "feature4": {
+        "title": "Extended Stay Support",
+        "description": "Comprehensive assistance for longer journeys (2+ weeks) for deep cultural immersion."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "booking": {
+        "question": "How does the booking process work?",
+        "answer": "We start with a free consultation call to understand your needs, then create a custom itinerary proposal. Once approved, we handle all the bookings and provide you with a final detailed plan."
+      },
+      "cost": {
+        "question": "What is the typical cost for your services?",
+        "answer": "Our services are customized based on your specific needs, trip duration, and complexity. Guided tour services typically start from $500 USD per day, with discounts available for longer bookings."
+      },
+      "languages": {
+        "question": "What languages do you speak?",
+        "answer": "I am fluent in English and Japanese, and can communicate at a basic level in French."
+      }
+    },
+    "testimonialSource": "These reviews are selected from over 60 references on Couchsurfing",
+    "testimonialCouchsurfing": "Couchsurfing",
+    "seeAll": "See all",
+    "close": "Close"
   }
 }
