@@ -157,12 +157,50 @@
       },
       "websiteResource": "This website also serves as your resource for planning an authentic Japanese adventure, filled with tips and articles based on real experiences."
     },
+    "philosophy": {
+      "title": "My Travel Philosophy",
+      "description": "What makes travel truly meaningful and how I approach showing others the real Japan",
+      "value1": {
+        "title": "Connect With Locals",
+        "description": "True travel experiences come from meaningful connections with locals who share their culture and daily life."
+      },
+      "value2": {
+        "title": "Beyond Tourist Spots",
+        "description": "The real magic of Japan lies beyond guidebooks in the everyday places where authentic culture thrives."
+      },
+      "value3": {
+        "title": "Sustainable Travel",
+        "description": "I believe in travel that respects local communities, supports small businesses, and preserves cultural traditions."
+      }
+    },
+    "background": {
+      "title": "My Background & Qualifications",
+      "qualification1": {
+        "title": "Licensed National Government Guide Interpreter",
+        "description": "Official certification by the Japanese government to provide guide and interpretation services to foreign visitors."
+      },
+      "qualification2": {
+        "title": "Multilingual Communication",
+        "description": "Fluent in Japanese, English, and conversational French, allowing me to bridge cultural and language barriers effectively."
+      },
+      "qualification3": {
+        "title": "Extensive Travel Experience",
+        "description": "Experienced traveler through Japan and internationally, with deep knowledge of what makes travel experiences meaningful and memorable."
+      },
+      "qualification4": {
+        "title": "Professional Tour Guide Experience",
+        "descriptionPart1": "I worked as a bilingual (English/French) tour guide at ",
+        "satoyamaText": "SATOYAMA EXPERIENCE",
+        "descriptionPart2": " for a year, a top-rated travel company with over 1,100 'Excellent' reviews on TripAdvisor. This experience honed my skills in creating authentic cultural experiences and managing diverse visitor needs."
+      }
+    },
     "cta": {
       "title": "Ready for Your Adventure? Let's Plan Your Trip!",
       "connect": "Connect with me directly to discuss your dream trip to Japan:",
       "explore": "Or, continue exploring the site:",
       "browseArticles": "Browse Articles",
-      "exploreMap": "Explore the Map"
+      "exploreMap": "Explore the Map",
+      "serviceButton": "View My Services"
     }
   },
   "ServicesPage": {

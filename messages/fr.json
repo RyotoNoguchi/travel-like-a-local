@@ -156,12 +156,50 @@
       },
       "websiteResource": "Ce site web sert également de ressource pour planifier une aventure japonaise authentique, rempli de conseils et d'articles basés sur des expériences réelles."
     },
+    "philosophy": {
+      "title": "Ma Philosophie de Voyage",
+      "description": "Ce qui rend le voyage vraiment significatif et comment j'approche le partage du vrai Japon avec les autres",
+      "value1": {
+        "title": "Se Connecter avec les Locaux",
+        "description": "Les vraies expériences de voyage viennent des connexions significatives avec les locaux qui partagent leur culture et leur vie quotidienne."
+      },
+      "value2": {
+        "title": "Au-delà des Lieux Touristiques",
+        "description": "La vraie magie du Japon se trouve au-delà des guides dans les lieux quotidiens où la culture authentique s'épanouit."
+      },
+      "value3": {
+        "title": "Voyage Durable",
+        "description": "Je crois en un voyage qui respecte les communautés locales, soutient les petites entreprises et préserve les traditions culturelles."
+      }
+    },
+    "background": {
+      "title": "Mon Parcours & Qualifications",
+      "qualification1": {
+        "title": "Guide Interprète Agréé par le Gouvernement National",
+        "description": "Certification officielle du gouvernement japonais pour fournir des services de guide et d'interprétation aux visiteurs étrangers."
+      },
+      "qualification2": {
+        "title": "Communication Multilingue",
+        "description": "Je parle couramment le japonais, l'anglais et le français conversationnel, me permettant de créer des ponts culturels et linguistiques efficacement."
+      },
+      "qualification3": {
+        "title": "Expérience de Voyage Étendue",
+        "description": "Voyageur expérimenté à travers le Japon et à l'international, avec une connaissance approfondie de ce qui rend les expériences de voyage significatives et mémorables."
+      },
+      "qualification4": {
+        "title": "Expérience Professionnelle de Guide Touristique",
+        "descriptionPart1": "J'ai travaillé comme guide bilingue (anglais/français) chez ",
+        "satoyamaText": "SATOYAMA EXPERIENCE",
+        "descriptionPart2": " pendant un an, une entreprise touristique très bien notée avec plus de 1 100 avis 'Excellent' sur TripAdvisor. Cette expérience a perfectionné mes compétences dans la création d'expériences culturelles authentiques et la gestion des besoins divers des visiteurs."
+      }
+    },
     "cta": {
       "title": "Prêt pour votre aventure ? Planifions votre voyage !",
       "connect": "Connectez-vous directement avec moi pour discuter de votre voyage de rêve au Japon :",
       "explore": "Ou continuez à explorer le site :",
       "browseArticles": "Parcourir les Articles",
-      "exploreMap": "Explorer la Carte"
+      "exploreMap": "Explorer la Carte",
+      "serviceButton": "Voir Mes Services"
     }
   },
   "ServicesPage": {
