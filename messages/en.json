@@ -296,6 +296,10 @@
         "question": "What languages do you speak?",
         "answer": "I am fluent in English and Japanese, and can communicate at a basic level in French."
       }
-    }
+    },
+    "testimonialSource": "These reviews are selected from over 60 references on Couchsurfing",
+    "testimonialCouchsurfing": "Couchsurfing",
+    "seeAll": "See all",
+    "close": "Close"
   }
 }

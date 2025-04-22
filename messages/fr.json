@@ -295,6 +295,10 @@
         "question": "Quelles langues parlez-vous ?",
         "answer": "Je parle couramment l'anglais et le japonais, et je peux communiquer à un niveau basique en français."
       }
-    }
+    },
+    "testimonialSource": "Ces avis sont sélectionnés parmi plus de 60 références sur Couchsurfing",
+    "testimonialCouchsurfing": "Couchsurfing",
+    "seeAll": "Voir tous",
+    "close": "Fermer"
   }
 }

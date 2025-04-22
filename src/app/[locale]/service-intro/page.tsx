@@ -2,6 +2,7 @@ import { InstagramIcon } from '@/app/ui/components/atoms/icons/instagram-icon'
 import { MessengerIcon } from '@/app/ui/components/atoms/icons/messenger-icon'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { ContactFormContainer } from '@/app/ui/components/molecules/contact-form/container'
+import { TestimonialSection } from '@/app/ui/components/molecules/testimonials/testimonial-section'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import type { LANGUAGE } from '@/constants'
 import { Link } from '@/i18n/routing'
@@ -13,6 +14,35 @@ import Image from 'next/image'
 
 const HERO_IMAGE_ID = '2AM6uYinV5m9K4PKBKroWs'
 const PORTRAIT_IMAGE_ID = '2I6HjTmgfo41UYj57BqOtH'
+const TESTIMONIALS = [
+  {
+    name: 'Raphaël F.',
+    imageUrl: '/images/testimonials/raphael.jpeg',
+    country: 'France',
+    sex: 'M',
+    ageGroup: '20s',
+    testimonial:
+      "Ryoto is very unique ! Don't miss him ! He's crazy about hiking and he knows a lot about Japan and mostly japanese hikes ! He's a real pro of all this region.\nI've been hosted in a traditional japanese house with sliding doors and tatamis on the room 😍\nHe has a very nice and interesting project about this house. He won't admit it because he is humble but he's very smart :)\n\nI don't have any sim card and there's no wifi so he gave me his professional phone so I could have internet, that was so lovely !\n\nI met some friends of him and we spent so many good times together!! We went to Hakuba together, do some videos for the social media and discover the city. We did one of the beatufil hikes of my life together..\n\nBravo et merci pour ta gentillesse Ryoto, tu es vraiment quelqu'un de simple et de pur. Continue de t'emerveiller de la beauté de la nature et de partager tout ça avec les autres. J'ai passé de supers moments !"
+  },
+  {
+    name: 'Joana M.',
+    imageUrl: '/images/testimonials/joana.jpeg',
+    country: 'Spain',
+    sex: 'F',
+    ageGroup: '20s',
+    testimonial:
+      'He is one of the most kind and funn people on coach surfing. We went to a winter festival together and it was magical 🫂 he helped with transportation and keeping us safe and warm. He was so so kind and also so smart. He knew a lot about history folk traditions and he answered our questions. We want hem to come visit us in Spain, because we made a friend for life 💙'
+  },
+  {
+    name: 'Alya G.',
+    imageUrl: '/images/testimonials/alya.jpeg',
+    country: 'Canada',
+    ageGroup: '20s',
+    sex: 'F',
+    testimonial:
+      'Ryoto is a very friendly guy! We had nice conversations. He speaks English and French and traveled all over the world. He is willing to give you tours when he does not work, unfortunately the two days I was staying at his place, he had to work. I am sure that he is a great tour guide. He has also helped me a lot to find hitchhiking spots. I had a nice experience, I would definitely recommend him.'
+  }
+]
 
 type Props = {
   params: {
@@ -54,10 +84,6 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
   const heroImage = await getImageById({ id: HERO_IMAGE_ID, width: 1000, height: 564 })
   const guideImage = await getImageById({ id: PORTRAIT_IMAGE_ID, width: 500, height: 500 })
 
-  // TODO: Testimonial images should be added
-  const testimonial1Image = await getImageById({ id: 'testimonial1ID', width: 80, height: 80 })
-  const testimonial2Image = await getImageById({ id: 'testimonial2ID', width: 80, height: 80 })
-
   const serviceProcess = [
     { number: 1, title: 'Initial Consultation', description: 'We start with a free Google Meet call to understand your travel preferences and needs.' },
     { number: 2, title: 'Custom Plan Draft', description: 'Based on your input, I create a tailored travel plan designed specifically for you.' },
@@ -65,6 +91,8 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
     { number: 4, title: 'Booking & Arrangements', description: 'I handle all bookings and logistics, ensuring everything is set for your arrival.' },
     { number: 5, title: 'Guided Experience', description: 'I accompany you throughout your journey, providing guidance, translation, and local insights.' }
   ]
+
+  const testimonialSourceText = `${t('testimonialSource').replace('Couchsurfing', `<a href="https://www.couchsurfing.com/people/ryoto-noguchi" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:underline">${t('testimonialCouchsurfing')}</a>`)}`
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 px-4 pb-12 lg:px-3 pt-2 max-w-screen-lg mx-auto">
@@ -305,68 +333,8 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
         </div>
       </section>
 
-      {/* 6. Testimonials */}
-      <section className="w-full py-12">
-        <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">{t('testimonials.title')}</h2>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-lg shadow-md p-6 relative">
-            <div className="absolute -top-5 left-6">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md">
-                {testimonial1Image ? (
-                  <Image src={testimonial1Image.url} alt={t('testimonials.traveler1.name')} width={80} height={80} className="object-cover" />
-                ) : (
-                  <div className="w-full h-full bg-gray-200"></div>
-                )}
-              </div>
-            </div>
-            <div className="pt-8">
-              <p className="text-gray-600 italic mb-4">&quot;{t('testimonials.traveler1.quote')}&quot;</p>
-              <div className="flex justify-between items-center">
-                <div>
-                  <p className="font-semibold text-gray-800">{t('testimonials.traveler1.name')}</p>
-                  <p className="text-gray-500 text-sm">{t('testimonials.traveler1.country')}</p>
-                </div>
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-md p-6 relative">
-            <div className="absolute -top-5 left-6">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md">
-                {testimonial2Image ? (
-                  <Image src={testimonial2Image.url} alt={t('testimonials.traveler2.name')} width={80} height={80} className="object-cover" />
-                ) : (
-                  <div className="w-full h-full bg-gray-200"></div>
-                )}
-              </div>
-            </div>
-            <div className="pt-8">
-              <p className="text-gray-600 italic mb-4">&quot;{t('testimonials.traveler2.quote')}&quot;</p>
-              <div className="flex justify-between items-center">
-                <div>
-                  <p className="font-semibold text-gray-800">{t('testimonials.traveler2.name')}</p>
-                  <p className="text-gray-500 text-sm">{t('testimonials.traveler2.country')}</p>
-                </div>
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 6. Testimonials - クライアントコンポーネントを使用 */}
+      <TestimonialSection testimonials={TESTIMONIALS} title={t('testimonials.title')} sourceText={testimonialSourceText} />
 
       {/* 7. FAQ Section - Simplified */}
       <section className="w-full py-12 bg-gray-50 rounded-xl px-6">
