@@ -5,14 +5,16 @@ import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { RichText } from '@/app/ui/rich-text'
-import { type LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
+import { type LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE, PROFILE_IMAGE_ID } from '@/constants'
 import type { GetBlogPostsQuery } from '@/generated/graphql'
 import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
+import { getImageById } from '@/utils/assets'
 import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 import { categorizeBlogPosts } from '@/utils/category-helper'
 import { getCategories } from '@/utils/concept-helper'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { ProfileCardContainer } from '../ui/components/molecules/profile-card/container'
 import { BlogPostCards } from '../ui/components/organisms/blog-post-cards'
 
 type Props = {
@@ -40,6 +42,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const categories = await getCategories(locale)
   const blogPostsWithHref = await getBlogPostsWithHref(blogPosts)
   const categorizedBlogPosts = categorizeBlogPosts(blogPostsWithHref, categories)
+  const profileImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
 
   return (
     <>
@@ -61,7 +64,10 @@ const HomePage: NextPage<Props> = async ({ params }) => {
               isBookmarksPage={false}
             />
           </div>
-          <PopularBlogPostsContainer locale={locale} />
+          <aside className="hidden semi-lg:flex flex-col gap-6 items-center max-w-[300px]">
+            <ProfileCardContainer imageUrl={profileImage?.url || ''} />
+            <PopularBlogPostsContainer locale={locale} />
+          </aside>
         </div>
       </main>
     </>

@@ -134,7 +134,8 @@
     },
     "hero": {
       "title": "Travel Like a Local Japan: Your Authentic Journey Begins",
-      "intro": "Hi, I'm Ryoto, founder of Travel Like a Local Japan. As a National Government Licensed Guide Interpreter, I'm passionate about sharing the real Japan. This site offers insights for your travels, and I provide personalized trip consulting, booking assistance, and guided tours to help you experience Japan authentically."
+      "intro": "Hi, I'm Ryoto, founder of Travel Like a Local Japan. As a National Government Licensed Guide Interpreter, I'm passionate about sharing the real Japan. This site offers insights for your travels, and I provide personalized trip consulting, booking assistance, and guided tours to help you experience Japan authentically.",
+      "subtitle": "Licensed National Government Guide Interpreter"
     },
     "story": {
       "title": "More Than Just a Tour Guide: The Story Behind It All",
@@ -201,6 +202,10 @@
       "browseArticles": "Browse Articles",
       "exploreMap": "Explore the Map",
       "serviceButton": "View My Services"
+    },
+    "profileCard": {
+      "shortBio": "As a Licensed Guide Interpreter, I'm passionate about sharing the real Japan beyond tourist spots. Let me guide you to authentic experiences.",
+      "linkText": "Learn More About Me"
     }
   },
   "ServicesPage": {
