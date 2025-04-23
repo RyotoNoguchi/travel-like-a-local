@@ -1690,6 +1690,7 @@ export type GetFeaturedBlogPostsQuery = {
     __typename?: 'PageBlogPostCollection'
     items: Array<{
       __typename?: 'PageBlogPost'
+      title?: string | null
       slug?: string | null
       featuredImage?: { __typename?: 'Asset'; url?: string | null; title?: string | null } | null
       contentfulMetadata: {
@@ -2226,6 +2227,7 @@ export const GetFeaturedBlogPostsDocument = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
                       {
                         kind: 'Field',

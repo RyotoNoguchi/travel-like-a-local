@@ -54,6 +54,7 @@ export const CarouselContainer: FC<Props> = async ({ width, height, locale }) =>
       return {
         slug: item?.slug ?? '',
         href,
+        title: item?.title ?? '',
         featuredImage: {
           url: item?.featuredImage?.url ? `${item?.featuredImage?.url}?w=${width}&h=${height}&fit=fill` : '',
           title: item?.featuredImage?.title ?? ''

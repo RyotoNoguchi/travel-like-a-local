@@ -104,6 +104,7 @@ export const GET_FEATURED_BLOG_POSTS_QUERY = gql`
   query GetFeaturedBlogPosts($locale: String!) {
     pageBlogPostCollection(where: { contentfulMetadata: { tags: { id_contains_some: "featured" } } }, locale: $locale, limit: 10) {
       items {
+        title
         slug
         featuredImage {
           url
