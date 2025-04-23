@@ -4,9 +4,10 @@ import { ProfileCard } from './presenter'
 
 type Props = {
   imageUrl: string
+  isMobile?: boolean
 }
 
-export const ProfileCardContainer: FC<Props> = async ({ imageUrl }) => {
+export const ProfileCardContainer: FC<Props> = async ({ imageUrl, isMobile = false }) => {
   const t = await getTranslations()
 
   return (
@@ -17,6 +18,8 @@ export const ProfileCardContainer: FC<Props> = async ({ imageUrl }) => {
       description={t('AboutPage.profileCard.shortBio')}
       linkText={t('AboutPage.profileCard.linkText')}
       linkHref="/about"
+      isMobile={isMobile}
+      editorTitle={t('Common.chiefEditor')}
     />
   )
 }

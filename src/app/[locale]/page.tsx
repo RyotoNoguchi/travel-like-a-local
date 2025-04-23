@@ -49,8 +49,14 @@ const HomePage: NextPage<Props> = async ({ params }) => {
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>} enrichedSubtitle={t('Hero.subtitle')} />
+
+        <div className="semi-lg:hidden w-full px-4 -mt-2">
+          <ProfileCardContainer imageUrl={profileImage?.url || ''} isMobile={true} />
+        </div>
+
         <CarouselContainer width={300} height={200} locale={locale} />
         <ExploreMapSection locale={locale} />
+
         <div className="flex w-full justify-center items-start gap-8 lg:gap-16 px-4 container mx-auto">
           <div className="flex flex-col gap-4">
             <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />

@@ -89,7 +89,8 @@
     "login": "Connexion"
   },
   "Common": {
-    "close": "Fermer"
+    "close": "Fermer",
+    "chiefEditor": "Rédacteur en Chef"
   },
   "MapPage": {
     "title": "Explorer la Carte du Japon",

@@ -89,7 +89,8 @@
     "login": "Login"
   },
   "Common": {
-    "close": "Close"
+    "close": "Close",
+    "chiefEditor": "Chief Editor"
   },
   "MapPage": {
     "title": "Explore Japan Map",
