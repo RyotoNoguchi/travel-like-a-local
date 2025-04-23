@@ -2,7 +2,7 @@ import { InstagramIcon } from '@/app/ui/components/atoms/icons/instagram-icon'
 import { MessengerIcon } from '@/app/ui/components/atoms/icons/messenger-icon'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
-import type { LANGUAGE } from '@/constants'
+import { PROFILE_IMAGE_ID, type LANGUAGE } from '@/constants'
 import { Link } from '@/i18n/routing'
 import { getImageById } from '@/utils/assets'
 import type { Metadata, NextPage } from 'next'
@@ -12,7 +12,6 @@ import Image from 'next/image'
 const SATOYAMA_LINK = 'https://satoyama-experience.com/'
 const INSTAGRAM_LINK = 'https://www.instagram.com/travel_like_a_local.jp'
 const MESSENGER_LINK = 'https://m.me/ryoto314.ng'
-const PORTRAIT_IMAGE_ID = '2I6HjTmgfo41UYj57BqOtH'
 const HERO_IMAGE_ID = '4LrpPOCebvgYbkmmeVl3Ch'
 
 type Props = {
@@ -36,7 +35,7 @@ const AboutPage: NextPage<Props> = async ({ params }) => {
   const instagramUrl = INSTAGRAM_LINK
   const messengerUrl = MESSENGER_LINK
   const heroImage = await getImageById({ id: HERO_IMAGE_ID, width: 1000, height: 563 })
-  const portraitImage = await getImageById({ id: PORTRAIT_IMAGE_ID, width: 500, height: 500 })
+  const portraitImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
   const breadcrumbs = [
     { label: t('breadcrumbs.home'), href: '' },
     { label: t('breadcrumbs.about'), href: '/about' }

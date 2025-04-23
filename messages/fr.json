@@ -89,7 +89,8 @@
     "login": "Connexion"
   },
   "Common": {
-    "close": "Fermer"
+    "close": "Fermer",
+    "chiefEditor": "Rédacteur en Chef"
   },
   "MapPage": {
     "title": "Explorer la Carte du Japon",
@@ -133,7 +134,8 @@
     },
     "hero": {
       "title": "Travel Like a Local Japan : Votre voyage authentique commence ici",
-      "intro": "Bonjour, je suis Ryoto, fondateur de Travel Like a Local Japan. En tant que Guide Interprète Agréé par le Gouvernement National, je suis passionné par le partage du vrai Japon. Ce site offre des insights pour vos voyages, et je propose des conseils personnalisés, une assistance de réservation et des visites guidées pour vous aider à vivre le Japon de façon authentique."
+      "intro": "Bonjour, je suis Ryoto, fondateur de Travel Like a Local Japan. En tant que Guide Interprète Agréé par le Gouvernement National, je suis passionné par le partage du vrai Japon. Ce site offre des insights pour vos voyages, et je propose des conseils personnalisés, une assistance de réservation et des visites guidées pour vous aider à vivre le Japon de façon authentique.",
+      "subtitle": "Guide Interprète Agréé par le Gouvernement National"
     },
     "story": {
       "title": "Plus qu'un simple guide touristique : L'histoire derrière tout ça",
@@ -200,6 +202,10 @@
       "browseArticles": "Parcourir les Articles",
       "exploreMap": "Explorer la Carte",
       "serviceButton": "Voir Mes Services"
+    },
+    "profileCard": {
+      "shortBio": "En tant que Guide Interprète Agréé, je suis passionné par le partage du vrai Japon au-delà des sites touristiques. Laissez-moi vous guider vers des expériences authentiques.",
+      "linkText": "En Savoir Plus Sur Moi"
     }
   },
   "ServicesPage": {

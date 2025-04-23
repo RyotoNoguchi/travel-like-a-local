@@ -15,6 +15,7 @@ type Props = {
   blogs: {
     slug: string
     href: string
+    title: string
     featuredImage: {
       url: string
       title: string
@@ -56,8 +57,13 @@ export const Carousel: FC<Props> = ({ blogs }) => (
         className="flex justify-center items-center focus:outline-none"
         style={{ display: 'flex', marginLeft: 0, marginRight: 0 }}
       >
-        <Link href={blog.href}>
+        <Link href={blog.href} className="relative block">
           <Image className="rounded-xl" src={blog.featuredImage.url} alt={blog.featuredImage.title} width={300} height={200} />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-xl flex items-end">
+            <h3 className="text-white p-3 text-lg font-bold w-full overflow-hidden leading-tight">
+              <div className="overflow-hidden text-ellipsis line-clamp-2 max-h-[2.5rem]">{blog.title}</div>
+            </h3>
+          </div>
         </Link>
       </SwiperSlide>
     ))}

@@ -4,7 +4,7 @@ import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { ContactFormContainer } from '@/app/ui/components/molecules/contact-form/container'
 import { TestimonialSection } from '@/app/ui/components/molecules/testimonials/testimonial-section'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
-import type { LANGUAGE } from '@/constants'
+import { PROFILE_IMAGE_ID, type LANGUAGE } from '@/constants'
 import { Link } from '@/i18n/routing'
 import { getImageById } from '@/utils/assets'
 import { ArrowRightIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
@@ -13,7 +13,6 @@ import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
 const HERO_IMAGE_ID = '2AM6uYinV5m9K4PKBKroWs'
-const PORTRAIT_IMAGE_ID = '2I6HjTmgfo41UYj57BqOtH'
 const TESTIMONIALS = [
   {
     name: 'Raphaël F.',
@@ -82,7 +81,7 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
   const instagramUrl = 'https://www.instagram.com/travel_like_a_local.jp'
   const messengerUrl = 'https://m.me/ryoto314.ng'
   const heroImage = await getImageById({ id: HERO_IMAGE_ID, width: 1000, height: 564 })
-  const guideImage = await getImageById({ id: PORTRAIT_IMAGE_ID, width: 500, height: 500 })
+  const guideImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
 
   const serviceProcess = [
     { number: 1, title: 'Initial Consultation', description: 'We start with a free Google Meet call to understand your travel preferences and needs.' },

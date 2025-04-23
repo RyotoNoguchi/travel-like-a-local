@@ -12,6 +12,7 @@ export const EMAIL = 'ryoto.noguchi@gmail.com'
 export const PHONE_NUMBER = '+81-80-3151-6605'
 export const TWITTER_HANDLE = '@Bonhomme0314'
 export const TWITTER_ID = '1075725018007429120'
+export const PROFILE_IMAGE_ID = '2I6HjTmgfo41UYj57BqOtH'
 export enum LANGUAGE {
   EN = 'en',
   FR = 'fr'
