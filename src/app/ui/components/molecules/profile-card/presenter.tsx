@@ -26,7 +26,7 @@ export const ProfileCard: FC<Props> = ({ imageUrl, name, title, description, lin
       )}
     </div>
 
-    <div className={isMobile ? 'flex-1 flex flex-col gap-2 semi-sm:flex-row semi-sm:items-end' : 'w-full'}>
+    <div className={`flex-1 flex flex-col gap-2 ${isMobile ? 'semi-sm:flex-row semi-sm:items-end' : ''}`}>
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold text-gray-800">
           {editorTitle} : {name}
