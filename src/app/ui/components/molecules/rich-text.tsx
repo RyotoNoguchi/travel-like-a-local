@@ -108,7 +108,23 @@ export const RichText: FC<Props> = ({ content }) => {
         )
       },
       [BLOCKS.PARAGRAPH]: (node: Block | Inline) => {
-        return <p className="text-lg leading-tight">{node.content.map((content) => (content.nodeType === 'text' ? content.value : null)).join('')}</p>
+        return (
+          <p className="text-lg leading-tight whitespace-pre-wrap">
+            {node.content.map((content, index) => {
+              if (content.nodeType === 'text') {
+                return content.value
+              } else if (content.nodeType === 'hyperlink') {
+                const { uri } = content.data
+                return (
+                  <a key={index} href={uri} className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                    {content.content.map((item) => (item.nodeType === 'text' ? item.value : '')).join('')}
+                  </a>
+                )
+              }
+              return null
+            })}
+          </p>
+        )
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node: Block | Inline) => {
         const entryId = node.data.target.sys.id

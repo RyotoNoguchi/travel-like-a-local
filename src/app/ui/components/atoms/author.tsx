@@ -11,7 +11,7 @@ export const Author: FC<Props> = ({ author }) => {
   if (!author) return null
   return (
     <Link href={`/author/${author?.name}`} className="flex gap-1 hover-text-primary items-center">
-      <Image src={author?.avatar?.url ?? ''} alt={author?.avatar?.title ?? ''} width={24} height={24} />
+      <Image src={author?.avatar?.url ?? ''} alt={author?.avatar?.title ?? ''} width={24} height={24} className="rounded-full" />
       <p>{author?.name}</p>
     </Link>
   )
