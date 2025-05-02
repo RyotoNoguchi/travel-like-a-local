@@ -15,7 +15,7 @@ type Props = {
 export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
   <>
     <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
-    <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8')}>
+    <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8 pb-10')}>
       <div
         className={classNames(
           'w-full flex flex-col gap-1 max-w-screen-xxs',
