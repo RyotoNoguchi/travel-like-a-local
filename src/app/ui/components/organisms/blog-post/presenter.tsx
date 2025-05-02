@@ -23,71 +23,68 @@ type Props = {
   popularArticleListTitle: string
 }
 
-export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => {
-  console.log('%csrc/app/ui/components/organisms/blog-post/presenter.tsx:27 blogPost.content', 'color: #26bfa5;', blogPost?.content)
-  return (
-    <div className={classNames('w-full flex justify-center')}>
-      <ReportView slug={slug} />
-      <div
-        className={classNames(
-          'flex flex-col gap-1 max-w-screen-xxs',
-          'xs:max-w-screen-xs',
-          'semi-sm:max-w-screen-semi-sm',
-          'sm:max-w-screen-sm',
-          'semi-lg:max-w-screen-xl'
-        )}
-      >
-        <div className="flex flex-col">
-          <div className="flex flex-col pb-4 mb-5 border-b border-slate-200 border-solid gap-4">
-            <div className="flex flex-col gap-1">
-              <div className="flex w-full justify-between">
-                <h2 className="text-3xl font-bold">{blogPost?.title}</h2>
-                <BookmarkButtonContainer
-                  blogPostSlug={slug}
-                  blogPostTitle={blogPost?.title ?? ''}
-                  width={28}
-                  height={28}
-                  strokeColor={{ active: COLORS.BLUE_600, inactive: COLORS.SLATE_300 }}
-                  fillColor={{ active: COLORS.BLUE_600, inactive: COLORS.WHITE }}
-                  isBookmarksPage={false}
-                />
-              </div>
-              <div className="flex justify-between">
-                {blogPost?.contentfulMetadata?.tags !== undefined && (
-                  <ul className="flex flex-wrap gap-2">
-                    {blogPost?.contentfulMetadata.tags?.map((tag) => (
-                      <li key={tag?.name} className="bg-slate-100 rounded-sm px-2 py-1 text-sm text-slate-500">
-                        {tag?.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div className="flex gap-2">
-                  <div className="flex gap-0.5 items-center px-1">
-                    <CalendarIcon width={16} height={16} />
-                    <DateComponent date={blogPost?.publishedDate as string} className="h-4 text-slate-500 text-sm" />
-                  </div>
-                  <div className="flex gap-0.5 items-center">
-                    <EyeIcon width={16} height={16} />
-                    <p className="text-sm text-slate-500 h-[18px] flex gap-0.5">
-                      {views.count}
-                      <span>{views.title}</span>
-                    </p>
-                  </div>
+export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
+  <div className={classNames('w-full flex justify-center')}>
+    <ReportView slug={slug} />
+    <div
+      className={classNames(
+        'flex flex-col gap-1 max-w-screen-xxs',
+        'xs:max-w-screen-xs',
+        'semi-sm:max-w-screen-semi-sm',
+        'sm:max-w-screen-sm',
+        'semi-lg:max-w-screen-xl'
+      )}
+    >
+      <div className="flex flex-col">
+        <div className="flex flex-col pb-4 mb-5 border-b border-slate-200 border-solid gap-4">
+          <div className="flex flex-col gap-1">
+            <div className="flex w-full justify-between">
+              <h2 className="text-3xl font-bold">{blogPost?.title}</h2>
+              <BookmarkButtonContainer
+                blogPostSlug={slug}
+                blogPostTitle={blogPost?.title ?? ''}
+                width={28}
+                height={28}
+                strokeColor={{ active: COLORS.BLUE_600, inactive: COLORS.SLATE_300 }}
+                fillColor={{ active: COLORS.BLUE_600, inactive: COLORS.WHITE }}
+                isBookmarksPage={false}
+              />
+            </div>
+            <div className="flex justify-between">
+              {blogPost?.contentfulMetadata?.tags !== undefined && (
+                <ul className="flex flex-wrap gap-2">
+                  {blogPost?.contentfulMetadata.tags?.map((tag) => (
+                    <li key={tag?.name} className="bg-slate-100 rounded-sm px-2 py-1 text-sm text-slate-500">
+                      {tag?.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className="flex gap-2">
+                <div className="flex gap-0.5 items-center px-1">
+                  <CalendarIcon width={16} height={16} />
+                  <DateComponent date={blogPost?.publishedDate as string} className="h-4 text-slate-500 text-sm" />
+                </div>
+                <div className="flex gap-0.5 items-center">
+                  <EyeIcon width={16} height={16} />
+                  <p className="text-sm text-slate-500 h-[18px] flex gap-0.5">
+                    {views.count}
+                    <span>{views.title}</span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-5">
-            {blogPost?.featuredImage?.url !== undefined && blogPost?.featuredImage?.url !== null && (
-              <Image src={blogPost.featuredImage.url} alt={blogPost.featuredImage.title ?? ''} width={1200} height={800} />
-            )}
-            {blogPost?.introduction !== undefined && blogPost.introduction !== null && <RichText content={blogPost.introduction} />}
-            {blogPost?.content !== undefined && blogPost.content !== null && <TableOfContents json={blogPost.content.json} />}
-            {blogPost?.content !== undefined && blogPost.content !== null && <RichText content={blogPost.content} />}
-          </div>
+        </div>
+        <div className="flex flex-col gap-5">
+          {blogPost?.featuredImage?.url !== undefined && blogPost?.featuredImage?.url !== null && (
+            <Image src={blogPost.featuredImage.url} alt={blogPost.featuredImage.title ?? ''} width={1200} height={800} />
+          )}
+          {blogPost?.introduction !== undefined && blogPost.introduction !== null && <RichText content={blogPost.introduction} />}
+          {blogPost?.content !== undefined && blogPost.content !== null && <TableOfContents json={blogPost.content.json} />}
+          {blogPost?.content !== undefined && blogPost.content !== null && <RichText content={blogPost.content} />}
         </div>
       </div>
     </div>
-  )
-}
+  </div>
+)

@@ -61,7 +61,7 @@ export const RichText: FC<Props> = ({ content }) => {
         const text = node.content[0].value
         const id = generateId(text)
         return (
-          <h2 id={id} className="text-2xl font-bold">
+          <h2 id={id} className="text-2xl font-bold mt-6">
             {children}
           </h2>
         )
