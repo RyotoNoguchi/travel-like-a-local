@@ -22,7 +22,7 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
           'xs:max-w-screen-xs',
           'semi-sm:max-w-screen-semi-sm',
           'sm:max-w-screen-sm',
-          'xs:px-4',
+          'xs:px-0',
           'sm:px-6',
           'semi-lg:max-w-screen-xl'
         )}

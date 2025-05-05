@@ -51,7 +51,7 @@ export const RichText: FC<Props> = ({ content }) => {
         const text = node.content[0].value
         const id = generateId(text)
         return (
-          <h1 id={id} className="text-3xl font-bold">
+          <h1 id={id} className="text-2xl sm:text-3xl md:text-4xl font-bold">
             {children}
           </h1>
         )
@@ -61,7 +61,7 @@ export const RichText: FC<Props> = ({ content }) => {
         const text = node.content[0].value
         const id = generateId(text)
         return (
-          <h2 id={id} className="text-2xl font-bold mt-6">
+          <h2 id={id} className="text-xl sm:text-2xl md:text-3xl font-bold mt-6">
             {children}
           </h2>
         )
@@ -71,7 +71,7 @@ export const RichText: FC<Props> = ({ content }) => {
         const text = node.content[0].value
         const id = generateId(text)
         return (
-          <h3 id={id} className="text-xl font-bold">
+          <h3 id={id} className="text-xl font-bold mt-2">
             {children}
           </h3>
         )
@@ -109,10 +109,14 @@ export const RichText: FC<Props> = ({ content }) => {
       },
       [BLOCKS.PARAGRAPH]: (node: Block | Inline) => {
         return (
-          <p className="text-lg leading-tight whitespace-pre-wrap">
+          <p className="text-lg leading-tight whitespace-pre-wrap space-x-1">
             {node.content.map((content, index) => {
               if (content.nodeType === 'text') {
-                return content.value
+                return (
+                  <span key={index} className="">
+                    {content.value}
+                  </span>
+                )
               } else if (content.nodeType === 'hyperlink') {
                 const { uri } = content.data
                 return (
@@ -149,7 +153,6 @@ export const RichText: FC<Props> = ({ content }) => {
 
         return null
       },
-
       [BLOCKS.EMBEDDED_ASSET]: (node: Block | Inline) => {
         const assetId = node.data.target.sys.id
         const asset = assetMap.get(assetId)
@@ -166,9 +169,18 @@ export const RichText: FC<Props> = ({ content }) => {
         }
 
         return null
+      },
+      [BLOCKS.OL_LIST]: (node: Block | Inline, children: React.ReactNode) => {
+        return <ol className="list-decimal pl-8 space-y-1 marker:text-gray">{children}</ol>
+      },
+      [BLOCKS.UL_LIST]: (node: Block | Inline, children: React.ReactNode) => {
+        return <ul className="list-disc pl-8 space-y-1 marker:text-gray">{children}</ul>
+      },
+      [BLOCKS.LIST_ITEM]: (node: Block | Inline, children: React.ReactNode) => {
+        return <li className="text-base">{children}</li>
       }
     }
   }
 
-  return <div className="prose">{documentToReactComponents(content.json, options)}</div>
+  return <div className="prose flex flex-col gap-2">{documentToReactComponents(content.json, options)}</div>
 }

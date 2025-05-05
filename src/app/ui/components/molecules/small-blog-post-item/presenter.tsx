@@ -9,7 +9,7 @@ import type { FC } from 'react'
 type Props = Pick<PageBlogPost, 'featuredImage' | 'title' | 'publishedDate' | 'slug'> & { viewCount: number; viewCountText: string; href: string }
 
 export const SmallBlogPostItem: FC<Props> = async ({ featuredImage, title, publishedDate, href, viewCount, viewCountText }) => (
-  <li className="flex gap-2 max-h-20">
+  <li className="flex gap-2 max-h-20 w-full">
     <ImageLink
       className="w-[120px] h-[80px] rounded-lg"
       wrapperClassName="sm:max-w-[120px] shrink-0"

@@ -42,12 +42,13 @@ const extractHeadings = (json: Document): Heading[] => {
     json.content.forEach((node) => {
       // 見出しノードを検出
       if (
-        node.nodeType === BLOCKS.HEADING_1 ||
-        node.nodeType === BLOCKS.HEADING_2 ||
-        node.nodeType === BLOCKS.HEADING_3 ||
-        node.nodeType === BLOCKS.HEADING_4 ||
-        node.nodeType === BLOCKS.HEADING_5 ||
-        node.nodeType === BLOCKS.HEADING_6
+        // node.nodeType === BLOCKS.HEADING_1 ||
+        node.nodeType === BLOCKS.HEADING_2
+        // ||
+        // node.nodeType === BLOCKS.HEADING_3 ||
+        // node.nodeType === BLOCKS.HEADING_4 ||
+        // node.nodeType === BLOCKS.HEADING_5 ||
+        // node.nodeType === BLOCKS.HEADING_6
       ) {
         // 見出しのレベルを取得（HEADING_1 → 1, HEADING_2 → 2, ...）
         const level = parseInt(node.nodeType.split('_')[1]) as 1 | 2 | 3 | 4 | 5 | 6
