@@ -1,13 +1,10 @@
 'use client'
 
-import { COLORS } from '@/app/ui/colors'
 import { CloseIcon } from '@/app/ui/components/atoms/icons/close-icon'
-import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { HamburgerIcon } from '@/app/ui/components/atoms/icons/hamburger-icon'
 import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { CategoryList } from '@/app/ui/templates/header/hamburger-menu/category-list'
 import { RegionsList } from '@/app/ui/templates/header/hamburger-menu/regions-list'
-import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { BOOKMARKS_PATH, type LANGUAGE } from '@/constants'
 import type { Category } from '@/types/category'
@@ -152,7 +149,8 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, regions
               )}
             </li>
           ))}
-          <li className="h-8 sm:h-7">
+          {/* TODO: フランス語が必要になったらコメント解除 */}
+          {/* <li className="h-8 sm:h-7">
             <LanguageNavLink
               icon={<GlobeIcon width={32} height={32} color={COLORS.GRAY} />}
               label={t('NavMenu.language')}
@@ -160,7 +158,7 @@ export const HamburgerMenu: FC<Props> = ({ navLinks, locale, categories, regions
               locale={locale}
               gap="gap-2"
             />
-          </li>
+          </li> */}
           <li className="h-8 sm:h-7">
             <LoginStatus isHamburger />
           </li>

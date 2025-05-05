@@ -1,12 +1,9 @@
 'use client'
-import { COLORS } from '@/app/ui/colors'
-import { GlobeIcon } from '@/app/ui/components/atoms/icons/globe-icon'
 import { LoginStatus } from '@/app/ui/components/molecules/login-status'
 import { PopupContainer } from '@/app/ui/components/molecules/popup/container'
 import { CategoryNav } from '@/app/ui/templates/header/category-nav'
 import { HamburgerMenu } from '@/app/ui/templates/header/hamburger-menu'
 import { CategoriesNav } from '@/app/ui/templates/header/sub-header/categories-nav'
-import { LanguageNavLink } from '@/app/ui/templates/language-nav-link'
 import { Logo } from '@/app/ui/templates/logo'
 import { NavLink } from '@/app/ui/templates/nav-link'
 import { BOOKMARKS_PATH, LOGO_TITLE, type LANGUAGE } from '@/constants'
@@ -132,7 +129,8 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
                   )}
                 </li>
               ))}
-              <li className="h-6">
+              {/* TODO: フランス語が必要になったらコメント解除 */}
+              {/* <li className="h-6">
                 <LanguageNavLink
                   icon={<GlobeIcon width={24} height={24} color={COLORS.GRAY} />}
                   label={languageTitle}
@@ -140,7 +138,7 @@ export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks
                   locale={locale}
                   gap="gap-0.5"
                 />
-              </li>
+              </li> */}
               <li className="h-6">
                 <LoginStatus />
               </li>
