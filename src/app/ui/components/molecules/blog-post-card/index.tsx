@@ -22,7 +22,7 @@ export const BlogPostCard: FC<Props> = ({ blogPost }) => (
         />
       </Link>
     )}
-    <div className="p-2 pb-3 flex flex-col justify-between flex-grow gap-2">
+    <div className="p-2 pb-3 flex flex-col justify-between flex-grow gap-2 h-[108px]">
       <Link href={blogPost.href}>
         <h3 className="text-lg font-semibold text-gray-800 hover:text-primary transition-colors line-clamp-2">
           {blogPost.title || 'Article Title Placeholder'}

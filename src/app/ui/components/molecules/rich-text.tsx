@@ -146,7 +146,6 @@ export const RichText: FC<Props> = ({ content }) => {
                 height={entry.image.height}
                 className="w-full h-auto"
               />
-              {entry.image.description ? <figcaption className="text-sm text-gray-600 mt-2">{entry.image.description}</figcaption> : null}
             </figure>
           )
         }
@@ -163,7 +162,6 @@ export const RichText: FC<Props> = ({ content }) => {
           return (
             <figure className="my-5">
               <Image src={asset.url} alt={asset.description || asset.title} width={asset.width} height={asset.height} className="w-full h-auto" />
-              {asset.description ? <figcaption className="text-sm text-gray-600 mt-2">{asset.description}</figcaption> : null}
             </figure>
           )
         }
