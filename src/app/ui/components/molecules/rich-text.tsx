@@ -161,7 +161,9 @@ export const RichText: FC<Props> = ({ content }) => {
         if (asset.url) {
           return (
             <figure className="my-5">
-              <Image src={asset.url} alt={asset.description || asset.title} width={asset.width} height={asset.height} className="w-full h-auto" />
+              <div className="relative w-full aspect-[4/3]">
+                <Image src={asset.url} alt={asset.description || asset.title} fill className="object-cover" />
+              </div>
             </figure>
           )
         }
