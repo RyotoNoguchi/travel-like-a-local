@@ -57,7 +57,16 @@ export const BlogPostItem: FC<Props> = ({
           <Link href={href}>
             <h3 className="text-xl font-bold leading-none hover-text-primary">{title}</h3>
           </Link>
-          <p className="hidden sm:block text-md text-gray-500">{seoFields?.pageDescription}</p>
+          <p
+            className="hidden sm:block text-md text-gray-500 line-clamp-2 overflow-hidden max-h-[44px] text-ellipsis"
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical'
+            }}
+          >
+            {seoFields?.pageDescription}
+          </p>
           {Array.isArray(contentfulMetadata.tags) && contentfulMetadata.tags.length > 0 && <TagList tags={contentfulMetadata.tags} />}
         </div>
         <div className="flex gap-2 sm:justify-end">
