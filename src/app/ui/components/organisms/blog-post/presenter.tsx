@@ -22,11 +22,11 @@ type Props = {
     count: number
     title: string
   }
-  popularArticleListTitle: string
   relatedPosts: BlogPostWithHref[]
+  relatedArticlesTitle: string
 }
 
-export const BlogPost: FC<Props> = async ({ slug, blogPost, views, popularArticleListTitle, relatedPosts }) => (
+export const BlogPost: FC<Props> = async ({ slug, blogPost, views, relatedPosts, relatedArticlesTitle }) => (
   <div className={classNames('w-full flex justify-center')}>
     <ReportView slug={slug} />
     <div
@@ -97,7 +97,7 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views, popularArticl
         </div>
         {relatedPosts.length > 0 ? (
           <div className="flex flex-col gap-2 mt-8">
-            <h2 className="text-2xl font-bold">Related Articles</h2>
+            <h2 className="text-2xl font-bold">{relatedArticlesTitle}</h2>
             <ul className="flex flex-col gap-4">
               {relatedPosts.map((relatedPost) => (
                 <li key={relatedPost.sys.id} className="max-w-64">

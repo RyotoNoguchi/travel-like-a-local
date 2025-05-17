@@ -24,8 +24,8 @@ export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) =
       slug={slug}
       blogPost={blogPost}
       views={{ count: views, title: t('Article.views') }}
-      popularArticleListTitle={t('PopularArticleList.title')}
       relatedPosts={relatedPosts}
+      relatedArticlesTitle={t('BlogPost.relatedArticles')}
     />
   )
 }
