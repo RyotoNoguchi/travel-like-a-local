@@ -10,7 +10,6 @@ import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import type { BlogPostWithHref } from '@/types/blog-post'
-import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 import classNames from 'classnames'
 import Image from 'next/image'
 import type { FC } from 'react'
@@ -24,9 +23,10 @@ type Props = {
     title: string
   }
   popularArticleListTitle: string
+  relatedPosts: BlogPostWithHref[]
 }
 
-export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
+export const BlogPost: FC<Props> = async ({ slug, blogPost, views, popularArticleListTitle, relatedPosts }) => (
   <div className={classNames('w-full flex justify-center')}>
     <ReportView slug={slug} />
     <div
@@ -95,17 +95,15 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
           {blogPost?.content !== undefined && blogPost.content !== null && <TableOfContents json={blogPost.content.json} />}
           {blogPost?.content !== undefined && blogPost.content !== null && <RichText content={blogPost.content} />}
         </div>
-        {blogPost?.relatedBlogPostsCollection && blogPost.relatedBlogPostsCollection.items.length > 0 ? (
+        {relatedPosts.length > 0 ? (
           <div className="flex flex-col gap-2 mt-8">
             <h2 className="text-2xl font-bold">Related Articles</h2>
             <ul className="flex flex-col gap-4">
-              {(await getBlogPostsWithHref(blogPost?.relatedBlogPostsCollection?.items || []))
-                .filter((relatedPost): relatedPost is BlogPostWithHref => relatedPost !== null)
-                .map((relatedPost) => (
-                  <li key={relatedPost.sys.id} className="max-w-64">
-                    <BlogPostCard blogPost={relatedPost} />
-                  </li>
-                ))}
+              {relatedPosts.map((relatedPost) => (
+                <li key={relatedPost.sys.id} className="max-w-64">
+                  <BlogPostCard blogPost={relatedPost} />
+                </li>
+              ))}
             </ul>
           </div>
         ) : null}
