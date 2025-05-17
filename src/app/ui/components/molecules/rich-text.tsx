@@ -139,13 +139,15 @@ export const RichText: FC<Props> = ({ content }) => {
         if (entry.__typename === 'ComponentRichImage' && entry.image) {
           return (
             <figure className="my-5">
-              <Image
-                src={entry.image.url}
-                alt={entry.image.description || entry.image.title}
-                width={entry.image.width}
-                height={entry.image.height}
-                className="w-full h-auto"
-              />
+              <div className="relative w-full aspect-[4/3]">
+                <Image
+                  src={entry.image.url}
+                  alt={entry.image.description || entry.image.title}
+                  width={entry.image.width}
+                  height={entry.image.height}
+                  className="w-full h-auto"
+                />
+              </div>
             </figure>
           )
         }

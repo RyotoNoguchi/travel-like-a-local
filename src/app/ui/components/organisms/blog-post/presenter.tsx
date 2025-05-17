@@ -3,11 +3,13 @@ import { ReportView } from '@/app/ui/components/atoms/anaylytics/viewcount'
 import { DateComponent } from '@/app/ui/components/atoms/date'
 import { CalendarIcon } from '@/app/ui/components/atoms/icons/calendar-icon'
 import { EyeIcon } from '@/app/ui/components/atoms/icons/eye-icon'
+import { BlogPostCard } from '@/app/ui/components/molecules/blog-post-card'
 import { BookmarkButtonContainer } from '@/app/ui/components/molecules/bookmark-button/container'
 import { RichText } from '@/app/ui/components/molecules/rich-text'
 import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents'
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
+import type { BlogPostWithHref } from '@/types/blog-post'
 import classNames from 'classnames'
 import Image from 'next/image'
 import type { FC } from 'react'
@@ -15,7 +17,7 @@ import type { FC } from 'react'
 type Props = {
   locale: LANGUAGE
   slug: string
-  blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
+  blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0] & { href: string }
   views: {
     count: number
     title: string
@@ -78,12 +80,34 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
         </div>
         <div className="flex flex-col gap-5">
           {blogPost?.featuredImage?.url !== undefined && blogPost?.featuredImage?.url !== null && (
-            <Image src={blogPost.featuredImage.url} alt={blogPost.featuredImage.title ?? ''} width={1200} height={800} />
+            <div className="relative w-full aspect-[4/3]">
+              <Image
+                src={blogPost.featuredImage.url}
+                alt={blogPost.featuredImage.title ?? ''}
+                fill
+                className="object-cover"
+                sizes="(min-width: 640px) 100vw, 100vw"
+              />
+            </div>
           )}
           {blogPost?.introduction !== undefined && blogPost.introduction !== null && <RichText content={blogPost.introduction} />}
           {blogPost?.content !== undefined && blogPost.content !== null && <TableOfContents json={blogPost.content.json} />}
           {blogPost?.content !== undefined && blogPost.content !== null && <RichText content={blogPost.content} />}
         </div>
+        {blogPost?.relatedBlogPostsCollection && blogPost.relatedBlogPostsCollection.items.length > 0 ? (
+          <div className="flex flex-col gap-2 mt-8">
+            <h2 className="text-2xl font-bold">Related Articles</h2>
+            <ul className="flex flex-col gap-4">
+              {blogPost?.relatedBlogPostsCollection?.items
+                .filter((relatedPost): relatedPost is BlogPostWithHref => relatedPost !== null)
+                .map((relatedPost) => (
+                  <li key={relatedPost.sys.id} className="max-w-64">
+                    <BlogPostCard blogPost={relatedPost} />
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ) : null}
       </div>
     </div>
   </div>

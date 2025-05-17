@@ -1,6 +1,6 @@
 import { BlogPost } from '@/app/ui/components/organisms/blog-post/presenter'
 import { REDIS_KEYS, type LANGUAGE } from '@/constants'
-import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
+import type { BlogPostWithHref } from '@/types/blog-post'
 import { Redis } from '@upstash/redis'
 import { getTranslations } from 'next-intl/server'
 import type { FC } from 'react'
@@ -8,7 +8,7 @@ import type { FC } from 'react'
 type Props = {
   locale: LANGUAGE
   slug: string
-  blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
+  blogPost: BlogPostWithHref
 }
 
 export const BlogPostContainer: FC<Props> = async ({ locale, slug, blogPost }) => {

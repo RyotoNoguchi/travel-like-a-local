@@ -725,6 +725,7 @@ export enum EntryOrder {
 }
 
 export enum ImageFormat {
+  /** AVIF image format. */
   Avif = 'AVIF',
   /** JPG image format. */
   Jpg = 'JPG',
@@ -1622,6 +1623,29 @@ export type GetBlogPostBySlugQuery = {
       slug?: string | null
       title?: string | null
       publishedDate?: any | null
+      relatedBlogPostsCollection?: {
+        __typename?: 'PageBlogPostRelatedBlogPostsCollection'
+        items: Array<{
+          __typename?: 'PageBlogPost'
+          title?: string | null
+          slug?: string | null
+          publishedDate?: any | null
+          sys: { __typename?: 'Sys'; id: string }
+          featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+          seoFields?: { __typename?: 'ComponentSeo'; pageDescription?: string | null } | null
+          author?: {
+            __typename?: 'ComponentAuthor'
+            name?: string | null
+            avatar?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+          } | null
+          contentfulMetadata: {
+            __typename?: 'ContentfulMetadata'
+            tags: Array<{ __typename?: 'ContentfulTag'; name?: string | null } | null>
+            concepts: Array<{ __typename?: 'TaxonomyConcept'; id?: string | null } | null>
+          }
+        } | null>
+      } | null
+      sys: { __typename?: 'Sys'; id: string }
       seoFields?: { __typename?: 'ComponentSeo'; pageTitle?: string | null; pageDescription?: string | null } | null
       introduction?: { __typename: 'PageBlogPostIntroduction'; json: any } | null
       content?: {
@@ -1965,7 +1989,8 @@ export const GetBlogPostBySlugDocument = {
                   fields: [{ kind: 'ObjectField', name: { kind: 'Name', value: 'slug' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } } }]
                 }
               },
-              { kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }
+              { kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } },
+              { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '1' } }
             ],
             selectionSet: {
               kind: 'SelectionSet',
@@ -1976,6 +2001,97 @@ export const GetBlogPostBySlugDocument = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'relatedBlogPostsCollection' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'items' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sys' },
+                                    selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'publishedDate' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'featuredImage' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'seoFields' },
+                                    selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'pageDescription' } }] }
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'author' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'avatar' },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                              { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'contentfulMetadata' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'tags' },
+                                          selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'name' } }] }
+                                        },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'concepts' },
+                                          selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'sys' },
+                        selectionSet: { kind: 'SelectionSet', selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }] }
+                      },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'seoFields' },

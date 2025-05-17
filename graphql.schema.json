@@ -5464,7 +5464,7 @@
         "enumValues": [
           {
             "name": "AVIF",
-            "description": null,
+            "description": "AVIF image format.",
             "isDeprecated": false,
             "deprecationReason": null
           },
