@@ -1,7 +1,7 @@
+import { ResponsiveImage } from '@/app/ui/components/atoms/responsive-image'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { type Block, BLOCKS, type Inline } from '@contentful/rich-text-types'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
@@ -138,17 +138,13 @@ export const RichText: FC<Props> = ({ content }) => {
 
         if (entry.__typename === 'ComponentRichImage' && entry.image) {
           return (
-            <figure className="my-5">
-              <div className="relative w-full aspect-[4/3]">
-                <Image
-                  src={entry.image.url}
-                  alt={entry.image.description || entry.image.title}
-                  width={entry.image.width}
-                  height={entry.image.height}
-                  className="w-full h-auto"
-                />
-              </div>
-            </figure>
+            <ResponsiveImage
+              src={entry.image.url}
+              alt={entry.image.description || entry.image.title}
+              width={entry.image.width}
+              height={entry.image.height}
+              className="w-full h-auto"
+            />
           )
         }
 
@@ -161,13 +157,7 @@ export const RichText: FC<Props> = ({ content }) => {
         if (!asset) return null
 
         if (asset.url) {
-          return (
-            <figure className="my-5">
-              <div className="relative w-full aspect-[4/3]">
-                <Image src={asset.url} alt={asset.description || asset.title} fill className="object-cover" />
-              </div>
-            </figure>
-          )
+          return <ResponsiveImage src={asset.url} alt={asset.description || asset.title} fill className="object-cover" />
         }
 
         return null
