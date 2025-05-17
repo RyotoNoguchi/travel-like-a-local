@@ -2004,6 +2004,7 @@ export const GetBlogPostBySlugDocument = {
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'relatedBlogPostsCollection' },
+                        arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '5' } }],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [

@@ -26,7 +26,7 @@ export const GET_BLOG_POST_BY_SLUG_QUERY = gql`
   query GetBlogPostBySlug($slug: String!, $locale: String!) {
     pageBlogPostCollection(where: { slug: $slug }, locale: $locale, limit: 1) {
       items {
-        relatedBlogPostsCollection {
+        relatedBlogPostsCollection(limit: 5) {
           items {
             sys {
               id

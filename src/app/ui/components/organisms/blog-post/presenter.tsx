@@ -10,6 +10,7 @@ import { TableOfContents } from '@/app/ui/components/molecules/table-of-contents
 import { type LANGUAGE } from '@/constants'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import type { BlogPostWithHref } from '@/types/blog-post'
+import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 import classNames from 'classnames'
 import Image from 'next/image'
 import type { FC } from 'react'
@@ -98,7 +99,7 @@ export const BlogPost: FC<Props> = async ({ slug, blogPost, views }) => (
           <div className="flex flex-col gap-2 mt-8">
             <h2 className="text-2xl font-bold">Related Articles</h2>
             <ul className="flex flex-col gap-4">
-              {blogPost?.relatedBlogPostsCollection?.items
+              {(await getBlogPostsWithHref(blogPost?.relatedBlogPostsCollection?.items || []))
                 .filter((relatedPost): relatedPost is BlogPostWithHref => relatedPost !== null)
                 .map((relatedPost) => (
                   <li key={relatedPost.sys.id} className="max-w-64">
