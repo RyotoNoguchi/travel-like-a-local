@@ -100,7 +100,7 @@ export const BlogPost: FC<Props> = ({ slug, blogPost, views, relatedPosts, relat
             <h2 className="text-2xl font-bold">{relatedArticlesTitle}</h2>
             <ul className="flex flex-col gap-4">
               {relatedPosts.map((relatedPost) => (
-                <li key={relatedPost.sys.id} className="max-w-64">
+                <li key={relatedPost.sys.id} className="flex-shrink-0 w-full max-w-72 snap-start">
                   <BlogPostCard blogPost={relatedPost} />
                 </li>
               ))}
