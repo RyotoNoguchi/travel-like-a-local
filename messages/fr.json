@@ -344,5 +344,8 @@
     "testimonialCouchsurfing": "Couchsurfing",
     "seeAll": "Voir tous",
     "close": "Fermer"
+  },
+  "BlogPost": {
+    "relatedArticles": "Articles connexes"
   }
 }

@@ -1,7 +1,7 @@
 import { ArticleLayout } from '@/app/ui/articles/layout/article-layout'
 import { BlogPostContainer } from '@/app/ui/components/organisms/blog-post/container'
 import { type LANGUAGE } from '@/constants'
-import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
+import type { BlogPostWithHref } from '@/types/blog-post'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
@@ -10,7 +10,7 @@ type Props = {
   locale: LANGUAGE
   breadcrumbs: BreadcrumbItem[]
   slug: string
-  blogPost: NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0]
+  blogPost: BlogPostWithHref
 }
 
 export const BlogPostDetailPage: FC<Props> = ({ locale, breadcrumbs, slug, blogPost }) => {

@@ -5,6 +5,8 @@ import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
 import { getAllBlogPosts } from '@/lib/contentful/get-blog-posts'
+import type { BlogPostWithHref } from '@/types/blog-post'
+import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 import { generateBreadcrumbs } from '@/utils/breadcrumb-helper'
 import { loadConcepts, loadConceptSchemes } from '@/utils/concept-helper'
 import { parseArticlePath } from '@/utils/path-helper'
@@ -129,17 +131,17 @@ export const generateStaticParams = async () => {
   return params
 }
 
-const fetchBlogPost = async (
-  slug: string,
-  locale: LANGUAGE
-): Promise<NonNullable<GetBlogPostBySlugQuery['pageBlogPostCollection']>['items'][0] | undefined> => {
+const fetchBlogPost = async (slug: string, locale: LANGUAGE): Promise<BlogPostWithHref | undefined> => {
   const client = createApolloClient()
   const { data } = await client.query<GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables>({
     query: GET_BLOG_POST_BY_SLUG_QUERY,
     variables: { slug, locale: LOCALE_CODE_MAP[locale] }
   })
 
-  return data.pageBlogPostCollection?.items?.find((pageBlogPost) => pageBlogPost?.slug === slug)
+  if (!data.pageBlogPostCollection?.items) return undefined
+  const blogPostsWithHref = await getBlogPostsWithHref(data.pageBlogPostCollection?.items)
+
+  return blogPostsWithHref.find((pageBlogPost) => pageBlogPost?.slug === slug)
 }
 
 const BlogPostPage: NextPage<Props> = async ({ params }) => {

@@ -1,8 +1,8 @@
 export const LOGO_ASSET_ID = '5x2sMehGUOBlAhVBVzmWoB'
 export const JAPAN_MAP_ASSET_ID = '25B0oANu72SzTcK0vteCCP'
-export const HERO_MOBILE_ASSET_ID = '20Dn5MjJUlh6fy6xNt6RBZ'
-export const HERO_DESKTOP_ASSET_ID = '76pMKRS0OXj7oi6qzpVzl1'
-export const HERO_TABLET_ASSET_ID = 'LCUChXjqIsyc786zGKEQx'
+export const HERO_MOBILE_ASSET_ID = '4M1IJ6VGM45AIvMtokkAVb'
+export const HERO_DESKTOP_ASSET_ID = '3w9AuT7vyyOdAJFL34UkW9'
+export const HERO_TABLET_ASSET_ID = '7LTqsPyVxqKICK3orPTq3h'
 export const CONTENTFUL_GRAPHQL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`
 export const LOGO_TITLE = 'Travel Like a Local in Japan'
 export const LOGO_TITLE_SHORT = 'TTLJP'

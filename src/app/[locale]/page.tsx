@@ -47,7 +47,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   return (
     <>
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start overflow-hidden">
         <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>} enrichedSubtitle={t('Hero.subtitle')} />
 
         <div className="semi-lg:hidden w-full px-4 -mt-2">
@@ -57,8 +57,8 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         <CarouselContainer width={300} height={200} locale={locale} />
         <ExploreMapSection locale={locale} />
 
-        <div className="flex w-full justify-center items-start gap-8 lg:gap-16 px-4 container mx-auto">
-          <div className="flex flex-col gap-4">
+        <div className="flex w-full items-start gap-8 lg:gap-16 px-4 container mx-auto justify-start">
+          <div className="flex flex-col gap-4 w-full">
             <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />
             <BlogPostsContainer
               title={t('ArticleList.title')}

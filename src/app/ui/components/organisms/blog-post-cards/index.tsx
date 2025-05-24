@@ -22,7 +22,7 @@ export const BlogPostCards: FC<Props> = ({ categorizedBlogPosts, categories }) =
               if (!blogPost) return null
               return (
                 <li className="flex-shrink-0 w-full max-w-72 snap-start" key={blogPost?.sys.id}>
-                  <BlogPostCard key={blogPost?.sys.id} blogPost={blogPost} />
+                  <BlogPostCard blogPost={blogPost} />
                 </li>
               )
             })}
