@@ -113,6 +113,10 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
 
   return (
     <ArticleLayout locale={locale} breadcrumbs={breadcrumbs} profileImageUrl={profileImage?.url || ''}>
+      <div className="text-center py-12">
+        <h1 className="text-3xl font-bold">{t('BlogPostListPage.title')}</h1>
+        <p className="text-gray-600">{t('BlogPostListPage.subtitle')}</p>
+      </div>
       <div className="flex flex-col gap-5">
         <ExploreMapSection locale={locale} />
         <div className="flex flex-col gap-10">
