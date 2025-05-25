@@ -24,8 +24,47 @@ export const GET_ASSETS_BY_TAG_QUERY = gql`
 
 export const GET_BLOG_POST_BY_SLUG_QUERY = gql`
   query GetBlogPostBySlug($slug: String!, $locale: String!) {
-    pageBlogPostCollection(where: { slug: $slug }, locale: $locale) {
+    pageBlogPostCollection(where: { slug: $slug }, locale: $locale, limit: 1) {
       items {
+        relatedBlogPostsCollection(limit: 5, order: publishedDate_DESC) {
+          items {
+            sys {
+              id
+            }
+            title
+            slug
+            publishedDate
+            featuredImage {
+              title
+              url
+              width
+              height
+            }
+            seoFields {
+              pageDescription
+            }
+            author {
+              name
+              avatar {
+                title
+                url
+                width
+                height
+              }
+            }
+            contentfulMetadata {
+              tags {
+                name
+              }
+              concepts {
+                id
+              }
+            }
+          }
+        }
+        sys {
+          id
+        }
         seoFields {
           pageTitle
           pageDescription
