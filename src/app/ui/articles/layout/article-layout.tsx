@@ -18,7 +18,8 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
     <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8 pb-10')}>
       <div
         className={classNames(
-          'w-full flex flex-col gap-1 max-w-screen-xxs',
+          'w-full flex flex-col gap-1 ',
+          'max-w-screen-xxs',
           'xs:max-w-screen-xs',
           'semi-sm:max-w-screen-semi-sm',
           'sm:max-w-screen-sm',
@@ -28,8 +29,8 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
         )}
       >
         <Breadcrumbs breadcrumbs={breadcrumbs} />
-        <div className={classNames('flex w-full justify-center gap-8 lg:gap-16', 'semi-lg:grid semi-lg:grid-cols-[1fr_300px]')}>
-          <main className="flex-1">{children}</main>
+        <div className={classNames('flex w-full justify-center gap-8 lg:gap-16', 'xl:grid xl:grid-cols-[1fr_300px]')}>
+          <main className="flex-1 w-full">{children}</main>
           <PopularBlogPostsContainer locale={locale} />
         </div>
       </div>
