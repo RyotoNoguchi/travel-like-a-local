@@ -1,4 +1,5 @@
 import { Link } from '@/i18n/routing'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import type { FC } from 'react'
 
 type Props = {
@@ -14,22 +15,18 @@ export const Pagination: FC<Props> = ({ currentPage, totalPages, baseUrl }) => {
   return (
     <div className="flex justify-center items-center gap-4">
       {previousPage ? (
-        <Link href={`${baseUrl}?page=${previousPage}`} className="px-4 py-2 bg-gray-200 rounded-md">
-          Previous
+        <Link href={`${baseUrl}?page=${previousPage}`} className="px-2 py-2 bg-gray-200 rounded-md">
+          <ChevronLeftIcon className="h-5 w-5" />
         </Link>
-      ) : (
-        <span className="px-4 py-2 bg-gray-200 rounded-md text-gray-500 cursor-not-allowed">Previous</span>
-      )}
+      ) : null}
       <span>
         {currentPage} / {totalPages}
       </span>
       {nextPage ? (
-        <Link href={`${baseUrl}?page=${nextPage}`} className="px-4 py-2 bg-gray-200 rounded-md">
-          Next
+        <Link href={`${baseUrl}?page=${nextPage}`} className="px-2 py-2 bg-gray-200 rounded-md">
+          <ChevronRightIcon className="h-5 w-5" />
         </Link>
-      ) : (
-        <span className="px-4 py-2 bg-gray-200 rounded-md text-gray-500 cursor-not-allowed">Next</span>
-      )}
+      ) : null}
     </div>
   )
 }
