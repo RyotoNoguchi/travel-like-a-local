@@ -347,5 +347,9 @@
   },
   "BlogPost": {
     "relatedArticles": "Articles connexes"
+  },
+  "BlogPostListPage": {
+    "title": "Le Journal du Japon de Ryoto",
+    "subtitle": "Découvrez des aperçus uniques, des histoires locales et des trésors cachés de mon voyage à travers le Japon du point de vue d'un LOCAL."
   }
 }

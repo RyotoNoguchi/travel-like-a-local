@@ -26,7 +26,6 @@ export const BlogPostsClientContainer: FC<Props> = ({
   viewAllHref,
   locale,
   blogPosts: initialBlogPosts,
-  total,
   currentPage,
   totalPages,
   noBlogPostsTitle,
@@ -54,7 +53,6 @@ export const BlogPostsClientContainer: FC<Props> = ({
       title={title}
       viewAllButtonText={viewAllButtonText}
       viewAllHref={viewAllHref}
-      total={total}
       currentPage={currentPage}
       totalPages={totalPages}
       locale={locale}

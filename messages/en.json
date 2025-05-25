@@ -348,5 +348,9 @@
   },
   "BlogPost": {
     "relatedArticles": "Related Articles"
+  },
+  "BlogPostListPage": {
+    "title": "Ryoto's Japan Journal",
+    "subtitle": "Discover unique insights, local stories, and hidden gems from my journey across Japan from point of view of a LOCAL."
   }
 }

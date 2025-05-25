@@ -1,13 +1,18 @@
-import { createApolloClient } from '@/apolloClient'
 import { ArticleLayout } from '@/app/ui/articles/layout/article-layout'
+import { BlogPostCards } from '@/app/ui/components/organisms/blog-post-cards'
 import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
-import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
-import type { GetBlogPostsQuery, GetBlogPostsQueryVariables } from '@/generated/graphql'
-import { GET_BLOG_POSTS_QUERY } from '@/graphql/query'
+import { ExploreMapSection } from '@/app/ui/components/organisms/explore-map-section'
+import { LOCALE_CODE_MAP, PROFILE_IMAGE_ID, type LANGUAGE } from '@/constants'
+import type { GetBlogPostsQuery } from '@/generated/graphql'
+import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
-import { loadConcepts } from '@/utils/concept-helper'
+import { getImageById } from '@/utils/assets'
+import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
+import { categorizeBlogPosts } from '@/utils/category-helper'
+import { getCategories, loadConcepts } from '@/utils/concept-helper'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import { getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
 type Props = {
@@ -18,17 +23,21 @@ type Props = {
   area?: string
   prefecture?: string
   path: string[]
+  searchParams: { page?: string }
 }
 
-export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, category, region, area, prefecture, path }) => {
+export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, category, region, area, prefecture, path, searchParams }) => {
   const t = await getTranslations({ locale })
-
-  const client = createApolloClient()
   const concepts = await loadConcepts()
   const where: Record<string, unknown> = {}
   const filters: Array<Record<string, unknown>> = []
-  const limit = 10
-  const skip = 0
+  const limit = 5
+  const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1
+  const skip = (page - 1) * limit
+
+  if (isNaN(page)) {
+    notFound()
+  }
 
   const getConceptIdByLabel = (label: string): string | undefined => {
     const concept = concepts.find((c) => c.label.toLowerCase() === label.toLowerCase() || formatNameForUrl(c.label.toLowerCase()) === label.toLowerCase())
@@ -83,19 +92,6 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
     where.AND = filters
   }
 
-  const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
-    query: GET_BLOG_POSTS_QUERY,
-    variables: {
-      locale: LOCALE_CODE_MAP[locale],
-      where: Object.keys(where).length > 0 ? where : undefined,
-      limit,
-      skip
-    }
-  })
-
-  const blogPosts = data.pageBlogPostCollection?.items.filter((post) => post !== null) || []
-  const total = data.pageBlogPostCollection?.total || 0
-
   const viewAllHref = path && path.length > 0 ? `/articles/${path.join('/')}` : '/articles'
 
   const getTitle = () => {
@@ -111,21 +107,41 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
     return t('ArticleList.title')
   }
 
+  const { blogPosts, total } = await getBlogPosts(LOCALE_CODE_MAP[locale], limit, skip)
+
+  const filteredBlogPosts =
+    blogPosts
+      .filter((blogPost): blogPost is NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items']['0'] => blogPost !== null)
+      .filter((post) => post !== null) || []
+  const categories = await getCategories(locale)
+  const blogPostsWithHref = await getBlogPostsWithHref(blogPosts)
+  const categorizedBlogPosts = categorizeBlogPosts(blogPostsWithHref, categories)
+  const profileImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
+
   return (
-    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs}>
-      <BlogPostsContainer
-        blogPosts={blogPosts}
-        title={getTitle()}
-        locale={locale}
-        viewAllButtonText={t('ArticleList.viewAll')}
-        viewAllHref={viewAllHref}
-        total={total}
-        currentPage={Math.floor(skip / limit) + 1}
-        totalPages={Math.ceil(total / limit)}
-        noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
-        noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}
-        isBookmarksPage={false}
-      />
+    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs} profileImageUrl={profileImage?.url || ''}>
+      <div className="text-center py-12">
+        <h1 className="text-3xl font-bold">{t('BlogPostListPage.title')}</h1>
+        <p className="text-gray-600">{t('BlogPostListPage.subtitle')}</p>
+      </div>
+      <div className="flex flex-col gap-5">
+        <ExploreMapSection locale={locale} />
+        <div className="flex flex-col gap-10">
+          <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />
+          <BlogPostsContainer
+            blogPosts={filteredBlogPosts}
+            title={getTitle()}
+            locale={locale}
+            viewAllButtonText={t('ArticleList.viewAll')}
+            viewAllHref={viewAllHref}
+            currentPage={page}
+            totalPages={Math.ceil(total / limit)}
+            noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
+            noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}
+            isBookmarksPage={false}
+          />
+        </div>
+      </div>
     </ArticleLayout>
   )
 }

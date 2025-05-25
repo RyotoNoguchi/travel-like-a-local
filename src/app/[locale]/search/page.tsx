@@ -40,7 +40,6 @@ const SearchPage: NextPage<Props> = async ({ params, searchParams }) => {
         locale={locale}
         viewAllButtonText=""
         viewAllHref=""
-        total={blogPosts.length}
         currentPage={1}
         totalPages={Math.ceil(blogPosts.length / 10)}
         noBlogPostsTitle={t('BlogPosts.noBlogPosts')}

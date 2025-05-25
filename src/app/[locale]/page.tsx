@@ -1,3 +1,5 @@
+import { ProfileCardContainer } from '@/app/ui/components/molecules/profile-card/container'
+import { BlogPostCards } from '@/app/ui/components/organisms/blog-post-cards'
 import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
 import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
 import { ExploreMapSection } from '@/app/ui/components/organisms/explore-map-section'
@@ -14,8 +16,6 @@ import { categorizeBlogPosts } from '@/utils/category-helper'
 import { getCategories } from '@/utils/concept-helper'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
-import { ProfileCardContainer } from '../ui/components/molecules/profile-card/container'
-import { BlogPostCards } from '../ui/components/organisms/blog-post-cards'
 
 type Props = {
   params: Promise<{ locale: LANGUAGE }>
@@ -36,7 +36,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const t = await getTranslations({ locale })
   const breadcrumbs = [{ label: t('Metadata.home'), href: '' }]
   const blogPosts =
-    (await getBlogPosts(LOCALE_CODE_MAP[locale]))
+    (await getBlogPosts(LOCALE_CODE_MAP[locale])).blogPosts
       .filter((blogPost): blogPost is NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items']['0'] => blogPost !== null)
       .filter((post) => post !== null) || []
   const categories = await getCategories(locale)
