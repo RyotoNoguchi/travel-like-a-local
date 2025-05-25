@@ -16,10 +16,11 @@ import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
-  params: Promise<{
+  params: {
     locale: LANGUAGE
     path: string[]
-  }>
+  }
+  searchParams: { page?: string }
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
@@ -144,7 +145,7 @@ const fetchBlogPost = async (slug: string, locale: LANGUAGE): Promise<BlogPostWi
   return blogPostsWithHref.find((pageBlogPost) => pageBlogPost?.slug === slug)
 }
 
-const BlogPostPage: NextPage<Props> = async ({ params }) => {
+const BlogPostPage: NextPage<Props> = async ({ params, searchParams }) => {
   const { locale, path } = await params
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
 
@@ -163,7 +164,16 @@ const BlogPostPage: NextPage<Props> = async ({ params }) => {
   return hasBlogPost ? (
     <BlogPostDetailPage locale={locale} breadcrumbs={breadcrumbs} slug={slug} blogPost={blogPost} />
   ) : (
-    <BlogPostListPage locale={locale} breadcrumbs={breadcrumbs} category={category} region={region} area={area} prefecture={prefecture} path={path} />
+    <BlogPostListPage
+      locale={locale}
+      breadcrumbs={breadcrumbs}
+      category={category}
+      region={region}
+      area={area}
+      prefecture={prefecture}
+      path={path}
+      searchParams={await searchParams}
+    />
   )
 }
 

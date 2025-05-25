@@ -24,11 +24,11 @@ export const getAllBlogPosts = async (locale = DEFAULT_LOCALE) => {
   return data.pageBlogPostCollection?.items || []
 }
 
-export const getBlogPosts = async (locale = DEFAULT_LOCALE) => {
+export const getBlogPosts = async (locale = DEFAULT_LOCALE, limit: number = 10, skip: number = 0) => {
   const client = createApolloClient()
   const { data } = await client.query<GetBlogPostsQuery, GetBlogPostsQueryVariables>({
     query: GET_BLOG_POSTS_QUERY,
-    variables: { limit: 100, skip: 0, locale }
+    variables: { limit, skip, locale }
   })
 
   return {

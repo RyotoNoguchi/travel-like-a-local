@@ -12,6 +12,7 @@ import { categorizeBlogPosts } from '@/utils/category-helper'
 import { getCategories, loadConcepts } from '@/utils/concept-helper'
 import { formatNameForUrl } from '@/utils/url-helpers'
 import { getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
 type Props = {
@@ -22,15 +23,21 @@ type Props = {
   area?: string
   prefecture?: string
   path: string[]
+  searchParams: { page?: string }
 }
 
-export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, category, region, area, prefecture, path }) => {
+export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, category, region, area, prefecture, path, searchParams }) => {
   const t = await getTranslations({ locale })
   const concepts = await loadConcepts()
   const where: Record<string, unknown> = {}
   const filters: Array<Record<string, unknown>> = []
-  const limit = 10
-  const skip = 0
+  const limit = 5
+  const page = searchParams?.page ? parseInt(searchParams.page, 10) : 1
+  const skip = (page - 1) * limit
+
+  if (isNaN(page)) {
+    notFound()
+  }
 
   const getConceptIdByLabel = (label: string): string | undefined => {
     const concept = concepts.find((c) => c.label.toLowerCase() === label.toLowerCase() || formatNameForUrl(c.label.toLowerCase()) === label.toLowerCase())
@@ -100,7 +107,7 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
     return t('ArticleList.title')
   }
 
-  const { blogPosts, total } = await getBlogPosts(LOCALE_CODE_MAP[locale])
+  const { blogPosts, total } = await getBlogPosts(LOCALE_CODE_MAP[locale], limit, skip)
 
   const filteredBlogPosts =
     blogPosts
@@ -128,7 +135,7 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
             viewAllButtonText={t('ArticleList.viewAll')}
             viewAllHref={viewAllHref}
             total={total}
-            currentPage={Math.floor(skip / limit) + 1}
+            currentPage={page}
             totalPages={Math.ceil(total / limit)}
             noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
             noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}

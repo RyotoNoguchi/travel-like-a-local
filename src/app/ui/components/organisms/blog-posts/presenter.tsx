@@ -1,4 +1,5 @@
 import { Button } from '@/app/ui/components/atoms/button'
+import { Pagination } from '@/app/ui/components/atoms/pagination'
 import { BlogPostItemContainer } from '@/app/ui/components/molecules/blog-post-item/container'
 import type { LANGUAGE } from '@/constants'
 import type { BlogPostWithHref } from '@/types/blog-post'
@@ -40,6 +41,6 @@ export const BlogPosts: FC<Props> = ({
       )}
     </ul>
     {/* TODO: ページネーション（記事が多い場合のみ表示） */}
-    {/* {totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl={viewAllHref} />} */}
+    {totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl={viewAllHref} />}
   </section>
 )
