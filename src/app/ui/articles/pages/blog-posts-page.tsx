@@ -2,10 +2,11 @@ import { ArticleLayout } from '@/app/ui/articles/layout/article-layout'
 import { BlogPostCards } from '@/app/ui/components/organisms/blog-post-cards'
 import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
 import { ExploreMapSection } from '@/app/ui/components/organisms/explore-map-section'
-import { LOCALE_CODE_MAP, type LANGUAGE } from '@/constants'
+import { LOCALE_CODE_MAP, PROFILE_IMAGE_ID, type LANGUAGE } from '@/constants'
 import type { GetBlogPostsQuery } from '@/generated/graphql'
 import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
 import type { BreadcrumbItem } from '@/types/breadcrumbs'
+import { getImageById } from '@/utils/assets'
 import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 import { categorizeBlogPosts } from '@/utils/category-helper'
 import { getCategories, loadConcepts } from '@/utils/concept-helper'
@@ -108,9 +109,10 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
   const categories = await getCategories(locale)
   const blogPostsWithHref = await getBlogPostsWithHref(blogPosts)
   const categorizedBlogPosts = categorizeBlogPosts(blogPostsWithHref, categories)
+  const profileImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
 
   return (
-    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs}>
+    <ArticleLayout locale={locale} breadcrumbs={breadcrumbs} profileImageUrl={profileImage?.url || ''}>
       <div className="flex flex-col gap-5">
         <ExploreMapSection locale={locale} />
         <div className="flex flex-col gap-10">

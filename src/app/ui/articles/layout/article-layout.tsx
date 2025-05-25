@@ -1,4 +1,5 @@
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
+import { ProfileCardContainer } from '@/app/ui/components/molecules/profile-card/container'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { type LANGUAGE } from '@/constants'
@@ -10,9 +11,10 @@ type Props = {
   children: ReactNode
   locale: LANGUAGE
   breadcrumbs: BreadcrumbItem[]
+  profileImageUrl?: string
 }
 
-export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
+export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs, profileImageUrl }) => (
   <>
     <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
     <div className={classNames('w-full flex justify-center mt-1 semi-lg:mb-5 px-3 xs:px-4 sm:px-6 lg:px-8 pb-10')}>
@@ -31,7 +33,10 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs }) => (
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className={classNames('flex w-full justify-center gap-8 lg:gap-16', 'xl:grid xl:grid-cols-[1fr_300px]')}>
           <main className="flex-1 w-full">{children}</main>
-          <PopularBlogPostsContainer locale={locale} />
+          <aside className="hidden xl:flex flex-col shrink-0 w-full gap-5 items-center max-w-[300px]">
+            {profileImageUrl ? <ProfileCardContainer imageUrl={profileImageUrl} /> : null}
+            <PopularBlogPostsContainer locale={locale} />
+          </aside>
         </div>
       </div>
     </div>
