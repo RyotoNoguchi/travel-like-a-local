@@ -318,3 +318,21 @@ export const SEARCH_BLOG_POSTS_QUERY = gql`
     }
   }
 `
+
+export const GET_UNIQUE_VALUE_PROPOSITIONS_QUERY = gql`
+  query GetUniqueValuePropositions($locale: String!) {
+    uniqueValuePropositionCollection(locale: $locale) {
+      items {
+        title
+        description
+        image {
+          title
+          description
+          width
+          height
+          url
+        }
+      }
+    }
+  }
+`

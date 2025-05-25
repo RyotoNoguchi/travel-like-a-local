@@ -177,6 +177,7 @@ export type AssetLinkingCollections = {
   componentSeoCollection?: Maybe<ComponentSeoCollection>
   entryCollection?: Maybe<EntryCollection>
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>
+  uniqueValuePropositionCollection?: Maybe<UniqueValuePropositionCollection>
 }
 
 export type AssetLinkingCollectionsComponentAuthorCollectionArgs = {
@@ -208,6 +209,13 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 }
 
 export type AssetLinkingCollectionsPageBlogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+export type AssetLinkingCollectionsUniqueValuePropositionCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
   locale?: InputMaybe<Scalars['String']['input']>
   preview?: InputMaybe<Scalars['Boolean']['input']>
@@ -1285,6 +1293,8 @@ export type Query = {
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>
   pageLanding?: Maybe<PageLanding>
   pageLandingCollection?: Maybe<PageLandingCollection>
+  uniqueValueProposition?: Maybe<UniqueValueProposition>
+  uniqueValuePropositionCollection?: Maybe<UniqueValuePropositionCollection>
 }
 
 export type Query_NodeArgs = {
@@ -1398,6 +1408,21 @@ export type QueryPageLandingCollectionArgs = {
   where?: InputMaybe<PageLandingFilter>
 }
 
+export type QueryUniqueValuePropositionArgs = {
+  id: Scalars['String']['input']
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+export type QueryUniqueValuePropositionCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  order?: InputMaybe<Array<InputMaybe<UniqueValuePropositionOrder>>>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+  where?: InputMaybe<UniqueValuePropositionFilter>
+}
+
 export type ResourceLink = {
   sys: ResourceSys
 }
@@ -1464,6 +1489,95 @@ export type SysFilter = {
 export type TaxonomyConcept = {
   __typename?: 'TaxonomyConcept'
   id?: Maybe<Scalars['String']['output']>
+}
+
+/** Unique Value Proposition for displaying on Hero component [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/uniqueValueProposition) */
+export type UniqueValueProposition = Entry &
+  _Node & {
+    __typename?: 'UniqueValueProposition'
+    _id: Scalars['ID']['output']
+    contentfulMetadata: ContentfulMetadata
+    description?: Maybe<Scalars['String']['output']>
+    image?: Maybe<Asset>
+    linkedFrom?: Maybe<UniqueValuePropositionLinkingCollections>
+    sys: Sys
+    title?: Maybe<Scalars['String']['output']>
+  }
+
+/** Unique Value Proposition for displaying on Hero component [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/uniqueValueProposition) */
+export type UniqueValuePropositionDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** Unique Value Proposition for displaying on Hero component [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/uniqueValueProposition) */
+export type UniqueValuePropositionImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** Unique Value Proposition for displaying on Hero component [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/uniqueValueProposition) */
+export type UniqueValuePropositionLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+/** Unique Value Proposition for displaying on Hero component [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/uniqueValueProposition) */
+export type UniqueValuePropositionTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+export type UniqueValuePropositionCollection = {
+  __typename?: 'UniqueValuePropositionCollection'
+  items: Array<Maybe<UniqueValueProposition>>
+  limit: Scalars['Int']['output']
+  skip: Scalars['Int']['output']
+  total: Scalars['Int']['output']
+}
+
+export type UniqueValuePropositionFilter = {
+  AND?: InputMaybe<Array<InputMaybe<UniqueValuePropositionFilter>>>
+  OR?: InputMaybe<Array<InputMaybe<UniqueValuePropositionFilter>>>
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
+  description?: InputMaybe<Scalars['String']['input']>
+  description_contains?: InputMaybe<Scalars['String']['input']>
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  description_not?: InputMaybe<Scalars['String']['input']>
+  description_not_contains?: InputMaybe<Scalars['String']['input']>
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>
+  sys?: InputMaybe<SysFilter>
+  title?: InputMaybe<Scalars['String']['input']>
+  title_contains?: InputMaybe<Scalars['String']['input']>
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  title_not?: InputMaybe<Scalars['String']['input']>
+  title_not_contains?: InputMaybe<Scalars['String']['input']>
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type UniqueValuePropositionLinkingCollections = {
+  __typename?: 'UniqueValuePropositionLinkingCollections'
+  entryCollection?: Maybe<EntryCollection>
+}
+
+export type UniqueValuePropositionLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+export enum UniqueValuePropositionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 export type _Node = {
@@ -1672,6 +1786,7 @@ export type GetBlogPostBySlugQuery = {
               | { __typename: 'ComponentSeo'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'PageBlogPost'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'PageLanding'; sys: { __typename?: 'Sys'; id: string } }
+              | { __typename: 'UniqueValueProposition'; sys: { __typename?: 'Sys'; id: string } }
               | null
             >
           }
@@ -1843,6 +1958,30 @@ export type SearchBlogPostsQuery = {
   } | null
 }
 
+export type GetUniqueValuePropositionsQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+}>
+
+export type GetUniqueValuePropositionsQuery = {
+  __typename?: 'Query'
+  uniqueValuePropositionCollection?: {
+    __typename?: 'UniqueValuePropositionCollection'
+    items: Array<{
+      __typename?: 'UniqueValueProposition'
+      title?: string | null
+      description?: string | null
+      image?: {
+        __typename?: 'Asset'
+        title?: string | null
+        description?: string | null
+        width?: number | null
+        height?: number | null
+        url?: string | null
+      } | null
+    } | null>
+  } | null
+}
+
 export const GetAssetDocument = {
   kind: 'Document',
   definitions: [
@@ -2004,7 +2143,10 @@ export const GetBlogPostBySlugDocument = {
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'relatedBlogPostsCollection' },
-                        arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '5' } }],
+                        arguments: [
+                          { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '5' } },
+                          { kind: 'Argument', name: { kind: 'Name', value: 'order' }, value: { kind: 'EnumValue', value: 'publishedDate_DESC' } }
+                        ],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
@@ -2930,3 +3072,60 @@ export const SearchBlogPostsDocument = {
     }
   ]
 } as unknown as DocumentNode<SearchBlogPostsQuery, SearchBlogPostsQueryVariables>
+export const GetUniqueValuePropositionsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetUniqueValuePropositions' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'uniqueValuePropositionCollection' },
+            arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'image' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetUniqueValuePropositionsQuery, GetUniqueValuePropositionsQueryVariables>
