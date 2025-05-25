@@ -15,7 +15,6 @@ type Props = {
   blogPosts: NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items'] | NonNullable<GetBlogPostsBySlugsQuery['pageBlogPostCollection']>['items']
   noBlogPostsTitle: string
   noBlogPostsMessage: string
-  total?: number
   currentPage?: number
   totalPages?: number
 }
@@ -26,7 +25,6 @@ export const BlogPostsContainer: FC<Props> = async ({
   viewAllButtonText,
   locale,
   blogPosts,
-  total,
   currentPage,
   totalPages,
   isBookmarksPage,
@@ -64,7 +62,6 @@ export const BlogPostsContainer: FC<Props> = async ({
       title={title}
       viewAllButtonText={viewAllButtonText}
       viewAllHref={viewAllHref}
-      total={total}
       currentPage={currentPage}
       totalPages={totalPages}
       locale={locale}

@@ -134,7 +134,6 @@ export const BlogPostListPage: FC<Props> = async ({ locale, breadcrumbs, categor
             locale={locale}
             viewAllButtonText={t('ArticleList.viewAll')}
             viewAllHref={viewAllHref}
-            total={total}
             currentPage={page}
             totalPages={Math.ceil(total / limit)}
             noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
