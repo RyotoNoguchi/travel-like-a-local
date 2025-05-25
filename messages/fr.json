@@ -30,7 +30,8 @@
   },
   "Hero": {
     "title": "Découvrez le Japon comme un <emphasis>local</emphasis>",
-    "subtitle": "Découvrez les trésors cachés et les expériences locales au Japon."
+    "subtitle": "Découvrez les trésors cachés et les expériences locales au Japon.",
+    "cta": "Me Contacter"
   },
   "ArticleList": {
     "title": "Derniers articles",

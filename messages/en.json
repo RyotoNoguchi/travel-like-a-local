@@ -30,7 +30,8 @@
   },
   "Hero": {
     "title": "Explore Japan Like a <emphasis> Local</emphasis>",
-    "subtitle": "Discover hidden gems and local experiences in Japan."
+    "subtitle": "Discover hidden gems and local experiences in Japan.",
+    "cta": "Contact Me"
   },
   "ArticleList": {
     "title": "Latest Articles",

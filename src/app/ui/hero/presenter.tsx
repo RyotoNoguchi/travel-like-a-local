@@ -1,5 +1,6 @@
 import { HeroTitle } from '@/app/ui/hero/title'
 import { Overlay } from '@/app/ui/overlay'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 import type { FC, ReactNode } from 'react'
 
@@ -13,9 +14,10 @@ type Props = {
   }[]
   enrichedTitle: ReactNode
   enrichedSubtitle: ReactNode
+  buttonText: string
 }
 
-export const Hero: FC<Props> = ({ images, enrichedTitle, enrichedSubtitle }) => (
+export const Hero: FC<Props> = ({ images, enrichedTitle, enrichedSubtitle, buttonText }) => (
   <div className="relative w-full">
     {images.map((image) => (
       <Image
@@ -29,5 +31,11 @@ export const Hero: FC<Props> = ({ images, enrichedTitle, enrichedSubtitle }) => 
     ))}
     <Overlay />
     <HeroTitle enrichedTitle={enrichedTitle} enrichedSubtitle={enrichedSubtitle} />
+    <Link
+      href="/service-intro#contact"
+      className="text-xl bg-primary-600 text-white font-bold py-3 px-8 rounded-md hover:bg-primary-700 transition duration-300 shadow-md absolute left-1/2 -translate-x-1/2 top-[62%]"
+    >
+      {buttonText}
+    </Link>
   </div>
 )

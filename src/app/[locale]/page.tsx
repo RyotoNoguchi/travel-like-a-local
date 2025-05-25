@@ -48,7 +48,11 @@ const HomePage: NextPage<Props> = async ({ params }) => {
     <>
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start overflow-hidden">
-        <HeroContainer enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>} enrichedSubtitle={t('Hero.subtitle')} />
+        <HeroContainer
+          enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>}
+          enrichedSubtitle={t('Hero.subtitle')}
+          buttonText={t('Hero.cta')}
+        />
 
         <div className="semi-lg:hidden w-full px-4 -mt-2">
           <ProfileCardContainer imageUrl={profileImage?.url || ''} isMobile={true} />

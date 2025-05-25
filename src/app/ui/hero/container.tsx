@@ -8,9 +8,10 @@ import type { FC } from 'react'
 type Props = {
   enrichedTitle: React.ReactNode
   enrichedSubtitle: React.ReactNode
+  buttonText: string
 }
 
-export const HeroContainer: FC<Props> = async ({ enrichedTitle, enrichedSubtitle }) => {
+export const HeroContainer: FC<Props> = async ({ enrichedTitle, enrichedSubtitle, buttonText }) => {
   const client = createApolloClient()
   const { data: heroMobileData } = await client.query<GetAssetQuery, QueryAssetArgs>({
     query: GET_ASSET_QUERY,
@@ -60,5 +61,5 @@ export const HeroContainer: FC<Props> = async ({ enrichedTitle, enrichedSubtitle
     }
   ]
 
-  return <Hero images={images} enrichedTitle={enrichedTitle} enrichedSubtitle={enrichedSubtitle} />
+  return <Hero images={images} enrichedTitle={enrichedTitle} enrichedSubtitle={enrichedSubtitle} buttonText={buttonText} />
 }
