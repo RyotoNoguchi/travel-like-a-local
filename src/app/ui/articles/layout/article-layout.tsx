@@ -31,9 +31,9 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs, profil
         )}
       >
         <Breadcrumbs breadcrumbs={breadcrumbs} />
-        <div className={classNames('flex w-full justify-center gap-8 lg:gap-16', 'xl:grid xl:grid-cols-[1fr_300px]')}>
+        <div className={classNames('flex w-full justify-center gap-8 lg:gap-16', 'xl:grid xl:grid-cols-[1fr_300px] xl:relative xl:items-start')}>
           <main className="flex-1 w-full">{children}</main>
-          <aside className="hidden xl:flex flex-col shrink-0 w-full gap-5 items-center max-w-[300px]">
+          <aside className="hidden xl:flex xl:sticky xl:top-[56px] flex-col shrink-0 gap-5 items-center max-w-[300px] w-[300px] self-start">
             {profileImageUrl ? <ProfileCardContainer imageUrl={profileImageUrl} /> : null}
             <PopularBlogPostsContainer locale={locale} />
           </aside>
