@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const BlogPostCards: FC<Props> = ({ categorizedBlogPosts, categories }) => (
-  <>
+  <div className="flex flex-col gap-4">
     {Object.entries(categorizedBlogPosts).map(([categoryName, blogPosts]) => {
       if (blogPosts.length === 0) return null
       const category = extractCategoryNameBySlug(categories, categoryName)
@@ -30,5 +30,5 @@ export const BlogPostCards: FC<Props> = ({ categorizedBlogPosts, categories }) =
         </div>
       )
     })}
-  </>
+  </div>
 )

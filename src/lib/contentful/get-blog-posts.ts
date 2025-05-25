@@ -31,7 +31,10 @@ export const getBlogPosts = async (locale = DEFAULT_LOCALE) => {
     variables: { limit: 100, skip: 0, locale }
   })
 
-  return data.pageBlogPostCollection?.items || []
+  return {
+    blogPosts: data.pageBlogPostCollection?.items || [],
+    total: data.pageBlogPostCollection?.total || 0
+  }
 }
 
 export const getBlogPostsBySearchTerm = async (searchTerm: string, locale = DEFAULT_LOCALE) => {
