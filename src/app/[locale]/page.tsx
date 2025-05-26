@@ -1,19 +1,22 @@
-import { ProfileCardContainer } from '@/app/ui/components/molecules/profile-card/container'
-import { BlogPostCards } from '@/app/ui/components/organisms/blog-post-cards'
-import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
-import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
-import { ExploreMapSection } from '@/app/ui/components/organisms/explore-map-section'
+import { createApolloClient } from '@/apolloClient'
+// import { ProfileCardContainer } from '@/app/ui/components/molecules/profile-card/container'
+// import { BlogPostCards } from '@/app/ui/components/organisms/blog-post-cards'
+// import { BlogPostsContainer } from '@/app/ui/components/organisms/blog-posts/container'
+// import { CarouselContainer } from '@/app/ui/components/organisms/carousel/container'
+// import { ExploreMapSection } from '@/app/ui/components/organisms/explore-map-section'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
 import { HeroContainer } from '@/app/ui/hero/container'
-import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
+// import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { RichText } from '@/app/ui/rich-text'
-import { type LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE, PROFILE_IMAGE_ID } from '@/constants'
-import type { GetBlogPostsQuery } from '@/generated/graphql'
-import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
-import { getImageById } from '@/utils/assets'
-import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
-import { categorizeBlogPosts } from '@/utils/category-helper'
-import { getCategories } from '@/utils/concept-helper'
+import { type LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
+import type { GetUniqueValuePropositionsQuery, GetUniqueValuePropositionsQueryVariables } from '@/generated/graphql'
+import { GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/graphql/query'
+// import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
+// import { getImageById } from '@/utils/assets'
+// import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
+// import { categorizeBlogPosts } from '@/utils/category-helper'
+// import { getCategories } from '@/utils/concept-helper'
+import { UniqueValuePropositionSection } from '@/app/ui/components/organisms/unique-value-proposition'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -35,14 +38,23 @@ const HomePage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale })
   const breadcrumbs = [{ label: t('Metadata.home'), href: '' }]
-  const blogPosts =
-    (await getBlogPosts(LOCALE_CODE_MAP[locale])).blogPosts
-      .filter((blogPost): blogPost is NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items']['0'] => blogPost !== null)
-      .filter((post) => post !== null) || []
-  const categories = await getCategories(locale)
-  const blogPostsWithHref = await getBlogPostsWithHref(blogPosts)
-  const categorizedBlogPosts = categorizeBlogPosts(blogPostsWithHref, categories)
-  const profileImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
+  // const blogPosts =
+  //   (await getBlogPosts(LOCALE_CODE_MAP[locale])).blogPosts
+  //     .filter((blogPost): blogPost is NonNullable<GetBlogPostsQuery['pageBlogPostCollection']>['items']['0'] => blogPost !== null)
+  //     .filter((post) => post !== null) || []
+  // const categories = await getCategories(locale)
+  // const blogPostsWithHref = await getBlogPostsWithHref(blogPosts)
+  // const categorizedBlogPosts = categorizeBlogPosts(blogPostsWithHref, categories)
+  // const profileImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })
+
+  // Fetch unique value propositions
+  const client = createApolloClient()
+  const { data } = await client.query<GetUniqueValuePropositionsQuery, GetUniqueValuePropositionsQueryVariables>({
+    query: GET_UNIQUE_VALUE_PROPOSITIONS_QUERY,
+    variables: { locale: LOCALE_CODE_MAP[locale] }
+  })
+
+  const uniqueValuePropositions = data?.uniqueValuePropositionCollection?.items || []
 
   return (
     <>
@@ -54,14 +66,15 @@ const HomePage: NextPage<Props> = async ({ params }) => {
           buttonText={t('Hero.cta')}
         />
 
-        <div className="semi-lg:hidden w-full px-4 -mt-2">
+        <UniqueValuePropositionSection uniqueValuePropositions={uniqueValuePropositions} />
+        {/* <div className="semi-lg:hidden w-full px-4 -mt-2">
           <ProfileCardContainer imageUrl={profileImage?.url || ''} isMobile={true} />
         </div>
 
         <CarouselContainer width={300} height={200} locale={locale} />
-        <ExploreMapSection locale={locale} />
+        <ExploreMapSection locale={locale} /> */}
 
-        <div className="flex w-full items-start gap-8 lg:gap-16 px-4 container mx-auto justify-start">
+        {/* <div className="flex w-full items-start gap-8 lg:gap-16 px-4 container mx-auto justify-start">
           <div className="flex flex-col gap-4 w-full">
             <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />
             <BlogPostsContainer
@@ -78,7 +91,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
             <ProfileCardContainer imageUrl={profileImage?.url || ''} />
             <PopularBlogPostsContainer locale={locale} />
           </aside>
-        </div>
+        </div> */}
       </main>
     </>
   )

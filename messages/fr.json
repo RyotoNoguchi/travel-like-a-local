@@ -352,5 +352,9 @@
   "BlogPostListPage": {
     "title": "Le Journal du Japon de Ryoto",
     "subtitle": "Découvrez des aperçus uniques, des histoires locales et des trésors cachés de mon voyage à travers le Japon du point de vue d'un LOCAL."
+  },
+  "UniqueValuePropositionSection": {
+    "title": "Votre aventure authentique au Japon commence ici avec Ryoto",
+    "learnMore": "En savoir plus sur Ryoto"
   }
 }
