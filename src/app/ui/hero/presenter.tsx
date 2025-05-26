@@ -33,7 +33,7 @@ export const Hero: FC<Props> = ({ images, enrichedTitle, enrichedSubtitle, butto
     <HeroTitle enrichedTitle={enrichedTitle} enrichedSubtitle={enrichedSubtitle} />
     <Link
       href="/service-intro#contact"
-      className="text-xl bg-primary-600 text-white font-bold py-3 px-8 rounded-md hover:bg-primary-700 transition duration-300 shadow-md absolute left-1/2 -translate-x-1/2 top-[62%]"
+      className="text-xl bg-primary-600 text-white font-bold py-3 px-8 rounded-md hover:bg-primary-700 transition duration-300 shadow-md absolute left-1/2 -translate-x-1/2 top-[70%] sm:top-[64%] md:top-[70%] lg:top-[75%] xl:top-[62%]"
     >
       {buttonText}
     </Link>
