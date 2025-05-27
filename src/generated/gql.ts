@@ -30,7 +30,9 @@ const documents = {
   '\n  query SearchBlogPosts($locale: String!, $searchTerm: String!, $conceptId: String, $limit: Int, $skip: Int) {\n    pageBlogPostCollection(\n      where: {\n        OR: [\n          { title_contains: $searchTerm }\n          { introduction_contains: $searchTerm }\n          { content_contains: $searchTerm }\n          { shortDescription_contains: $searchTerm }\n          { slug_contains: $searchTerm }\n          { contentfulMetadata: { concepts: { id_contains_some: [$conceptId] } } }\n        ]\n      }\n      locale: $locale\n      order: publishedDate_DESC\n      limit: $limit\n      skip: $skip\n    ) {\n      total\n      items {\n        sys {\n          id\n        }\n        title\n        slug\n        publishedDate\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        seoFields {\n          pageDescription\n        }\n        author {\n          name\n          avatar {\n            title\n            url\n            width\n            height\n          }\n        }\n        contentfulMetadata {\n          tags {\n            name\n          }\n          concepts {\n            id\n          }\n        }\n      }\n    }\n  }\n':
     types.SearchBlogPostsDocument,
   '\n  query GetUniqueValuePropositions($locale: String!) {\n    uniqueValuePropositionCollection(locale: $locale) {\n      items {\n        title\n        description\n        image {\n          title\n          description\n          width\n          height\n          url\n        }\n      }\n    }\n  }\n':
-    types.GetUniqueValuePropositionsDocument
+    types.GetUniqueValuePropositionsDocument,
+  '\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
+    types.GetToursDocument
 }
 
 /**
@@ -101,6 +103,12 @@ export function graphql(
 export function graphql(
   source: '\n  query GetUniqueValuePropositions($locale: String!) {\n    uniqueValuePropositionCollection(locale: $locale) {\n      items {\n        title\n        description\n        image {\n          title\n          description\n          width\n          height\n          url\n        }\n      }\n    }\n  }\n'
 ): (typeof documents)['\n  query GetUniqueValuePropositions($locale: String!) {\n    uniqueValuePropositionCollection(locale: $locale) {\n      items {\n        title\n        description\n        image {\n          title\n          description\n          width\n          height\n          url\n        }\n      }\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n']
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {}

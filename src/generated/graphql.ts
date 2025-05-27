@@ -177,6 +177,7 @@ export type AssetLinkingCollections = {
   componentSeoCollection?: Maybe<ComponentSeoCollection>
   entryCollection?: Maybe<EntryCollection>
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>
+  tourCollection?: Maybe<TourCollection>
   uniqueValuePropositionCollection?: Maybe<UniqueValuePropositionCollection>
 }
 
@@ -209,6 +210,13 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 }
 
 export type AssetLinkingCollectionsPageBlogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+export type AssetLinkingCollectionsTourCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
   locale?: InputMaybe<Scalars['String']['input']>
   preview?: InputMaybe<Scalars['Boolean']['input']>
@@ -1293,6 +1301,8 @@ export type Query = {
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>
   pageLanding?: Maybe<PageLanding>
   pageLandingCollection?: Maybe<PageLandingCollection>
+  tour?: Maybe<Tour>
+  tourCollection?: Maybe<TourCollection>
   uniqueValueProposition?: Maybe<UniqueValueProposition>
   uniqueValuePropositionCollection?: Maybe<UniqueValuePropositionCollection>
 }
@@ -1408,6 +1418,21 @@ export type QueryPageLandingCollectionArgs = {
   where?: InputMaybe<PageLandingFilter>
 }
 
+export type QueryTourArgs = {
+  id: Scalars['String']['input']
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+export type QueryTourCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  order?: InputMaybe<Array<InputMaybe<TourOrder>>>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+  where?: InputMaybe<TourFilter>
+}
+
 export type QueryUniqueValuePropositionArgs = {
   id: Scalars['String']['input']
   locale?: InputMaybe<Scalars['String']['input']>
@@ -1489,6 +1514,110 @@ export type SysFilter = {
 export type TaxonomyConcept = {
   __typename?: 'TaxonomyConcept'
   id?: Maybe<Scalars['String']['output']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type Tour = Entry &
+  _Node & {
+    __typename?: 'Tour'
+    _id: Scalars['ID']['output']
+    contentfulMetadata: ContentfulMetadata
+    description?: Maybe<Scalars['String']['output']>
+    featuredImage?: Maybe<Asset>
+    linkedFrom?: Maybe<TourLinkingCollections>
+    slug?: Maybe<Scalars['String']['output']>
+    sys: Sys
+    title?: Maybe<Scalars['String']['output']>
+  }
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourFeaturedImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+export type TourCollection = {
+  __typename?: 'TourCollection'
+  items: Array<Maybe<Tour>>
+  limit: Scalars['Int']['output']
+  skip: Scalars['Int']['output']
+  total: Scalars['Int']['output']
+}
+
+export type TourFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TourFilter>>>
+  OR?: InputMaybe<Array<InputMaybe<TourFilter>>>
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
+  description?: InputMaybe<Scalars['String']['input']>
+  description_contains?: InputMaybe<Scalars['String']['input']>
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  description_not?: InputMaybe<Scalars['String']['input']>
+  description_not_contains?: InputMaybe<Scalars['String']['input']>
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  featuredImage_exists?: InputMaybe<Scalars['Boolean']['input']>
+  slug?: InputMaybe<Scalars['String']['input']>
+  slug_contains?: InputMaybe<Scalars['String']['input']>
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  slug_not?: InputMaybe<Scalars['String']['input']>
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  sys?: InputMaybe<SysFilter>
+  title?: InputMaybe<Scalars['String']['input']>
+  title_contains?: InputMaybe<Scalars['String']['input']>
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  title_not?: InputMaybe<Scalars['String']['input']>
+  title_not_contains?: InputMaybe<Scalars['String']['input']>
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type TourLinkingCollections = {
+  __typename?: 'TourLinkingCollections'
+  entryCollection?: Maybe<EntryCollection>
+}
+
+export type TourLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+export enum TourOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 /** Unique Value Proposition for displaying on Hero component [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/uniqueValueProposition) */
@@ -1786,6 +1915,7 @@ export type GetBlogPostBySlugQuery = {
               | { __typename: 'ComponentSeo'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'PageBlogPost'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'PageLanding'; sys: { __typename?: 'Sys'; id: string } }
+              | { __typename: 'Tour'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'UniqueValueProposition'; sys: { __typename?: 'Sys'; id: string } }
               | null
             >
@@ -1978,6 +2108,24 @@ export type GetUniqueValuePropositionsQuery = {
         height?: number | null
         url?: string | null
       } | null
+    } | null>
+  } | null
+}
+
+export type GetToursQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+}>
+
+export type GetToursQuery = {
+  __typename?: 'Query'
+  tourCollection?: {
+    __typename?: 'TourCollection'
+    items: Array<{
+      __typename?: 'Tour'
+      title?: string | null
+      slug?: string | null
+      description?: string | null
+      featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
     } | null>
   } | null
 }
@@ -3129,3 +3277,60 @@ export const GetUniqueValuePropositionsDocument = {
     }
   ]
 } as unknown as DocumentNode<GetUniqueValuePropositionsQuery, GetUniqueValuePropositionsQueryVariables>
+export const GetToursDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetTours' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'tourCollection' },
+            arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'featuredImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetToursQuery, GetToursQueryVariables>

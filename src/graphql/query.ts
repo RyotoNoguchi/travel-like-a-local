@@ -336,3 +336,21 @@ export const GET_UNIQUE_VALUE_PROPOSITIONS_QUERY = gql`
     }
   }
 `
+
+export const GET_TOURS_QUERY = gql`
+  query GetTours($locale: String!) {
+    tourCollection(locale: $locale) {
+      items {
+        title
+        slug
+        description
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`
