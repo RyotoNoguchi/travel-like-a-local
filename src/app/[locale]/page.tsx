@@ -15,7 +15,7 @@ import { GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/graphql/query'
 // import { getImageById } from '@/utils/assets'
 // import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 // import { categorizeBlogPosts } from '@/utils/category-helper'
-// import { getCategories } from '@/utils/concept-helper'
+import { FeaturedToursSection } from '@/app/ui/components/organisms/featured-tours-section'
 import { UniqueValuePropositionSection } from '@/app/ui/components/organisms/unique-value-proposition'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
@@ -67,6 +67,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
         />
 
         <UniqueValuePropositionSection uniqueValuePropositions={uniqueValuePropositions} />
+        <FeaturedToursSection locale={locale} />
         {/* <div className="semi-lg:hidden w-full px-4 -mt-2">
           <ProfileCardContainer imageUrl={profileImage?.url || ''} isMobile={true} />
         </div>
