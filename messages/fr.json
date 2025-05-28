@@ -356,5 +356,10 @@
   "UniqueValuePropositionSection": {
     "title": "Votre aventure authentique au Japon commence ici avec Ryoto",
     "learnMore": "En savoir plus sur Ryoto"
+  },
+  "FeaturedToursSection": {
+    "title": "Nos expériences phares",
+    "linkButtonText": "En savoir plus",
+    "viewAllTours": "Voir tous les tours"
   }
 }
