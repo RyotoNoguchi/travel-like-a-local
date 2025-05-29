@@ -25,7 +25,7 @@ export const TestimonialSection: FC<Props> = ({ testimonials, title, sourceText 
     <section className="w-full py-12">
       <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">{title}</h2>
 
-      <ul className="grid md:grid-cols-3 gap-8">
+      <ul className="grid md:grid-cols-3 gap-8 max-w-screen-lg mx-auto">
         {testimonials.map(
           (testimonial) =>
             testimonial && <Testimonial key={testimonial.id} testimonial={testimonial} onClick={() => setSelectedTestimonial(testimonial)} t={t} />

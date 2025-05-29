@@ -9,8 +9,13 @@ import { HeroContainer } from '@/app/ui/hero/container'
 // import { PopularBlogPostsContainer } from '@/app/ui/popular-blog-posts/container'
 import { RichText } from '@/app/ui/rich-text'
 import { type LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
-import type { GetUniqueValuePropositionsQuery, GetUniqueValuePropositionsQueryVariables } from '@/generated/graphql'
-import { GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/graphql/query'
+import type {
+  GetTestimonialsQuery,
+  GetTestimonialsQueryVariables,
+  GetUniqueValuePropositionsQuery,
+  GetUniqueValuePropositionsQueryVariables
+} from '@/generated/graphql'
+import { GET_TESTIMONIALS_QUERY, GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/graphql/query'
 // import { getBlogPosts } from '@/lib/contentful/get-blog-posts'
 // import { getImageById } from '@/utils/assets'
 // import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
@@ -19,6 +24,7 @@ import { FeaturedToursSection } from '@/app/ui/components/organisms/featured-tou
 import { UniqueValuePropositionSection } from '@/app/ui/components/organisms/unique-value-proposition'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { TestimonialSection } from '../ui/components/molecules/testimonials/testimonial-section'
 
 type Props = {
   params: Promise<{ locale: LANGUAGE }>
@@ -54,6 +60,14 @@ const HomePage: NextPage<Props> = async ({ params }) => {
     variables: { locale: LOCALE_CODE_MAP[locale] }
   })
 
+  const { data: testimonialsData } = await client.query<GetTestimonialsQuery, GetTestimonialsQueryVariables>({
+    query: GET_TESTIMONIALS_QUERY,
+    variables: {
+      locale: LOCALE_CODE_MAP[locale]
+    }
+  })
+
+  const testimonialSourceText = `${t('ServicesPage.testimonialSource').replace('Couchsurfing', `<a href="https://www.couchsurfing.com/people/ryoto-noguchi" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:underline">${t('ServicesPage.testimonialCouchsurfing')}</a>`)}`
   const uniqueValuePropositions = data?.uniqueValuePropositionCollection?.items || []
 
   return (
@@ -68,6 +82,11 @@ const HomePage: NextPage<Props> = async ({ params }) => {
 
         <UniqueValuePropositionSection uniqueValuePropositions={uniqueValuePropositions} />
         <FeaturedToursSection locale={locale} />
+        <TestimonialSection
+          testimonials={testimonialsData.testimonialCollection?.items ?? []}
+          title={t('ServicesPage.testimonials.title')}
+          sourceText={testimonialSourceText}
+        />
         {/* <div className="semi-lg:hidden w-full px-4 -mt-2">
           <ProfileCardContainer imageUrl={profileImage?.url || ''} isMobile={true} />
         </div>
