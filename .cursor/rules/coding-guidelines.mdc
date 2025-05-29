@@ -1,0 +1,145 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Travel Like a Local - Project Rules
+
+## Core Tech Stack
+- **Framework**: Next.js 15.1.6 with App Router and Turbopack
+- **Language**: TypeScript (ES2023 target, strict mode)
+- **Styling**: Tailwind CSS with custom design system
+- **State Management**: Apollo Client for GraphQL state
+- **Internationalization**: next-intl for multi-language support
+- **Component Architecture**: Atomic Design Pattern
+- **Code Quality**: ESLint + Prettier + lint-staged + Husky
+
+## File Structure & Organization
+
+### Component Architecture (Atomic Design)
+- `src/app/ui/components/atoms/`: Basic UI elements (buttons, inputs, tags)
+- `src/app/ui/components/molecules/`: Simple component groups
+- `src/app/ui/components/organisms/`: Complex component sections
+- Use descriptive, kebab-case file names for components
+
+### Type Organization
+- All types in `src/types/` with descriptive names
+- Use Tailwindest for type-safe Tailwind classes
+- Create domain-specific types (blog-post.ts, region.ts, etc.)
+
+### App Router Structure
+- `src/app/[locale]/`: Internationalized routes
+- `src/app/api/`: API routes
+- `src/app/actions/`: Server actions
+- `src/app/providers/`: Context providers
+
+## Code Style Guidelines
+
+### TypeScript
+- Use `type` for object shapes, `interface` for extendable contracts
+- Prefer `type Props = {}` for component props
+- Use `FC<Props>` for functional components
+- Enable strict TypeScript (`strict: true`)
+- Use consistent type imports: `import type { FC } from 'react'`
+
+### Component Patterns
+```tsx
+import type { FC } from 'react'
+import type { Tailwind } from '@/types/tailwind'
+import classNames from 'classnames'
+
+type Props = {
+  variant?: 'primary' | 'secondary'
+  size?: 'sm' | 'md' | 'lg'
+  children: React.ReactNode
+}
+
+export const ComponentName: FC<Props> = ({
+  variant = 'primary',
+  size = 'md',
+  children
+}) => {
+  return (
+    <div className={classNames('base-classes', {
+      'variant-classes': variant === 'primary'
+    })}>
+      {children}
+    </div>
+  )
+}
+```
+
+### Styling
+- Use Tailwind CSS classes exclusively
+- Leverage the custom design system colors (primary, dark-gray, light-gray)
+- Use `classNames` for conditional classes
+- Use `Tailwind` type for type-safe Tailwind props
+- Custom breakpoints: xxs, xs, semi-sm, semi-md, semi-lg
+
+### GraphQL
+- Keep all queries in `src/graphql/query.ts`
+- Use Apollo Client for data fetching
+- Utilize GraphQL codegen for type safety
+
+### Internationalization
+- Use next-intl for all user-facing text
+- Import routing from `@/i18n/routing`
+- Support Japanese and English locales
+
+### File Naming
+- Components: PascalCase (Button.tsx, UserProfile.tsx)
+- Types: kebab-case (blog-post.ts, user-profile.ts)
+- Utilities: camelCase (formatDate.ts, apiHelpers.ts)
+- Constants: camelCase with descriptive names
+
+## Development Practices
+
+### Import Organization
+- Prettier with organize-imports plugin handles import sorting
+- Use absolute imports with `@/*` alias
+- Group imports: external → internal → types
+
+### Error Handling
+- Use TypeScript's exhaustive switch checking
+- Implement proper error boundaries for React components
+- Use consistent error handling patterns in API routes
+
+### Performance
+- Use Next.js Image component for optimized images
+- Implement proper loading states
+- Use React.memo() sparingly and only when needed
+- Leverage Next.js built-in optimizations (Turbopack, etc.)
+
+### Code Quality
+- No console.log in production (use console.warn for development)
+- Prefer const over let, never use var
+- Use meaningful variable names
+- Write JSDoc comments for complex functions
+- Use TypeScript strict mode features
+
+### Testing & Storybook
+- Components should have Storybook stories
+- Follow Storybook best practices for component documentation
+- Use descriptive story names and comprehensive examples
+
+## Specific Conventions
+
+### API & Data
+- Use server actions for form submissions
+- Implement proper loading and error states
+- Use MongoDB for database operations
+- Implement proper data caching strategies
+
+### Styling Patterns
+- Use consistent spacing scale
+- Implement dark/light mode support
+- Use semantic color names from design system
+- Prefer Tailwind utilities over custom CSS
+
+### Performance Optimization
+- Use Next.js Image with proper sizing
+- Implement lazy loading for heavy components
+- Use React Suspense for data loading
+- Optimize bundle size with proper code splitting
+
+Remember: Focus on maintainability, type safety, and user experience. Always consider internationalization and accessibility in component design.
