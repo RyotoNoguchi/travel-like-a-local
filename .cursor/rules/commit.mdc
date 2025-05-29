@@ -1,0 +1,12 @@
+---
+description: Adding a commit
+globs:
+alwaysApply: false
+---
+# Direction to add a commit
+
+1. Check the current git branch using the git branch command, `git branch --show-current`.
+2. Check the diff between `develop` branch and the current branch
+3. Create a commit message depending on the content of the change with an appropriate emoji listed in the [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) as a prefix of the commit message
+4. Add a commit with the created message
+5. Push to the remote repository
