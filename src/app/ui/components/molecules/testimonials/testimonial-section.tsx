@@ -22,7 +22,7 @@ export const TestimonialSection: FC<Props> = ({ testimonials, title, sourceText 
   if (!testimonials) return null
 
   return (
-    <section className="w-full py-12">
+    <section className="w-full pb-12">
       <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">{title}</h2>
 
       <ul className="grid md:grid-cols-3 gap-8 max-w-screen-lg mx-auto">
