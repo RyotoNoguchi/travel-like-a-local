@@ -354,3 +354,24 @@ export const GET_TOURS_QUERY = gql`
     }
   }
 `
+
+export const GET_TESTIMONIALS_QUERY = gql`
+  query GetTestimonials($locale: String!) {
+    testimonialCollection(locale: $locale) {
+      items {
+        id
+        name
+        sex
+        country
+        ageGroup
+        comment
+        image {
+          title
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`

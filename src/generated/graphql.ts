@@ -177,6 +177,7 @@ export type AssetLinkingCollections = {
   componentSeoCollection?: Maybe<ComponentSeoCollection>
   entryCollection?: Maybe<EntryCollection>
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>
+  testimonialCollection?: Maybe<TestimonialCollection>
   tourCollection?: Maybe<TourCollection>
   uniqueValuePropositionCollection?: Maybe<UniqueValuePropositionCollection>
 }
@@ -210,6 +211,13 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 }
 
 export type AssetLinkingCollectionsPageBlogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+export type AssetLinkingCollectionsTestimonialCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
   locale?: InputMaybe<Scalars['String']['input']>
   preview?: InputMaybe<Scalars['Boolean']['input']>
@@ -1301,6 +1309,8 @@ export type Query = {
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>
   pageLanding?: Maybe<PageLanding>
   pageLandingCollection?: Maybe<PageLandingCollection>
+  testimonial?: Maybe<Testimonial>
+  testimonialCollection?: Maybe<TestimonialCollection>
   tour?: Maybe<Tour>
   tourCollection?: Maybe<TourCollection>
   uniqueValueProposition?: Maybe<UniqueValueProposition>
@@ -1418,6 +1428,21 @@ export type QueryPageLandingCollectionArgs = {
   where?: InputMaybe<PageLandingFilter>
 }
 
+export type QueryTestimonialArgs = {
+  id: Scalars['String']['input']
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+export type QueryTestimonialCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  order?: InputMaybe<Array<InputMaybe<TestimonialOrder>>>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+  where?: InputMaybe<TestimonialFilter>
+}
+
 export type QueryTourArgs = {
   id: Scalars['String']['input']
   locale?: InputMaybe<Scalars['String']['input']>
@@ -1514,6 +1539,155 @@ export type SysFilter = {
 export type TaxonomyConcept = {
   __typename?: 'TaxonomyConcept'
   id?: Maybe<Scalars['String']['output']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type Testimonial = Entry &
+  _Node & {
+    __typename?: 'Testimonial'
+    _id: Scalars['ID']['output']
+    ageGroup?: Maybe<Scalars['Int']['output']>
+    comment?: Maybe<Scalars['String']['output']>
+    contentfulMetadata: ContentfulMetadata
+    country?: Maybe<Scalars['String']['output']>
+    id?: Maybe<Scalars['Int']['output']>
+    image?: Maybe<Asset>
+    linkedFrom?: Maybe<TestimonialLinkingCollections>
+    name?: Maybe<Scalars['String']['output']>
+    sex?: Maybe<Scalars['Boolean']['output']>
+    sys: Sys
+  }
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialAgeGroupArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialCommentArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialCountryArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialIdArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** testimonial about Ryoto [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/testimonial) */
+export type TestimonialSexArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+export type TestimonialCollection = {
+  __typename?: 'TestimonialCollection'
+  items: Array<Maybe<Testimonial>>
+  limit: Scalars['Int']['output']
+  skip: Scalars['Int']['output']
+  total: Scalars['Int']['output']
+}
+
+export type TestimonialFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TestimonialFilter>>>
+  OR?: InputMaybe<Array<InputMaybe<TestimonialFilter>>>
+  ageGroup?: InputMaybe<Scalars['Int']['input']>
+  ageGroup_exists?: InputMaybe<Scalars['Boolean']['input']>
+  ageGroup_gt?: InputMaybe<Scalars['Int']['input']>
+  ageGroup_gte?: InputMaybe<Scalars['Int']['input']>
+  ageGroup_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  ageGroup_lt?: InputMaybe<Scalars['Int']['input']>
+  ageGroup_lte?: InputMaybe<Scalars['Int']['input']>
+  ageGroup_not?: InputMaybe<Scalars['Int']['input']>
+  ageGroup_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  comment?: InputMaybe<Scalars['String']['input']>
+  comment_contains?: InputMaybe<Scalars['String']['input']>
+  comment_exists?: InputMaybe<Scalars['Boolean']['input']>
+  comment_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  comment_not?: InputMaybe<Scalars['String']['input']>
+  comment_not_contains?: InputMaybe<Scalars['String']['input']>
+  comment_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
+  country?: InputMaybe<Scalars['String']['input']>
+  country_contains?: InputMaybe<Scalars['String']['input']>
+  country_exists?: InputMaybe<Scalars['Boolean']['input']>
+  country_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  country_not?: InputMaybe<Scalars['String']['input']>
+  country_not_contains?: InputMaybe<Scalars['String']['input']>
+  country_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  id?: InputMaybe<Scalars['Int']['input']>
+  id_exists?: InputMaybe<Scalars['Boolean']['input']>
+  id_gt?: InputMaybe<Scalars['Int']['input']>
+  id_gte?: InputMaybe<Scalars['Int']['input']>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  id_lt?: InputMaybe<Scalars['Int']['input']>
+  id_lte?: InputMaybe<Scalars['Int']['input']>
+  id_not?: InputMaybe<Scalars['Int']['input']>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  name_contains?: InputMaybe<Scalars['String']['input']>
+  name_exists?: InputMaybe<Scalars['Boolean']['input']>
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  name_not?: InputMaybe<Scalars['String']['input']>
+  name_not_contains?: InputMaybe<Scalars['String']['input']>
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  sex?: InputMaybe<Scalars['Boolean']['input']>
+  sex_exists?: InputMaybe<Scalars['Boolean']['input']>
+  sex_not?: InputMaybe<Scalars['Boolean']['input']>
+  sys?: InputMaybe<SysFilter>
+}
+
+export type TestimonialLinkingCollections = {
+  __typename?: 'TestimonialLinkingCollections'
+  entryCollection?: Maybe<EntryCollection>
+}
+
+export type TestimonialLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+export enum TestimonialOrder {
+  AgeGroupAsc = 'ageGroup_ASC',
+  AgeGroupDesc = 'ageGroup_DESC',
+  CountryAsc = 'country_ASC',
+  CountryDesc = 'country_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SexAsc = 'sex_ASC',
+  SexDesc = 'sex_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
@@ -1915,6 +2089,7 @@ export type GetBlogPostBySlugQuery = {
               | { __typename: 'ComponentSeo'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'PageBlogPost'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'PageLanding'; sys: { __typename?: 'Sys'; id: string } }
+              | { __typename: 'Testimonial'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'Tour'; sys: { __typename?: 'Sys'; id: string } }
               | { __typename: 'UniqueValueProposition'; sys: { __typename?: 'Sys'; id: string } }
               | null
@@ -2126,6 +2301,27 @@ export type GetToursQuery = {
       slug?: string | null
       description?: string | null
       featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+    } | null>
+  } | null
+}
+
+export type GetTestimonialsQueryVariables = Exact<{
+  locale: Scalars['String']['input']
+}>
+
+export type GetTestimonialsQuery = {
+  __typename?: 'Query'
+  testimonialCollection?: {
+    __typename?: 'TestimonialCollection'
+    items: Array<{
+      __typename?: 'Testimonial'
+      id?: number | null
+      name?: string | null
+      sex?: boolean | null
+      country?: string | null
+      ageGroup?: number | null
+      comment?: string | null
+      image?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
     } | null>
   } | null
 }
@@ -3334,3 +3530,63 @@ export const GetToursDocument = {
     }
   ]
 } as unknown as DocumentNode<GetToursQuery, GetToursQueryVariables>
+export const GetTestimonialsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetTestimonials' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'testimonialCollection' },
+            arguments: [{ kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } }],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'sex' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'country' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'ageGroup' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'comment' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'image' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetTestimonialsQuery, GetTestimonialsQueryVariables>
