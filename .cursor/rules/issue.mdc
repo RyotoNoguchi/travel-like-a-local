@@ -1,0 +1,52 @@
+---
+description: Creating a GitHub Issue
+globs:
+alwaysApply: false
+---
+# Creating a GitHub Issue
+
+## Basic Rules
+
+1. **Target Repository**: `https://github.com/RyotoNoguchi/travel-like-a-local`
+2. **Project**: @RyotoNoguchi's Travel Like a Local Japan
+3. **Project URL**: `https://github.com/users/RyotoNoguchi/projects/2`
+4. **Template**: Must use [ISSUE_TEMPLATE.md](mdc:.github/ISSUE_TEMPLATE.md)
+
+## Issue Types and Labels
+
+### Bug Reports
+- **Label**: `bug`
+- **Priority Labels**: `critical`, `high`, `medium`, `low`
+
+### Feature Requests & Enhancements
+- **Label**: `enhancement`, `feature`
+- **UI Related**: `ui/ux`
+
+### Documentation
+- **Label**: `documentation`
+
+### Maintenance & Technical Improvements
+- **Label**: `maintenance`, `performance`, `refactoring`
+
+### Internationalization & Multi-language Support
+- **Label**: `i18n`, `japanese`, `english`
+
+## Required Checklist Before Creating
+
+1. Confirm no duplicate issues exist
+2. Select appropriate issue type
+3. Provide detailed environment information
+4. Clearly describe reproduction steps (for bugs)
+5. Set correct priority and impact scope
+
+## Recommended Format
+
+- Title: `{gitmoji} Brief description` (Must use an appropirate [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) as a prefix of the title)
+  - Example: `:bug: Images not displaying on homepage`
+  - Example: `:sparkles: Add regional search functionality`
+  - Example: `:lipstick: Improve mobile display`
+
+## Assignee Settings
+
+- **Default**: `RyotoNoguchi`
+- **Additional Reviewers**: Add related members as needed
