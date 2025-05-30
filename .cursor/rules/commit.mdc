@@ -6,7 +6,8 @@ alwaysApply: false
 # Direction to add a commit
 
 1. Check the current git branch using the git branch command, `git branch --show-current`.
-2. Check the changes and stage them if there are not staged.
-3. Create a commit message depending on the content of the change with an appropriate emoji listed in the [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) as a prefix of the commit message
-4. Add a commit with the created message
-5. Push to the remote repository
+2. Only if the current is the `main` branch, check out a new branch with a short semantic name taking the changes into consideration.
+3. Check the changes and stage them if there are not staged.
+4. Create a commit message depending on the content of the change with an appropriate emoji listed in the [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) as a prefix of the commit message
+5. Add a commit with the created message
+6. Push to the remote repository
