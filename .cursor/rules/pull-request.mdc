@@ -1,15 +1,14 @@
 ---
 description: Creating a pull request
-globs:
+globs: 
 alwaysApply: false
 ---
 # Direction to create an pull request
 
 1. Check the current git branch using the git branch command, `git branch --show-current`.
-2. If the current branch is `main`, check out a new branch with a short semantic name.
-3. Check the diff between `main` branch and the current branch.
-4. If there are any changes which are not staged, staged all of them.
-5. If there are staged changes, add a commit of the staged changes with an appropriate commit message referring to [commit.mdc](mdc:.cursor/rules/commit.mdc)
-6. Push the commit to the remote repository.
-7. Create a pull request to the `main` branch from the current branch if it does not exist.
-8. Assign the user who created this pull request as an assignee.
+2. If the current branch is `main`, ask the user from which branch he/she wants to create a pull request and check out the branch based on the answer from the user.
+3. Ask the user to provide the URL of the related GitHub issue if not have been provided yet.
+4. Create a pull request from the current branch to the `main` branch with the properties below.
+    - Title: the title of the related GitHub issue provided by the user
+    - Body: create a pull request body referring to the commits based on the [PULL_REQUEST_TEMPLATE.md](mdc:.github/PULL_REQUEST_TEMPLATE.md) template
+5.  Assign the user who created this pull request as an assignee of this pull request.
