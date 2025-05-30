@@ -31,6 +31,17 @@ alwaysApply: false
 ### Internationalization & Multi-language Support
 - **Label**: `i18n`, `japanese`, `english`
 
+### Project Linking
+- **Mandatory**: All issues must be linked to the project
+- **Target Project**: `@RyotoNoguchi's Travel Like a Local Japan`
+- **Project ID**: `https://github.com/users/RyotoNoguchi/projects/2`
+- **Action**: Automatically assign issue to project upon creation
+
+### Status Management
+- **Initial Status**: All new issues must be set to "Backlog" status
+- **Status Flow**: Backlog → In Progress → Review → Done
+- **Requirement**: Ensure proper status tracking from creation to completion
+
 ## Required Checklist Before Creating
 
 1. Confirm no duplicate issues exist
@@ -38,7 +49,8 @@ alwaysApply: false
 3. Provide detailed environment information
 4. Clearly describe reproduction steps (for bugs)
 5. Set correct priority and impact scope
-
+6. **Link to designated project**
+7. **Set initial status to "Backlog"**
 ## Recommended Format
 
 - Title: `{gitmoji} Brief description` (Must use an appropirate [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) as a prefix of the title)
@@ -50,3 +62,11 @@ alwaysApply: false
 
 - **Default**: `RyotoNoguchi`
 - **Additional Reviewers**: Add related members as needed
+
+## Post-Creation Actions
+
+1. **Verify project assignment**: Confirm issue appears in project board
+2. **Check status placement**: Ensure issue is in "Backlog" column
+3. **Review labels**: Confirm appropriate labels are applied
+4. **Validate priority**: Ensure priority level is correctly set
+5. **Add gitmoji**: Ensure the title has a prefix of gitmoji. If not, add one of the list of [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) depeinding on the title of the issue.
