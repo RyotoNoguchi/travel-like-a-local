@@ -10,7 +10,7 @@ alwaysApply: false
 1. **Target Repository**: `https://github.com/RyotoNoguchi/travel-like-a-local`
 2. **Project**: @RyotoNoguchi's Travel Like a Local Japan
 3. **Project URL**: `https://github.com/users/RyotoNoguchi/projects/2`
-4. **Template**: Must use `.github/ISSUE_TEMPLATE.md`
+4. **Template**: Must use [ISSUE_TEMPLATE.md](mdc:.github/ISSUE_TEMPLATE.md)
 
 ## Issue Types and Labels
 
