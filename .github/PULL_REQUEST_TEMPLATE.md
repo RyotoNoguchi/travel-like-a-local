@@ -1,106 +1,106 @@
-## 📝 概要 (Overview)
+## 📝 Overview
 
-<!-- プルリクエストの目的と変更内容を簡潔に説明してください -->
+<!-- Please briefly describe the purpose and changes of this pull request -->
 
-## 🔗 関連Issue (Related Issue)
+## 🔗 Related Issue
 
-<!-- 関連するIssue番号を記載してください -->
+<!-- Please include the related issue number -->
 
 - Closes #
 
-## 🛠️ 変更内容 (Changes)
+## 🛠️ Changes
 
-<!-- 変更した内容を具体的に記載してください -->
+<!-- Please describe the specific changes made -->
 
-### 🆕 新機能 (New Features)
-
-- [ ]
-
-### 🐛 バグ修正 (Bug Fixes)
+### 🆕 New Features
 
 - [ ]
 
-### 🎨 UI/UX改善 (UI/UX Improvements)
+### 🐛 Bug Fixes
 
 - [ ]
 
-### ⚡ パフォーマンス改善 (Performance Improvements)
+### 🎨 UI/UX Improvements
 
 - [ ]
 
-### 🔧 リファクタリング (Refactoring)
+### ⚡ Performance Improvements
 
 - [ ]
 
-### 📚 ドキュメント (Documentation)
+### 🔧 Refactoring
 
 - [ ]
 
-### 🧪 テスト (Tests)
+### 📚 Documentation
 
 - [ ]
 
-## 🖼️ スクリーンショット (Screenshots)
+### 🧪 Tests
 
-<!-- UI変更がある場合は、Before/Afterのスクリーンショットを追加してください -->
+- [ ]
+
+## 🖼️ Screenshots
+
+<!-- If there are UI changes, please add Before/After screenshots -->
 
 ### Before
 
-<!-- 変更前のスクリーンショット -->
+<!-- Screenshot before changes -->
 
 ### After
 
-<!-- 変更後のスクリーンショット -->
+<!-- Screenshot after changes -->
 
-## ✅ チェックリスト (Checklist)
+## ✅ Checklist
 
-### 🔍 コード品質 (Code Quality)
+### 🔍 Code Quality
 
-- [ ] コードレビューの準備ができている
-- [ ] ESLintエラーがない
-- [ ] TypeScriptエラーがない
-- [ ] 適切なコメントが記載されている
+- [ ] Ready for code review
+- [ ] No ESLint errors
+- [ ] No TypeScript errors
+- [ ] Appropriate comments have been added
 
-### 🧪 テスト (Testing)
+### 🧪 Testing
 
-- [ ] 新機能に対するテストを追加した
-- [ ] 既存のテストが通る
-- [ ] ローカル環境で動作確認済み
+- [ ] Added tests for new features
+- [ ] Existing tests pass
+- [ ] Confirmed functionality in local environment
 
-### 📱 レスポンシブ対応 (Responsive Design)
+### 📱 Responsive Design
 
-- [ ] デスクトップで動作確認済み
-- [ ] タブレットで動作確認済み
-- [ ] モバイルで動作確認済み
+- [ ] Confirmed functionality on desktop
+- [ ] Confirmed functionality on tablet
+- [ ] Confirmed functionality on mobile
 
-### 🌐 国際化 (Internationalization)
+### 🌐 Internationalization
 
-- [ ] 日本語対応確認済み
-- [ ] 英語対応確認済み
-- [ ] next-intlの設定を適切に使用している
+- [ ] Japanese support confirmed
+- [ ] English support confirmed
+- [ ] Properly using next-intl configuration
 
-### ♿ アクセシビリティ (Accessibility)
+### ♿ Accessibility
 
-- [ ] キーボードナビゲーション対応
-- [ ] 適切なARIAラベル設定
-- [ ] カラーコントラスト確認済み
+- [ ] Keyboard navigation support
+- [ ] Appropriate ARIA labels set
+- [ ] Color contrast confirmed
 
-### 📈 パフォーマンス (Performance)
+### 📈 Performance
 
-- [ ] Lighthouseスコア確認済み
-- [ ] 画像最適化確認済み
-- [ ] バンドルサイズ影響確認済み
+- [ ] Lighthouse score confirmed
+- [ ] Image optimization confirmed
+- [ ] Bundle size impact confirmed
 
-## 🎯 レビュー観点 (Review Focus Points)
+## 🎯 Review Focus Points
 
-## <!-- レビュアーに特に注目してほしい点を記載してください -->
+<!-- Please describe points you would like reviewers to pay special attention to -->
 
-## 📋 追加情報 (Additional Information)
+## 📋 Additional Information
 
-<!-- その他の補足情報があれば記載してください -->
+<!-- Please include any other supplementary information -->
 
-## 🚀 デプロイ後の確認事項 (Post-deployment Checklist)
+## 🚀 Post-deployment Checklist
 
-- [ ] プロダクション環境での動作確認
-- [ ] エラーログの確認
-- [ ] パフォーマンス監視の確認
+- [ ] Functionality confirmation in production environment
+- [ ] Error log verification
+- [ ] Performance monitoring verification

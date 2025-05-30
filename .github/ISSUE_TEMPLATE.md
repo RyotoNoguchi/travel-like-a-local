@@ -1,133 +1,133 @@
-## 🐛 Issue報告 (Issue Report)
+## 🐛 Issue Report
 
-### 📝 概要 (Summary)
+### 📝 Summary
 
-<!-- 問題や提案について簡潔に説明してください -->
+<!-- Please provide a brief description of the problem or suggestion -->
 
-### 🔍 Issue種別 (Issue Type)
+### 🔍 Issue Type
 
-<!-- 該当するものにチェックを入れてください -->
+<!-- Please check the applicable boxes -->
 
-- [ ] 🐛 バグ報告 (Bug Report)
-- [ ] ✨ 機能提案 (Feature Request)
-- [ ] 📚 ドキュメント改善 (Documentation)
-- [ ] 🎨 UI/UX改善 (UI/UX Enhancement)
-- [ ] ⚡ パフォーマンス問題 (Performance Issue)
-- [ ] 🔧 メンテナンス (Maintenance)
-- [ ] ❓ 質問 (Question)
+- [ ] 🐛 Bug Report
+- [ ] ✨ Feature Request
+- [ ] 📚 Documentation
+- [ ] 🎨 UI/UX Enhancement
+- [ ] ⚡ Performance Issue
+- [ ] 🔧 Maintenance
+- [ ] ❓ Question
 
 ---
 
-## 🐛 バグ報告の場合 (For Bug Reports)
+## 🐛 For Bug Reports
 
-### 🔄 再現手順 (Steps to Reproduce)
+### 🔄 Steps to Reproduce
 
 1.
 2.
 3.
 
-### ✅ 期待される動作 (Expected Behavior)
+### ✅ Expected Behavior
 
-<!-- 本来どのような動作をするべきかを説明してください -->
+<!-- Please describe what should happen normally -->
 
-### ❌ 実際の動作 (Actual Behavior)
+### ❌ Actual Behavior
 
-<!-- 実際に起こっている問題を説明してください -->
+<!-- Please describe the actual problem that is occurring -->
 
-### 🖼️ スクリーンショット (Screenshots)
+### 🖼️ Screenshots
 
-<!-- 問題を示すスクリーンショットがあれば追加してください -->
-
----
-
-## ✨ 機能提案の場合 (For Feature Requests)
-
-### 💡 提案内容 (Feature Description)
-
-<!-- 提案したい機能について詳しく説明してください -->
-
-### 🎯 目的・理由 (Purpose & Motivation)
-
-<!-- なぜこの機能が必要なのかを説明してください -->
-
-### 💭 代替案 (Alternatives Considered)
-
-<!-- 他に検討した方法があれば記載してください -->
+<!-- Please add screenshots that demonstrate the problem if available -->
 
 ---
 
-## 🌐 環境情報 (Environment)
+## ✨ For Feature Requests
 
-### 🖥️ デバイス情報 (Device Information)
+### 💡 Feature Description
+
+<!-- Please describe the feature you would like to propose in detail -->
+
+### 🎯 Purpose & Motivation
+
+<!-- Please explain why this feature is needed -->
+
+### 💭 Alternatives Considered
+
+<!-- Please list any alternative approaches you have considered -->
+
+---
+
+## 🌐 Environment
+
+### 🖥️ Device Information
 
 - **OS**: <!-- e.g., macOS 13.0, Windows 11, iOS 16.0, Android 12 -->
-- **ブラウザ**: <!-- e.g., Chrome 118, Safari 16, Firefox 119 -->
-- **画面サイズ**: <!-- e.g., Desktop (1920x1080), Mobile (375x812) -->
+- **Browser**: <!-- e.g., Chrome 118, Safari 16, Firefox 119 -->
+- **Screen Size**: <!-- e.g., Desktop (1920x1080), Mobile (375x812) -->
 
-### 🌍 アプリケーション情報 (Application Information)
+### 🌍 Application Information
 
-- **環境**: <!-- e.g., 本番環境, ステージング環境, ローカル環境 -->
-- **言語設定**: <!-- e.g., 日本語, English -->
-- **URL**: <!-- 問題が発生したページのURL -->
+- **Environment**: <!-- e.g., Production, Staging, Local -->
+- **Language Settings**: <!-- e.g., Japanese, English -->
+- **URL**: <!-- URL of the page where the issue occurred -->
 
-### 📱 モバイル固有情報 (Mobile Specific - if applicable)
+### 📱 Mobile Specific Information (if applicable)
 
-- **機種**: <!-- e.g., iPhone 14 Pro, Samsung Galaxy S23 -->
-- **ネットワーク**: <!-- e.g., WiFi, 4G, 5G -->
+- **Device Model**: <!-- e.g., iPhone 14 Pro, Samsung Galaxy S23 -->
+- **Network**: <!-- e.g., WiFi, 4G, 5G -->
 
 ---
 
-## 🔗 関連情報 (Related Information)
+## 🔗 Related Information
 
-### 📎 関連Issue/PR (Related Issues/PRs)
+### 📎 Related Issues/PRs
 
-## <!-- 関連するIssueやPRがあれば記載してください -->
+<!-- Please list any related Issues or PRs -->
 
-### 🔍 調査済み内容 (Investigation Done)
+### 🔍 Investigation Done
 
-## <!-- 問題について既に調査した内容があれば記載してください -->
+<!-- Please describe any investigation you have already done regarding the issue -->
 
-### 📋 エラーログ (Error Logs)
+### 📋 Error Logs
 
-<!-- エラーログやコンソールエラーがあれば記載してください -->
+<!-- Please include error logs or console errors if available -->
 
 ```
-エラーログをここに貼り付けてください
+Paste error logs here
 ```
 
 ---
 
-## ⚡ 緊急度 (Priority)
+## ⚡ Priority
 
-<!-- 該当するものにチェックを入れてください -->
+<!-- Please check the applicable box -->
 
-- [ ] 🔥 緊急 (Critical) - サービス停止レベル
-- [ ] 🚨 高 (High) - 主要機能に影響
-- [ ] ⚠️ 中 (Medium) - 一部機能に影響
-- [ ] 📝 低 (Low) - 軽微な問題や改善提案
+- [ ] 🔥 Critical - Service disruption level
+- [ ] 🚨 High - Affects major functionality
+- [ ] ⚠️ Medium - Affects some functionality
+- [ ] 📝 Low - Minor issue or improvement suggestion
 
-## 👥 影響範囲 (Impact Scope)
+## 👥 Impact Scope
 
-<!-- 該当するものにチェックを入れてください -->
+<!-- Please check the applicable boxes -->
 
-- [ ] 🌍 全ユーザー (All Users)
-- [ ] 📱 モバイルユーザーのみ (Mobile Users Only)
-- [ ] 🖥️ デスクトップユーザーのみ (Desktop Users Only)
-- [ ] 🇯🇵 日本語ユーザーのみ (Japanese Users Only)
-- [ ] 🇺🇸 英語ユーザーのみ (English Users Only)
-- [ ] 👤 特定条件のユーザー (Specific Conditions)
-
----
-
-## 📋 チェックリスト (Checklist)
-
-- [ ] 既存のIssueで同様の問題が報告されていないことを確認した
-- [ ] 問題を再現できることを確認した
-- [ ] 必要な情報をすべて記載した
-- [ ] 適切なラベルを設定した（管理者が設定）
+- [ ] 🌍 All Users
+- [ ] 📱 Mobile Users Only
+- [ ] 🖥️ Desktop Users Only
+- [ ] 🇯🇵 Japanese Users Only
+- [ ] 🇺🇸 English Users Only
+- [ ] 👤 Users with Specific Conditions
 
 ---
 
-## 📝 追加情報 (Additional Information)
+## 📋 Checklist
 
-<!-- その他の補足情報があれば記載してください -->
+- [ ] Confirmed that no similar issues have been reported in existing Issues
+- [ ] Confirmed that the issue can be reproduced
+- [ ] Included all necessary information
+- [ ] Appropriate labels have been set (set by administrator)
+
+---
+
+## 📝 Additional Information
+
+<!-- Please include any other supplementary information -->
