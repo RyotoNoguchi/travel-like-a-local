@@ -8,7 +8,7 @@ alwaysApply: false
 ## Basic Rules
 
 1. **Target Repository**: `https://github.com/RyotoNoguchi/travel-like-a-local`
-2. **Project**: @RyotoNoguchi's Travel Like a Local Japan
+2. **Project**: Travel Like a Local Japan
 3. **Project URL**: `https://github.com/users/RyotoNoguchi/projects/2`
 4. **Template**: Must use [ISSUE_TEMPLATE.md](mdc:.github/ISSUE_TEMPLATE.md)
 
@@ -35,7 +35,7 @@ alwaysApply: false
 
 ### Project Linking
 - **Mandatory**: All issues must be linked to the project
-- **Target Project**: `@RyotoNoguchi's Travel Like a Local Japan`
+- **Target Project**: `Travel Like a Local Japan`
 - **Project ID**: `https://github.com/users/RyotoNoguchi/projects/2`
 - **Action**: Automatically assign issue to project upon creation
 
@@ -165,7 +165,7 @@ gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --fi
 1. Open the issue: `https://github.com/RyotoNoguchi/travel-like-a-local/issues/ISSUE_NUMBER`
 2. Find "Projects" section in right sidebar
 3. Click gear icon ⚙️
-4. Select "@RyotoNoguchi's Travel Like a Local Japan"
+4. Select "Travel Like a Local Japan"
 5. Click "Add to project"
 
 **Method 2: From Project Board**
