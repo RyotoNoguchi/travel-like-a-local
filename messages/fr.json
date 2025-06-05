@@ -30,7 +30,8 @@
   },
   "Hero": {
     "title": "Découvrez le Japon comme un <emphasis>local</emphasis>",
-    "subtitle": "Découvrez les trésors cachés et les expériences locales au Japon."
+    "subtitle": "Découvrez les trésors cachés et les expériences locales au Japon.",
+    "cta": "Me Contacter"
   },
   "ArticleList": {
     "title": "Derniers articles",
@@ -351,5 +352,20 @@
   "BlogPostListPage": {
     "title": "Le Journal du Japon de Ryoto",
     "subtitle": "Découvrez des aperçus uniques, des histoires locales et des trésors cachés de mon voyage à travers le Japon du point de vue d'un LOCAL."
+  },
+  "UniqueValuePropositionSection": {
+    "title": "Votre aventure authentique au Japon commence ici avec Ryoto",
+    "learnMore": "En savoir plus sur Ryoto"
+  },
+  "FeaturedToursSection": {
+    "title": "Nos expériences phares",
+    "linkButtonText": "En savoir plus",
+    "viewAllTours": "Voir tous les tours"
+  },
+  "CallToActionSection": {
+    "title": "Prêt à commencer votre aventure ?",
+    "description": "Rejoignez des centaines de voyageurs qui ont découvert le vrai Japon avec des conseils personnalisés et des expériences locales authentiques.",
+    "consultingButton": "Consultation gratuite",
+    "bookingButton": "Réserver un tour"
   }
 }

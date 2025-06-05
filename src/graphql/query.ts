@@ -318,3 +318,60 @@ export const SEARCH_BLOG_POSTS_QUERY = gql`
     }
   }
 `
+
+export const GET_UNIQUE_VALUE_PROPOSITIONS_QUERY = gql`
+  query GetUniqueValuePropositions($locale: String!) {
+    uniqueValuePropositionCollection(locale: $locale) {
+      items {
+        title
+        description
+        image {
+          title
+          description
+          width
+          height
+          url
+        }
+      }
+    }
+  }
+`
+
+export const GET_TOURS_QUERY = gql`
+  query GetTours($locale: String!) {
+    tourCollection(locale: $locale) {
+      items {
+        title
+        slug
+        description
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`
+
+export const GET_TESTIMONIALS_QUERY = gql`
+  query GetTestimonials($locale: String!) {
+    testimonialCollection(locale: $locale) {
+      items {
+        id
+        name
+        sex
+        country
+        ageGroup
+        comment
+        image {
+          title
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`

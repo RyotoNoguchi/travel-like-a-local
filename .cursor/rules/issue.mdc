@@ -1,0 +1,218 @@
+---
+description: Creating a GitHub Issue
+globs:
+alwaysApply: false
+---
+# Creating a GitHub Issue
+
+## Basic Rules
+
+1. **Target Repository**: `https://github.com/RyotoNoguchi/travel-like-a-local`
+2. **Project**: Travel Like a Local Japan
+3. **Project URL**: `https://github.com/users/RyotoNoguchi/projects/2`
+4. **Template**: Must use [ISSUE_TEMPLATE.md](mdc:.github/ISSUE_TEMPLATE.md)
+
+## Issue Types and Labels
+
+### Bug Reports
+- **Label**: `bug`
+- **Priority Labels**: `critical`, `high`, `medium`, `low`
+
+### Feature Requests & Enhancements
+- **Label**: `enhancement`, `feature`
+- **UI Related**: `ui/ux`
+
+### Documentation
+- **Label**: `documentation`
+
+### Maintenance & Technical Improvements
+- **Label**: `maintenance`, `performance`, `refactoring`
+
+### Internationalization & Multi-language Support
+- **Label**: `i18n`, `japanese`, `english`
+
+## Project Management Requirements
+
+### Project Linking
+- **Mandatory**: All issues must be linked to the project
+- **Target Project**: `Travel Like a Local Japan`
+- **Project ID**: `https://github.com/users/RyotoNoguchi/projects/2`
+- **Action**: Automatically assign issue to project upon creation
+
+### Status Management
+- **Initial Status**: All new issues must be set to "Backlog" status
+- **Status Flow**: Backlog → Ready → In Progress → In Review → Done
+- **Requirement**: Ensure proper status tracking from creation to completion
+
+### Priority Management
+- **Mandatory**: All issues must have a priority level assigned
+- **Priority Levels**: P0 (Critical) → P1 (High) → P2 (Low)
+- **Default Behavior**: Never assume priority - always ask the user if not specified
+- **AI Guidance**: If priority is not mentioned by user, ask: "What priority should this issue have? Please choose: P0 (Critical), P1 (High), or P2 (Low)"
+
+## Required Checklist Before Creating
+
+1. Confirm no duplicate issues exist
+2. Select appropriate issue type
+3. Provide detailed environment information
+4. Clearly describe reproduction steps (for bugs)
+5. Set correct priority and impact scope
+6. **Link to designated project**
+7. **Set initial status to "Backlog"**
+8. **Set appropriate priority level (P0/P1/P2)**
+
+## Recommended Format
+
+- Title: `{gitmoji} Brief description` (Must use an appropriate gitmoji from [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc) as a prefix)
+  - Example: `:bug: Images not displaying on homepage`
+  - Example: `:sparkles: Add Google Analytics to the site`
+  - Example: `:lipstick: Improve mobile display`
+
+### Gitmoji Selection by Issue Type
+
+#### Bug Reports
+- `:bug:` - Fix a bug
+- `:ambulance:` - Critical hotfix
+- `:lock:` - Fix security or privacy issues
+
+#### Feature Requests & Enhancements
+- `:sparkles:` - Introduce new features
+- `:lipstick:` - Add or update the UI and style files
+- `:wheelchair:` - Improve accessibility
+- `:children_crossing:` - Improve user experience / usability
+
+#### Documentation
+- `:memo:` - Add or update documentation
+- `:bulb:` - Add or update comments in source code
+
+#### Maintenance & Technical Improvements
+- `:recycle:` - Refactor code
+- `:zap:` - Improve performance
+- `:wrench:` - Add or update configuration files
+- `:hammer:` - Add or update development scripts
+- `:building_construction:` - Make architectural changes
+
+#### Internationalization & Multi-language Support
+- `:globe_with_meridians:` - Internationalization and localization
+- `:speech_balloon:` - Add or update text and literals
+
+### Title Update Command (If Needed)
+
+```bash
+# Update issue title with gitmoji prefix (replace ISSUE_NUMBER and NEW_TITLE)
+gh issue edit ISSUE_NUMBER --title "NEW_TITLE"
+
+# Example:
+# gh issue edit 29 --title ":sparkles: Add Google Analytics to the site"
+```
+
+## Assignee Settings
+
+- **Default**: `RyotoNoguchi`
+- **Additional Reviewers**: Add related members as needed
+
+## Post-Creation Actions
+
+### 1. Link Issue to Project (GitHub CLI)
+
+```bash
+# Add issue to project (replace ISSUE_NUMBER with actual issue number)
+gh project item-add 2 --owner RyotoNoguchi --url https://github.com/RyotoNoguchi/travel-like-a-local/issues/ISSUE_NUMBER
+
+# Example usage:
+# gh project item-add 2 --owner RyotoNoguchi --url https://github.com/RyotoNoguchi/travel-like-a-local/issues/29
+```
+
+### 2. Set Status to Backlog
+
+```bash
+# Step 1: Get project item ID
+gh project item-list 2 --owner RyotoNoguchi --format json | grep -A 5 -B 5 "ISSUE_TITLE"
+
+# Step 2: Set status to Backlog (replace PROJECT_ITEM_ID with actual ID from step 1)
+gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-ow --single-select-option-id f75ad846
+
+# Example usage:
+# gh project item-edit --id PVTI_lAHOBRNRv84A6QlOzga8Urs --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-ow --single-select-option-id f75ad846
+```
+
+### 3. Set Priority Level
+
+```bash
+# Set priority to P0 (Critical) - replace PROJECT_ITEM_ID with actual ID
+gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-sw --single-select-option-id 79628723
+
+# Set priority to P1 (High) - replace PROJECT_ITEM_ID with actual ID
+gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-sw --single-select-option-id 0a877460
+
+# Set priority to P2 (Low) - replace PROJECT_ITEM_ID with actual ID
+gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-sw --single-select-option-id da944a9c
+
+# Example usage (P1 for critical features):
+# gh project item-edit --id PVTI_lAHOBRNRv84A6QlOzga8Vsk --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-sw --single-select-option-id 0a877460
+```
+
+### 4. Verification Checklist
+
+- [ ] **Project assignment**: Issue appears in project board
+- [ ] **Status placement**: Issue is in "Backlog" column
+- [ ] **Priority set**: Appropriate priority level assigned (P0/P1/P2)
+- [ ] **Labels applied**: Appropriate labels are set
+
+### 5. Alternative: Manual Linking via Web Interface
+
+**Method 1: From Issue Page**
+1. Open the issue: `https://github.com/RyotoNoguchi/travel-like-a-local/issues/ISSUE_NUMBER`
+2. Find "Projects" section in right sidebar
+3. Click gear icon ⚙️
+4. Select "Travel Like a Local Japan"
+5. Click "Add to project"
+
+**Method 2: From Project Board**
+1. Open project: `https://github.com/users/RyotoNoguchi/projects/2`
+2. Click "+ Add item" button
+3. Search for issue number or title
+4. Select and add the issue
+
+**Method 3: Set Priority (Manual)**
+1. Open project: `https://github.com/users/RyotoNoguchi/projects/2`
+2. Find the issue item in project
+3. Click on "Priority" field
+4. Select appropriate level: P0 (Critical), P1 (High), or P2 (Low)
+
+## Quick Reference Commands
+
+### One-liner for complete setup:
+```bash
+# Create issue, link to project, set status to backlog, set priority to P1
+ISSUE_URL=$(gh issue create --title "TITLE" --body "BODY") && ISSUE_NUMBER=$(echo $ISSUE_URL | grep -o '[0-9]*$') && gh project item-add 2 --owner RyotoNoguchi --url $ISSUE_URL && gh project item-edit --id PVTI_lAHOBRNRv84A6QlOzga8Vsk --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-ow --single-select-option-id f75ad846 && gh project item-edit --id PVTI_lAHOBRNRv84A6QlOzga8Vsk --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-sw --single-select-option-id 0a877460
+```
+
+### Individual commands:
+```bash
+# Create issue
+gh issue create --title "TITLE" --body "BODY"
+
+# Link to project
+gh project item-add 2 --owner RyotoNoguchi --url URL
+
+# Set status to Backlog
+gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-ow --single-select-option-id f75ad846
+
+# Set priority (P0/P1/P2)
+gh project item-edit --id PROJECT_ITEM_ID --project-id PVT_kwHOBRNRv84A6QlO --field-id PVTSSF_lAHOBRNRv84A6QlOzgu5-sw --single-select-option-id PRIORITY_OPTION_ID
+```
+
+## Project Status Options
+
+- **Backlog** (ID: f75ad846) - Initial status for new issues
+- **Ready** (ID: 61e4505c) - Ready to start development
+- **In Progress** (ID: 47fc9ee4) - Currently being worked on
+- **In Review** (ID: df73e18b) - Under review/testing
+- **Done** (ID: 98236657) - Completed tasks
+
+## Important IDs for Reference
+
+- **Project ID**: `PVT_kwHOBRNRv84A6QlO`
+- **Status Field ID**: `PVTSSF_lAHOBRNRv84A6QlOzgu5-ow`
+- **Backlog Option ID**: `f75ad846`

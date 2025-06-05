@@ -1,0 +1,73 @@
+---
+description: Adding a commit
+globs:
+alwaysApply: false
+---
+# Direction to add a commit
+
+## Prerequisites
+- Ensure you are in the project directory
+- Check if git is initialized and remote repository is configured
+
+## Step-by-Step Process
+
+### 1. Check Current Git Branch
+```bash
+git branch --show-current
+```
+- Identify which branch you are currently on
+
+### 2. Branch Management
+- **IF current branch is `main`:**
+  - Create and checkout a new feature branch with semantic naming
+  - Branch naming convention: `feature/short-description` or `fix/issue-description`
+  - Example: `git checkout -b feature/user-authentication`
+- **IF current branch is NOT `main`:**
+  - Continue with the current branch
+  - Verify branch name is appropriate for the changes
+
+### 3. Review and Stage Changes
+```bash
+git status
+git add .
+```
+- Check all modified files using `git status`
+- Stage all changes unless specific files need to be excluded
+- **IF no changes to stage:** Stop the process and inform the user
+
+### 4. Create Commit Message
+- **Reference:** Use appropriate emoji from [gitmoji.mdc](mdc:.cursor/rules/gitmoji.mdc)
+- **Format:** `{emoji} {short description}`
+- **Structure:**
+  - **Title:** Max 50 characters, imperative mood
+  - **Description:** If needed, add detailed explanation after blank line
+- **Examples:**
+  - `✨ feat: add user authentication system`
+  - `🐛 fix: resolve login validation issue`
+  - `📝 docs: update README installation guide`
+
+### 5. Commit Changes
+```bash
+git commit -m "commit message"
+```
+- Use the formatted commit message from step 4
+- **IF commit fails:** Check for any pre-commit hooks or linting errors
+
+### 6. Push to Remote Repository
+```bash
+git push origin {branch-name}
+```
+- Push to the remote repository
+- **IF pushing new branch:** Use `git push -u origin {branch-name}` for first push
+- **IF push fails:** Check network connection and repository permissions
+
+## Error Handling
+- **IF any command fails:** Display error message and suggest troubleshooting steps
+- **IF no changes detected:** Inform user that no commit is necessary
+- **IF branch already exists:** Ask user if they want to switch to existing branch or create new one
+
+## Best Practices
+- Always review changes before committing
+- Write clear, descriptive commit messages
+- Keep commits focused on single feature/fix
+- Use consistent emoji and naming conventions

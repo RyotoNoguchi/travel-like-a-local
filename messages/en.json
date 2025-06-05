@@ -30,7 +30,8 @@
   },
   "Hero": {
     "title": "Explore Japan Like a <emphasis> Local</emphasis>",
-    "subtitle": "Discover hidden gems and local experiences in Japan."
+    "subtitle": "Discover hidden gems and local experiences in Japan.",
+    "cta": "Contact Me"
   },
   "ArticleList": {
     "title": "Latest Articles",
@@ -352,5 +353,20 @@
   "BlogPostListPage": {
     "title": "Ryoto's Japan Journal",
     "subtitle": "Discover unique insights, local stories, and hidden gems from my journey across Japan from point of view of a LOCAL."
+  },
+  "UniqueValuePropositionSection": {
+    "title": "Your Authentic Japan Journey Starts Here with Ryoto",
+    "learnMore": "Learn More About Ryoto"
+  },
+  "FeaturedToursSection": {
+    "title": "Our Signature Experiences",
+    "linkButtonText": "Learn More",
+    "viewAllTours": "View All Tours"
+  },
+  "CallToActionSection": {
+    "title": "Ready to Start Your Adventure?",
+    "description": "Join hundreds of travelers who have discovered the real Japan with personalized guidance and authentic local experiences.",
+    "consultingButton": "Get Free Trip Consultation",
+    "bookingButton": "Book a Tour"
   }
 }

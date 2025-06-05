@@ -1,10 +1,13 @@
+import { createApolloClient } from '@/apolloClient'
 import { InstagramIcon } from '@/app/ui/components/atoms/icons/instagram-icon'
 import { MessengerIcon } from '@/app/ui/components/atoms/icons/messenger-icon'
 import { Breadcrumbs } from '@/app/ui/components/molecules/breadcrumbs'
 import { ContactFormContainer } from '@/app/ui/components/molecules/contact-form/container'
 import { TestimonialSection } from '@/app/ui/components/molecules/testimonials/testimonial-section'
 import { BreadcrumbJsonLd } from '@/app/ui/components/seo/breadcrumbs-jsonld'
-import { PROFILE_IMAGE_ID, type LANGUAGE } from '@/constants'
+import { LOCALE_CODE_MAP, PROFILE_IMAGE_ID, type LANGUAGE } from '@/constants'
+import type { GetTestimonialsQuery, GetTestimonialsQueryVariables } from '@/generated/graphql'
+import { GET_TESTIMONIALS_QUERY } from '@/graphql/query'
 import { Link } from '@/i18n/routing'
 import { getImageById } from '@/utils/assets'
 import { ArrowRightIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
@@ -13,35 +16,6 @@ import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
 const HERO_IMAGE_ID = '2AM6uYinV5m9K4PKBKroWs'
-const TESTIMONIALS = [
-  {
-    name: 'Raphaël F.',
-    imageUrl: '/images/testimonials/raphael.jpeg',
-    country: 'France',
-    sex: 'M',
-    ageGroup: '20s',
-    testimonial:
-      "Ryoto is very unique ! Don't miss him ! He's crazy about hiking and he knows a lot about Japan and mostly japanese hikes ! He's a real pro of all this region.\nI've been hosted in a traditional japanese house with sliding doors and tatamis on the room 😍\nHe has a very nice and interesting project about this house. He won't admit it because he is humble but he's very smart :)\n\nI don't have any sim card and there's no wifi so he gave me his professional phone so I could have internet, that was so lovely !\n\nI met some friends of him and we spent so many good times together!! We went to Hakuba together, do some videos for the social media and discover the city. We did one of the beatufil hikes of my life together..\n\nBravo et merci pour ta gentillesse Ryoto, tu es vraiment quelqu'un de simple et de pur. Continue de t'emerveiller de la beauté de la nature et de partager tout ça avec les autres. J'ai passé de supers moments !"
-  },
-  {
-    name: 'Joana M.',
-    imageUrl: '/images/testimonials/joana.jpeg',
-    country: 'Spain',
-    sex: 'F',
-    ageGroup: '20s',
-    testimonial:
-      'He is one of the most kind and funn people on coach surfing. We went to a winter festival together and it was magical 🫂 he helped with transportation and keeping us safe and warm. He was so so kind and also so smart. He knew a lot about history folk traditions and he answered our questions. We want hem to come visit us in Spain, because we made a friend for life 💙'
-  },
-  {
-    name: 'Alya G.',
-    imageUrl: '/images/testimonials/alya.jpeg',
-    country: 'Canada',
-    ageGroup: '20s',
-    sex: 'F',
-    testimonial:
-      'Ryoto is a very friendly guy! We had nice conversations. He speaks English and French and traveled all over the world. He is willing to give you tours when he does not work, unfortunately the two days I was staying at his place, he had to work. I am sure that he is a great tour guide. He has also helped me a lot to find hitchhiking spots. I had a nice experience, I would definitely recommend him.'
-  }
-]
 
 type Props = {
   params: {
@@ -51,6 +25,7 @@ type Props = {
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { locale } = await params
+
   const t = await getTranslations({ locale, namespace: 'ServicesPage' })
 
   return {
@@ -62,6 +37,14 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'ServicesPage' })
+
+  const client = createApolloClient()
+  const { data } = await client.query<GetTestimonialsQuery, GetTestimonialsQueryVariables>({
+    query: GET_TESTIMONIALS_QUERY,
+    variables: {
+      locale: LOCALE_CODE_MAP[locale]
+    }
+  })
 
   const formTranslations = {
     title: t('contact.title'),
@@ -333,7 +316,7 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
       </section>
 
       {/* 6. Testimonials - クライアントコンポーネントを使用 */}
-      <TestimonialSection testimonials={TESTIMONIALS} title={t('testimonials.title')} sourceText={testimonialSourceText} />
+      <TestimonialSection testimonials={data.testimonialCollection?.items ?? []} title={t('testimonials.title')} sourceText={testimonialSourceText} />
 
       {/* 7. FAQ Section - Simplified */}
       <section className="w-full py-12 bg-gray-50 rounded-xl px-6">
