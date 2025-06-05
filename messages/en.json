@@ -373,6 +373,13 @@
     "title": "Our Unique Tours & Experiences",
     "learnMore": "Learn More",
     "price": "¥{price} per group",
-    "approximateDuration": "{approximateDuration}h"
+    "approximateDuration": "{approximateDuration}h",
+    "metadataDescription": "Discover our unique tours and authentic Japanese experiences with local guides. Explore Japan beyond typical tourist spots with personalized tours."
+  },
+  "TourDetailPage": {
+    "price": "Price",
+    "duration": "Duration",
+    "hours": "hours",
+    "backToTours": "Back to Tours"
   }
 }
