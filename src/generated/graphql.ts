@@ -1695,14 +1695,21 @@ export type Tour = Entry &
   _Node & {
     __typename?: 'Tour'
     _id: Scalars['ID']['output']
+    approximateDuration?: Maybe<Scalars['Float']['output']>
     contentfulMetadata: ContentfulMetadata
     description?: Maybe<Scalars['String']['output']>
     featuredImage?: Maybe<Asset>
     linkedFrom?: Maybe<TourLinkingCollections>
+    price?: Maybe<Scalars['Int']['output']>
     slug?: Maybe<Scalars['String']['output']>
     sys: Sys
     title?: Maybe<Scalars['String']['output']>
   }
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourApproximateDurationArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
 
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
 export type TourDescriptionArgs = {
@@ -1718,6 +1725,11 @@ export type TourFeaturedImageArgs = {
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
 export type TourLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourPriceArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
 }
 
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
@@ -1741,6 +1753,15 @@ export type TourCollection = {
 export type TourFilter = {
   AND?: InputMaybe<Array<InputMaybe<TourFilter>>>
   OR?: InputMaybe<Array<InputMaybe<TourFilter>>>
+  approximateDuration?: InputMaybe<Scalars['Float']['input']>
+  approximateDuration_exists?: InputMaybe<Scalars['Boolean']['input']>
+  approximateDuration_gt?: InputMaybe<Scalars['Float']['input']>
+  approximateDuration_gte?: InputMaybe<Scalars['Float']['input']>
+  approximateDuration_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>
+  approximateDuration_lt?: InputMaybe<Scalars['Float']['input']>
+  approximateDuration_lte?: InputMaybe<Scalars['Float']['input']>
+  approximateDuration_not?: InputMaybe<Scalars['Float']['input']>
+  approximateDuration_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
   description?: InputMaybe<Scalars['String']['input']>
   description_contains?: InputMaybe<Scalars['String']['input']>
@@ -1750,6 +1771,15 @@ export type TourFilter = {
   description_not_contains?: InputMaybe<Scalars['String']['input']>
   description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   featuredImage_exists?: InputMaybe<Scalars['Boolean']['input']>
+  price?: InputMaybe<Scalars['Int']['input']>
+  price_exists?: InputMaybe<Scalars['Boolean']['input']>
+  price_gt?: InputMaybe<Scalars['Int']['input']>
+  price_gte?: InputMaybe<Scalars['Int']['input']>
+  price_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  price_lt?: InputMaybe<Scalars['Int']['input']>
+  price_lte?: InputMaybe<Scalars['Int']['input']>
+  price_not?: InputMaybe<Scalars['Int']['input']>
+  price_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   slug?: InputMaybe<Scalars['String']['input']>
   slug_contains?: InputMaybe<Scalars['String']['input']>
   slug_exists?: InputMaybe<Scalars['Boolean']['input']>
@@ -1780,6 +1810,10 @@ export type TourLinkingCollectionsEntryCollectionArgs = {
 }
 
 export enum TourOrder {
+  ApproximateDurationAsc = 'approximateDuration_ASC',
+  ApproximateDurationDesc = 'approximateDuration_DESC',
+  PriceAsc = 'price_ASC',
+  PriceDesc = 'price_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
@@ -2300,6 +2334,29 @@ export type GetToursQuery = {
       title?: string | null
       slug?: string | null
       description?: string | null
+      approximateDuration?: number | null
+      price?: number | null
+      featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+    } | null>
+  } | null
+}
+
+export type GetTourQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['String']['input']
+}>
+
+export type GetTourQuery = {
+  __typename?: 'Query'
+  tourCollection?: {
+    __typename?: 'TourCollection'
+    items: Array<{
+      __typename?: 'Tour'
+      title?: string | null
+      slug?: string | null
+      description?: string | null
+      approximateDuration?: number | null
+      price?: number | null
       featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
     } | null>
   } | null
@@ -3506,6 +3563,8 @@ export const GetToursDocument = {
                       { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'approximateDuration' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'price' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'featuredImage' },
@@ -3530,6 +3589,81 @@ export const GetToursDocument = {
     }
   ]
 } as unknown as DocumentNode<GetToursQuery, GetToursQueryVariables>
+export const GetTourDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetTour' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'tourCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [{ kind: 'ObjectField', name: { kind: 'Name', value: 'slug' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } } }]
+                }
+              },
+              { kind: 'Argument', name: { kind: 'Name', value: 'locale' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'locale' } } },
+              { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '1' } }
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'approximateDuration' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'price' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'featuredImage' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetTourQuery, GetTourQueryVariables>
 export const GetTestimonialsDocument = {
   kind: 'Document',
   definitions: [

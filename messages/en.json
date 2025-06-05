@@ -368,5 +368,18 @@
     "description": "Join hundreds of travelers who have discovered the real Japan with personalized guidance and authentic local experiences.",
     "consultingButton": "Get Free Trip Consultation",
     "bookingButton": "Book a Tour"
+  },
+  "ToursPage": {
+    "title": "Our Unique Tours & Experiences",
+    "learnMore": "Learn More",
+    "price": "¥{price} per group",
+    "approximateDuration": "{approximateDuration}h",
+    "metadataDescription": "Discover our unique tours and authentic Japanese experiences with local guides. Explore Japan beyond typical tourist spots with personalized tours."
+  },
+  "TourDetailPage": {
+    "price": "Price",
+    "duration": "Duration",
+    "hours": "hours",
+    "backToTours": "Back to Tours"
   }
 }
