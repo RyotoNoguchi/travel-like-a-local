@@ -367,5 +367,11 @@
     "description": "Rejoignez des centaines de voyageurs qui ont découvert le vrai Japon avec des conseils personnalisés et des expériences locales authentiques.",
     "consultingButton": "Consultation gratuite",
     "bookingButton": "Réserver un tour"
+  },
+  "ToursPage": {
+    "title": "Nos Tours & Expériences Uniques",
+    "learnMore": "En savoir plus",
+    "price": "¥{price} par groupe",
+    "approximateDuration": "{approximateDuration}h"
   }
 }

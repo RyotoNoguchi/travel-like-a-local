@@ -344,6 +344,28 @@ export const GET_TOURS_QUERY = gql`
         title
         slug
         description
+        approximateDuration
+        price
+        featuredImage {
+          title
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`
+
+export const GET_TOUR_QUERY = gql`
+  query GetTour($slug: String!, $locale: String!) {
+    tourCollection(where: { slug: $slug }, locale: $locale, limit: 1) {
+      items {
+        title
+        slug
+        description
+        approximateDuration
+        price
         featuredImage {
           title
           url

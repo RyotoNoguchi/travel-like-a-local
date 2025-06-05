@@ -31,8 +31,10 @@ const documents = {
     types.SearchBlogPostsDocument,
   '\n  query GetUniqueValuePropositions($locale: String!) {\n    uniqueValuePropositionCollection(locale: $locale) {\n      items {\n        title\n        description\n        image {\n          title\n          description\n          width\n          height\n          url\n        }\n      }\n    }\n  }\n':
     types.GetUniqueValuePropositionsDocument,
-  '\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
+  '\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        approximateDuration\n        price\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
     types.GetToursDocument,
+  '\n  query GetTour($slug: String!, $locale: String!) {\n    tourCollection(where: { slug: $slug }, locale: $locale, limit: 1) {\n      items {\n        title\n        slug\n        description\n        approximateDuration\n        price\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
+    types.GetTourDocument,
   '\n  query GetTestimonials($locale: String!) {\n    testimonialCollection(locale: $locale) {\n      items {\n        id\n        name\n        sex\n        country\n        ageGroup\n        comment\n        image {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
     types.GetTestimonialsDocument
 }
@@ -109,8 +111,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n'
-): (typeof documents)['\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n']
+  source: '\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        approximateDuration\n        price\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetTours($locale: String!) {\n    tourCollection(locale: $locale) {\n      items {\n        title\n        slug\n        description\n        approximateDuration\n        price\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query GetTour($slug: String!, $locale: String!) {\n    tourCollection(where: { slug: $slug }, locale: $locale, limit: 1) {\n      items {\n        title\n        slug\n        description\n        approximateDuration\n        price\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetTour($slug: String!, $locale: String!) {\n    tourCollection(where: { slug: $slug }, locale: $locale, limit: 1) {\n      items {\n        title\n        slug\n        description\n        approximateDuration\n        price\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
