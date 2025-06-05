@@ -20,6 +20,7 @@ import { GET_TESTIMONIALS_QUERY, GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/g
 // import { getImageById } from '@/utils/assets'
 // import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 // import { categorizeBlogPosts } from '@/utils/category-helper'
+import { CallToActionSection } from '@/app/ui/components/organisms/call-to-action-section'
 import { FeaturedToursSection } from '@/app/ui/components/organisms/featured-tours-section'
 import { UniqueValuePropositionSection } from '@/app/ui/components/organisms/unique-value-proposition'
 import type { Metadata, NextPage } from 'next'
@@ -87,31 +88,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
           title={t('ServicesPage.testimonials.title')}
           sourceText={testimonialSourceText}
         />
-        {/* <div className="semi-lg:hidden w-full px-4 -mt-2">
-          <ProfileCardContainer imageUrl={profileImage?.url || ''} isMobile={true} />
-        </div>
-
-        <CarouselContainer width={300} height={200} locale={locale} />
-        <ExploreMapSection locale={locale} /> */}
-
-        {/* <div className="flex w-full items-start gap-8 lg:gap-16 px-4 container mx-auto justify-start">
-          <div className="flex flex-col gap-4 w-full">
-            <BlogPostCards categorizedBlogPosts={categorizedBlogPosts} categories={categories} />
-            <BlogPostsContainer
-              title={t('ArticleList.title')}
-              viewAllButtonText={t('ArticleList.viewAll')}
-              locale={locale}
-              blogPosts={blogPosts}
-              noBlogPostsTitle={t('BlogPosts.noBlogPosts')}
-              noBlogPostsMessage={t('BlogPosts.noBlogPostsMessage')}
-              isBookmarksPage={false}
-            />
-          </div>
-          <aside className="hidden semi-lg:flex flex-col gap-6 items-center max-w-[300px]">
-            <ProfileCardContainer imageUrl={profileImage?.url || ''} />
-            <PopularBlogPostsContainer locale={locale} />
-          </aside>
-        </div> */}
+        <CallToActionSection locale={locale} />
       </main>
     </>
   )

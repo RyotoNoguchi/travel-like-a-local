@@ -361,5 +361,11 @@
     "title": "Nos expériences phares",
     "linkButtonText": "En savoir plus",
     "viewAllTours": "Voir tous les tours"
+  },
+  "CallToActionSection": {
+    "title": "Prêt à commencer votre aventure ?",
+    "description": "Rejoignez des centaines de voyageurs qui ont découvert le vrai Japon avec des conseils personnalisés et des expériences locales authentiques.",
+    "consultingButton": "Consultation gratuite",
+    "bookingButton": "Réserver un tour"
   }
 }

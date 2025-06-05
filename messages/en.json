@@ -362,5 +362,11 @@
     "title": "Our Signature Experiences",
     "linkButtonText": "Learn More",
     "viewAllTours": "View All Tours"
+  },
+  "CallToActionSection": {
+    "title": "Ready to Start Your Adventure?",
+    "description": "Join hundreds of travelers who have discovered the real Japan with personalized guidance and authentic local experiences.",
+    "consultingButton": "Get Free Trip Consultation",
+    "bookingButton": "Book a Tour"
   }
 }
