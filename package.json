@@ -12,7 +12,9 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cache-data": "dotenv -e .env -e .env.local -- npx tsx scripts/cache-concept-schemes.ts && dotenv -e .env -e .env.local -- npx tsx scripts/cache-concepts.ts"
+    "cache-data": "dotenv -e .env -e .env.local -- npx tsx scripts/cache-concept-schemes.ts && dotenv -e .env -e .env.local -- npx tsx scripts/cache-concepts.ts",
+    "chromatic": "npx dotenv-cli -e .env -e .env.local -- chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
+    "chromatic:ci": "npx dotenv-cli -e .env -e .env.local -- chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
   },
   "dependencies": {
     "@apollo/client": "^3.12.7",
@@ -60,6 +62,7 @@
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
     "autoprefixer": "^10.4.20",
+    "chromatic": "^12.1.1",
     "dotenv-cli": "^8.0.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "15.1.6",
