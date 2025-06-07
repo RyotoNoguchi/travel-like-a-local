@@ -380,6 +380,17 @@
     "price": "Price",
     "duration": "Duration",
     "hours": "hours",
+    "participants": "Participants",
+    "location": "Location",
+    "instructor": "Instructor",
+    "shortDescription": "Overview",
+    "fullDescription": "About This Tour",
+    "keyHighlights": "Tour Highlights",
+    "inclusions": "What's Included",
+    "exclusions": "What's Not Included",
+    "gallery": "Photo Gallery",
+    "people": "people",
+    "featuredTour": "Featured Tour",
     "backToTours": "Back to Tours"
   }
 }

@@ -1698,9 +1698,20 @@ export type Tour = Entry &
     approximateDuration?: Maybe<Scalars['Float']['output']>
     contentfulMetadata: ContentfulMetadata
     description?: Maybe<Scalars['String']['output']>
+    exclusions?: Maybe<Array<Maybe<Scalars['String']['output']>>>
     featuredImage?: Maybe<Asset>
+    fullDescription?: Maybe<TourFullDescription>
+    galleryImagesCollection?: Maybe<AssetCollection>
+    inclusions?: Maybe<Array<Maybe<Scalars['String']['output']>>>
+    instructor?: Maybe<Scalars['String']['output']>
+    isFeatured?: Maybe<Scalars['Boolean']['output']>
+    keyHighlights?: Maybe<Array<Maybe<Scalars['String']['output']>>>
     linkedFrom?: Maybe<TourLinkingCollections>
+    location?: Maybe<Scalars['String']['output']>
+    maxParticipants?: Maybe<Scalars['Int']['output']>
+    minParticipants?: Maybe<Scalars['Int']['output']>
     price?: Maybe<Scalars['Int']['output']>
+    shortDescription?: Maybe<Scalars['String']['output']>
     slug?: Maybe<Scalars['String']['output']>
     sys: Sys
     title?: Maybe<Scalars['String']['output']>
@@ -1717,9 +1728,47 @@ export type TourDescriptionArgs = {
 }
 
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourExclusionsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
 export type TourFeaturedImageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
   preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourFullDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourGalleryImagesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>
+  locale?: InputMaybe<Scalars['String']['input']>
+  preview?: InputMaybe<Scalars['Boolean']['input']>
+  skip?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourInclusionsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourInstructorArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourIsFeaturedArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourKeyHighlightsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
 }
 
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
@@ -1728,7 +1777,27 @@ export type TourLinkedFromArgs = {
 }
 
 /** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourLocationArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourMaxParticipantsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourMinParticipantsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
 export type TourPriceArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** A tour provided by Travel Like a Local Japan [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/tour) */
+export type TourShortDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -1770,7 +1839,58 @@ export type TourFilter = {
   description_not?: InputMaybe<Scalars['String']['input']>
   description_not_contains?: InputMaybe<Scalars['String']['input']>
   description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  exclusions_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  exclusions_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  exclusions_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  exclusions_exists?: InputMaybe<Scalars['Boolean']['input']>
   featuredImage_exists?: InputMaybe<Scalars['Boolean']['input']>
+  fullDescription_contains?: InputMaybe<Scalars['String']['input']>
+  fullDescription_exists?: InputMaybe<Scalars['Boolean']['input']>
+  fullDescription_not_contains?: InputMaybe<Scalars['String']['input']>
+  galleryImagesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>
+  inclusions_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  inclusions_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  inclusions_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  inclusions_exists?: InputMaybe<Scalars['Boolean']['input']>
+  instructor?: InputMaybe<Scalars['String']['input']>
+  instructor_contains?: InputMaybe<Scalars['String']['input']>
+  instructor_exists?: InputMaybe<Scalars['Boolean']['input']>
+  instructor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  instructor_not?: InputMaybe<Scalars['String']['input']>
+  instructor_not_contains?: InputMaybe<Scalars['String']['input']>
+  instructor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  isFeatured?: InputMaybe<Scalars['Boolean']['input']>
+  isFeatured_exists?: InputMaybe<Scalars['Boolean']['input']>
+  isFeatured_not?: InputMaybe<Scalars['Boolean']['input']>
+  keyHighlights_contains_all?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  keyHighlights_contains_none?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  keyHighlights_contains_some?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  keyHighlights_exists?: InputMaybe<Scalars['Boolean']['input']>
+  location?: InputMaybe<Scalars['String']['input']>
+  location_contains?: InputMaybe<Scalars['String']['input']>
+  location_exists?: InputMaybe<Scalars['Boolean']['input']>
+  location_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  location_not?: InputMaybe<Scalars['String']['input']>
+  location_not_contains?: InputMaybe<Scalars['String']['input']>
+  location_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  maxParticipants?: InputMaybe<Scalars['Int']['input']>
+  maxParticipants_exists?: InputMaybe<Scalars['Boolean']['input']>
+  maxParticipants_gt?: InputMaybe<Scalars['Int']['input']>
+  maxParticipants_gte?: InputMaybe<Scalars['Int']['input']>
+  maxParticipants_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  maxParticipants_lt?: InputMaybe<Scalars['Int']['input']>
+  maxParticipants_lte?: InputMaybe<Scalars['Int']['input']>
+  maxParticipants_not?: InputMaybe<Scalars['Int']['input']>
+  maxParticipants_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  minParticipants?: InputMaybe<Scalars['Int']['input']>
+  minParticipants_exists?: InputMaybe<Scalars['Boolean']['input']>
+  minParticipants_gt?: InputMaybe<Scalars['Int']['input']>
+  minParticipants_gte?: InputMaybe<Scalars['Int']['input']>
+  minParticipants_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  minParticipants_lt?: InputMaybe<Scalars['Int']['input']>
+  minParticipants_lte?: InputMaybe<Scalars['Int']['input']>
+  minParticipants_not?: InputMaybe<Scalars['Int']['input']>
+  minParticipants_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   price?: InputMaybe<Scalars['Int']['input']>
   price_exists?: InputMaybe<Scalars['Boolean']['input']>
   price_gt?: InputMaybe<Scalars['Int']['input']>
@@ -1780,6 +1900,13 @@ export type TourFilter = {
   price_lte?: InputMaybe<Scalars['Int']['input']>
   price_not?: InputMaybe<Scalars['Int']['input']>
   price_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  shortDescription?: InputMaybe<Scalars['String']['input']>
+  shortDescription_contains?: InputMaybe<Scalars['String']['input']>
+  shortDescription_exists?: InputMaybe<Scalars['Boolean']['input']>
+  shortDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  shortDescription_not?: InputMaybe<Scalars['String']['input']>
+  shortDescription_not_contains?: InputMaybe<Scalars['String']['input']>
+  shortDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   slug?: InputMaybe<Scalars['String']['input']>
   slug_contains?: InputMaybe<Scalars['String']['input']>
   slug_exists?: InputMaybe<Scalars['Boolean']['input']>
@@ -1797,6 +1924,54 @@ export type TourFilter = {
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type TourFullDescription = {
+  __typename?: 'TourFullDescription'
+  json: Scalars['JSON']['output']
+  links: TourFullDescriptionLinks
+}
+
+export type TourFullDescriptionAssets = {
+  __typename?: 'TourFullDescriptionAssets'
+  block: Array<Maybe<Asset>>
+  hyperlink: Array<Maybe<Asset>>
+}
+
+export type TourFullDescriptionEntries = {
+  __typename?: 'TourFullDescriptionEntries'
+  block: Array<Maybe<Entry>>
+  hyperlink: Array<Maybe<Entry>>
+  inline: Array<Maybe<Entry>>
+}
+
+export type TourFullDescriptionLinks = {
+  __typename?: 'TourFullDescriptionLinks'
+  assets: TourFullDescriptionAssets
+  entries: TourFullDescriptionEntries
+  resources: TourFullDescriptionResources
+}
+
+export type TourFullDescriptionResources = {
+  __typename?: 'TourFullDescriptionResources'
+  block: Array<TourFullDescriptionResourcesBlock>
+  hyperlink: Array<TourFullDescriptionResourcesHyperlink>
+  inline: Array<TourFullDescriptionResourcesInline>
+}
+
+export type TourFullDescriptionResourcesBlock = ResourceLink & {
+  __typename?: 'TourFullDescriptionResourcesBlock'
+  sys: ResourceSys
+}
+
+export type TourFullDescriptionResourcesHyperlink = ResourceLink & {
+  __typename?: 'TourFullDescriptionResourcesHyperlink'
+  sys: ResourceSys
+}
+
+export type TourFullDescriptionResourcesInline = ResourceLink & {
+  __typename?: 'TourFullDescriptionResourcesInline'
+  sys: ResourceSys
+}
+
 export type TourLinkingCollections = {
   __typename?: 'TourLinkingCollections'
   entryCollection?: Maybe<EntryCollection>
@@ -1812,6 +1987,16 @@ export type TourLinkingCollectionsEntryCollectionArgs = {
 export enum TourOrder {
   ApproximateDurationAsc = 'approximateDuration_ASC',
   ApproximateDurationDesc = 'approximateDuration_DESC',
+  InstructorAsc = 'instructor_ASC',
+  InstructorDesc = 'instructor_DESC',
+  IsFeaturedAsc = 'isFeatured_ASC',
+  IsFeaturedDesc = 'isFeatured_DESC',
+  LocationAsc = 'location_ASC',
+  LocationDesc = 'location_DESC',
+  MaxParticipantsAsc = 'maxParticipants_ASC',
+  MaxParticipantsDesc = 'maxParticipants_DESC',
+  MinParticipantsAsc = 'minParticipants_ASC',
+  MinParticipantsDesc = 'minParticipants_DESC',
   PriceAsc = 'price_ASC',
   PriceDesc = 'price_DESC',
   SlugAsc = 'slug_ASC',
@@ -2357,7 +2542,21 @@ export type GetTourQuery = {
       description?: string | null
       approximateDuration?: number | null
       price?: number | null
+      shortDescription?: string | null
+      minParticipants?: number | null
+      maxParticipants?: number | null
+      location?: string | null
+      instructor?: string | null
+      keyHighlights?: Array<string | null> | null
+      inclusions?: Array<string | null> | null
+      exclusions?: Array<string | null> | null
+      isFeatured?: boolean | null
       featuredImage?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+      fullDescription?: { __typename: 'TourFullDescription'; json: any } | null
+      galleryImagesCollection?: {
+        __typename?: 'AssetCollection'
+        items: Array<{ __typename?: 'Asset'; url?: string | null; width?: number | null; height?: number | null } | null>
+      } | null
     } | null>
   } | null
 }
@@ -3638,8 +3837,6 @@ export const GetTourDocument = {
                       { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'approximateDuration' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'price' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'featuredImage' },
@@ -3652,7 +3849,50 @@ export const GetTourDocument = {
                             { kind: 'Field', name: { kind: 'Name', value: 'height' } }
                           ]
                         }
-                      }
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'approximateDuration' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'price' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'shortDescription' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'fullDescription' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'json' } },
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } }
+                          ]
+                        }
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'galleryImagesCollection' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'items' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'minParticipants' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'maxParticipants' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'location' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'instructor' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'keyHighlights' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'inclusions' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'exclusions' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'isFeatured' } }
                     ]
                   }
                 }
