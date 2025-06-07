@@ -1,0 +1,8 @@
+{
+  "buildScriptName": "build-storybook",
+  "exitZeroOnChanges": true,
+  "onlyChanged": true,
+  "skip": "dependabot/**",
+  "ignoreLastBuildOnBranch": "main",
+  "externals": ["public/**"]
+}

@@ -48,4 +48,9 @@ next-env.d.ts
 .vscode/settings.json
 
 *storybook.log
-stories/
+
+# storybook
+storybook-static/
+
+# chromatic
+chromatic-build-*
