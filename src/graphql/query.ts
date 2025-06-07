@@ -364,14 +364,34 @@ export const GET_TOUR_QUERY = gql`
         title
         slug
         description
-        approximateDuration
-        price
         featuredImage {
           title
           url
           width
           height
         }
+        approximateDuration
+        price
+        shortDescription
+        fullDescription {
+          json
+          __typename
+        }
+        galleryImagesCollection {
+          items {
+            url
+            width
+            height
+          }
+        }
+        minParticipants
+        maxParticipants
+        location
+        instructor
+        keyHighlights
+        inclusions
+        exclusions
+        isFeatured
       }
     }
   }

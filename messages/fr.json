@@ -379,6 +379,17 @@
     "price": "Prix",
     "duration": "Durée",
     "hours": "heures",
+    "participants": "Participants",
+    "location": "Lieu",
+    "instructor": "Instructeur",
+    "shortDescription": "Aperçu",
+    "fullDescription": "À propos de ce Tour",
+    "keyHighlights": "Points forts du Tour",
+    "inclusions": "Ce qui est inclus",
+    "exclusions": "Ce qui n'est pas inclus",
+    "gallery": "Galerie photo",
+    "people": "personnes",
+    "featuredTour": "Tour vedette",
     "backToTours": "Retour aux Tours"
   }
 }
