@@ -12,6 +12,7 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import type { FC } from 'react'
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
@@ -123,6 +124,27 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
   return (
     <html lang={locale}>
       <body className={classNames(zain.className, 'antialiased')}>
+        {/* Google Analytics 4 (GA4) Tracking Code */}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`}
+          strategy="afterInteractive" // ページのインタラクティブな要素の後にロード
+        />
+        <Script
+          id="google-analytics-config" // 一意のID
+          strategy="afterInteractive" // ページのインタラクティブな要素の後にロード
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+              });
+            `
+          }}
+        />
+        {/* GA4 Tracking Code End  */}
         <AuthProvider>
           <NextIntlClientProvider messages={messages}>
             <LayoutWrapper
