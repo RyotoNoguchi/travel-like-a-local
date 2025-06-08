@@ -4,7 +4,6 @@ import { CategoryIcon } from '@/app/ui/components/atoms/icons/category-icon'
 import { FavoriteIcon } from '@/app/ui/components/atoms/icons/favorite-icon'
 import { SearchIcon } from '@/app/ui/components/atoms/icons/search-icon'
 import { Footer } from '@/app/ui/templates/footer/presenter'
-import { LANGUAGE } from '@/constants'
 import { listSocialLinks } from '@/utils/socialLinks'
 import type { Meta, StoryObj } from '@storybook/react'
 import messages from '../../../../../messages/fr.json'
@@ -25,7 +24,6 @@ export const Primary: Story = {
     }
   },
   args: {
-    locale: LANGUAGE.FR,
     logo: {
       url: 'https://images.ctfassets.net/rymv5s221jmx/5x2sMehGUOBlAhVBVzmWoB/a1b944998759e251e089384384f4585e/logo.png?w=500&h=500&fit=fill',
       title: 'Logo'
@@ -35,15 +33,12 @@ export const Primary: Story = {
       second: 'Réseaux sociaux',
       subtitle: '~ Votre boussole pour les découvertes locales ~'
     },
-    headerNavLinkTitles: {
-      language: 'Français'
-    },
     socialLinks: listSocialLinks({ width: 32, height: 32 }),
     navLinks: [
       { icon: <SearchIcon width={24} height={24} color={COLORS.WHITE} />, label: messages.NavMenu.search, href: '/search' },
       { icon: <AreaIcon width={24} height={24} color={COLORS.WHITE} />, label: messages.NavMenu.area, href: '/area' },
       { icon: <CategoryIcon width={24} height={24} color={COLORS.WHITE} />, label: messages.NavMenu.category, href: '/category' },
-      { icon: <FavoriteIcon width={24} height={24} color={COLORS.WHITE} />, label: messages.NavMenu.favorite, href: '/favorite' }
+      { icon: <FavoriteIcon width={24} height={24} color={COLORS.WHITE} fillColor={COLORS.WHITE} />, label: messages.NavMenu.favorite, href: '/favorite' }
     ]
   }
 }
