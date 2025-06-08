@@ -67,6 +67,7 @@ export const CustomColor: Story = {
 }
 
 export const LoadingButton: Story = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   render: (args) => (
     <div
       style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', backgroundColor: COLORS.PRIMARY, color: 'white', borderRadius: '4px' }}

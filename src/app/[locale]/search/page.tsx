@@ -7,12 +7,8 @@ import type { NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
-  params: {
-    locale: LANGUAGE
-  }
-  searchParams: {
-    q: string
-  }
+  params: Promise<{ locale: LANGUAGE }>
+  searchParams: Promise<{ q: string }>
 }
 
 const SearchPage: NextPage<Props> = async ({ params, searchParams }) => {
