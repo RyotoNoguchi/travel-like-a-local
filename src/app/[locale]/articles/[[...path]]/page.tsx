@@ -16,11 +16,8 @@ import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
-  params: {
-    locale: LANGUAGE
-    path: string[]
-  }
-  searchParams: { page?: string }
+  params: Promise<{ locale: LANGUAGE; path: string[] }>
+  searchParams: Promise<{ page?: string }>
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {

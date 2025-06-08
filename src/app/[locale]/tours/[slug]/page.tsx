@@ -11,10 +11,7 @@ import { getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: {
-    locale: LANGUAGE
-    slug: string
-  }
+  params: Promise<{ locale: LANGUAGE; slug: string }>
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {

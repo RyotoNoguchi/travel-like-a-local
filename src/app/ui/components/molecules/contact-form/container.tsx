@@ -68,6 +68,7 @@ export const ContactFormContainer: FC<Props> = ({ translations, locale }) => {
           message: result.error || translations.error
         })
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setStatus({
         submitted: true,

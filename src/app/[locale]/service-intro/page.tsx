@@ -18,9 +18,7 @@ import Image from 'next/image'
 const HERO_IMAGE_ID = '2AM6uYinV5m9K4PKBKroWs'
 
 type Props = {
-  params: {
-    locale: LANGUAGE
-  }
+  params: Promise<{ locale: LANGUAGE }>
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {

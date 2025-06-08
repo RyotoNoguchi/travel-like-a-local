@@ -49,7 +49,6 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
       regionsHierarchy={regionsHierarchy}
       navLinks={listNavLinks(24)}
       hamburgerMenuNavLinks={listNavLinks(32)}
-      languageTitle={t('NavMenu.language')}
       subtitle={t('Footer.subtitle')}
     />
   )

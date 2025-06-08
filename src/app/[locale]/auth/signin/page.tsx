@@ -6,7 +6,7 @@ import type { NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
-  params: { locale: LANGUAGE }
+  params: Promise<{ locale: LANGUAGE }>
 }
 
 const SignInPage: NextPage<Props> = async ({ params }) => {

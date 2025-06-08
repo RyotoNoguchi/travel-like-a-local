@@ -31,10 +31,9 @@ type Props = {
     title: string
   }
   hamburgerMenuNavLinks: NavLinkType[]
-  languageTitle: string
 }
 
-export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks, hamburgerMenuNavLinks, languageTitle, regionsHierarchy }) => {
+export const Header: FC<Props> = ({ logo, locale, subtitle, categories, navLinks, hamburgerMenuNavLinks, regionsHierarchy }) => {
   const [isCategoryNavVisible, setIsCategoryNavVisible] = useState(false)
   const [isRegionNavVisible, setIsRegionNavVisible] = useState(false)
   const [isPopupOpen, setIsPopupOpen] = useState(false)

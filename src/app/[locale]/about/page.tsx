@@ -14,11 +14,7 @@ const INSTAGRAM_LINK = 'https://www.instagram.com/travel_like_a_local.jp'
 const MESSENGER_LINK = 'https://m.me/ryoto314.ng'
 const HERO_IMAGE_ID = '4LrpPOCebvgYbkmmeVl3Ch'
 
-type Props = {
-  params: {
-    locale: LANGUAGE
-  }
-}
+type Props = { params: Promise<{ locale: LANGUAGE }> }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { locale } = await params

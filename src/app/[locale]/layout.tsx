@@ -15,7 +15,12 @@ import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import type { FC } from 'react'
 
-export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+type Props = {
+  children: React.ReactNode
+  params: Promise<{ locale: LANGUAGE }>
+}
+
+export const generateMetadata = async ({ params }: { params: Promise<{ locale: LANGUAGE }> }): Promise<Metadata> => {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'Metadata' })
   const logo = await getLogo({ width: 192, height: 192 })
@@ -105,11 +110,6 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 }
 
-type Props = {
-  children: React.ReactNode
-  params: { locale: string }
-}
-
 const LocaleLayout: FC<Props> = async ({ children, params }) => {
   // See: https://nextjs.org/docs/messages/sync-dynamic-apis#possible-ways-to-fix-it
   const { locale } = await params
@@ -148,7 +148,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
         <AuthProvider>
           <NextIntlClientProvider messages={messages}>
             <LayoutWrapper
-              header={logo !== null && logo !== undefined && <HeaderContainer logo={logo} locale={locale as LANGUAGE} />}
+              header={logo !== null && logo !== undefined && <HeaderContainer logo={logo} locale={locale} />}
               footer={logo !== null && logo !== undefined && <FooterContainer logo={logo} />}
             >
               {children}

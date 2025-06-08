@@ -7,6 +7,7 @@ export async function GET() {
     // TODO: Potentially filter here to only return region-related concepts if needed
     return NextResponse.json(concepts)
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('API Error loading concepts:', error)
     return NextResponse.json({ error: 'Failed to load concept data' }, { status: 500 })
   }

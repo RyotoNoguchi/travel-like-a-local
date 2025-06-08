@@ -89,6 +89,7 @@ export const sendContactEmail = async (data: Props) => {
 
     return { success: true }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('メール送信エラー:', error)
     return {
       success: false,
