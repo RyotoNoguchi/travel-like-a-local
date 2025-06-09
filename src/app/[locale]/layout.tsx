@@ -7,6 +7,7 @@ import { LayoutWrapper } from '@/app/ui/templates/layout-wrapper'
 import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER, TWITTER_HANDLE, TWITTER_ID } from '@/constants'
 import { routing } from '@/i18n/routing'
 import { getLogo } from '@/utils/assets'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import classNames from 'classnames'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
@@ -152,6 +153,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
               footer={logo !== null && logo !== undefined && <FooterContainer logo={logo} />}
             >
               {children}
+              <SpeedInsights />
             </LayoutWrapper>
           </NextIntlClientProvider>
         </AuthProvider>
