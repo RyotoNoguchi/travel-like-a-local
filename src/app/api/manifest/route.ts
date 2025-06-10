@@ -44,5 +44,24 @@ export const GET = async (request: NextRequest) => {
       }
     ]
   }
-  return NextResponse.json(manifest)
+
+  const response = NextResponse.json(manifest)
+
+  // CORS ヘッダーを追加
+  response.headers.set('Access-Control-Allow-Origin', '*')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+
+  return response
+}
+
+export const OPTIONS = async () => {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    }
+  })
 }

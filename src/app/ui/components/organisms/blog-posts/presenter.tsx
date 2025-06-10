@@ -30,7 +30,7 @@ export const BlogPosts: FC<Props> = ({
   <section id="blog-posts" className="flex flex-col w-full gap-4 sm:max-w-[640px] xl:max-w-[800px]">
     <div className="flex justify-between items-center w-full max-w-[300px] sm:max-w-[640px] xl:max-w-[800px]">
       <h2 className="w-full flex-1 text-2xl font-bold text-left">{title}</h2>
-      {Boolean(viewAllButtonText) && <Button borderRadius="rounded-md" textColor="text-primary" text={viewAllButtonText ?? ''} href={viewAllHref} />}
+      {Boolean(viewAllButtonText) && <Button borderRadius="rounded-md" textColor="text-white" text={viewAllButtonText ?? ''} href={viewAllHref} />}
     </div>
     <ul className="flex w-full gap-4 overflow-x-scroll sm:overflow-x-auto sm:flex-col">
       {blogPosts.map(
