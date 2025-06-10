@@ -392,5 +392,21 @@
     "people": "people",
     "featuredTour": "Featured Tour",
     "backToTours": "Back to Tours"
+  },
+  "AuthorPage": {
+    "metadata": {
+      "title": "{authorName} - Travel Like a Local Japan",
+      "description": "Learn about {authorName}, a contributor to Travel Like a Local Japan."
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "author": "Author"
+    },
+    "title": "About {authorName}",
+    "notFound": "Author not found",
+    "notFoundMessage": "The author you're looking for doesn't exist.",
+    "placeholderMessage": "Detailed information about {authorName} is coming soon.",
+    "profileSectionTitle": "Profile Information",
+    "profileSectionDescription": "Detailed profile information, background, and areas of expertise for {authorName} are currently being prepared. We will provide more detailed information on this page in the future."
   }
 }

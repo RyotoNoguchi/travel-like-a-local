@@ -36,7 +36,9 @@ const documents = {
   '\n  query GetTour($slug: String!, $locale: String!) {\n    tourCollection(where: { slug: $slug }, locale: $locale, limit: 1) {\n      items {\n        title\n        slug\n        description\n        featuredImage {\n          title\n          url\n          width\n          height\n        }\n        approximateDuration\n        price\n        shortDescription\n        fullDescription {\n          json\n          __typename\n        }\n        galleryImagesCollection {\n          items {\n            url\n            width\n            height\n          }\n        }\n        minParticipants\n        maxParticipants\n        location\n        instructor\n        keyHighlights\n        inclusions\n        exclusions\n        isFeatured\n      }\n    }\n  }\n':
     types.GetTourDocument,
   '\n  query GetTestimonials($locale: String!) {\n    testimonialCollection(locale: $locale) {\n      items {\n        id\n        name\n        sex\n        country\n        ageGroup\n        comment\n        image {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
-    types.GetTestimonialsDocument
+    types.GetTestimonialsDocument,
+  '\n  query GetAuthorByName($name: String!) {\n    componentAuthorCollection(where: { name: $name }, limit: 1) {\n      items {\n        name\n        avatar {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n':
+    types.GetAuthorByNameDocument
 }
 
 /**
@@ -125,6 +127,12 @@ export function graphql(
 export function graphql(
   source: '\n  query GetTestimonials($locale: String!) {\n    testimonialCollection(locale: $locale) {\n      items {\n        id\n        name\n        sex\n        country\n        ageGroup\n        comment\n        image {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n'
 ): (typeof documents)['\n  query GetTestimonials($locale: String!) {\n    testimonialCollection(locale: $locale) {\n      items {\n        id\n        name\n        sex\n        country\n        ageGroup\n        comment\n        image {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query GetAuthorByName($name: String!) {\n    componentAuthorCollection(where: { name: $name }, limit: 1) {\n      items {\n        name\n        avatar {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query GetAuthorByName($name: String!) {\n    componentAuthorCollection(where: { name: $name }, limit: 1) {\n      items {\n        name\n        avatar {\n          title\n          url\n          width\n          height\n        }\n      }\n    }\n  }\n']
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {}
