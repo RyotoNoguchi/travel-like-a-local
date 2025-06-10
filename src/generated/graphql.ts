@@ -267,6 +267,7 @@ export type ComponentAuthor = Entry &
     __typename?: 'ComponentAuthor'
     _id: Scalars['ID']['output']
     avatar?: Maybe<Asset>
+    bio?: Maybe<ComponentAuthorBio>
     contentfulMetadata: ContentfulMetadata
     internalName?: Maybe<Scalars['String']['output']>
     linkedFrom?: Maybe<ComponentAuthorLinkingCollections>
@@ -278,6 +279,11 @@ export type ComponentAuthor = Entry &
 export type ComponentAuthorAvatarArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
   preview?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** To have author-related properties [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/componentAuthor) */
+export type ComponentAuthorBioArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
 }
 
 /** To have author-related properties [See type definition](https://app.contentful.com/spaces/rymv5s221jmx/content_types/componentAuthor) */
@@ -295,6 +301,54 @@ export type ComponentAuthorNameArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentAuthorBio = {
+  __typename?: 'ComponentAuthorBio'
+  json: Scalars['JSON']['output']
+  links: ComponentAuthorBioLinks
+}
+
+export type ComponentAuthorBioAssets = {
+  __typename?: 'ComponentAuthorBioAssets'
+  block: Array<Maybe<Asset>>
+  hyperlink: Array<Maybe<Asset>>
+}
+
+export type ComponentAuthorBioEntries = {
+  __typename?: 'ComponentAuthorBioEntries'
+  block: Array<Maybe<Entry>>
+  hyperlink: Array<Maybe<Entry>>
+  inline: Array<Maybe<Entry>>
+}
+
+export type ComponentAuthorBioLinks = {
+  __typename?: 'ComponentAuthorBioLinks'
+  assets: ComponentAuthorBioAssets
+  entries: ComponentAuthorBioEntries
+  resources: ComponentAuthorBioResources
+}
+
+export type ComponentAuthorBioResources = {
+  __typename?: 'ComponentAuthorBioResources'
+  block: Array<ComponentAuthorBioResourcesBlock>
+  hyperlink: Array<ComponentAuthorBioResourcesHyperlink>
+  inline: Array<ComponentAuthorBioResourcesInline>
+}
+
+export type ComponentAuthorBioResourcesBlock = ResourceLink & {
+  __typename?: 'ComponentAuthorBioResourcesBlock'
+  sys: ResourceSys
+}
+
+export type ComponentAuthorBioResourcesHyperlink = ResourceLink & {
+  __typename?: 'ComponentAuthorBioResourcesHyperlink'
+  sys: ResourceSys
+}
+
+export type ComponentAuthorBioResourcesInline = ResourceLink & {
+  __typename?: 'ComponentAuthorBioResourcesInline'
+  sys: ResourceSys
+}
+
 export type ComponentAuthorCollection = {
   __typename?: 'ComponentAuthorCollection'
   items: Array<Maybe<ComponentAuthor>>
@@ -307,6 +361,9 @@ export type ComponentAuthorFilter = {
   AND?: InputMaybe<Array<InputMaybe<ComponentAuthorFilter>>>
   OR?: InputMaybe<Array<InputMaybe<ComponentAuthorFilter>>>
   avatar_exists?: InputMaybe<Scalars['Boolean']['input']>
+  bio_contains?: InputMaybe<Scalars['String']['input']>
+  bio_exists?: InputMaybe<Scalars['Boolean']['input']>
+  bio_not_contains?: InputMaybe<Scalars['String']['input']>
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
   internalName?: InputMaybe<Scalars['String']['input']>
   internalName_contains?: InputMaybe<Scalars['String']['input']>
@@ -2110,6 +2167,9 @@ export type CfComponentAuthorNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfComponentAuthorNestedFilter>>>
   OR?: InputMaybe<Array<InputMaybe<CfComponentAuthorNestedFilter>>>
   avatar_exists?: InputMaybe<Scalars['Boolean']['input']>
+  bio_contains?: InputMaybe<Scalars['String']['input']>
+  bio_exists?: InputMaybe<Scalars['Boolean']['input']>
+  bio_not_contains?: InputMaybe<Scalars['String']['input']>
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>
   internalName?: InputMaybe<Scalars['String']['input']>
   internalName_contains?: InputMaybe<Scalars['String']['input']>
@@ -2578,6 +2638,22 @@ export type GetTestimonialsQuery = {
       ageGroup?: number | null
       comment?: string | null
       image?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
+    } | null>
+  } | null
+}
+
+export type GetAuthorByNameQueryVariables = Exact<{
+  name: Scalars['String']['input']
+}>
+
+export type GetAuthorByNameQuery = {
+  __typename?: 'Query'
+  componentAuthorCollection?: {
+    __typename?: 'ComponentAuthorCollection'
+    items: Array<{
+      __typename?: 'ComponentAuthor'
+      name?: string | null
+      avatar?: { __typename?: 'Asset'; title?: string | null; url?: string | null; width?: number | null; height?: number | null } | null
     } | null>
   } | null
 }
@@ -3964,3 +4040,68 @@ export const GetTestimonialsDocument = {
     }
   ]
 } as unknown as DocumentNode<GetTestimonialsQuery, GetTestimonialsQueryVariables>
+export const GetAuthorByNameDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetAuthorByName' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'name' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } }
+        }
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'componentAuthorCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [{ kind: 'ObjectField', name: { kind: 'Name', value: 'name' }, value: { kind: 'Variable', name: { kind: 'Name', value: 'name' } } }]
+                }
+              },
+              { kind: 'Argument', name: { kind: 'Name', value: 'limit' }, value: { kind: 'IntValue', value: '1' } }
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'avatar' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'height' } }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+} as unknown as DocumentNode<GetAuthorByNameQuery, GetAuthorByNameQueryVariables>

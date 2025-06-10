@@ -144,6 +144,7 @@ const fetchBlogPost = async (slug: string, locale: LANGUAGE): Promise<BlogPostWi
 
 const BlogPostPage: NextPage<Props> = async ({ params, searchParams }) => {
   const { locale, path } = await params
+  const searchParamsValue = await searchParams
   const { slug, category, region, area, prefecture } = await parseArticlePath(path)
 
   const blogPost = slug ? await fetchBlogPost(slug, locale) : undefined
@@ -169,7 +170,7 @@ const BlogPostPage: NextPage<Props> = async ({ params, searchParams }) => {
       area={area}
       prefecture={prefecture}
       path={path}
-      searchParams={await searchParams}
+      searchParams={searchParamsValue}
     />
   )
 }

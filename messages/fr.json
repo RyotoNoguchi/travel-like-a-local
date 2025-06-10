@@ -391,5 +391,21 @@
     "people": "personnes",
     "featuredTour": "Tour vedette",
     "backToTours": "Retour aux Tours"
+  },
+  "AuthorPage": {
+    "metadata": {
+      "title": "{authorName} - Travel Like a Local Japan",
+      "description": "Découvrez {authorName}, un contributeur de Travel Like a Local Japan."
+    },
+    "breadcrumbs": {
+      "home": "Accueil",
+      "author": "Auteur"
+    },
+    "title": "À propos de {authorName}",
+    "notFound": "Auteur introuvable",
+    "notFoundMessage": "L'auteur que vous recherchez n'existe pas.",
+    "placeholderMessage": "Les informations détaillées sur {authorName} arrivent bientôt.",
+    "profileSectionTitle": "Informations de profil",
+    "profileSectionDescription": "Les informations détaillées du profil, l'arrière-plan et les domaines d'expertise de {authorName} sont actuellement en préparation. Nous fournirons des informations plus détaillées sur cette page à l'avenir."
   }
 }

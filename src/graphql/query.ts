@@ -417,3 +417,19 @@ export const GET_TESTIMONIALS_QUERY = gql`
     }
   }
 `
+
+export const GET_AUTHOR_BY_NAME_QUERY = gql`
+  query GetAuthorByName($name: String!) {
+    componentAuthorCollection(where: { name: $name }, limit: 1) {
+      items {
+        name
+        avatar {
+          title
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+`
