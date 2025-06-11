@@ -7,6 +7,7 @@ import { LayoutWrapper } from '@/app/ui/templates/layout-wrapper'
 import { EMAIL, LANGUAGE, LOGO_TITLE, PHONE_NUMBER, TWITTER_HANDLE, TWITTER_ID } from '@/constants'
 import { routing } from '@/i18n/routing'
 import { getLogo } from '@/utils/assets'
+import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import classNames from 'classnames'
 import type { Metadata } from 'next'
@@ -154,6 +155,7 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
             >
               {children}
               <SpeedInsights />
+              <Analytics />
             </LayoutWrapper>
           </NextIntlClientProvider>
         </AuthProvider>
