@@ -1,7 +1,7 @@
 import { ResponsiveImage } from '@/app/ui/components/atoms/responsive-image'
 import type { GetBlogPostBySlugQuery } from '@/generated/graphql'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { type Block, BLOCKS, type Inline } from '@contentful/rich-text-types'
+import { BLOCKS, MARKS, type Block, type Inline } from '@contentful/rich-text-types'
 import { notFound } from 'next/navigation'
 import type { FC } from 'react'
 
@@ -45,6 +45,10 @@ export const RichText: FC<Props> = ({ content }) => {
   }
 
   const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text: React.ReactNode) => <strong className="font-bold">{text}</strong>,
+      [MARKS.ITALIC]: (text: React.ReactNode) => <em className="italic">{text}</em>
+    },
     renderNode: {
       [BLOCKS.HEADING_1]: (node: Block | Inline, children: React.ReactNode) => {
         if (node.content[0].nodeType !== 'text') return null
@@ -112,15 +116,25 @@ export const RichText: FC<Props> = ({ content }) => {
           <p className="text-lg leading-tight whitespace-pre-wrap space-x-1">
             {node.content.map((content, index) => {
               if (content.nodeType === 'text') {
+                const shouldBeBold = content.marks?.some((mark) => mark.type === 'bold')
+                const shouldBeItalic = content.marks?.some((mark) => mark.type === 'italic')
                 return (
-                  <span key={index} className="">
+                  <span key={index} className={`${shouldBeBold ? 'font-bold' : ''} ${shouldBeItalic ? 'italic' : ''}`}>
                     {content.value}
                   </span>
                 )
               } else if (content.nodeType === 'hyperlink') {
+                const shouldBeBold = content.content.some((item) => item.nodeType === 'text' && item.marks?.some((mark) => mark.type === 'bold'))
+                const shouldBeItalic = content.content.some((item) => item.nodeType === 'text' && item.marks?.some((mark) => mark.type === 'italic'))
                 const { uri } = content.data
                 return (
-                  <a key={index} href={uri} className="text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">
+                  <a
+                    key={index}
+                    href={uri}
+                    className={`text-blue-600 hover:text-blue-800 ${shouldBeBold ? 'font-bold' : ''} ${shouldBeItalic ? 'italic' : ''}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {content.content.map((item) => (item.nodeType === 'text' ? item.value : '')).join('')}
                   </a>
                 )
