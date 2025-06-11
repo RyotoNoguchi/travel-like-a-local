@@ -154,11 +154,11 @@ const LocaleLayout: FC<Props> = async ({ children, params }) => {
               footer={logo !== null && logo !== undefined && <FooterContainer logo={logo} />}
             >
               {children}
-              <SpeedInsights />
-              <Analytics />
             </LayoutWrapper>
           </NextIntlClientProvider>
         </AuthProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
