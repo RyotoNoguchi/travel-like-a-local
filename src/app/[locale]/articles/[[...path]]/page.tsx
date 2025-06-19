@@ -1,7 +1,7 @@
 import { createApolloClient } from '@/apolloClient'
 import { BlogPostDetailPage } from '@/app/ui/articles/pages/blog-post-page'
 import { BlogPostListPage } from '@/app/ui/articles/pages/blog-posts-page'
-import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP } from '@/constants'
+import { CONCEPT_SCHEME, LANGUAGE, LOCALE_CODE_MAP, LOGO_TITLE } from '@/constants'
 import type { GetBlogPostBySlugQuery, GetBlogPostBySlugQueryVariables } from '@/generated/graphql'
 import { GET_BLOG_POST_BY_SLUG_QUERY } from '@/graphql/query'
 import { getAllBlogPosts } from '@/lib/contentful/get-blog-posts'
@@ -61,7 +61,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
     const seoFields = blogPost?.seoFields
 
     return {
-      title: `${seoFields?.pageTitle || blogPost?.title || ''} ${mostSpecificRegion ? `| ${mostSpecificRegion}` : ''}`,
+      title: `${seoFields?.pageTitle || blogPost?.title || ''} ${mostSpecificRegion ? `| ${mostSpecificRegion}` : ''} ${`| ${LOGO_TITLE}`}`,
       description: seoFields?.pageDescription ?? ''
     }
   } else {

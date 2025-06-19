@@ -1,5 +1,6 @@
 import { COLORS } from '@/app/ui/colors'
 import { AreaIcon } from '@/app/ui/components/atoms/icons/area-icon'
+import { ArticleIcon } from '@/app/ui/components/atoms/icons/article-icon'
 import { BookmarkIcon } from '@/app/ui/components/atoms/icons/bookmark-icon'
 import { CategoryIcon } from '@/app/ui/components/atoms/icons/category-icon'
 import { MapIcon } from '@/app/ui/components/atoms/icons/map-icon'
@@ -35,6 +36,7 @@ export const HeaderContainer: FC<Props> = async ({ logo, locale }) => {
       href: '#',
       isCategory: true
     },
+    { icon: <ArticleIcon width={px} height={px} color={COLORS.GRAY} />, label: t('NavMenu.articles'), href: '/articles' },
     {
       icon: <BookmarkIcon width={px} height={px} strokeColor={COLORS.GRAY} fillColor={COLORS.TRANSPARENT} strokeWidth={2} />,
       label: t('NavMenu.bookmarks'),
