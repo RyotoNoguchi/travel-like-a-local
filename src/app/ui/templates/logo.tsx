@@ -16,7 +16,7 @@ export const Logo: FC<Props> = ({ logo, subtitle, withinFooter = false }) => (
   <div className={`flex flex-col justify-center gap-1 ${pacifico.className}`}>
     <div className={`flex gap-2 items-center`}>
       <Image src={logo.url} alt={logo.title} width={40} height={40} className={classNames({ hidden: !withinFooter }, 'xs:block')} />
-      <span className={`font-bold text-xl xs:text-2xl flex gap-2 `}>
+      <span className={`font-bold text-xl semi-sm:text-2xl flex gap-2 `}>
         {LOGO_TITLE_PREFIX}
         <span className="text-primary">{LOGO_TITLE_SUFFIX}</span>
       </span>
