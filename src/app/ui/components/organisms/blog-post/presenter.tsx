@@ -31,7 +31,7 @@ export const BlogPost: FC<Props> = ({ slug, blogPost, views, relatedPosts, relat
     <ReportView slug={slug} />
     <div
       className={classNames(
-        'flex flex-col gap-1 max-w-screen-xxs',
+        'flex flex-col gap-1 max-w-[360px]',
         'xs:max-w-screen-xs',
         'semi-sm:max-w-screen-semi-sm',
         'sm:max-w-screen-sm',

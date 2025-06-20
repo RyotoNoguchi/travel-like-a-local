@@ -21,7 +21,7 @@ export const ArticleLayout: FC<Props> = ({ children, locale, breadcrumbs, profil
       <div
         className={classNames(
           'w-full flex flex-col gap-1 ',
-          'max-w-screen-xxs',
+          'max-w-[360px]',
           'xs:max-w-screen-xs',
           'semi-sm:max-w-screen-semi-sm',
           'sm:max-w-screen-sm',
