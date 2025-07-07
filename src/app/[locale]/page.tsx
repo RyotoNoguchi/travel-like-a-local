@@ -79,12 +79,14 @@ const HomePage: NextPage<Props> = async ({ params }) => {
     <>
       <BreadcrumbJsonLd locale={locale} breadcrumbs={breadcrumbs} />
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start overflow-hidden">
-        <HeroContainer
-          enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>}
-          enrichedSubtitle={t('Hero.subtitle')}
-          buttonText={t('Hero.cta')}
-        />
-        <CampaignBanner locale={locale} />
+        <div className="flex flex-col">
+          <HeroContainer
+            enrichedTitle={<RichText>{(tags) => t.rich('Hero.title', { ...tags })}</RichText>}
+            enrichedSubtitle={t('Hero.subtitle')}
+            buttonText={t('Hero.cta')}
+          />
+          <CampaignBanner locale={locale} />
+        </div>
 
         <ServiceModelSection locale={locale} />
         <WhyChooseUsSection locale={locale} />

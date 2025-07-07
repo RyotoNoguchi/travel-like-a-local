@@ -10,7 +10,7 @@ export const CampaignBanner = async ({ locale }: Props) => {
   const t = await getTranslations({ locale, namespace: 'CampaignBanner' })
 
   return (
-    <div className="bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-white py-4 px-4">
+    <div className="w-full bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 text-white py-4 px-4">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-center md:text-left">
           <h3 className="text-lg md:text-xl font-bold mb-1">{t('title')}</h3>
