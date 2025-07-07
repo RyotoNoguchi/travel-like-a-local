@@ -21,6 +21,7 @@ import { GET_TESTIMONIALS_QUERY, GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/g
 // import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 // import { categorizeBlogPosts } from '@/utils/category-helper'
 import { CallToActionSection } from '@/app/ui/components/organisms/call-to-action-section'
+import { CampaignBanner } from '@/app/ui/components/organisms/campaign-banner'
 // import { FeaturedToursSection } from '@/app/ui/components/organisms/featured-tours-section'
 import { ServiceModelSection } from '@/app/ui/components/organisms/service-model-section'
 import { ServicePricingSection } from '@/app/ui/components/organisms/service-pricing-section'
@@ -83,6 +84,7 @@ const HomePage: NextPage<Props> = async ({ params }) => {
           enrichedSubtitle={t('Hero.subtitle')}
           buttonText={t('Hero.cta')}
         />
+        <CampaignBanner locale={locale} />
 
         <ServiceModelSection locale={locale} />
         <WhyChooseUsSection locale={locale} />

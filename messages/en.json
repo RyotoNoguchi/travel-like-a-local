@@ -93,6 +93,11 @@
     "close": "Close",
     "chiefEditor": "Chief Editor"
   },
+  "CampaignBanner": {
+    "title": "🎉 Service Launch Special",
+    "message": "Save up to 35% on trip planning fees - Limited time offer for early adopters!",
+    "cta": "Learn More"
+  },
   "MapPage": {
     "title": "Explore Japan Map",
     "metadataDescription": "Navigate Japan through interactive maps. Choose to explore by region or prefecture to find relevant travel articles and guides.",
@@ -420,6 +425,7 @@
   "CallToActionSection": {
     "title": "Ready for Your Complete Japan Experience?",
     "description": "From initial consultation to guided experience - invest in a personalized service that shows appreciation through gratuity.",
+    "campaignNote": "🎯 Launch Campaign: Book now and save up to 35% on planning fees!",
     "consultingButton": "Start Trip Planning",
     "bookingButton": "Learn About Our Service"
   },
@@ -466,11 +472,17 @@
   "ServicePricingSection": {
     "title": "Service Investment & Appreciation Model",
     "subtitle": "Transparent approach to professional travel services",
+    "launchBanner": {
+      "title": "🎊 Service Launch Campaign",
+      "subtitle": "Limited Time Special Pricing for Early Adopters"
+    },
     "planningFee": {
       "title": "Trip Planning & Coordination",
-      "price": "¥80,000 - ¥300,000",
+      "originalPrice": "¥80,000 - ¥300,000",
+      "campaignPrice": "¥50,000 - ¥200,000",
+      "discount": "Up to 35% OFF",
       "description": "Complete pre-trip services including consultation, itinerary design, and all reservations",
-      "note": "Fee varies based on trip complexity and duration"
+      "note": "Launch campaign pricing - Fee varies based on trip complexity and duration"
     },
     "guidingService": {
       "title": "Guided Experience with Transportation",

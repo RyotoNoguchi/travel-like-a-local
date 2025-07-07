@@ -9,19 +9,35 @@ export const ServicePricingSection = async ({ locale }: Props) => {
   const t = await getTranslations({ locale, namespace: 'ServicePricingSection' })
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-16">
+    <section id="pricing" className="w-full max-w-6xl mx-auto px-4 py-16">
+      {/* Launch Campaign Banner */}
+      <div className="bg-gradient-to-r from-primary-600 to-green-600 text-white rounded-lg p-6 mb-12 text-center">
+        <h3 className="text-2xl md:text-3xl font-bold mb-2">{t('launchBanner.title')}</h3>
+        <p className="text-lg opacity-90">{t('launchBanner.subtitle')}</p>
+      </div>
+
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('title')}</h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t('subtitle')}</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 mb-12">
-        {/* Planning Fee */}
-        <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600">
+        {/* Planning Fee - Campaign Pricing */}
+        <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-600 relative">
+          {/* Discount Badge */}
+          <div className="absolute -top-3 -right-3 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full transform rotate-12">
+            {t('planningFee.discount')}
+          </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('planningFee.title')}</h3>
-          <div className="text-3xl font-bold text-blue-600 mb-4">{t('planningFee.price')}</div>
+
+          {/* Campaign Price */}
+          <div className="mb-4">
+            <div className="text-3xl font-bold text-blue-600 mb-1">{t('planningFee.campaignPrice')}</div>
+            <div className="text-lg text-gray-500 line-through">{t('planningFee.originalPrice')}</div>
+          </div>
+
           <p className="text-gray-600 mb-4">{t('planningFee.description')}</p>
-          <p className="text-sm text-gray-500 italic">{t('planningFee.note')}</p>
+          <p className="text-sm text-blue-600 font-medium italic">{t('planningFee.note')}</p>
         </div>
 
         {/* Guiding Service */}

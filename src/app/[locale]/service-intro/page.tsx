@@ -59,7 +59,7 @@ const ServiceIntroductionPage: NextPage<Props> = async ({ params }) => {
     { label: t('breadcrumbs.home'), href: '' },
     { label: t('breadcrumbs.services'), href: '/services' }
   ]
-  const instagramUrl = 'https://www.instagram.com/travel_like_a_local.jp'
+  const instagramUrl = 'https://www.instagram.com/travellikealocal.jp'
   const messengerUrl = 'https://m.me/ryoto314.ng'
   const heroImage = await getImageById({ id: HERO_IMAGE_ID, width: 1000, height: 564 })
   const guideImage = await getImageById({ id: PROFILE_IMAGE_ID, width: 500, height: 500 })

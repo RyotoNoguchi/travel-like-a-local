@@ -14,6 +14,11 @@ export const CallToActionSection: FC<Props> = async ({ locale }) => {
   return (
     <section className="py-16 w-full bg-gradient-to-r from-primary-50 to-primary-100">
       <div className="max-w-4xl mx-auto px-4 text-center">
+        {/* Campaign Notice */}
+        <div className="bg-amber-100 border border-amber-300 rounded-lg p-4 mb-6 inline-block">
+          <p className="text-amber-800 font-medium">{t('CallToActionSection.campaignNote')}</p>
+        </div>
+
         <h2 className="text-3xl md:text-4xl font-bold text-dark-gray-900 mb-6">{t('CallToActionSection.title')}</h2>
         <p className="text-lg text-dark-gray-600 mb-8 max-w-2xl mx-auto">{t('CallToActionSection.description')}</p>
         <div className={classNames('flex flex-col gap-4 items-center justify-center', 'sm:flex-row sm:gap-6')}>

@@ -93,6 +93,11 @@
     "close": "Fermer",
     "chiefEditor": "Rédacteur en Chef"
   },
+  "CampaignBanner": {
+    "title": "🎉 Offre Spéciale de Lancement",
+    "message": "Économisez jusqu'à 35% sur les frais de planification - Offre à durée limitée pour les premiers utilisateurs !",
+    "cta": "En Savoir Plus"
+  },
   "MapPage": {
     "title": "Explorer la Carte du Japon",
     "metadataDescription": "Naviguez au Japon grâce à des cartes interactives. Choisissez d'explorer par région ou par préfecture pour trouver des articles de voyage et des guides pertinents.",
@@ -419,6 +424,7 @@
   "CallToActionSection": {
     "title": "Prêt pour Votre Expérience Complète du Japon ?",
     "description": "De la consultation initiale à l'expérience guidée - investissez dans un service personnalisé qui montre l'appréciation par les pourboires.",
+    "campaignNote": "🎯 Campagne de Lancement : Réservez maintenant et économisez jusqu'à 35% sur les frais de planification !",
     "consultingButton": "Commencer la Planification du Voyage",
     "bookingButton": "En Savoir Plus Sur Notre Service"
   },
@@ -465,11 +471,17 @@
   "ServicePricingSection": {
     "title": "Modèle d'Investissement de Service et d'Appréciation",
     "subtitle": "Approche transparente des services de voyage professionnels",
+    "launchBanner": {
+      "title": "🎊 Campagne de Lancement",
+      "subtitle": "Tarifs Spéciaux à Durée Limitée pour les Premiers Adopteurs"
+    },
     "planningFee": {
       "title": "Planification et Coordination de Voyage",
-      "price": "¥80 000 - ¥300 000",
+      "originalPrice": "¥80 000 - ¥300 000",
+      "campaignPrice": "¥50 000 - ¥200 000",
+      "discount": "Jusqu'à 35% de Réduction",
       "description": "Services complets pré-voyage incluant consultation, conception d'itinéraire et toutes les réservations",
-      "note": "Les frais varient selon la complexité et la durée du voyage"
+      "note": "Tarif de campagne de lancement - Les frais varient selon la complexité et la durée du voyage"
     },
     "guidingService": {
       "title": "Expérience Guidée avec Transport",
