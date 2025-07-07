@@ -21,8 +21,11 @@ import { GET_TESTIMONIALS_QUERY, GET_UNIQUE_VALUE_PROPOSITIONS_QUERY } from '@/g
 // import { getBlogPostsWithHref } from '@/utils/blog-post-helper'
 // import { categorizeBlogPosts } from '@/utils/category-helper'
 import { CallToActionSection } from '@/app/ui/components/organisms/call-to-action-section'
-import { FeaturedToursSection } from '@/app/ui/components/organisms/featured-tours-section'
+// import { FeaturedToursSection } from '@/app/ui/components/organisms/featured-tours-section'
+import { ServiceModelSection } from '@/app/ui/components/organisms/service-model-section'
+import { ServicePricingSection } from '@/app/ui/components/organisms/service-pricing-section'
 import { UniqueValuePropositionSection } from '@/app/ui/components/organisms/unique-value-proposition'
+import { WhyChooseUsSection } from '@/app/ui/components/organisms/why-choose-us-section'
 import type { Metadata, NextPage } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { TestimonialSection } from '../ui/components/molecules/testimonials/testimonial-section'
@@ -81,8 +84,11 @@ const HomePage: NextPage<Props> = async ({ params }) => {
           buttonText={t('Hero.cta')}
         />
 
+        <ServiceModelSection locale={locale} />
+        <WhyChooseUsSection locale={locale} />
         <UniqueValuePropositionSection uniqueValuePropositions={uniqueValuePropositions} />
-        <FeaturedToursSection locale={locale} />
+        {/* <FeaturedToursSection locale={locale} /> */}
+        <ServicePricingSection locale={locale} />
         <TestimonialSection
           testimonials={testimonialsData.testimonialCollection?.items ?? []}
           title={t('ServicesPage.testimonials.title')}

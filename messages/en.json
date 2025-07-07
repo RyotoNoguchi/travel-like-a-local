@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "home": "Home",
-    "description": "At Travel Like a Local Japan, experience the true essence of Japan beyond typical tourist spots. With insights from a nomadic worker's perspective, we offer deep connections to nature-rich areas and local communities, making you the protagonist of your journey.",
+    "description": "Experience authentic Japan with comprehensive travel services including planning, consultation, booking, and guided tours. Your Japanese travel professional handles everything from start to finish.",
     "locale": "en_US",
     "alternateLocale": "fr_FR",
     "countryName": "Japan",
@@ -29,9 +29,9 @@
     "subtitle": "~ Your Compass to Local Discoveries ~"
   },
   "Hero": {
-    "title": "Explore Japan Like a <emphasis> Local</emphasis>",
-    "subtitle": "Discover hidden gems and local experiences in Japan.",
-    "cta": "Contact Me"
+    "title": "Complete Japan Travel <emphasis>Experience</emphasis>",
+    "subtitle": "From planning to guiding - Your Japanese travel professional handles everything",
+    "cta": "Start Planning"
   },
   "ArticleList": {
     "title": "Latest Articles",
@@ -355,19 +355,73 @@
     "subtitle": "Discover unique insights, local stories, and hidden gems from my journey across Japan from point of view of a LOCAL."
   },
   "UniqueValuePropositionSection": {
-    "title": "Your Authentic Japan Journey Starts Here with Ryoto",
-    "learnMore": "Learn More About Ryoto"
+    "title": "Complete Travel Service - From Planning to Experience",
+    "learnMore": "See How It Works"
   },
   "FeaturedToursSection": {
     "title": "Our Signature Experiences",
     "linkButtonText": "Learn More",
     "viewAllTours": "View All Tours"
   },
+  "ServiceModelSection": {
+    "title": "How Our Complete Service Works",
+    "subtitle": "Your Japanese travel professional - from consultation to guided experience",
+    "planning": {
+      "title": "Pre-Trip Planning & Consultation",
+      "description": "Complete itinerary design, reservation coordination, and cultural preparation",
+      "features": [
+        "Personal consultation and preference analysis",
+        "Custom itinerary design",
+        "Restaurant and accommodation bookings",
+        "Cultural briefing and preparation"
+      ]
+    },
+    "experience": {
+      "title": "Guided Experience with Personal Transportation",
+      "description": "Licensed guide with personal vehicle for flexible, authentic experiences",
+      "features": [
+        "Licensed professional guide services",
+        "Personal car transportation included",
+        "Real-time coordination and problem solving",
+        "Photography and cultural interpretation"
+      ]
+    },
+    "appreciation": {
+      "title": "Gratuity-Based Appreciation",
+      "description": "Your satisfaction determines the value - show appreciation based on your experience",
+      "features": [
+        "No upfront guiding fees",
+        "Pay what you feel the experience was worth",
+        "Encourages exceptional service quality",
+        "Reflects traditional Japanese hospitality"
+      ]
+    }
+  },
+  "WhyChooseUsSection": {
+    "title": "Why Choose Our Complete Service",
+    "subtitle": "Professional expertise meets personalized care",
+    "credentials": {
+      "title": "Licensed Professional",
+      "description": "National Government Licensed Guide Interpreter with proven expertise"
+    },
+    "comprehensive": {
+      "title": "All-in-One Service",
+      "description": "From planning to experience - everything handled by one professional"
+    },
+    "flexible": {
+      "title": "Personal Transportation",
+      "description": "Private car ensures flexibility and access to hidden locations"
+    },
+    "authentic": {
+      "title": "Authentic Local Experience",
+      "description": "True Japanese hospitality with deep cultural understanding"
+    }
+  },
   "CallToActionSection": {
-    "title": "Ready to Start Your Adventure?",
-    "description": "Join hundreds of travelers who have discovered the real Japan with personalized guidance and authentic local experiences.",
-    "consultingButton": "Get Free Trip Consultation",
-    "bookingButton": "Book a Tour"
+    "title": "Ready for Your Complete Japan Experience?",
+    "description": "From initial consultation to guided experience - invest in a personalized service that shows appreciation through gratuity.",
+    "consultingButton": "Start Trip Planning",
+    "bookingButton": "Learn About Our Service"
   },
   "ToursPage": {
     "title": "Our Unique Tours & Experiences",
@@ -408,5 +462,34 @@
     "placeholderMessage": "Detailed information about {authorName} is coming soon.",
     "profileSectionTitle": "Profile Information",
     "profileSectionDescription": "Detailed profile information, background, and areas of expertise for {authorName} are currently being prepared. We will provide more detailed information on this page in the future."
+  },
+  "ServicePricingSection": {
+    "title": "Service Investment & Appreciation Model",
+    "subtitle": "Transparent approach to professional travel services",
+    "planningFee": {
+      "title": "Trip Planning & Coordination",
+      "price": "¥80,000 - ¥300,000",
+      "description": "Complete pre-trip services including consultation, itinerary design, and all reservations",
+      "note": "Fee varies based on trip complexity and duration"
+    },
+    "guidingService": {
+      "title": "Guided Experience with Transportation",
+      "price": "Gratuity-Based",
+      "description": "Professional guiding services with personal car transportation included",
+      "note": "Your appreciation determines the value - typically ¥20,000-50,000 per day"
+    },
+    "additionalCosts": {
+      "title": "Additional Costs",
+      "price": "Actual Cost",
+      "description": "Meals, accommodations, entrance fees, and activities at actual cost",
+      "note": "Transparent pricing with no hidden markups"
+    },
+    "whyThisModel": {
+      "title": "Why This Pricing Model?",
+      "reason1": "Ensures exceptional service quality through performance incentives",
+      "reason2": "Reflects traditional Japanese hospitality and trust",
+      "reason3": "Allows clients to show appreciation based on actual experience",
+      "reason4": "Transparent and honest approach to professional services"
+    }
   }
 }
