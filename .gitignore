@@ -54,3 +54,6 @@ storybook-static/
 
 # chromatic
 chromatic-build-*
+
+# claude
+AI_INSTRUCTIONS.md

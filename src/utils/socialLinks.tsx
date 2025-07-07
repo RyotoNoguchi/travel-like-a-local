@@ -16,5 +16,5 @@ export const listSocialLinks = ({ width, height }: Props) => [
   { icon: <FacebookIcon width={width} height={height} />, href: 'https://www.facebook.com/ryoto314.ng' },
   { icon: <TikTokIcon width={width} height={height} />, href: 'https://www.tiktok.com/@travellikealocal.jp' },
   { icon: <YouTubeIcon width={width} height={height} />, href: 'https://www.youtube.com/@travellikealocaljp' },
-  { icon: <InstagramIcon width={width} height={height} />, href: 'https://www.instagram.com/travel_like_a_local.jp/' }
+  { icon: <InstagramIcon width={width} height={height} />, href: 'https://www.instagram.com/travellikealocal.jp/' }
 ]

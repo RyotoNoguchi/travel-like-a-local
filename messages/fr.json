@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "home": "Accueil",
-    "description": "Au Travel Like a Local Japan, découvrez l'essence véritable du Japon au-delà des spots touristiques typiques. Avec des insights d'un travailleur nomade, nous offrons des connexions profondes aux zones naturelles et aux communautés locales, vous faisant le héros de votre voyage.",
+    "description": "Découvrez le Japon authentique avec des services de voyage complets incluant planification, consultation, réservation et visites guidées. Votre professionnel du voyage japonais gère tout du début à la fin.",
     "locale": "fr_FR",
     "alternateLocale": "en_US",
     "countryName": "Japon",
@@ -30,9 +30,9 @@
     "subtitle": "~ Votre boussole pour les découvertes locales ~"
   },
   "Hero": {
-    "title": "Découvrez le Japon comme un <emphasis>local</emphasis>",
-    "subtitle": "Découvrez les trésors cachés et les expériences locales au Japon.",
-    "cta": "Me Contacter"
+    "title": "<emphasis>Expérience</emphasis> Complète du Japon",
+    "subtitle": "De la planification au guidage - Votre professionnel du voyage japonais gère tout",
+    "cta": "Commencer"
   },
   "ArticleList": {
     "title": "Derniers articles",
@@ -93,6 +93,11 @@
   "Common": {
     "close": "Fermer",
     "chiefEditor": "Rédacteur en Chef"
+  },
+  "CampaignBanner": {
+    "title": "🎉 Offre Spéciale de Lancement",
+    "message": "Économisez jusqu'à 35% sur les frais de planification - Offre à durée limitée pour les premiers utilisateurs !",
+    "cta": "En Savoir Plus"
   },
   "MapPage": {
     "title": "Explorer la Carte du Japon",
@@ -355,19 +360,74 @@
     "subtitle": "Découvrez des aperçus uniques, des histoires locales et des trésors cachés de mon voyage à travers le Japon du point de vue d'un LOCAL."
   },
   "UniqueValuePropositionSection": {
-    "title": "Votre aventure authentique au Japon commence ici avec Ryoto",
-    "learnMore": "En savoir plus sur Ryoto"
+    "title": "Service de Voyage Complet - De la Planification à l'Expérience",
+    "learnMore": "Voir Comment Ça Marche"
   },
   "FeaturedToursSection": {
     "title": "Nos expériences phares",
     "linkButtonText": "En savoir plus",
     "viewAllTours": "Voir tous les tours"
   },
+  "ServiceModelSection": {
+    "title": "Comment Fonctionne Notre Service Complet",
+    "subtitle": "Votre professionnel du voyage japonais - de la consultation à l'expérience guidée",
+    "planning": {
+      "title": "Planification et Consultation Pré-Voyage",
+      "description": "Conception complète d'itinéraire, coordination des réservations et préparation culturelle",
+      "features": [
+        "Consultation personnelle et analyse des préférences",
+        "Conception d'itinéraire sur mesure",
+        "Réservations de restaurants et d'hébergements",
+        "Briefing culturel et préparation"
+      ]
+    },
+    "experience": {
+      "title": "Expérience Guidée avec Transport Personnel",
+      "description": "Guide licencié avec véhicule personnel pour des expériences flexibles et authentiques",
+      "features": [
+        "Services de guide professionnel licencié",
+        "Transport en voiture personnelle inclus",
+        "Coordination en temps réel et résolution de problèmes",
+        "Photographie et interprétation culturelle"
+      ]
+    },
+    "appreciation": {
+      "title": "Appréciation Basée sur les Pourboires",
+      "description": "Votre satisfaction détermine la valeur - montrez votre appréciation basée sur votre expérience",
+      "features": [
+        "Aucuns frais de guidage à l'avance",
+        "Payez ce que vous ressentez que l'expérience valait",
+        "Encourage une qualité de service exceptionnelle",
+        "Reflète l'hospitalité traditionnelle japonaise"
+      ]
+    }
+  },
+  "WhyChooseUsSection": {
+    "title": "Pourquoi Choisir Notre Service Complet",
+    "subtitle": "L'expertise professionnelle rencontre les soins personnalisés",
+    "credentials": {
+      "title": "Professionnel Licencié",
+      "description": "Guide Interprète Licencié par le Gouvernement National avec une expertise prouvée"
+    },
+    "comprehensive": {
+      "title": "Service Tout-en-Un",
+      "description": "De la planification à l'expérience - tout géré par un seul professionnel"
+    },
+    "flexible": {
+      "title": "Transport Personnel",
+      "description": "Voiture privée assure flexibilité et accès aux lieux cachés"
+    },
+    "authentic": {
+      "title": "Expérience Locale Authentique",
+      "description": "Vraie hospitalité japonaise avec compréhension culturelle profonde"
+    }
+  },
   "CallToActionSection": {
-    "title": "Prêt à commencer votre aventure ?",
-    "description": "Rejoignez des centaines de voyageurs qui ont découvert le vrai Japon avec des conseils personnalisés et des expériences locales authentiques.",
-    "consultingButton": "Consultation gratuite",
-    "bookingButton": "Réserver un tour"
+    "title": "Prêt pour Votre Expérience Complète du Japon ?",
+    "description": "De la consultation initiale à l'expérience guidée - investissez dans un service personnalisé qui montre l'appréciation par les pourboires.",
+    "campaignNote": "🎯 Campagne de Lancement : Réservez maintenant et économisez jusqu'à 35% sur les frais de planification !",
+    "consultingButton": "Commencer la Planification du Voyage",
+    "bookingButton": "En Savoir Plus Sur Notre Service"
   },
   "ToursPage": {
     "title": "Nos Tours & Expériences Uniques",
@@ -408,5 +468,40 @@
     "placeholderMessage": "Les informations détaillées sur {authorName} arrivent bientôt.",
     "profileSectionTitle": "Informations de profil",
     "profileSectionDescription": "Les informations détaillées du profil, l'arrière-plan et les domaines d'expertise de {authorName} sont actuellement en préparation. Nous fournirons des informations plus détaillées sur cette page à l'avenir."
+  },
+  "ServicePricingSection": {
+    "title": "Modèle d'Investissement de Service et d'Appréciation",
+    "subtitle": "Approche transparente des services de voyage professionnels",
+    "launchBanner": {
+      "title": "🎊 Campagne de Lancement",
+      "subtitle": "Tarifs Spéciaux à Durée Limitée pour les Premiers Adopteurs"
+    },
+    "planningFee": {
+      "title": "Planification et Coordination de Voyage",
+      "originalPrice": "¥80 000 - ¥300 000",
+      "campaignPrice": "¥50 000 - ¥200 000",
+      "discount": "Jusqu'à 35% de Réduction",
+      "description": "Services complets pré-voyage incluant consultation, conception d'itinéraire et toutes les réservations",
+      "note": "Tarif de campagne de lancement - Les frais varient selon la complexité et la durée du voyage"
+    },
+    "guidingService": {
+      "title": "Expérience Guidée avec Transport",
+      "price": "Basé sur les Pourboires",
+      "description": "Services de guidage professionnels avec transport en voiture personnelle inclus",
+      "note": "Votre appréciation détermine la valeur - typiquement ¥20 000-50 000 par jour"
+    },
+    "additionalCosts": {
+      "title": "Coûts Supplémentaires",
+      "price": "Coût Réel",
+      "description": "Repas, hébergements, frais d'entrée et activités au coût réel",
+      "note": "Tarification transparente sans majorations cachées"
+    },
+    "whyThisModel": {
+      "title": "Pourquoi Ce Modèle Tarifaire ?",
+      "reason1": "Assure une qualité de service exceptionnelle grâce aux incitations de performance",
+      "reason2": "Reflète l'hospitalité traditionnelle japonaise et la confiance",
+      "reason3": "Permet aux clients de montrer leur appréciation basée sur l'expérience réelle",
+      "reason4": "Approche transparente et honnête des services professionnels"
+    }
   }
 }
