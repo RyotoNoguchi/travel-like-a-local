@@ -25,4 +25,29 @@ export const getMultiplePageViews = async (slugs: string[]): Promise<Record<stri
   )
 }
 
+export const getAllPageViews = async (): Promise<Array<{ slug: string; views: number }>> => {
+  const pattern = [REDIS_KEYS.PAGEVIEWS, REDIS_KEYS.NAMESPACE, '*'].join(':')
+  const keys = await redis.keys(pattern)
+
+  if (keys.length === 0) {
+    return []
+  }
+
+  const pipeline = redis.pipeline()
+  keys.forEach((key) => {
+    pipeline.get<number>(key)
+  })
+
+  const results = await pipeline.exec()
+
+  return keys
+    .map((key, index) => {
+      const slug = key.split(':').pop() || ''
+      const views = Number(results[index]) || 0
+      return { slug, views }
+    })
+    .filter((item) => item.slug)
+    .sort((a, b) => b.views - a.views)
+}
+
 export default redis
